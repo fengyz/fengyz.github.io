@@ -3,3 +3,9 @@
 *.org~
 .DS_Store
 *.tex
+shaxia.*
+hiaidou.*
+journal-*.*
+pj-*.*
+tmux.org_archive
+
