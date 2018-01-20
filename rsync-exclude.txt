@@ -4,8 +4,11 @@
 .DS_Store
 *.tex
 shaxia.*
+shaxia/
 hiaidou.*
 journal-*.*
+journal-*/
 pj-*.*
+pj-*/
 tmux.org_archive
 
