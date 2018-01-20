@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>User-Defined Function Criterion()</title>
+<!-- 2017-06-27 Tue 10:49 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="fengyz" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="solarized-light.min.css" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">User-Defined Function Criterion()</h1>
+<div class="org-src-container">
+
+<pre class="src src-c"><span style="color: #66D9EF;">int</span> <span style="color: #F92672; font-style: italic;">Criterion</span>()
+</pre>
+</div>
+
+<p>
+The function calculates trading criteria. It can return the following values:
+</p>
+<ul class="org-ul">
+<li><code>10</code>: triggered a trading criterion for closing of market order Buy;
+</li>
+<li><code>20</code>: triggered a trading criterion for opening of market order Sell; 
+</li>
+<li><code>11</code>: triggered a trading criterion for closing of market order Buy;
+</li>
+<li><code>21</code>: triggered a trading criterion for opening of market order Sell;
+</li>
+<li><code>0</code>: no important criteria available;
+</li>
+<li><code>-1</code>: the symbol used is not EURUSD.
+</li>
+</ul>
+
+<p>
+The function uses the values of the following external variables:
+</p>
+<ul class="org-ul">
+<li><code>St_min</code>: the lower level of indicator Stochastic Oscillator; 
+</li>
+<li><code>St_max</code>: the upper level of indicator Stochastic Oscillator; 
+</li>
+<li><code>Open_Level</code>: the level of indicator MACD (for order opening);
+</li>
+<li><code>Close_Level</code>: the level of indicator MACD (for order closing).
+</li>
+</ul>
+
+<p>
+In order to display messages, the function uses the data function Inform().If the function Inform() is not included in the EA, no messages will be displayed.
+</p>
+
+<p>
+<a id="criterion_mph" name="criterion_mph"></a>
+</p>
+<div class="org-src-container">
+
+<pre class="src src-c"><span style="color: #465457; font-style: italic;">//</span><span style="color: #465457; font-style: italic;">-------------------------------------------------------------------------</span>
+<span style="color: #465457; font-style: italic;">// </span><span style="color: #465457; font-style: italic;">Criterion.mqh</span>
+<span style="color: #465457; font-style: italic;">// </span><span style="color: #465457; font-style: italic;">The code should be used for educational purpose only.</span>
+<span style="color: #465457; font-style: italic;">//</span><span style="color: #465457; font-style: italic;">-------------------------------------------------------------------- 1 --</span>
+<span style="color: #465457; font-style: italic;">// </span><span style="color: #465457; font-style: italic;">Function calculating trading criteria.</span>
+<span style="color: #465457; font-style: italic;">// </span><span style="color: #465457; font-style: italic;">Returned values:</span>
+<span style="color: #465457; font-style: italic;">// </span><span style="color: #465457; font-style: italic;">10 - opening Buy  </span>
+<span style="color: #465457; font-style: italic;">// </span><span style="color: #465457; font-style: italic;">20 - opening Sell </span>
+<span style="color: #465457; font-style: italic;">// </span><span style="color: #465457; font-style: italic;">11 - closing Buy</span>
+<span style="color: #465457; font-style: italic;">// </span><span style="color: #465457; font-style: italic;">21 - closing Sell</span>
+<span style="color: #465457; font-style: italic;">// </span><span style="color: #465457; font-style: italic;">0  - no important criteria available</span>
+<span style="color: #465457; font-style: italic;">// </span><span style="color: #465457; font-style: italic;">-1 - another symbol is used</span>
+<span style="color: #465457; font-style: italic;">//</span><span style="color: #465457; font-style: italic;">-------------------------------------------------------------------- 2 --</span>
+<span style="color: #465457; font-style: italic;">// </span><span style="color: #465457; font-style: italic;">External variables:</span>
+<span style="color: #66D9EF;">extern</span> <span style="color: #66D9EF;">int</span> <span style="color: #F92672;">St_min</span>=30;                  <span style="color: #465457; font-style: italic;">// </span><span style="color: #465457; font-style: italic;">Minimum stochastic level</span>
+<span style="color: #66D9EF;">extern</span> <span style="color: #66D9EF;">int</span> <span style="color: #F92672;">St_max</span>=70;                  <span style="color: #465457; font-style: italic;">// </span><span style="color: #465457; font-style: italic;">Maximum stochastic level</span>
+<span style="color: #66D9EF;">extern</span> <span style="color: #66D9EF;">double</span> <span style="color: #F92672;">Open_Level</span> =5;           <span style="color: #465457; font-style: italic;">// </span><span style="color: #465457; font-style: italic;">MACD level for opening (+/-)</span>
+<span style="color: #66D9EF;">extern</span> <span style="color: #66D9EF;">double</span> <span style="color: #F92672;">Close_Level</span>=4;           <span style="color: #465457; font-style: italic;">// </span><span style="color: #465457; font-style: italic;">MACD level for closing (+/-)</span>
+<span style="color: #465457; font-style: italic;">//</span><span style="color: #465457; font-style: italic;">-------------------------------------------------------------------- 3 --</span>
+<span style="color: #66D9EF;">int</span> <span style="color: #F92672; font-style: italic;">Criterion</span>()                        <span style="color: #465457; font-style: italic;">// </span><span style="color: #465457; font-style: italic;">User-defined function</span>
+  {
+   <span style="color: #66D9EF;">string</span> <span style="color: #F92672;">Sym</span>=<span style="color: #E6DB74;">"EURUSD"</span>;
+   <span style="color: #66D9EF;">if</span> (Sym!=Symbol())                  <span style="color: #465457; font-style: italic;">// </span><span style="color: #465457; font-style: italic;">If it is a wrong symbol</span>
+     {
+      Inform(16);                      <span style="color: #465457; font-style: italic;">// </span><span style="color: #465457; font-style: italic;">Messaging..</span>
+      <span style="color: #66D9EF;">return</span>(-1);                      <span style="color: #465457; font-style: italic;">// </span><span style="color: #465457; font-style: italic;">.. and exiting</span>
+     }
+   <span style="color: #66D9EF;">double</span>
+   <span style="color: #F92672;">M_0</span>, <span style="color: #F92672;">M_1</span>,                           <span style="color: #465457; font-style: italic;">// </span><span style="color: #465457; font-style: italic;">Value MAIN at bars 0 and 1</span>
+   <span style="color: #F92672;">S_0</span>, <span style="color: #F92672;">S_1</span>,                           <span style="color: #465457; font-style: italic;">// </span><span style="color: #465457; font-style: italic;">Value SIGNAL at bars 0 and 1</span>
+   <span style="color: #F92672;">St_M_0</span>, <span style="color: #F92672;">St_M_1</span>,                     <span style="color: #465457; font-style: italic;">// </span><span style="color: #465457; font-style: italic;">Value MAIN at bars 0 and 1</span>
+   <span style="color: #F92672;">St_S_0</span>, <span style="color: #F92672;">St_S_1</span>;                     <span style="color: #465457; font-style: italic;">// </span><span style="color: #465457; font-style: italic;">Value SIGNAL at bars 0 and 1</span>
+   <span style="color: #66D9EF;">double</span> <span style="color: #F92672;">Opn</span>=Open_Level*Point;        <span style="color: #465457; font-style: italic;">// </span><span style="color: #465457; font-style: italic;">Opening level of MACD (points)</span>
+   <span style="color: #66D9EF;">double</span> <span style="color: #F92672;">Cls</span>=Close_Level*Point;       <span style="color: #465457; font-style: italic;">// </span><span style="color: #465457; font-style: italic;">Closing level of MACD (points)</span>
+<span style="color: #465457; font-style: italic;">//</span><span style="color: #465457; font-style: italic;">-------------------------------------------------------------------- 4 --</span>
+   <span style="color: #465457; font-style: italic;">// </span><span style="color: #465457; font-style: italic;">Parameters of technical indicators:</span>
+   M_0=iMACD(Sym,PERIOD_H1,12,26,9,PRICE_CLOSE,MODE_MAIN,0); <span style="color: #465457; font-style: italic;">// </span><span style="color: #465457; font-style: italic;">0 bar</span>
+   M_1=iMACD(Sym,PERIOD_H1,12,26,9,PRICE_CLOSE,MODE_MAIN,1); <span style="color: #465457; font-style: italic;">// </span><span style="color: #465457; font-style: italic;">1 bar</span>
+   S_0=iMACD(Sym,PERIOD_H1,12,26,9,PRICE_CLOSE,MODE_SIGNAL,0);<span style="color: #465457; font-style: italic;">//</span><span style="color: #465457; font-style: italic;">0 bar</span>
+   S_1=iMACD(Sym,PERIOD_H1,12,26,9,PRICE_CLOSE,MODE_SIGNAL,1);<span style="color: #465457; font-style: italic;">//</span><span style="color: #465457; font-style: italic;">1 bar</span>
+
+   St_M_0=iStochastic(Sym,PERIOD_M15,5,3,3,MODE_SMA,0,MODE_MAIN,  0);
+   St_M_1=iStochastic(Sym,PERIOD_M15,5,3,3,MODE_SMA,0,MODE_MAIN,  1);
+   St_S_0=iStochastic(Sym,PERIOD_M15,5,3,3,MODE_SMA,0,MODE_SIGNAL,0);
+   St_S_1=iStochastic(Sym,PERIOD_M15,5,3,3,MODE_SMA,0,MODE_SIGNAL,1);
+<span style="color: #465457; font-style: italic;">//</span><span style="color: #465457; font-style: italic;">-------------------------------------------------------------------- 5 --</span>
+   <span style="color: #465457; font-style: italic;">// </span><span style="color: #465457; font-style: italic;">Calculation of trading criteria</span>
+   <span style="color: #66D9EF;">if</span>(M_0&gt;S_0 &amp;&amp; -M_0&gt;Opn &amp;&amp; St_M_0&gt;St_S_0 &amp;&amp; St_S_0&lt;St_min)
+      <span style="color: #66D9EF;">return</span>(10);                      <span style="color: #465457; font-style: italic;">// </span><span style="color: #465457; font-style: italic;">Opening Buy    </span>
+   <span style="color: #66D9EF;">if</span>(M_0&lt;S_0 &amp;&amp;  M_0&gt;Opn &amp;&amp; St_M_0&lt;St_S_0 &amp;&amp; St_S_0&gt;St_max)
+      <span style="color: #66D9EF;">return</span>(20);                      <span style="color: #465457; font-style: italic;">// </span><span style="color: #465457; font-style: italic;">Opening Sell </span>
+   <span style="color: #66D9EF;">if</span>(M_0&lt;S_0 &amp;&amp;  M_0&gt;Cls &amp;&amp; St_M_0&lt;St_S_0 &amp;&amp; St_S_0&gt;St_max)
+      <span style="color: #66D9EF;">return</span>(11);                      <span style="color: #465457; font-style: italic;">// </span><span style="color: #465457; font-style: italic;">Closing Buy    </span>
+   <span style="color: #66D9EF;">if</span>(M_0&gt;S_0 &amp;&amp; -M_0&gt;Cls &amp;&amp; St_M_0&gt;St_S_0 &amp;&amp; St_S_0&gt;St_min)
+      <span style="color: #66D9EF;">return</span>(21);                      <span style="color: #465457; font-style: italic;">// </span><span style="color: #465457; font-style: italic;">Closing Sell         </span>
+<span style="color: #465457; font-style: italic;">//</span><span style="color: #465457; font-style: italic;">-------------------------------------------------------------------- 6 --</span>
+   <span style="color: #66D9EF;">return</span>(0);                          <span style="color: #465457; font-style: italic;">// </span><span style="color: #465457; font-style: italic;">Exit the user-defined function</span>
+  }
+<span style="color: #465457; font-style: italic;">//</span><span style="color: #465457; font-style: italic;">-------------------------------------------------------------------- 7 --</span>
+</pre>
+</div>
+
+<p>
+In the program, the values of two indicators calculated on the current and on the preceding bar are used (block 4-5). Usually, when you use indicators Stochastic Oscillator and MACD, the signals for buying or selling are formed when two indicator lines meet each other. In this case, we use two indicators simultaneously to define trading criteria. The probability of simultaneous intersection of indicator lines of two indicators is rather low. It is much more probable that they will intersect one by one - first in one indicator, a bit later - in another one. If the indicator lines intersect within a short period of time, two indicators can be considered to have formed a trading criterion.
+</p>
+
+<p>
+For example, below is shown how a trading criterion for buying is calculated (block 5-6):
+</p>
+<div class="org-src-container">
+
+<pre class="src src-c"><span style="color: #66D9EF;">if</span>(M_0&gt;S_0 &amp;&amp; -M_0&gt;Opn &amp;&amp; St_M_0&gt;St_S_0 &amp;&amp; St_S_0&lt;St_min)
+</pre>
+</div>
+
+<p>
+According to this record, the criterion for buying is important if the following conditions are met:
+</p>
+<ul class="org-ul">
+<li>in indicator MACD, indicator line MAIN (histogram) is above indicator line SIGNAL and below the lowest level Open_Level (Fig. 157);<br  />
+<div class="center">
+<p>
+Fig. 157. Necessary condition of MACD indicator line positions to confirm the importance of trading criteria for opening and closing of orders.
+</p>
+
+
+<div class="figure">
+<p><img src="mql4-book/157.png" alt="157.png" />
+</p>
+</div>
+</div>
+</li>
+<li>in indicator Stochastic Oscillator, indicator line MAIN (histogram) is above indicator line SIGNAL and below the lowest level St_min (Fig. 158).<br  />
+<div class="center">
+<p>
+Fig. 158. Necessary condition of Stochastic Oscillator indicator line positions to confirm the importance of trading criteria for opening and closing of orders.
+</p>
+
+
+<div class="figure">
+<p><img src="mql4-book/158.png" alt="158.png" />
+</p>
+</div>
+</div>
+</li>
+</ul>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: fengyz</p>
+<p class="date">Created: 2017-06-27 Tue 10:49</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

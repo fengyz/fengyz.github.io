@@ -1,0 +1,4492 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>vim</title>
+<!-- 2017-07-17 Mon 17:51 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="fengyz" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="solarized-light.min.css" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/javascript" src="http://orgmode.org/mathjax/MathJax.js"></script>
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+    MathJax.Hub.Config({
+        // Only one of the two following lines, depending on user settings
+        // First allows browser-native MathML display, second forces HTML/CSS
+        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
+            jax: ["input/TeX", "output/HTML-CSS"],
+        extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
+                     "TeX/noUndefined.js"],
+        tex2jax: {
+            inlineMath: [ ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
+            skipTags: ["script","noscript","style","textarea","pre","code"],
+            ignoreClass: "tex2jax_ignore",
+            processEscapes: false,
+            processEnvironments: true,
+            preview: "TeX"
+        },
+        showProcessingMessages: true,
+        displayAlign: "center",
+        displayIndent: "2em",
+
+        "HTML-CSS": {
+             scale: 100,
+             availableFonts: ["STIX","TeX"],
+             preferredFont: "TeX",
+             webFont: "TeX",
+             imageFont: "TeX",
+             showMathMenu: true,
+        },
+        MMLorHTML: {
+             prefer: {
+                 MSIE:    "MML",
+                 Firefox: "MML",
+                 Opera:   "HTML",
+                 other:   "HTML"
+             }
+        }
+    });
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">vim</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">Resources</a>
+<ul>
+<li><a href="#sec-1-1">Vim Official Sites</a></li>
+<li><a href="#sec-1-2">Tutorials</a></li>
+<li><a href="#sec-1-3">Distributions</a></li>
+<li><a href="#sec-1-4">Vim commands cheat chart</a></li>
+<li><a href="#sec-1-5">Vim plugins repository</a></li>
+</ul>
+</li>
+<li><a href="#sec-2">Commands</a>
+<ul>
+<li><a href="#sec-2-1">Normal mode</a>
+<ul>
+<li><a href="#sec-2-1-1">Move around</a></li>
+<li><a href="#sec-2-1-2">Search</a></li>
+<li><a href="#sec-2-1-3">Replace</a>
+<ul>
+<li><a href="#sec-2-1-3-1">Text substitution</a>
+<ul>
+<li><a href="#sec-2-1-3-1-1">Syntax</a></li>
+<li><a href="#sec-2-1-3-1-2">Example 1: Substitute all occurence of a text with another text in the whole file</a></li>
+<li><a href="#sec-2-1-3-1-3">Example 2: Substitute of a text with another text within a single line</a></li>
+<li><a href="#sec-2-1-3-1-4">Example 3: Substitution of a text with another text within a range of lines</a></li>
+<li><a href="#sec-2-1-3-1-5">Example 4: Substitution of a text with another text by visual selection of lines</a></li>
+<li><a href="#sec-2-1-3-1-6">Example 5: Substitution of a text with another text only the 1st X number of lines</a></li>
+<li><a href="#sec-2-1-3-1-7">Example 6: Substitute only the whole word and not partial match</a></li>
+<li><a href="#sec-2-1-3-1-8">Example 7: Substitute either word1 or word2 with a new word using regular expression</a></li>
+<li><a href="#sec-2-1-3-1-9">Example 8: Interactive Find and Replace in Vim Editor</a></li>
+<li><a href="#sec-2-1-3-1-10">Example 9: Subsituting all lines with its line number.</a></li>
+<li><a href="#sec-2-1-3-1-11">Example 10: Substituting special character with its equivalent value.</a></li>
+<li><a href="#sec-2-1-3-1-12">Example 11: Alter sequence number in a numbered list while inserting a new item</a></li>
+<li><a href="#sec-2-1-3-1-13">Example 12: Substituting the sentence beginnings with upper case. (i.e. title case the entire document)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#sec-2-1-4">File Operation</a></li>
+<li><a href="#sec-2-1-5">Buffer Operation</a>
+<ul>
+<li><a href="#sec-2-1-5-1">Manage Buffers</a></li>
+</ul>
+</li>
+<li><a href="#sec-2-1-6">Window Operation</a></li>
+<li><a href="#sec-2-1-7">Copy/paste/delete</a></li>
+<li><a href="#sec-2-1-8">Indentation</a></li>
+<li><a href="#sec-2-1-9">Switch to insert mode</a></li>
+<li><a href="#sec-2-1-10">Switch to visual mode</a></li>
+<li><a href="#sec-2-1-11">Repeating</a></li>
+<li><a href="#sec-2-1-12">FASTER</a></li>
+<li><a href="#sec-2-1-13">Folding</a></li>
+<li><a href="#sec-2-1-14">recording and play</a></li>
+<li><a href="#sec-2-1-15">tab navigation</a></li>
+</ul>
+</li>
+<li><a href="#sec-2-2">Command Line Mode</a></li>
+<li><a href="#sec-2-3">Visual mode</a>
+<ul>
+<li><a href="#sec-2-3-1">Zone Selection</a></li>
+<li><a href="#sec-2-3-2">Select rectangular blocks: C-v</a></li>
+<li><a href="#sec-2-3-3">Visual selection v, V, C-v</a></li>
+</ul>
+</li>
+<li><a href="#sec-2-4">Insert mode</a>
+<ul>
+<li><a href="#sec-2-4-1">Completion: C-n and C-p</a></li>
+</ul>
+</li>
+<li><a href="#sec-2-5">System</a>
+<ul>
+<li><a href="#sec-2-5-1">Get help</a>
+<ul>
+<li><a href="#sec-2-5-1-1">How to read Vim manual</a></li>
+</ul>
+</li>
+<li><a href="#sec-2-5-2">List all plugins installed</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#sec-3">Extensions</a>
+<ul>
+<li><a href="#sec-3-1">Sessionman - Session Manager</a></li>
+<li><a href="#sec-3-2">Tasklist - Eclipse Task List</a></li>
+<li><a href="#sec-3-3">Zen Code (Emmet) - Hi-speed Coding for HTML/CSS</a></li>
+<li><a href="#sec-3-4">Rainbow Parentheses Improved</a></li>
+<li><a href="#sec-3-5">Surround - Managing All the "[{}]" etc.</a></li>
+<li><a href="#sec-3-6">surround</a>
+<ul>
+<li><a href="#sec-3-6-1">Normal mode</a></li>
+<li><a href="#sec-3-6-2">Visual mode</a></li>
+<li><a href="#sec-3-6-3">Insert mode</a></li>
+</ul>
+</li>
+<li><a href="#sec-3-7">airline</a></li>
+</ul>
+</li>
+<li><a href="#sec-4">Configuration</a>
+<ul>
+<li><a href="#sec-4-1">Highlight the current line &amp; column</a></li>
+<li><a href="#sec-4-2">Use solarized light/dark</a></li>
+<li><a href="#sec-4-3">Use spell checking in vim</a></li>
+<li><a href="#sec-4-4">Set line wrap</a></li>
+</ul>
+</li>
+<li><a href="#sec-5">Vim as IDE</a>
+<ul>
+<li><a href="#sec-5-1">手把手将 Vim 打造成开发 Ruby 和 Rails 的强大 IDE</a></li>
+<li><a href="#sec-5-2">spf13-vim: Steve Francia's Vim Distribution</a>
+<ul>
+<li><a href="#sec-5-2-1">Overview</a></li>
+<li><a href="#sec-5-2-2">Installation</a>
+<ul>
+<li><a href="#sec-5-2-2-1">Requirements</a></li>
+<li><a href="#sec-5-2-2-2">Linux, *nix, Mac OSX Installation</a></li>
+<li><a href="#sec-5-2-2-3">Updating to the latest version</a></li>
+</ul>
+</li>
+<li><a href="#sec-5-2-3">A highly optimized .vimrc config file</a>
+<ul>
+<li><a href="#sec-5-2-3-1">Customization</a>
+<ul>
+<li><a href="#sec-5-2-3-1-1">Before File</a></li>
+<li><a href="#sec-5-2-3-1-2">Fork Customization</a></li>
+<li><a href="#sec-5-2-3-1-3">Easily Editing Your Configuration</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#sec-5-2-4">Plugins</a>
+<ul>
+<li><a href="#sec-5-2-4-1">Adding new plugins</a></li>
+<li><a href="#sec-5-2-4-2">Removing (disabling) an included plugin</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#sec-6">Plugins</a>
+<ul>
+<li><a href="#sec-6-1">bufferline</a></li>
+<li><a href="#sec-6-2">airline</a>
+<ul>
+<li><a href="#sec-6-2-1">the triangles do not appear</a></li>
+</ul>
+</li>
+<li><a href="#sec-6-3">wordy</a></li>
+<li><a href="#sec-6-4">vimcolors</a></li>
+<li><a href="#sec-6-5">wildfire.vim</a></li>
+<li><a href="#sec-6-6">Powerline fonts</a></li>
+<li><a href="#sec-6-7">Fugitive</a></li>
+<li><a href="#sec-6-8">Tabulize</a></li>
+<li><a href="#sec-6-9">UltiSnips&#xa0;&#xa0;&#xa0;<span class="tag"><span class="DOCKER">DOCKER</span>&#xa0;<span class="27">27</span></span></a></li>
+<li><a href="#sec-6-10">UndoTree</a></li>
+<li><a href="#sec-6-11">NERDTree</a>
+<ul>
+<li><a href="#sec-6-11-1">Issues</a>
+<ul>
+<li><a href="#sec-6-11-1-1">vim - nerdtree suddenly broke</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#sec-6-12">ctrlp - Fast File Finder</a></li>
+<li><a href="#sec-6-13">Surround</a></li>
+<li><a href="#sec-6-14">NERDCommentor</a></li>
+<li><a href="#sec-6-15">neocomplete</a></li>
+<li><a href="#sec-6-16">YouCompleteMe</a>
+<ul>
+<li><a href="#sec-6-16-1">Ubuntu Linux x64 Installtion</a>
+<ul>
+<li><a href="#sec-6-16-1-1">1. Install development tools and cmake</a></li>
+<li><a href="#sec-6-16-1-2">2. Make sure you have python headers installed</a></li>
+<li><a href="#sec-6-16-1-3">3. Compile YCM.</a></li>
+</ul>
+</li>
+<li><a href="#sec-6-16-2">Add Better JavaScript Support</a>
+<ul>
+<li><a href="#sec-6-16-2-1">0. Install tern server</a></li>
+<li><a href="#sec-6-16-2-2">1. Install Tern for Vim plugin</a></li>
+<li><a href="#sec-6-16-2-3">2. Extra Installation Step</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#sec-6-17">Tern For Vim</a>
+<ul>
+<li><a href="#sec-6-17-1">Installation</a></li>
+</ul>
+</li>
+<li><a href="#sec-6-18">EasyMotion</a></li>
+<li><a href="#sec-6-19">vim-signify</a></li>
+<li><a href="#sec-6-20">editorconfig-vim</a>
+<ul>
+<li><a href="#sec-6-20-1">References</a></li>
+<li><a href="#sec-6-20-2">Installation</a>
+<ul>
+<li><a href="#sec-6-20-2-1">1. Add the line in .vimrc.bundle.local:</a></li>
+<li><a href="#sec-6-20-2-2">2. Install EditorConfig core:</a></li>
+<li><a href="#sec-6-20-2-3">3. Create .editorconfig file:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#sec-6-21">Tagbar</a>
+<ul>
+<li><a href="#sec-6-21-1">Configure shortcut key</a></li>
+<li><a href="#sec-6-21-2">Working with jsctags(doctorjs)</a></li>
+</ul>
+</li>
+<li><a href="#sec-6-22">MiniBufExpl</a></li>
+<li><a href="#sec-6-23">vim-vue</a></li>
+<li><a href="#sec-6-24">nerdcommentor</a></li>
+</ul>
+</li>
+<li><a href="#sec-7">Issues &amp; Solutions</a>
+<ul>
+<li><a href="#sec-7-1">cannot expand 'test' (rails.snippets) in .rb file</a></li>
+<li><a href="#sec-7-2">cannot expand '=' in .html.erb file</a></li>
+<li><a href="#sec-7-3">^M character in file</a></li>
+<li><a href="#sec-7-4">space shown as ¿</a></li>
+<li><a href="#sec-7-5">Specific js file couldn't be highlighted and autocompleted</a></li>
+<li><a href="#sec-7-6">Couldn't resize vim splits inside tmux</a></li>
+<li><a href="#sec-7-7">The YCMD server shut down</a></li>
+</ul>
+</li>
+<li><a href="#sec-8">Advanced topics</a>
+<ul>
+<li><a href="#sec-8-1">Refresh all files in buffer from disk in vim</a></li>
+<li><a href="#sec-8-2">set line length</a></li>
+<li><a href="#sec-8-3">use multiple file types at the same time</a></li>
+<li><a href="#sec-8-4">view the currently mapped keys in vim</a></li>
+<li><a href="#sec-8-5">Remove unwanted trailing whitespaces</a></li>
+<li><a href="#sec-8-6">disable spelling check</a></li>
+<li><a href="#sec-8-7">Build vim with lua support</a></li>
+<li><a href="#sec-8-8">Building vim with lua &amp; python, etc.</a></li>
+<li><a href="#sec-8-9">vi/vim使用进阶: 目录 @ 易水博客</a></li>
+<li><a href="#sec-8-10">How to navigate in large project in VIM</a>
+<ul>
+<li><a href="#sec-8-10-1">1. Add to ~/.vimrc.local</a></li>
+<li><a href="#sec-8-10-2">2. Then find the file anywhere in the current dir (pwd)</a></li>
+<li><a href="#sec-8-10-3">3. [ME] Combined with Ctrl+P</a></li>
+</ul>
+</li>
+<li><a href="#sec-8-11">How to rename a variable/name etc.?</a></li>
+<li><a href="#sec-8-12">How to copy/paste between diffrent vims (using system clipboard)</a></li>
+<li><a href="#sec-8-13">How to force vim to syntax-highting a file as html?</a></li>
+<li><a href="#sec-8-14">How to fold/unfold HTML tags with Vim</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">Resources</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1">Vim Official Sites</h3>
+<div class="outline-text-3" id="text-1-1">
+<ul class="org-ul">
+<li><a href="http://www.vim.org/">Vim Homepage</a>
+</li>
+<li><a href="http://vimdoc.sourceforge.net/htmldoc/help.html">Vim documentation: help</a>
+</li>
+<li><a href="http://www.thegeekstuff.com/2009/04/vi-vim-editor-search-and-replace-examples/">Vi and Vim Editor: 12 Powerful Find and Replace Examples</a> (notes in <a href="#sec-2-1-3-1">Text substitution</a>) by Sathiyamoorthy: This article is part of the on-going <a href="http://www.thegeekstuff.com/tag/vi-vim-tips-and-tricks/">Vi / Vim Tips and Tricks</a> series. Vim is commonly mentioned as text editor, not text creator. Why ? Because we spend lot of time editing an existing text than creating new text.  In the text editing, text/pattern substitutions becomes a vital part.
+</li>
+<li><a href="http://www.thegeekstuff.com/vim-101-hacks-ebook/">Vim 101 hacks</a> by Ramesh Natarajan. I’m a command-line junkie. So, naturally I’m a huge fan of Vi and Vim editors. Several years back, when I wrote lot of C code on Linux, I used to read all available Vim editor tips and tricks. Based on my Vim editor experience, I’ve written Vim 101 Hacks eBook that contains 101 practical examples on various advanced Vim features that will make you fast and productive in the Vim editor. Even if you’ve been using Vi and Vim Editors for several years and have not read this book, please do yourself a favor and read this book. You’ll be amazed with the capabilities of Vim editor. ($39.95)
+</li>
+<li><a href="http://www.thegeekstuff.com/2009/01/vi-and-vim-macro-tutorial-how-to-record-and-play/">Vi and Vim Macro Tutorial: How To Record and Play</a>
+</li>
+<li><a href="http://www.thegeekstuff.com/2009/05/firefox-add-on-vimperator-make-firefox-behave-like-vim/">Turbocharge Firefox Browser With Vim Editor Functionality Using Vimperator Add-on</a>
+</li>
+<li><a href="http://www.thegeekstuff.com/2009/01/tutorial-make-vim-as-your-cc-ide-using-cvim-plugin/">Tutorial: Make Vim as Your C/C++ IDE Using c.vim Plugin</a>
+</li>
+<li><a href="http://www.thegeekstuff.com/2009/04/ctags-taglist-vi-vim-editor-as-sourece-code-browser/">Convert Vim Editor to Beautiful Source Code Browser for Any Programming Language</a>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2">Tutorials</h3>
+<div class="outline-text-3" id="text-1-2">
+<ul class="org-ul">
+<li><a href="http://ju.outofmemory.cn/entry/79671">跟我一起学习VIM - The Life Changing Editor</a>: 如何配置集成开发环境，如何使用专家的配置
+</li>
+<li><a href="http://blog.csdn.net/niushuai666/article/details/7275406">vim 简明教程</a>: 翻译自 <a href="http://yannesposito.com/Scratch/en/blog/Learn-Vim-Progressively/">learn vim progressively</a>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3">Distributions</h3>
+<div class="outline-text-3" id="text-1-3">
+<ul class="org-ul">
+<li><a href="https://github.com/spf13/spf13-vim">spf13</a>: Steve Fancia's Vim Distribution（上文作者强烈推荐）
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-4" class="outline-3">
+<h3 id="sec-1-4">Vim commands cheat chart</h3>
+<div class="outline-text-3" id="text-1-4">
+
+<div class="figure">
+<p><img src="./vim/vim-cmd.gif" alt="vim-cmd.gif" />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-5" class="outline-3">
+<h3 id="sec-1-5">Vim plugins repository</h3>
+<div class="outline-text-3" id="text-1-5">
+<ul class="org-ul">
+<li><a href="http://vimawesome.com/">VimAwesome</a>: Awesome vim plugins from across the universe
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">Commands</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1">Normal mode</h3>
+<div class="outline-text-3" id="text-2-1">
+</div><div id="outline-container-sec-2-1-1" class="outline-4">
+<h4 id="sec-2-1-1">Move around</h4>
+<div class="outline-text-4" id="text-2-1-1">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left">Key</th>
+<th scope="col" class="left">Purpose</th>
+<th scope="col" class="left">Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="left">hjkl</td>
+<td class="left">move cursor around</td>
+<td class="left">&#xa0;</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="left">0</td>
+<td class="left">go to the first column</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">^</td>
+<td class="left">go the the first non-blank char of line</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">$</td>
+<td class="left">go the end of line</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">g_</td>
+<td class="left">go the last non-blank char of line</td>
+<td class="left">&#xa0;</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="left">C-f</td>
+<td class="left">next page</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">C-b</td>
+<td class="left">previous page</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">C-d</td>
+<td class="left">next half page</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">C-u</td>
+<td class="left">previous half page</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">G</td>
+<td class="left">go to last line</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">gg</td>
+<td class="left">shortcut for 1G - go to the start of file</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">+</td>
+<td class="left">移动到非空格符的下一列</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">-</td>
+<td class="left">移动到非空格符的上一列</td>
+<td class="left">&#xa0;</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="left">H</td>
+<td class="left">screen top</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">M</td>
+<td class="left">screen middle</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">L</td>
+<td class="left">screen bottom</td>
+<td class="left">&#xa0;</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="left">zt</td>
+<td class="left">scroll to screen top</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">zz</td>
+<td class="left">scroll to screen middle</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">zb</td>
+<td class="left">scroll to screen bottom</td>
+<td class="left">&#xa0;</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="left">mx</td>
+<td class="left">make a mark 'x'</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">'x</td>
+<td class="left">jump to mark 'x'</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">``/''</td>
+<td class="left">to the position before the latest jump, or where the last m'/m` was given</td>
+<td class="left">&#xa0;</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="left">&lt;N&gt;G</td>
+<td class="left">go to line</td>
+<td class="left">&#xa0;</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="left">w</td>
+<td class="left">go to the start of the following word</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">b</td>
+<td class="left">go to the start of the preceding word</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">e</td>
+<td class="left">go to the end of this word</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">W</td>
+<td class="left">go to the start of the following WORD</td>
+<td class="left">no symbol</td>
+</tr>
+
+<tr>
+<td class="left">B</td>
+<td class="left">go to the start of the preceding WORD</td>
+<td class="left">no symbol</td>
+</tr>
+
+<tr>
+<td class="left">E</td>
+<td class="left">go to the end of this WORD</td>
+<td class="left">no symbol</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-sec-2-1-2" class="outline-4">
+<h4 id="sec-2-1-2">Search</h4>
+<div class="outline-text-4" id="text-2-1-2">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left">Key</th>
+<th scope="col" class="left">Purpose</th>
+<th scope="col" class="left">Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="left">/pattern</td>
+<td class="left">search for pattern</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">n</td>
+<td class="left">next search result</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">N</td>
+<td class="left">previous search result</td>
+<td class="left">&#xa0;</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="left">%</td>
+<td class="left">go to the corresponding (, {, [</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">* #</td>
+<td class="left">go to the next (previous) occurence of the word under the cursor</td>
+<td class="left">&#xa0;</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="left">fa</td>
+<td class="left">go to next occurence of 'a' on the line</td>
+<td class="left">,/; will find the next/previous occurence</td>
+</tr>
+
+<tr>
+<td class="left">t,</td>
+<td class="left">go to just before ','</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">3fa</td>
+<td class="left">find the 3rd occurence of 'a' on this line</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">F / T</td>
+<td class="left">like f/t but backward</td>
+<td class="left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-sec-2-1-3" class="outline-4">
+<h4 id="sec-2-1-3">Replace</h4>
+<div class="outline-text-4" id="text-2-1-3">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left">Key</th>
+<th scope="col" class="left">Purpose</th>
+<th scope="col" class="left">Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="left">r</td>
+<td class="left">replace a single letter</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">R</td>
+<td class="left">replace more than 1 letter on the current line</td>
+<td class="left">ESC when finished</td>
+</tr>
+
+<tr>
+<td class="left">s</td>
+<td class="left">replace a single character with multiple characters</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">S</td>
+<td class="left">replaces the entire line</td>
+<td class="left">&#xa0;</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="left">:s/search/replace</td>
+<td class="left">replace the string search with the string replace</td>
+<td class="left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="outline-container-sec-2-1-3-1" class="outline-5">
+<h5 id="sec-2-1-3-1">Text substitution</h5>
+<div class="outline-text-5" id="text-2-1-3-1">
+</div><div id="outline-container-sec-2-1-3-1-1" class="outline-6">
+<h6 id="sec-2-1-3-1-1">Syntax</h6>
+<div class="outline-text-6" id="text-2-1-3-1-1">
+<div class="org-src-container">
+
+<pre class="src src-vim">:[range]s[ubstitute]/{pattern}/{string}/[flags] [count]
+</pre>
+</div>
+<p>
+Meaning: For each line in [range] replace a match of {pattern} with {string}.
+</p>
+
+<p>
+Three possible <b>flags</b>:
+</p>
+<ol class="org-ol">
+<li>[c] Confirm each substitution.
+</li>
+<li>[g] Replace all occurrences in the line.
+</li>
+<li>[i] Ignore case for the pattern.
+</li>
+</ol>
+
+<p>
+<b>String</b> can be a literal string, or something special, 
+</p>
+
+<p>
+<b>Range</b> can be:
+</p>
+<ul class="org-ul">
+<li>{number}: an absolute line number
+</li>
+<li>. : the current line
+</li>
+<li>$ : the last line in the file
+</li>
+<li>% : equal to 1,$ (the eintire file)
+</li>
+<li>'t: position of mark t (lowercase), when the mark is in another file, it cannot be used in a range
+</li>
+<li>'T: position of mark T (uppercase)
+</li>
+<li>/{pattern}<code>[/]</code>: the next line where {pattern} matches
+</li>
+<li>?{pattern}[?]: the previous line where {pattern} matches
+</li>
+<li>\/: the next line where the previously used search pattern matches
+</li>
+<li>\?: the previous line where the previously used search pattern matches
+</li>
+<li>\&amp;: the next line where the previously used substitute pattern matches
+</li>
+<li>Each may be followed (several times) by '+' or '-' and an optional number. This number is added or subtracted from the preceding line number. If the number is omitted, 1 is used.
+</li>
+</ul>
+
+<p>
+When <b>count</b> is given, replace in [count] lines, starting with the last line in [range]. When [range] is omitted, start in the current line.
+</p>
+
+<p>
+When [range] and [count] are omitted, replace in the current line only.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-2-1-3-1-2" class="outline-6">
+<h6 id="sec-2-1-3-1-2">Example 1: Substitute all occurence of a text with another text in the whole file</h6>
+<div class="outline-text-6" id="text-2-1-3-1-2">
+<p>
+This is the basic fundamental usage of the text substitution inside Vim.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-vim">:%s/old-text/new-text/g
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-2-1-3-1-3" class="outline-6">
+<h6 id="sec-2-1-3-1-3">Example 2: Substitute of a text with another text within a single line</h6>
+<div class="outline-text-6" id="text-2-1-3-1-3">
+<p>
+In a case insensitive manner:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-vim">:s/I/We/gi
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-2-1-3-1-4" class="outline-6">
+<h6 id="sec-2-1-3-1-4">Example 3: Substitution of a text with another text within a range of lines</h6>
+<div class="outline-text-6" id="text-2-1-3-1-4">
+<div class="org-src-container">
+
+<pre class="src src-vim">:1,10s/helo/hello/g
+</pre>
+</div>
+<p>
+Do substitution only in the lines 1-10.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-2-1-3-1-5" class="outline-6">
+<h6 id="sec-2-1-3-1-5">Example 4: Substitution of a text with another text by visual selection of lines</h6>
+<div class="outline-text-6" id="text-2-1-3-1-5">
+<p>
+C-V in command mode, use navigation keys to select the part. Press ':' which will automatically formed as :'&lt;,'&gt;, then you can use the normal substitute as
+</p>
+<div class="org-src-container">
+
+<pre class="src src-vim">:'&lt;,'&gt;s/helo/hello/g
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-2-1-3-1-6" class="outline-6">
+<h6 id="sec-2-1-3-1-6">Example 5: Substitution of a text with another text only the 1st X number of lines</h6>
+<div class="outline-text-6" id="text-2-1-3-1-6">
+<p>
+Using count in substitution. It means do substitution in N lines from the current position of the cursor.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-vim">:s/helo/hello/g 4
+</pre>
+</div>
+<p>
+Do substitution in 4 lines from the current line.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-2-1-3-1-7" class="outline-6">
+<h6 id="sec-2-1-3-1-7">Example 6: Substitute only the whole word and not partial match</h6>
+<div class="outline-text-6" id="text-2-1-3-1-7">
+<p>
+You should enclose the word with &lt; and &gt; (don't forget they are special symbols - use \&lt; and \&gt;).
+</p>
+<div class="org-src-container">
+
+<pre class="src src-vim">:s/\&lt;his\&gt;/her/g
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-2-1-3-1-8" class="outline-6">
+<h6 id="sec-2-1-3-1-8">Example 7: Substitute either word1 or word2 with a new word using regular expression</h6>
+<div class="outline-text-6" id="text-2-1-3-1-8">
+<div class="org-src-container">
+
+<pre class="src src-vim">:%s/\(good\|nice\)/awesome/g
+</pre>
+</div>
+<p>
+Or do substitution for whole words:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-vim">:%s/\&lt;\(hey\|hi\)\&gt;/hai/g
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-2-1-3-1-9" class="outline-6">
+<h6 id="sec-2-1-3-1-9">Example 8: Interactive Find and Replace in Vim Editor</h6>
+<div class="outline-text-6" id="text-2-1-3-1-9">
+<p>
+Add 'c' flag:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-vim">:%s/awesome/wonderful/gc
+
+replace with wonderful (y/n/a/q/l/^E/^Y)?
+</pre>
+</div>
+<ul class="org-ul">
+<li>y: will replace the current highlighted word.
+</li>
+<li>n: will not replace the current highlighted word.
+</li>
+<li>a: will substitute all the highlighted words automatically.
+</li>
+<li>l: will replace only the current highlighted word and terminate.
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-2-1-3-1-10" class="outline-6">
+<h6 id="sec-2-1-3-1-10">Example 9: Subsituting all lines with its line number.</h6>
+<div class="outline-text-6" id="text-2-1-3-1-10">
+<p>
+When the string starts with '\=', it should be evaluated as an expression. Using the line function we can get the current line number.
+</p>
+
+<p>
+Add line number for each line:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-vim">:%s/^/\=line(".") . ". "/g
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-2-1-3-1-11" class="outline-6">
+<h6 id="sec-2-1-3-1-11">Example 10: Substituting special character with its equivalent value.</h6>
+<div class="outline-text-6" id="text-2-1-3-1-11">
+<div class="org-src-container">
+
+<pre class="src src-vim">Original Text: Current file path is ~/test/
+
+:%s!\~!\= expand($HOME)!g
+
+Translated Text: Current file path is /home/ramesh/test/
+</pre>
+</div>
+<p>
+You can use expand function to use all variable predefined and user defined variables.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-2-1-3-1-12" class="outline-6">
+<h6 id="sec-2-1-3-1-12">Example 11: Alter sequence number in a numbered list while inserting a new item</h6>
+<div class="outline-text-6" id="text-2-1-3-1-12">
+<pre class="example">
+vi / vim tips &amp; tricks series
+Article 1: Vi and Vim Editor: 3 Steps To Enable Thesaurus Option
+Article 2: Vim Autocommand: 3 Steps to Add Custom Header To Your File
+Article 3: 5 Awesome Examples For Automatic Word Completion Using Ctrl-X
+Article 4: Vi and Vim Macro Tutorial: How To Record and Play
+Article 5: Tutorial: Make Vim as Your C/C++ IDE Using c.vim Plugin
+Article 6: How To Add Bookmarks Inside Vim Editor
+Article 7: Make Vim as Your Bash-IDE Using bash-support Plugin
+Article 8: 3 Powerful Musketeers Of Vim Editor ? Macro, Mark and Map
+Article 9: 8 Essential Vim Editor Navigation Fundamentals
+Article 10: Vim Editor: How to Correct Spelling Mistakes Automatically
+Article 11: Transfer the Power of Vim Editor to Thunderbird for Email
+Article 12: Convert Vim Editor to Beautiful Source Code Browser
+</pre>
+<p>
+3rd Article “Make Vim as Your Perl IDE Using perl-support.vim Plugin” got missed. So when you want to add it, then you want to change “Article 3″ to “Article 4″, “Article 4″ to “Article 5″, upto “Article 12″ to “Article 13″.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-vim">:4,$s/\d\+/\=submatch(0) + 1/
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>Range: 4,$ – 4th line to last line.
+</li>
+<li>Pattern to Search – \d\+ – digits sequence
+</li>
+<li>Pattern to Replace – \=submatch(0) + 1 – gets the matched pattern and adds 1 to it.
+</li>
+<li>Flag – as there is no flag, by default it substitutes only the first occurrence.
+</li>
+</ul>
+
+<p>
+After executing the substitute statement the result will become like the following:
+</p>
+<pre class="example">
+vi / vim tips &amp; tricks series
+Article 1: Vi and Vim Editor: 3 Steps To Enable Thesaurus Option
+Article 2: Vim Autocommand: 3 Steps to Add Custom Header To Your File
+Article 4: 5 Awesome Examples For Automatic Word Completion Using Ctrl-X
+Article 5: Vi and Vim Macro Tutorial: How To Record and Play
+Article 6: Tutorial: Make Vim as Your C/C++ IDE Using c.vim Plugin
+Article 7: How To Add Bookmarks Inside Vim Editor
+Article 8: Make Vim as Your Bash-IDE Using bash-support Plugin
+Article 9: 3 Powerful Musketeers Of Vim Editor ? Macro, Mark and Map
+Article 10: 8 Essential Vim Editor Navigation Fundamentals
+Article 11: Vim Editor: How to Correct Spelling Mistakes Automatically
+Article 12: Transfer the Power of Vim Editor to Thunderbird for Email
+Article 13: Convert Vim Editor to Beautiful Source Code Browser
+</pre>
+</div>
+</div>
+<div id="outline-container-sec-2-1-3-1-13" class="outline-6">
+<h6 id="sec-2-1-3-1-13">Example 12: Substituting the sentence beginnings with upper case. (i.e. title case the entire document)</h6>
+<div class="outline-text-6" id="text-2-1-3-1-13">
+<div class="org-src-container">
+
+<pre class="src src-vim">:%s/\.\s*\w/\=toupper(submatch(0))/g
+</pre>
+</div>
+<ul class="org-ul">
+<li>\.\s*\w – Search Pattern – literal . ( dot ) followed by Zero or more space, and a word character.
+</li>
+<li>toupper – converts the given text to upper case.
+</li>
+<li>submatch(0) – returns the matched pattern.
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-2-1-4" class="outline-4">
+<h4 id="sec-2-1-4">File Operation</h4>
+<div class="outline-text-4" id="text-2-1-4">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left">Key</th>
+<th scope="col" class="left">Purpose</th>
+<th scope="col" class="left">Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="left">:e path_to_file</td>
+<td class="left">open</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">:w</td>
+<td class="left">save</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">:wq</td>
+<td class="left">save (:w) &amp; exit (:q)</td>
+<td class="left">:w &lt;filename&gt;</td>
+</tr>
+
+<tr>
+<td class="left">:saveas path_to_file</td>
+<td class="left">save to path_to_file</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">:x / ZZ / :wq</td>
+<td class="left">save and quit</td>
+<td class="left">:x only save if necessary</td>
+</tr>
+
+<tr>
+<td class="left">:q!</td>
+<td class="left">quit without saving</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">:qa!</td>
+<td class="left">quit even if there are modified hidden buffers</td>
+<td class="left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-sec-2-1-5" class="outline-4">
+<h4 id="sec-2-1-5">Buffer Operation</h4>
+<div class="outline-text-4" id="text-2-1-5">
+<p>
+(See <a href="http://vim.wikia.com/wiki/Easier_buffer_switching">Easy Buffer Switching</a>)
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left">Key</th>
+<th scope="col" class="left">Purpose</th>
+<th scope="col" class="left">Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="left">:buffers</td>
+<td class="left">list the current buffers</td>
+<td class="left">for unslisted buffers, append a '!'</td>
+</tr>
+
+<tr>
+<td class="left">:ls, :files</td>
+<td class="left">equal to :buffers</td>
+<td class="left">&#xa0;</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="left">:bn :bp</td>
+<td class="left">show next/previous file (buffer)</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">:buffer&lt;number/name&gt;</td>
+<td class="left">switch to a given buffer</td>
+<td class="left">:b, :bu, :buf</td>
+</tr>
+
+<tr>
+<td class="left">&lt;number&gt;C-^</td>
+<td class="left">switch to a given buffer</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">:edit #&lt;number&gt;</td>
+<td class="left">switch to a given buffer</td>
+<td class="left">:edit &lt;filename&gt; will open the file</td>
+</tr>
+
+<tr>
+<td class="left">C-^ or :b#</td>
+<td class="left">switch to the previously edited buffer</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">bd</td>
+<td class="left">unload buffer and delete it</td>
+<td class="left">:bdelete</td>
+</tr>
+
+<tr>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<div id="outline-container-sec-2-1-5-1" class="outline-5">
+<h5 id="sec-2-1-5-1">Manage Buffers</h5>
+<div class="outline-text-5" id="text-2-1-5-1">
+<p>
+When there are several buffers open in a Vim session, it can become difficult to keep track of the buffers and their respective buffer numbers. If this is the case, switching to a different file can be made easier using a simple map:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-vim">:nnoremap &lt;F5&gt; :buffers&lt;CR&gt;:buffer&lt;Space&gt;
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2-1-6" class="outline-4">
+<h4 id="sec-2-1-6">Window Operation</h4>
+<div class="outline-text-4" id="text-2-1-6">
+<p>
+(See <a href="http://www.linuxidc.com/Linux/2012-08/69363.htm">Vim的分割窗口split命令</a>)
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left">Key</th>
+<th scope="col" class="left">Purpose</th>
+<th scope="col" class="left">Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="left">:split, C-w s</td>
+<td class="left">split a window horizontally</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">:vsplit, C-w v</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">:close, C-w q</td>
+<td class="left">close current window</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">:only</td>
+<td class="left">close windows except current one</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">:split &lt;filename&gt;</td>
+<td class="left">open the given file in a window</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">:new</td>
+<td class="left">open a new file in a window</td>
+<td class="left">&#xa0;</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="left">C-w C-w</td>
+<td class="left">jump among windows</td>
+<td class="left">C-w w</td>
+</tr>
+
+<tr>
+<td class="left">C-w h/j/k/l</td>
+<td class="left">jump to a window in given direction</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">C-w t</td>
+<td class="left">jump to the top window</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">C-w b</td>
+<td class="left">jump to the bottom window</td>
+<td class="left">&#xa0;</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="left">C-w K</td>
+<td class="left">move current window to top and screen-wide</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">C-w H/J/L</td>
+<td class="left">move current window to given position</td>
+<td class="left">&#xa0;</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="left">:qall</td>
+<td class="left">quit all if all buffers have been saved</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">:wall</td>
+<td class="left">write all</td>
+<td class="left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+
+<div class="org-src-container">
+
+<pre class="src src-example">vim -o one.txt two.txt three.txt
+</pre>
+</div>
+<p>
+Used in terminal, open 3 files at the same time and put them in separate split windows.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-2-1-7" class="outline-4">
+<h4 id="sec-2-1-7">Copy/paste/delete</h4>
+<div class="outline-text-4" id="text-2-1-7">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left">Key</th>
+<th scope="col" class="left">Purpose</th>
+<th scope="col" class="left">Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="left">x</td>
+<td class="left">delete the char under the cursor</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">dd</td>
+<td class="left">delete (and COPY) current line</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">dt"</td>
+<td class="left">remove everything until the '"'</td>
+<td class="left">&#xa0;</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="left">u</td>
+<td class="left">undo</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">C-r</td>
+<td class="left">redo</td>
+<td class="left">&#xa0;</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="left">P</td>
+<td class="left">paste before the current position</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">p</td>
+<td class="left">past after the current position</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">yy</td>
+<td class="left">copy the current line</td>
+<td class="left">easier but equivalent to ddP</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-sec-2-1-8" class="outline-4">
+<h4 id="sec-2-1-8">Indentation</h4>
+<div class="outline-text-4" id="text-2-1-8">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left">Key</th>
+<th scope="col" class="left">Purpose</th>
+<th scope="col" class="left">Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="left">&gt; &lt;</td>
+<td class="left">indent to right/left</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">[n] &gt;&gt;</td>
+<td class="left">indent n lines</td>
+<td class="left">[n] &lt;&lt;</td>
+</tr>
+
+<tr>
+<td class="left">Vjj&gt;</td>
+<td class="left">indent 3 lines</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">&gt;%</td>
+<td class="left">indent a curly-brace block</td>
+<td class="left">put your cursor on one brace first</td>
+</tr>
+
+<tr>
+<td class="left">]p</td>
+<td class="left">paste with indentation</td>
+<td class="left">see :help ]</td>
+</tr>
+
+<tr>
+<td class="left">=</td>
+<td class="left">auto indentation</td>
+<td class="left">same usage as &gt; &lt;</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+See <a href="http://stackoverflow.com/questions/235839/indent-multiple-lines-quickly-in-vi">Indent multiple lines quickly in vi</a>.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-2-1-9" class="outline-4">
+<h4 id="sec-2-1-9">Switch to insert mode</h4>
+<div class="outline-text-4" id="text-2-1-9">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left">Key</th>
+<th scope="col" class="left">Purpose</th>
+<th scope="col" class="left">Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="left">i</td>
+<td class="left">enter <a href="#sec-2-4">insert mode</a></td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">a</td>
+<td class="left">insert after the cursor</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">A</td>
+<td class="left">insert after end of the line</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">R</td>
+<td class="left">replace mode</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">o</td>
+<td class="left">insert a new line after the current one</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">O</td>
+<td class="left">insert a new line before the current one</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">cw</td>
+<td class="left">replace from the cursor to the end of the word</td>
+<td class="left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-sec-2-1-10" class="outline-4">
+<h4 id="sec-2-1-10">Switch to visual mode</h4>
+<div class="outline-text-4" id="text-2-1-10">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left">Key</th>
+<th scope="col" class="left">Purpose</th>
+<th scope="col" class="left">Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="left">v</td>
+<td class="left">switch to visual mode</td>
+<td class="left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-sec-2-1-11" class="outline-4">
+<h4 id="sec-2-1-11">Repeating</h4>
+<div class="outline-text-4" id="text-2-1-11">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left">Key</th>
+<th scope="col" class="left">Purpose</th>
+<th scope="col" class="left">Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="left">. (dot)</td>
+<td class="left">repeat the last command</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">&lt;N&gt; &lt;command&gt;</td>
+<td class="left">repeat the command N times</td>
+<td class="left">2dd: delete 2 lines, 3p: paste 3 times</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-sec-2-1-12" class="outline-4">
+<h4 id="sec-2-1-12">FASTER</h4>
+<div class="outline-text-4" id="text-2-1-12">
+<p>
+Most commands can be used using the following general format:
+</p>
+
+<p>
+&lt;start_pos&gt;&lt;command&gt;&lt;end_pos&gt;
+</p>
+
+<p>
+For example:
+</p>
+<ul class="org-ul">
+<li>0y$
+<ul class="org-ul">
+<li>0: go to the beginning of this line
+</li>
+<li>y: yank from here
+</li>
+<li>$: up to the end of the line
+</li>
+</ul>
+</li>
+<li>ye: yank from here to the end of the word
+</li>
+<li>y2/foo: yank up to the second occurence of "foo"
+</li>
+</ul>
+
+<p>
+This is true for the following commands:
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left">Key</th>
+<th scope="col" class="left">Purpose</th>
+<th scope="col" class="left">Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="left">y</td>
+<td class="left">yank</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">d</td>
+<td class="left">delete</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">v</td>
+<td class="left">visual select</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">gU</td>
+<td class="left">uppercase</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">gu</td>
+<td class="left">lowercase</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">&#x2026;</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-sec-2-1-13" class="outline-4">
+<h4 id="sec-2-1-13">Folding</h4>
+<div class="outline-text-4" id="text-2-1-13">
+<p>
+(See <a href="http://yyq123.blogspot.jp/2011/09/vim-fold.html">语虚：VIM学习笔记－折叠 Fold</a>)
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left">Key</th>
+<th scope="col" class="left">Purpose</th>
+<th scope="col" class="left">Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="left">:set foldmethod=syntax</td>
+<td class="left">enable syntax folding</td>
+<td class="left">:help fold-syntax</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="left">za</td>
+<td class="left">toggle folding</td>
+<td class="left">:nnoremap &lt;space&gt; za</td>
+</tr>
+
+<tr>
+<td class="left">zc</td>
+<td class="left">close</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">zo</td>
+<td class="left">open</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">zm</td>
+<td class="left">close all</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">zM</td>
+<td class="left">close all (embedded)</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">zr</td>
+<td class="left">open all</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">zR</td>
+<td class="left">open all (embedded)</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">zd</td>
+<td class="left">delete current</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">zE</td>
+<td class="left">delete all</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">zj</td>
+<td class="left">move to next</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">zk</td>
+<td class="left">move to previous</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">zn</td>
+<td class="left">disable folding</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">zN</td>
+<td class="left">enable folding</td>
+<td class="left">&#xa0;</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="left">:help folding</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-sec-2-1-14" class="outline-4">
+<h4 id="sec-2-1-14">recording and play</h4>
+<div class="outline-text-4" id="text-2-1-14">
+<p>
+(refer to <a href="http://www.thegeekstuff.com/2009/01/vi-and-vim-macro-tutorial-how-to-record-and-play/">Vi and Vim Macro Tutorial: How To Record and Play</a>)
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left">Key</th>
+<th scope="col" class="left">Purpose</th>
+<th scope="col" class="left">Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="left">q{char}</td>
+<td class="left">start recording</td>
+<td class="left">followed by a lower case character to name the macro</td>
+</tr>
+
+<tr>
+<td class="left">q</td>
+<td class="left">stop recording</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">@{char}</td>
+<td class="left">replay the macro named char</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">{N}@{char}</td>
+<td class="left">repeat the macro N times</td>
+<td class="left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-sec-2-1-15" class="outline-4">
+<h4 id="sec-2-1-15">tab navigation</h4>
+<div class="outline-text-4" id="text-2-1-15">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left">Key</th>
+<th scope="col" class="left">Purpose</th>
+<th scope="col" class="left">Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="left">gt</td>
+<td class="left">go to next tab</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">gT</td>
+<td class="left">go to previous tab</td>
+<td class="left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2">Command Line Mode</h3>
+<div class="outline-text-3" id="text-2-2">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left">Key</th>
+<th scope="col" class="left">Purpose</th>
+<th scope="col" class="left">Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="left">:set number</td>
+<td class="left">show line number</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">:colorscheme &lt;name&gt;</td>
+<td class="left">switch color scheme</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">:set ft ?</td>
+<td class="left">show current file type</td>
+<td class="left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-sec-2-3" class="outline-3">
+<h3 id="sec-2-3">Visual mode</h3>
+<div class="outline-text-3" id="text-2-3">
+</div><div id="outline-container-sec-2-3-1" class="outline-4">
+<h4 id="sec-2-3-1">Zone Selection</h4>
+<div class="outline-text-4" id="text-2-3-1">
+<p>
+These commands can only be used after an operator in visual mode.
+</p>
+
+<p>
+Main pattern:
+</p>
+
+<p>
+&lt;action&gt;a&lt;object&gt; and &lt;action&gt;i&lt;object&gt;
+</p>
+
+<p>
+[ME: Object here is Text Object, see <a href="http://blog.carbonfive.com/2011/10/17/vim-text-objects-the-definitive-guide/">Vim Text Objects: The Definitive Guide</a>]
+</p>
+
+<p>
+[ME: aw = a word, iw = inner word (doesn't include the surrounding white space), as = a sentence, is = inner sentence]
+</p>
+
+<p>
+Action can be any action, for example: 
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left">Key</th>
+<th scope="col" class="left">Purpose</th>
+<th scope="col" class="left">Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="left">d</td>
+<td class="left">delete</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">y</td>
+<td class="left">yank</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">v</td>
+<td class="left">select in visual mode</td>
+<td class="left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+The object can be:
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left">Key</th>
+<th scope="col" class="left">Purpose</th>
+<th scope="col" class="left">Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="left">w</td>
+<td class="left">a word</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">W</td>
+<td class="left">a WORD</td>
+<td class="left">extended word</td>
+</tr>
+
+<tr>
+<td class="left">s</td>
+<td class="left">a sentence</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">p</td>
+<td class="left">a paragraph</td>
+<td class="left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+But also, natural character such as ", ', ), }, ]
+</p>
+
+<p>
+Example: suppose the cursor is on the first 'o' of '(map (+) ("foo"))'
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left">Key</th>
+<th scope="col" class="left">will select</th>
+<th scope="col" class="left">Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="left">vi"</td>
+<td class="left">foo</td>
+<td class="left">i: inner</td>
+</tr>
+
+<tr>
+<td class="left">va"</td>
+<td class="left">"foo"</td>
+<td class="left">a: around</td>
+</tr>
+
+<tr>
+<td class="left">vi)</td>
+<td class="left">"foo"</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">va)</td>
+<td class="left">("foo")</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">v2i)</td>
+<td class="left">map (+) ("foo")</td>
+<td class="left">2: expand twice?</td>
+</tr>
+
+<tr>
+<td class="left">v2a)</td>
+<td class="left">(map (+) ("foo"))</td>
+<td class="left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-sec-2-3-2" class="outline-4">
+<h4 id="sec-2-3-2">Select rectangular blocks: C-v</h4>
+<div class="outline-text-4" id="text-2-3-2">
+<p>
+Rectangular blocks are very useful for commenting many lines of code. Typically: 0 C-v C-d I&#x2013; ESC
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left">Key</th>
+<th scope="col" class="left">Purpose</th>
+<th scope="col" class="left">Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="left">0</td>
+<td class="left">go to the first none-blank char of the line</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">C-v</td>
+<td class="left">start block selection</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">C-d</td>
+<td class="left">move down (could also be 'jjj' or %, etc.</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">I&#x2013; ESC</td>
+<td class="left">write &#x2013; to comment each line</td>
+<td class="left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Note: in Windows you might have to use C-q instead of C-v if your clipboard is not empty.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2-3-3" class="outline-4">
+<h4 id="sec-2-3-3">Visual selection v, V, C-v</h4>
+<div class="outline-text-4" id="text-2-3-3">
+<p>
+Once the selection has been made, you can:
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left">Key</th>
+<th scope="col" class="left">Purpose</th>
+<th scope="col" class="left">Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="left">J</td>
+<td class="left">join all the lines together</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">&lt; &gt;</td>
+<td class="left">indent to the left/right</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">=</td>
+<td class="left">auto indent</td>
+<td class="left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Example: add something at the end of all visually selected lines:
+</p>
+
+<ul class="org-ul">
+<li>C-v
+</li>
+<li>go to desired line ('jjj' or 'C-d' or '/pattern' or '%' etc.)
+</li>
+<li>$: go to the end of the line
+</li>
+<li>A: write text
+</li>
+<li>ESC
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2-4" class="outline-3">
+<h3 id="sec-2-4">Insert mode</h3>
+<div class="outline-text-3" id="text-2-4">
+</div><div id="outline-container-sec-2-4-1" class="outline-4">
+<h4 id="sec-2-4-1">Completion: C-n and C-p</h4>
+<div class="outline-text-4" id="text-2-4-1">
+<p>
+In insert mode, just type the start of a word, then type C-p, magic will happen.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2-5" class="outline-3">
+<h3 id="sec-2-5">System</h3>
+<div class="outline-text-3" id="text-2-5">
+</div><div id="outline-container-sec-2-5-1" class="outline-4">
+<h4 id="sec-2-5-1">Get help</h4>
+<div class="outline-text-4" id="text-2-5-1">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left">Key</th>
+<th scope="col" class="left">Purpose</th>
+<th scope="col" class="left">Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="left">:help &lt;command&gt;</td>
+<td class="left">show help about command</td>
+<td class="left">:q exit help</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="left">:help x</td>
+<td class="left">normal mode command</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">:help v_u</td>
+<td class="left">visual mode command</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">:help i_&lt;ESC&gt;</td>
+<td class="left">insert mode command</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">:help :quit</td>
+<td class="left">command-line command</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">:help c_&lt;Del&gt;</td>
+<td class="left">command-line editing</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">:help -r</td>
+<td class="left">vim command argument</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">:help 'textwidth'</td>
+<td class="left">option</td>
+<td class="left">&#xa0;</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="left">:help [word] C-d</td>
+<td class="left">search for help</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">:helpgrep [word]</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="left">:help usr_02.txt</td>
+<td class="left">vim user manual by bram moolenaar</td>
+<td class="left">the first steps in vim</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="left">:echo &lt;leader&gt;</td>
+<td class="left">show the value of &lt;leader&gt;</td>
+<td class="left">&#xa0;</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="left">:map, :nmap, :imap</td>
+<td class="left">list all mapped key sequences</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">:help index</td>
+<td class="left">list all commands for each mode</td>
+<td class="left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Run vimtutor (/usr/bin/vimtutor, /usr/bin/gvimtutor) until you are familiar with most basic commands.
+</p>
+
+<p>
+Then you will learn about !, folds, registers, plugins and many other features.
+</p>
+</div>
+
+<div id="outline-container-sec-2-5-1-1" class="outline-5">
+<h5 id="sec-2-5-1-1">How to read Vim manual</h5>
+<div class="outline-text-5" id="text-2-5-1-1">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left">Key / Cmd</th>
+<th scope="col" class="left">Purpose</th>
+<th scope="col" class="left">Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="left">:set mouse = a</td>
+<td class="left">enable the mouse</td>
+<td class="left">in xterm or GUI</td>
+</tr>
+
+<tr>
+<td class="left">C-]</td>
+<td class="left">jump to a subject</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">C-t / C-o</td>
+<td class="left">jump back</td>
+<td class="left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2-5-2" class="outline-4">
+<h4 id="sec-2-5-2">List all plugins installed</h4>
+<div class="outline-text-4" id="text-2-5-2">
+<p>
+(See <a href="http://stackoverflow.com/questions/48933/how-do-i-list-loaded-plugins-in-vim">How do I list loaded plugins in Vim?</a>)
+</p>
+
+<ul class="org-ul">
+<li>:scriptnames - list all plugins, .vimrc loaded (super)
+</li>
+<li>:verbose set history - reveals value of history and where set
+</li>
+<li>:functions - list functions
+</li>
+<li>:commands XS
+</li>
+<li>:func SearchCompl - list particular function
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3">Extensions</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1">Sessionman - Session Manager</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+(See <a href="https://github.com/vim-scripts/sessionman.vim">sessionman</a>).
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2">Tasklist - Eclipse Task List</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+这是一个非常有用的插件，它能够标记文件中的FIXME、TODO等信息，并将它们存放到一个任务列表当中，后面随时可以通过Tasklist跳转到这些标记的地方再来修改这些代码，是一个十分方便实用的Todo list工具。
+</p>
+
+<p>
+help: 通常只需添加一个映射：map &lt;leader&gt;td &lt;Plug&gt;TaskList
+</p>
+</div>
+</div>
+<div id="outline-container-sec-3-3" class="outline-3">
+<h3 id="sec-3-3">Zen Code (Emmet) - Hi-speed Coding for HTML/CSS</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+(<a href="http://www.zfanw.com/blog/zencoding-vim-tutorial-chinese.html">中文教程</a>)
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-sec-3-4" class="outline-3">
+<h3 id="sec-3-4">Rainbow Parentheses Improved</h3>
+<div class="outline-text-3" id="text-3-4">
+<p>
+(See <a href="https://github.com/luochen1990/rainbow">Rainbow Parentheses Improved</a>)
+</p>
+
+<p>
+Commands:
+</p>
+<ul class="org-ul">
+<li>RainbowToggle: enable/disable rainbow
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-3-5" class="outline-3">
+<h3 id="sec-3-5">Surround - Managing All the "[{}]" etc.</h3>
+<div class="outline-text-3" id="text-3-5">
+<p>
+<a href="http://www.dutor.net/index.php/2010/10/vim-surround/">surround.vim 教程</a>
+</p>
+
+<p>
+在写代码时经常会遇到配对的符号，比如{}[]()''""&lt;&gt;等，尤其是标记类语言，比如html, xml，它们完全依赖这种语法。现代的各种编辑器一般都可以在输入一半符号的时候帮你自动补全另外一半。可有的时候你想修改、删除或者是增加一个块的配对符号时，它们就无能为力了。
+</p>
+
+<p>
+Surround就是一个专门用来处理这种配对符号的插件，它可以非常高效快速的修改、删除及增加一个配对符号。如果你经常和这些配对符号打交道，比如你是一个前端工程师，那么请一定不要错过这样一个神级插件。
+</p>
+
+<p>
+Help:：部分常用快捷键如下：
+Normal mode
+</p>
+<ul class="org-ul">
+<li>ds  - delete a surrounding
+</li>
+<li>cs  - change a surrounding
+</li>
+<li>ys  - add a surrounding
+</li>
+<li>yS  - add a surrounding and place the surrounded text on a new line + indent it
+</li>
+<li>yss - add a surrounding to the whole line
+</li>
+<li>ySs - add a surrounding to the whole line, place it on a new line + indent it
+</li>
+<li>ySS - same as ySs
+</li>
+<li>Visual mode
+</li>
+<li>s   - in visual mode, add a surrounding
+</li>
+<li>S   - in visual mode, add a surrounding but place text on new line + indent it
+</li>
+<li>Insert mode
+</li>
+<li>&lt;CTRL-s&gt; - in insert mode, add a surrounding
+</li>
+<li>&lt;CTRL-s&gt;&lt;CTRL-s&gt; - in insert mode, add a new line + surrounding + indent
+</li>
+<li>&lt;CTRL-g&gt;s - same as &lt;CTRL-s&gt;
+</li>
+<li>&lt;CTRL-g&gt;S - same as &lt;CTRL-s&gt;&lt;CTRL-s&gt;
+</li>
+</ul>
+
+<p>
+(<a href="https://github.com/tpope/vim-surround">https://github.com/tpope/vim-surround</a>) Surround.vim is all about "surroundings": parentheses, brackets, quotes, XML tags, and more. The plugin provides mappings to easily delete, change and add such surroundings in pairs.
+</p>
+
+<p>
+It's easiest to explain with examples. Press cs"' inside
+</p>
+
+<p>
+"Hello world!"
+to change it to
+</p>
+
+<p>
+'Hello world!'
+Now press cs'&lt;q&gt; to change it to
+</p>
+
+<p>
+&lt;q&gt;Hello world!&lt;/q&gt;
+To go full circle, press cst" to get
+</p>
+
+<p>
+"Hello world!"
+To remove the delimiters entirely, press ds".
+</p>
+
+<p>
+Hello world!
+Now with the cursor on "Hello", press ysiw] (iw is a text object).
+</p>
+
+<p>
+[Hello] world!
+Let's make that braces and add some space (use } instead of { for no space): cs]{
+</p>
+
+<p>
+{ Hello } world!
+Now wrap the entire line in parentheses with yssb or yss).
+</p>
+
+<p>
+({ Hello } world!)
+Revert to the original text: ds{ds)
+</p>
+
+<p>
+Hello world!
+Emphasize hello: ysiw&lt;em&gt;
+</p>
+
+<p>
+&lt;em&gt;Hello&lt;/em&gt; world!
+Finally, let's try out visual mode. Press a capital V (for linewise visual mode) followed by S&lt;p class="important"&gt;.
+</p>
+
+<p>
+&lt;p class="important"&gt;
+  &lt;em&gt;Hello&lt;/em&gt; world!
+&lt;/p&gt;
+This plugin is very powerful for HTML and XML editing, a niche which currently seems underfilled in Vim land. (As opposed to HTML/XML inserting, for which many plugins are available). Adding, changing, and removing pairs of tags simultaneously is a breeze.
+</p>
+
+<p>
+The . command will work with ds, cs, and yss if you install repeat.vim.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-3-6" class="outline-3">
+<h3 id="sec-3-6">surround</h3>
+<div class="outline-text-3" id="text-3-6">
+<p>
+References:
+</p>
+<ul class="org-ul">
+<li><a href="http://www.dutor.net/index.php/2010/10/vim-surround/">{Vim}surround.vim</a>
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-text">:h surround
+:h text-objects
+</pre>
+</div>
+</div>
+<div id="outline-container-sec-3-6-1" class="outline-4">
+<h4 id="sec-3-6-1">Normal mode</h4>
+<div class="outline-text-4" id="text-3-6-1">
+<p>
+ds  - delete a surrounding
+cs  - change a surrounding
+ys  - add a surrounding, for example <code>ysiw</code>
+yS  - add a surrounding and place the surrounded text on a new line + indent it
+yss - add a surrounding to the whole line
+ySs - add a surrounding to the whole line, place it on a new line + indent it
+ySS - same as ySs
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3-6-2" class="outline-4">
+<h4 id="sec-3-6-2">Visual mode</h4>
+<div class="outline-text-4" id="text-3-6-2">
+<p>
+s   - in visual mode, add a surrounding
+S   - in visual mode, add a surrounding but place text on new line + indent it
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3-6-3" class="outline-4">
+<h4 id="sec-3-6-3">Insert mode</h4>
+<div class="outline-text-4" id="text-3-6-3">
+<p>
+&lt;CTRL-s&gt; - in insert mode, add a surrounding
+&lt;CTRL-s&gt;&lt;CTRL-s&gt; - in insert mode, add a new line + surrounding + indent
+&lt;CTRL-g&gt;s - same as &lt;CTRL-s&gt;
+&lt;CTRL-g&gt;S - same as &lt;CTRL-s&gt;&lt;CTRL-s&gt;
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3-7" class="outline-3">
+<h3 id="sec-3-7">airline</h3>
+<div class="outline-text-3" id="text-3-7">
+<p>
+(<a href="https://github.com/bling/vim-airline">link</a>)
+Getting help: <code>:help airline</code>
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4">Configuration</h2>
+<div class="outline-text-2" id="text-4">
+</div><div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1">Highlight the current line &amp; column</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+According to <a href="#sec-5-2-3">spf13-vim</a>, add following lines in .vimrc.local:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-vim">au WinLeave * set nocursorline nocursorcolumn
+au WinEnter * set cursorline cursorcolumn
+set cursorline cursorcolumn
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-4-2" class="outline-3">
+<h3 id="sec-4-2">Use solarized light/dark</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+Vim MenuBar: [Preferences] &gt; [Profiles] &gt; [unname] &gt; [Edit] &gt; [Colors]:
+</p>
+<ul class="org-ul">
+<li>[Text and Background Color] &gt; [Built-in schemes] : Solarized light/dard
+</li>
+<li>[Palette] &gt; [Built-in schemes]: Solarized
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-4-3" class="outline-3">
+<h3 id="sec-4-3">Use spell checking in vim</h3>
+<div class="outline-text-3" id="text-4-3">
+<p>
+一开始发现这个问题是在使用 vim 时编辑窗口里总有些文本高亮干扰阅读和编程，查阅后 (see <a href="http://www.linux.com/learn/tutorials/357267-using-spell-checking-in-vim">Using Spell Checking in Vim</a>) 发现是 vim 的 spell checking 给出的 spellbad 提示。
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-vim">:highlight
+</pre>
+</div>
+<p>
+可以看到所有的 highlight 样式。
+</p>
+<div class="org-src-container">
+
+<pre class="src src-vim">:set nospell
+</pre>
+</div>
+<p>
+关闭 spell checking。
+</p>
+<div class="org-src-container">
+
+<pre class="src src-vim">:set spell
+</pre>
+</div>
+<p>
+打开 spell chceking。
+</p>
+</div>
+</div>
+<div id="outline-container-sec-4-4" class="outline-3">
+<h3 id="sec-4-4">Set line wrap</h3>
+<div class="outline-text-3" id="text-4-4">
+<p>
+(See <a href="http://www.360doc.com/content/10/1128/15/4807202_73143894.shtml">vim 学习笔记</a>)
+</p>
+<pre class="example">
+set wrap
+set nowrap
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5">Vim as IDE</h2>
+<div class="outline-text-2" id="text-5">
+</div><div id="outline-container-sec-5-1" class="outline-3">
+<h3 id="sec-5-1">手把手将 Vim 打造成开发 Ruby 和 Rails 的强大 IDE</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+(<a href="https://ruby-china.org/topics/25295">https://ruby-china.org/topics/25295</a>)
+</p>
+</div>
+</div>
+<div id="outline-container-sec-5-2" class="outline-3">
+<h3 id="sec-5-2">spf13-vim: Steve Francia's Vim Distribution</h3>
+<div class="outline-text-3" id="text-5-2">
+</div><div id="outline-container-sec-5-2-1" class="outline-4">
+<h4 id="sec-5-2-1">Overview</h4>
+<div class="outline-text-4" id="text-5-2-1">
+<p>
+<a href="https://github.com/spf13/spf13-vim">spf13-vim</a> is a distribution of vim plugins and resources for Vim, Gvim and <a href="http://code.google.com/p/macvim/">MacVim</a>.
+</p>
+
+<p>
+It is a good starting point for anyone intending to use VIM for development running equally well on Windows, Linux, *nix and Mac.
+</p>
+
+<p>
+The distribution is completely customisable using a ~/.vimrc.local, ~/.vimrc.bundles.local, and ~/.vimrc.before.local Vim RC files.
+</p>
+
+<p>
+Unlike traditional VIM plugin structure, which similar to UNIX throws all files into common directories, making updating or disabling plugins a real mess, spf13-vim 3 uses the <a href="https://github.com/gmarik/vundle">Vundle</a> plugin management system to have a well organized vim directory (Similar to mac's app folders). Vundle also ensures that the latest versions of your plugins are installed and makes it easy to keep them up to date.
+</p>
+
+<p>
+Great care has been taken to ensure that each plugin plays nicely with others, and optional configuration has been provided for what we believe is the most efficient use.
+</p>
+
+<p>
+Lastly (and perhaps, most importantly) It is completely cross platform. It works well on Windows, Linux and OSX without any modifications or additional configurations. If you are using MacVim or Gvim additional features are enabled. So regardless of your environment just clone and run.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-5-2-2" class="outline-4">
+<h4 id="sec-5-2-2">Installation</h4>
+<div class="outline-text-4" id="text-5-2-2">
+</div><div id="outline-container-sec-5-2-2-1" class="outline-5">
+<h5 id="sec-5-2-2-1">Requirements</h5>
+<div class="outline-text-5" id="text-5-2-2-1">
+<p>
+To make all the plugins work, specifically <a href="https://github.com/Shougo/neocomplete.vim">neocomplete</a>, you need <a href="https://github.com/spf13/spf13-vim">vim with lua</a>. [ME: :echo has("lua") = 1, done.]
+</p>
+</div>
+</div>
+<div id="outline-container-sec-5-2-2-2" class="outline-5">
+<h5 id="sec-5-2-2-2">Linux, *nix, Mac OSX Installation</h5>
+<div class="outline-text-5" id="text-5-2-2-2">
+<p>
+Use automatic installer by simply copying and pasting the following line into a terminal:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-example">curl https://j.mp/spf13-vim3 -L &gt; spf13-vim.sh &amp;&amp; sh spf13-vim.sh
+</pre>
+</div>
+<p>
+(Requires Git 1.7+ and Vim 7.3+)
+</p>
+
+<p>
+Or if you have a bash-compatible shell you can run the script directly:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-example">sh &lt;(curl https://j.mp/spf13-vim3 -L)
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-5-2-2-3" class="outline-5">
+<h5 id="sec-5-2-2-3">Updating to the latest version</h5>
+<div class="outline-text-5" id="text-5-2-2-3">
+<p>
+The simpliest (and safest) way to update is to simply rerun the installer. It will completely and non destructively upgrade to the latest version.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-example">curl https://j.mp/spf13-vim3 -L -o - | sh
+</pre>
+</div>
+<p>
+Alternatively you can manually perform the following steps. If anything has changed with the structure of the configuration you will need to create the appropriate symlinks.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-example">cd $HOME/to/spf13-vim/
+git pull
+vim +BundleInstall! +BundleClean +q
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-5-2-3" class="outline-4">
+<h4 id="sec-5-2-3">A highly optimized .vimrc config file</h4>
+<div class="outline-text-4" id="text-5-2-3">
+<p>
+The .vimrc file is suited to programming. It is extremely well organized and folds in sections. Each section is labeled and each option is commented.
+</p>
+</div>
+<div id="outline-container-sec-5-2-3-1" class="outline-5">
+<h5 id="sec-5-2-3-1">Customization</h5>
+<div class="outline-text-5" id="text-5-2-3-1">
+<p>
+Create ~/.vimrc.local and ~/.gvimrc.local for any local customizations.
+</p>
+
+<p>
+For example, to override the default color schemes:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-example">echo colorscheme ir_black  &gt;&gt; ~/.vimrc.local
+</pre>
+</div>
+</div>
+<div id="outline-container-sec-5-2-3-1-1" class="outline-6">
+<h6 id="sec-5-2-3-1-1">Before File</h6>
+<div class="outline-text-6" id="text-5-2-3-1-1">
+<p>
+Create a ~/.vimrc.before.local file to define any customizations that get loaded before the spf13-vim .vimrc.
+</p>
+
+<p>
+For example, to prevent autocd into a file directory:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-example">echo let g:spf13_no_autochdir = 1 &gt;&gt; ~/.vimrc.before.local
+</pre>
+</div>
+<p>
+For a list of available spf13-vim specific customization options, look at the <a href="file:///Users/fengyz/.vimrc.before">~/.vimrc.before</a> file.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-5-2-3-1-2" class="outline-6">
+<h6 id="sec-5-2-3-1-2">Fork Customization</h6>
+<div class="outline-text-6" id="text-5-2-3-1-2">
+<p>
+There is an additional tier of customization available to those who want to maintain a fork of spf13-vim specialized for a particular group. These users can create .vimrc.fork and .vimrc.bundles.fork files in the root of their fork. The load order for the configuration is:
+</p>
+<ul class="org-ul">
+<li>.vimrc.before - spf13-vim before configuration
+</li>
+<li>.vimrc.before.fork - fork before configuration
+</li>
+<li>.vimrc.before.local - before user configuration
+</li>
+<li>.vimrc.bundles - spf13-vim bundle configuration
+</li>
+<li>.vimrc.bundles.fork - fork bundle configuration
+</li>
+<li>.vimrc.bundles.local - local user bundle configuration
+</li>
+<li>.vimrc - spf13-vim vim configuration
+</li>
+<li>.vimrc.fork - fork vim configuration
+</li>
+<li>.vimrc.local - local user configuration
+</li>
+</ul>
+
+<p>
+See .vimrc.bundles for specifics on what options can be set to override bundle configuration. See .vimrc.before for specifics on what options can be overridden. Most vim configuration options should be set in your .vimrc.fork file, bundle configuration needs to be set in your .vimrc.bundles.fork file.
+</p>
+
+<p>
+You can specify the default bundles for your fork using .vimrc.before.fork file. Here is how to create an example .vimrc.before.fork file in a fork repo for the default bundles.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-example">echo let g:spf13_bundle_groups=[\'general\', \'programming\', \'misc\', \'youcompleteme\'] &gt;&gt; .vimrc.before.fork
+</pre>
+</div>
+
+<p>
+Once you have this file in your repo, only the bundles you specified will be installed during the first installation of your fork.
+</p>
+
+<p>
+You may also want to update your README.markdown file so that the bootstrap.sh link points to your repository and your bootstrap.sh file to pull down your fork.
+</p>
+
+<p>
+For an example of a fork of spf13-vim that provides customization in this manner see <a href="https://github.com/taxilian/spf13-vim">taxilian's fork</a>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-5-2-3-1-3" class="outline-6">
+<h6 id="sec-5-2-3-1-3">Easily Editing Your Configuration</h6>
+<div class="outline-text-6" id="text-5-2-3-1-3">
+<p>
+&lt;Leader&gt;ev opens a new tab containing the .vimrc configuration files listed above. This makes it easier to get an overview of your configuration and make customizations.
+</p>
+
+<p>
+&lt;Leader&gt;sv sources the .vimrc file, instantly applying your customizations to the currently running vim instance.
+</p>
+
+<p>
+These two mappings can themselves be customized by setting the following in .vimrc.before.local:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-js"><span style="color: #66D9EF;">let</span> <span style="color: #F92672;">g</span>:spf13_edit_config_mapping=<span style="color: #E6DB74;">'&lt;Leader&gt;ev'</span>
+<span style="color: #66D9EF;">let</span> <span style="color: #F92672;">g</span>:spf13_apply_config_mapping=<span style="color: #E6DB74;">'&lt;Leader&gt;sv'</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-5-2-4" class="outline-4">
+<h4 id="sec-5-2-4">Plugins</h4>
+<div class="outline-text-4" id="text-5-2-4">
+</div><div id="outline-container-sec-5-2-4-1" class="outline-5">
+<h5 id="sec-5-2-4-1">Adding new plugins</h5>
+<div class="outline-text-5" id="text-5-2-4-1">
+<p>
+Create ~/.vimrc.bundles.local for any additional bundles.
+</p>
+
+<p>
+To add a new bundle, just add one line for each bundle you want to install. The line should start with the word "Bundle" followed by a string of either the vim.org project name or the githubusername/githubprojectname. 
+</p>
+
+<p>
+For example, the github project <a href="https://github.com/spf13/vim-colors">spf13/vim-colors</a> can be added with the following command
+</p>
+<div class="org-src-container">
+
+<pre class="src src-example">echo Bundle \'spf13/vim-colors\' &gt;&gt; ~/.vimrc.bundles.local
+</pre>
+</div>
+
+<p>
+Once new plugins are added, they have to be installed.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-example">vim +BundleInstall! +BundleClean +q
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-5-2-4-2" class="outline-5">
+<h5 id="sec-5-2-4-2">Removing (disabling) an included plugin</h5>
+<div class="outline-text-5" id="text-5-2-4-2">
+<p>
+Create ~/.vimrc.local if it doesn't already exist.
+</p>
+
+<p>
+Add the UnBundle command to this line. It takes the same input as the Bundle line, so simply copy the line you want to disable and add 'Un' to the beginning.
+</p>
+
+<p>
+For example, disabling the 'AutoClose' and 'scrooloose/syntastic' plugins
+</p>
+<div class="org-src-container">
+
+<pre class="src src-example">echo UnBundle \'AutoClose\' &gt;&gt; ~/.vimrc.bundles.local
+echo UnBundle \'scrooloose/syntastic\' &gt;&gt; ~/.vimrc.bundles.local
+</pre>
+</div>
+
+<p>
+<b>Remember</b> to run ':BundleClean!' after this to remove the existing directories
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6">Plugins</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+Refer to <a href="https://github.com/spf13/spf13-vim">https://github.com/spf13/spf13-vim</a> for an overview of frequently used plugins.
+</p>
+</div>
+<div id="outline-container-sec-6-1" class="outline-3">
+<h3 id="sec-6-1">bufferline</h3>
+<div class="outline-text-3" id="text-6-1">
+<p>
+(<a href="https://github.com/bling/vim-bufferline">https://github.com/bling/vim-bufferline</a>)
+</p>
+
+<p>
+Disable bufferline since we already have minibufexplorer:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-example">let g:bufferline_echo=0
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-6-2" class="outline-3">
+<h3 id="sec-6-2">airline</h3>
+<div class="outline-text-3" id="text-6-2">
+<div class="org-src-container">
+
+<pre class="src src-sh">:AirlineTheme cool/monokai/...
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-6-2-1" class="outline-4">
+<h4 id="sec-6-2-1">the triangles do not appear</h4>
+<div class="outline-text-4" id="text-6-2-1">
+<p>
+<code>:help airline</code> and go to section 'configuration'.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-6-3" class="outline-3">
+<h3 id="sec-6-3">wordy</h3>
+<div class="outline-text-3" id="text-6-3">
+<p>
+(<a href="https://github.com/reedes/vim-wordy">https://github.com/reedes/vim-wordy</a>)
+</p>
+
+<p>
+wordy is not a grammar checker. Nor is it a guide to proper word usage. Rather, wordy is a lightweight tool to assist you in identifying those words and phrases known for their history of misuse, abuse, and overuse, at least according to usage experts.
+</p>
+
+<p>
+For example, if wordy highlights moreover in your document, a word for which no good usage exists, you should consider a rewrite to eliminate it. But if wordy highlights therefore in a sentence where you can demonstrate the usage is sound, you can elect to keep it —wordy be damned.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-6-4" class="outline-3">
+<h3 id="sec-6-4">vimcolors</h3>
+<div class="outline-text-3" id="text-6-4">
+<p>
+(<a href="http://vimcolors.com/">http://vimcolors.com/</a>)
+</p>
+
+<p>
+Add colorscheme to .vim.bundles.local or load it manually.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-6-5" class="outline-3">
+<h3 id="sec-6-5">wildfire.vim</h3>
+<div class="outline-text-3" id="text-6-5">
+<p>
+(<a href="https://github.com/gcmt/wildfire.vim">https://github.com/gcmt/wildfire.vim</a>)
+</p>
+
+<p>
+With Wildfire you can quickly select the closest text object among a group of candidates. By default candidates are i', i", i), i], i}, ip and it (or a', a", a], etc.).
+</p>
+
+<p>
+Learn more about text objects with :help text-objects.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-6-6" class="outline-3">
+<h3 id="sec-6-6">Powerline fonts</h3>
+<div class="outline-text-3" id="text-6-6">
+<p>
+(<a href="https://github.com/powerline/fonts">https://github.com/powerline/fonts</a>)
+</p>
+
+<p>
+Installation:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">./install.sh
+</pre>
+</div>
+
+<p>
+Add to .vimrc.local?:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-example">let g:airline_powerline_fonts = 1
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-6-7" class="outline-3">
+<h3 id="sec-6-7">Fugitive</h3>
+<div class="outline-text-3" id="text-6-7">
+<p>
+Fugitive adds pervasive git support to git directories in vim. For more information, use :help fugitive
+</p>
+
+<p>
+Use :Gstatus to view git status and type - on any file to stage or unstage it. Type p on a file to enter git add -p and stage specific hunks in the file.
+</p>
+
+<p>
+Use :Gdiff on an open file to see what changes have been made to that file
+</p>
+
+<p>
+QuickStart &lt;leader&gt;gs to bring up git status
+</p>
+
+<p>
+Customizations:
+</p>
+
+<ul class="org-ul">
+<li>&lt;leader&gt;gs :Gstatus
+</li>
+<li>&lt;leader&gt;gd :Gdiff
+</li>
+<li>&lt;leader&gt;gc :Gcommit
+</li>
+<li>&lt;leader&gt;gb :Gblame
+</li>
+<li>&lt;leader&gt;gl :Glog
+</li>
+<li>&lt;leader&gt;gp :Git push
+</li>
+<li>&lt;leader&gt;gw :Gwrite
+</li>
+<li>:Git <span class="underline">_</span> will pass anything along to git.
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-6-8" class="outline-3">
+<h3 id="sec-6-8">Tabulize</h3>
+<div class="outline-text-3" id="text-6-8">
+<p>
+Tabularize
+</p>
+
+<p>
+Tabularize lets you align statements on their equal signs and other characters
+</p>
+
+<p>
+Customizations:
+</p>
+
+<ul class="org-ul">
+<li>&lt;Leader&gt;a= :Tabularize /=&lt;CR&gt;
+</li>
+<li>&lt;Leader&gt;a: :Tabularize /:&lt;CR&gt;
+</li>
+<li>&lt;Leader&gt;a:: :Tabularize /:\zs&lt;CR&gt;
+</li>
+<li>&lt;Leader&gt;a, :Tabularize /,&lt;CR&gt;
+</li>
+<li>&lt;Leader&gt;a&lt;Bar&gt; :Tabularize /&lt;Bar&gt;&lt;CR&gt;
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-6-9" class="outline-3">
+<h3 id="sec-6-9">UltiSnips&#xa0;&#xa0;&#xa0;<span class="tag"><span class="DOCKER">DOCKER</span>&#xa0;<span class="27">27</span></span></h3>
+<div class="outline-text-3" id="text-6-9">
+<p>
+(<a href="https://github.com/vim-scripts/UltiSnips">https://github.com/vim-scripts/UltiSnips</a>)
+</p>
+
+<p>
+Refer to
+</p>
+<ul class="org-ul">
+<li><a href="http://mednoter.com/UltiSnips.html">UltiSnips 让 Vim 飞起来</a>.
+</li>
+<li><a href="http://blog.csdn.net/cnsword/article/details/38091363">vim-snippets Ultisnips的写法</a>
+</li>
+<li><a href="http://blog.csdn.net/swust_long/article/details/7334726">vim snipmate技巧-定制自己的snippet</a>
+</li>
+</ul>
+
+<p>
+Add ~/.vim/UltiSnips/eruby.snippets:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-ruby"></pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-6-10" class="outline-3">
+<h3 id="sec-6-10">UndoTree</h3>
+<div class="outline-text-3" id="text-6-10">
+<p>
+QuickStart Launch using &lt;leader&gt;u
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-6-11" class="outline-3">
+<h3 id="sec-6-11">NERDTree</h3>
+<div class="outline-text-3" id="text-6-11">
+<p>
+QuickStart Launch using &lt;Leader&gt;e
+</p>
+
+<p>
+Customizations:
+</p>
+<ul class="org-ul">
+<li>Use &lt;C-E&gt; to toggle NERDTree
+</li>
+<li>Use &lt;leader&gt;e or &lt;leader&gt;nt to load NERDTreeFind which opens NERDTree where the current file is located.
+</li>
+<li>Hide clutter ('.pyc', '.git', '.hg', '.svn', '.bzr')
+</li>
+<li>Treat NERDTree more like a panel than a split.
+</li>
+</ul>
+
+<p>
+References:
+</p>
+<ul class="org-ul">
+<li><a href="http://blog.csdn.net/yangmingysc/article/details/7255272">vim配置笔记 - NERDTree的Bookmark功能</a>: how to define F4 for toggling NERDTree, etc.
+</li>
+</ul>
+</div>
+<div id="outline-container-sec-6-11-1" class="outline-4">
+<h4 id="sec-6-11-1">Issues</h4>
+<div class="outline-text-4" id="text-6-11-1">
+</div><div id="outline-container-sec-6-11-1-1" class="outline-5">
+<h5 id="sec-6-11-1-1">vim - nerdtree suddenly broke</h5>
+<div class="outline-text-5" id="text-6-11-1-1">
+<p>
+<a href="http://stackoverflow.com/questions/9927217/vim-nerdtree-suddenly-broke">vim - nerdtree suddenly broke</a>
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-example">set encoding=utf-8
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-6-12" class="outline-3">
+<h3 id="sec-6-12">ctrlp - Fast File Finder</h3>
+<div class="outline-text-3" id="text-6-12">
+<p>
+<a href="http://kien.github.io/ctrlp.vim/">Ctrlp</a> replaces the Command-T plugin with a 100% vimlCheck :help ctrlp-commands and :help ctrlp-extensions for other commands.
+</p>
+
+<p>
+Once CtrlP is open:
+</p>
+
+<ul class="org-ul">
+<li>Press &lt;F5&gt; to purge the cache for the current directory to get new files, remove deleted files and apply new ignore options.
+</li>
+<li>Press &lt;c-f&gt; and &lt;c-b&gt; to cycle between modes.
+</li>
+<li>Press &lt;c-d&gt; to switch to filename search instead of full path.
+</li>
+<li>Press &lt;c-r&gt; to switch to regexp mode.
+</li>
+<li>Use &lt;c-j&gt;, &lt;c-k&gt; or the arrow keys to navigate the result list.
+</li>
+<li>Use &lt;c-t&gt; or &lt;c-v&gt;, &lt;c-x&gt; to open the selected entry in a new tab or in a new split.
+</li>
+<li>Use &lt;c-n&gt;, &lt;c-p&gt; to select the next/previous string in the prompt's history.
+</li>
+<li>Use &lt;c-y&gt; to create a new file and its parent directories.
+</li>
+<li>Use &lt;c-z&gt; to mark/unmark multiple files and &lt;c-o&gt; to open them. plugin. It provides an intuitive and fast mechanism to load files from the file system (with regex and fuzzy find), from open buffers, and from recently used files.
+</li>
+</ul>
+
+<p>
+QuickStart Launch using &lt;c-p&gt;.
+</p>
+
+<p>
+Map F2 to buffer list:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-example">nnoremap &lt;F2&gt; :CtrlPBuffer&lt;CR&gt;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-6-13" class="outline-3">
+<h3 id="sec-6-13">Surround</h3>
+<div class="outline-text-3" id="text-6-13">
+<p>
+This plugin is a tool for dealing with pairs of "surroundings." Examples of surroundings include parentheses, quotes, and HTML tags. They are closely related to what Vim refers to as text-objects. Provided are mappings to allow for removing, changing, and adding surroundings.
+</p>
+
+<p>
+There's a lot more, check it out at :help surround
+</p>
+
+<p>
+A nice article about surround plugin: <a href="http://zuyunfei.com/2013/04/17/killer-plugin-of-vim-surround/">vim中的杀手级插件: surround</a>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-6-14" class="outline-3">
+<h3 id="sec-6-14">NERDCommentor</h3>
+<div class="outline-text-3" id="text-6-14">
+<p>
+NERDCommenter allows you to wrangle your code comments, regardless of filetype. View help :NERDCommenter or checkout my post on <a href="http://spf13.com/post/vim-plugins-nerd-commenter">NERDCommenter</a>.
+</p>
+
+<p>
+QuickStart Toggle comments using &lt;Leader&gt;c&lt;space&gt; in Visual or Normal mode.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-6-15" class="outline-3">
+<h3 id="sec-6-15">neocomplete</h3>
+<div class="outline-text-3" id="text-6-15">
+<p>
+Neocomplete is an amazing autocomplete plugin with additional support for snippets. It can complete simulatiously from the dictionary, buffer, omnicomplete and snippets. This is the one true plugin that brings Vim autocomplete on par with the best editors.
+</p>
+
+<p>
+QuickStart Just start typing, it will autocomplete where possible
+</p>
+
+<p>
+Customizations:
+</p>
+<ul class="org-ul">
+<li>Automatically present the autocomplete menu
+</li>
+<li>Support tab and enter for autocomplete
+</li>
+<li>&lt;C-k&gt; for completing snippets using Neosnippet.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-6-16" class="outline-3">
+<h3 id="sec-6-16">YouCompleteMe</h3>
+<div class="outline-text-3" id="text-6-16">
+<p>
+<a href="https://github.com/Valloric/YouCompleteMe">YouCompleteMe</a> is another amazing completion engine. It is slightly more involved to set up as it contains a binary component that the user needs to compile before it will work. As a result of this however it is very fast.
+</p>
+
+<p>
+To enable YouCompleteMe add youcompleteme to your list of groups by overriding it in your .vimrc.before.local like so: 
+</p>
+<div class="org-src-container">
+
+<pre class="src src-js"><span style="color: #66D9EF;">let</span> <span style="color: #F92672;">g</span>:spf13_bundle_groups=[<span style="color: #E6DB74;">'general'</span>, <span style="color: #E6DB74;">'programming'</span>, <span style="color: #E6DB74;">'misc'</span>, <span style="color: #E6DB74;">'scala'</span>, <span style="color: #E6DB74;">'youcompleteme'</span>] 
+<span style="color: #66D9EF;">let</span> <span style="color: #F92672;">g</span>:spf13_bundle_groups=[<span style="color: #E6DB74;">'general'</span>, <span style="color: #E6DB74;">'writing'</span>, <span style="color: #E6DB74;">'youcompleteme'</span>, <span style="color: #E6DB74;">'programming'</span>, <span style="color: #E6DB74;">'php'</span>, <span style="color: #E6DB74;">'ruby'</span>, <span style="color: #E6DB74;">'python'</span>, <span style="color: #E6DB74;">'javascript'</span>, <span style="color: #E6DB74;">'html'</span>, <span style="color: #E6DB74;">'misc'</span>,]
+</pre>
+</div>
+<p>
+This is just an example. Remember to choose the other groups you want here.
+</p>
+
+<p>
+Once you have done this you will need to get Vundle to grab the latest code from git. You can do this by calling :BundleInstall!. You should see YouCompleteMe in the list.
+</p>
+</div>
+
+<div id="outline-container-sec-6-16-1" class="outline-4">
+<h4 id="sec-6-16-1">Ubuntu Linux x64 Installtion</h4>
+<div class="outline-text-4" id="text-6-16-1">
+<p>
+(<a href="https://github.com/Valloric/YouCompleteMe#ubuntu-linux-x64-installation">Link</a>)
+</p>
+
+<p>
+After installation of YCM in vim, an error message is shown while launching vim:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-tex">t
+ycm_client_support.[so|pyd|dll] and ycm_core.[so|pyd|dll] not detected; you need to compile YCM before using it. Read the docs!
+</pre>
+</div>
+<p>
+Remerber: YCM is a plugin with a compiled component. We should run the compile process.
+</p>
+</div>
+
+<div id="outline-container-sec-6-16-1-1" class="outline-5">
+<h5 id="sec-6-16-1-1">1. Install development tools and cmake</h5>
+<div class="outline-text-5" id="text-6-16-1-1">
+<div class="org-src-container">
+
+<pre class="src src-example">sudo apt-get install build-essential cmake
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-6-16-1-2" class="outline-5">
+<h5 id="sec-6-16-1-2">2. Make sure you have python headers installed</h5>
+<div class="outline-text-5" id="text-6-16-1-2">
+<div class="org-src-container">
+
+<pre class="src src-example">sudo apt-get install python-dev
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-6-16-1-3" class="outline-5">
+<h5 id="sec-6-16-1-3">3. Compile YCM.</h5>
+<div class="outline-text-5" id="text-6-16-1-3">
+<div class="org-src-container">
+
+<pre class="src src-example">cd ~/.vim/bundle/YouCompleteMe
+./install.py &lt;options&gt;
+</pre>
+</div>
+<p>
+<b>Note</b>: JavaScript support with option <code>--tern-completer</code>.
+</p>
+
+<ul class="org-ul">
+<li>No semantic support: no option
+</li>
+<li>With semantic support for c-family languages: &#x2013;clang-completer. You'll need to provide the compilation flags for your project to YCM, it's all in the <a href="https://github.com/Valloric/YouCompleteMe#user-guide">User Guide</a>.
+</li>
+<li>With semantic C# support: &#x2013;omnisharp-completer
+</li>
+<li>with Go support: &#x2013;gocode-completer
+</li>
+</ul>
+
+<p>
+If you want semantic <a href="http://www.typescriptlang.org/">TypeScript</a> support, install the TypeScript SDK with
+</p>
+<div class="org-src-container">
+
+<pre class="src src-example">npm install -g typescript
+</pre>
+</div>
+
+<p>
+YCM comes with sane defaults for its options, but you still may want to take a look at what's available for configuration. There are a few interesting options that are conservatively turned off by default that you may want to turn on.
+</p>
+
+<p>
+只要设置好项目的.ycm_extra_conf.py，自动补全功能就可以完美的使用了。通常一个全局的.ycm_extra_conf.py足矣。代码跳转可以绑定一个快捷键：nnoremap &lt;leader&gt;jd :YcmCompleter GoToDefinitionElseDeclaration&lt;CR&gt;，很好理解，先跳到定义，如果没找到，则跳到声明处。(<a href="http://ju.outofmemory.cn/entry/79671">link</a>)
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-6-16-2" class="outline-4">
+<h4 id="sec-6-16-2">Add Better JavaScript Support</h4>
+<div class="outline-text-4" id="text-6-16-2">
+<p>
+(From this <a href="http://tilvim.com/2013/08/21/js-autocomplete.html">artical</a>; <a href="#sec-6-17">tern for vim</a> plugin)
+Once you’ve done that you’ll get autocompletion, although it won’t be at all intelligent. That’s where <a href="https://github.com/ternjs/tern_for_vim">TernJS</a> comes in. This is a project to provide better JS support within editors - and so far there are plugins for Vim, Emacs and Sublime Text 2. When installed, it hooks into Vim’s omnicomplete and updated it, and then YouCompleteMe picks it up.
+</p>
+
+<p>
+Hit tab to cycle through the suggestions, or keep typing to narrow it down. It’s not perfect - both YCM and Tern are still relatively young, but they already make a powerful combo and hopefully will only improve with time.
+</p>
+
+<p>
+TernJS also has other features to find the definition of things, and these are documented in the <a href="https://github.com/marijnh/tern_for_vim">Tern for Vim README</a>.
+</p>
+</div>
+
+<div id="outline-container-sec-6-16-2-1" class="outline-5">
+<h5 id="sec-6-16-2-1">0. Install tern server</h5>
+<div class="outline-text-5" id="text-6-16-2-1">
+<div class="org-src-container">
+
+<pre class="src src-example">sudo npm install -g tern
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-6-16-2-2" class="outline-5">
+<h5 id="sec-6-16-2-2">1. Install Tern for Vim plugin</h5>
+<div class="outline-text-5" id="text-6-16-2-2">
+<p>
+(From  <a href="#sec-5-2-4-1">Adding new plugins</a>)
+Add a line in .vimrc.bundles.local:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-vim">Bundle 'ternjs/tern_for_vim'
+</pre>
+</div>
+<p>
+Then
+</p>
+<div class="org-src-container">
+
+<pre class="src src-example">vim +BundleInstall! +BundleClean +q
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-6-16-2-3" class="outline-5">
+<h5 id="sec-6-16-2-3">2. Extra Installation Step</h5>
+<div class="outline-text-5" id="text-6-16-2-3">
+<p>
+First make sure you have Node and npm installed. Then
+</p>
+<div class="org-src-container">
+
+<pre class="src src-example">cd ~/.vim/bundle/tern_for_vim &amp;&amp; npm install
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-6-17" class="outline-3">
+<h3 id="sec-6-17">Tern For Vim</h3>
+<div class="outline-text-3" id="text-6-17">
+<p>
+This is a <a href="http://www.vim.org/">Vim</a> plugin that provides <a href="http://ternjs.net/">Tern</a>-based JavaScript editing support.
+</p>
+
+<p>
+In JavaScript files, the package will hook into <a href="http://vimdoc.sourceforge.net/htmldoc/version7.html#new-omni-completion">omni completion</a> to handle autocompletion, and provide the following commands:
+</p>
+
+<ul class="org-ul">
+<li>TernDef: Jump to the definition of the thing under the cursor.
+</li>
+<li>TernDoc: Look up the documentation of something.
+</li>
+<li>TernType: Find the type of the thing under the cursor.
+</li>
+<li>TernRefs: Show all references to the variable or property under the cursor.
+</li>
+<li>TernRename: Rename the variable under the cursor.
+</li>
+</ul>
+</div>
+
+<div id="outline-container-sec-6-17-1" class="outline-4">
+<h4 id="sec-6-17-1">Installation</h4>
+<div class="outline-text-4" id="text-6-17-1">
+<p>
+(see <a href="#sec-5-2-4-1">Adding new plugins</a> and <a href="#sec-6-16-2">Add Better JavaScript Support</a>)
+</p>
+
+<p>
+Or refer to <a href="http://www.jianshu.com/p/4a8b0e3503fa">Tern＋YouCompleteMe实现vim中JS自动补全</a>.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-6-18" class="outline-3">
+<h3 id="sec-6-18">EasyMotion</h3>
+<div class="outline-text-3" id="text-6-18">
+<p>
+EasyMotion provides an interactive way to use motions in Vim.
+</p>
+
+<p>
+It quickly maps each possible jump destination to a key allowing very fast and straightforward movement.
+</p>
+
+<p>
+QuickStart EasyMotion is triggered using the normal movements, but prefixing them with &lt;leader&gt;&lt;leader&gt; [ME: in my vim it's ',,'], for example:
+</p>
+<ul class="org-ul">
+<li>',,fa'
+</li>
+<li>',,w'
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-6-19" class="outline-3">
+<h3 id="sec-6-19">vim-signify</h3>
+<div class="outline-text-3" id="text-6-19">
+<p>
+(<a href="https://github.com/mhinz/vim-signify">vim-signify @github</a>)
+</p>
+
+<p>
+Signify (or just Sy) is a quite unobtrusive plugin. It uses signs to indicate added, modified and removed lines based on data of an underlying version control system.
+</p>
+
+<p>
+It's fast, easy to use and well documented.
+</p>
+
+<p>
+NOTE: If git is the only version control system you use, I suggest having a look at <a href="https://github.com/airblade/vim-gitgutter">vim-gitgutter</a>. It provides more git-specific features that would be unfeasible for Sy, since it only implements features that work for all supported VCS.
+</p>
+
+<p>
+Sign explanation:
+</p>
+
+<ul class="org-ul">
+<li>`+`: This line was added.
+</li>
+<li>`!`: This line was modified.
+</li>
+<li>`_1`, `99`, `_&gt;`: The number of deleted lines below this sign. If the number is larger `99`    than 9, the `_` will be omitted. For numbers larger than 99, `_&gt;` will be shown instead.
+</li>
+<li>`!1`: This line was modified and a number of lines below were deleted.
+</li>
+<li>`!&gt;`: It is a combination of `!` and `_`. If the number is larger than 9, `!&gt;` will be shown instead.
+</li>
+<li>`‾`: The first line was removed. It's a special case of the `_` sign.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-6-20" class="outline-3">
+<h3 id="sec-6-20">editorconfig-vim</h3>
+<div class="outline-text-3" id="text-6-20">
+</div><div id="outline-container-sec-6-20-1" class="outline-4">
+<h4 id="sec-6-20-1">References</h4>
+<div class="outline-text-4" id="text-6-20-1">
+<ul class="org-ul">
+<li><a href="https://github.com/h5bp/html5-boilerplate/blob/5.2.0/dist/doc/usage.md">HTML5 Boilerlate &gt; .editorconfig file</a>: The .editorconfig file is provided in order to encourage and help you and your team to maintain consistent coding styles between different editors and IDEs. <a href="https://github.com/h5bp/html5-boilerplate/blob/5.2.0/dist/doc/misc.md#editorconfig">Read more about the .editorconfig file</a>.
+</li>
+<li><a href="http://editorconfig.org/">EditorConfig Project Home</a>: EditorConfig helps developers define and maintain consistent coding styles between different editors and IDEs. The EditorConfig project consists of a file format for defining coding styles and a collection of text editor plugins that enable editors to read the file format and adhere to defined styles. EditorConfig files are easily readable and they work nicely with version control systems.
+</li>
+<li><a href="https://github.com/editorconfig/editorconfig-vim#readme">EditorConfig Vim Plugin</a>: Bundle path 'editorconfig/editorconfig-vim'.
+</li>
+<li><a href="https://github.com/editorconfig/editorconfig-core-c/blob/master/INSTALL.md">Install EditorConfig core</a>: <code>sudo apt-get install editorconfig</code>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-6-20-2" class="outline-4">
+<h4 id="sec-6-20-2">Installation</h4>
+<div class="outline-text-4" id="text-6-20-2">
+</div><div id="outline-container-sec-6-20-2-1" class="outline-5">
+<h5 id="sec-6-20-2-1">1. Add the line in .vimrc.bundle.local:</h5>
+<div class="outline-text-5" id="text-6-20-2-1">
+<div class="org-src-container">
+
+<pre class="src src-example">Bundle 'editorconfig/editorconfig-vim'
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-6-20-2-2" class="outline-5">
+<h5 id="sec-6-20-2-2">2. Install EditorConfig core:</h5>
+<div class="outline-text-5" id="text-6-20-2-2">
+<div class="org-src-container">
+
+<pre class="src src-example">sudo apt-get install editorconfig
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-6-20-2-3" class="outline-5">
+<h5 id="sec-6-20-2-3">3. Create .editorconfig file:</h5>
+<div class="outline-text-5" id="text-6-20-2-3">
+<p>
+(See <a href="http://editorconfig.org/#example-file">an example file</a> and <a href="http://editorconfig.org/#file-format-details">file format details</a>)
+</p>
+
+<p>
+This is mine:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-text"># EditorConfig is awesome: http://EditorConfig.org
+
+# top-most EditorConfig file
+root = true
+
+# Unix-style newlines with a newline ending every file
+[*]
+end_of_line = lf
+insert_final_newline = true
+
+# Matches multiple files with brace expansion notation
+# Set default charset
+[*.{js,py}]
+charset = utf-8
+
+# 4 space indentation
+[*.py]
+indent_style = space
+indent_size = 4
+
+# Tab indentation (no size specified)
+[Makefile]
+indent_style = tab
+
+# 2 space indentation
+[*.js]
+indent_style = space
+indent_size = 2
+
+# Matches the exact files either package.json or .travis.yml
+[{package.json,.travis.yml}]
+indent_style = space
+indent_size = 2
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-6-21" class="outline-3">
+<h3 id="sec-6-21">Tagbar</h3>
+<div class="outline-text-3" id="text-6-21">
+<p>
+(<a href="https://github.com/majutsushi/tagbar">link @ github</a>)
+Tagbar is a Vim plugin that provides an easy way to browse the tags of the current file and get an overview of its structure. It does this by creating a sidebar that displays the ctags-generated tags of the current file, ordered by their scope. This means that for example methods in C++ are displayed under the class they are defined in.
+</p>
+
+<p>
+Tagbar is not a general-purpose tool for managing tags files. It only creates the tags it needs <span class="underline">on-the-fly in-memory</span> without creating any files.
+</p>
+
+<p>
+Tagbar depends on <a href="http://ctags.sourceforge.net/">Exuberant ctags 5.5</a>.
+</p>
+</div>
+
+<div id="outline-container-sec-6-21-1" class="outline-4">
+<h4 id="sec-6-21-1">Configure shortcut key</h4>
+<div class="outline-text-4" id="text-6-21-1">
+<p>
+~/.vimrc.local
+</p>
+<div class="org-src-container">
+
+<pre class="src src-text">nmap &lt;F8&gt; :TagbarToggle&lt;CR&gt;
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-6-21-2" class="outline-4">
+<h4 id="sec-6-21-2">Working with jsctags(doctorjs)</h4>
+<div class="outline-text-4" id="text-6-21-2">
+<p>
+(<a href="http://stackoverflow.com/a/15426426">link</a>)
+use either ctags or jsctags and forget anything about syncing TagBar's and Vim's tags-related stuff as both things are completely separate:
+</p>
+<ul class="org-ul">
+<li>Use TagBar to understand/navigate in your current buffer.
+</li>
+<li>Use Vim's tag-related functionalities to move around your project.
+</li>
+</ul>
+
+<p>
+For Vim to locate your tags file(s) easily, you should put this line in your ~/.vimrc:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-text">set tags=./<span style="color: #000000; background-color: #ff00ff;">tags</span>,tags;/
+</pre>
+</div>
+<p>
+./tags means "look for a tags file in the directory of the current file", tags means "look for a tags file in the working directory", ;/ means "keep looking up and up until you reach /".
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-6-22" class="outline-3">
+<h3 id="sec-6-22">MiniBufExpl</h3>
+<div class="outline-text-3" id="text-6-22">
+<p>
+(refer to <a href="http://eseth.org/2007/vim-buffers.html">HOW I LEARNED TO STOP WORRYING AND LOVE VIM BUFFERS</a>)
+</p>
+
+<p>
+In .vimrc.bundle.local:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-example">Plugin 'fholgado/minibufexpl.vim'
+</pre>
+</div>
+
+<p>
+Then:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-example">vim +PluginInstall
+</pre>
+</div>
+
+<p>
+Usage:
+</p>
+<ul class="org-ul">
+<li>Ctrl+[hjkl] to move between buffers
+</li>
+<li>Double click buffer name inside of minibuffer to switch buffer
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-6-23" class="outline-3">
+<h3 id="sec-6-23">vim-vue</h3>
+<div class="outline-text-3" id="text-6-23">
+<p>
+(<a href="https://github.com/posva/vim-vue">https://github.com/posva/vim-vue</a>)
+</p>
+
+<p>
+Vim syntax highlighting for <a href="http://vuejs.org/guide/application.html#Single_File_Components">Vue components</a>.
+</p>
+
+<p>
+Installation:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-example">Plugin 'posva/vim-vue'
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-6-24" class="outline-3">
+<h3 id="sec-6-24">nerdcommentor</h3>
+<div class="outline-text-3" id="text-6-24">
+<p>
+(<a href="https://github.com/scrooloose/nerdcommenter">https://github.com/scrooloose/nerdcommenter</a>)
+</p>
+
+<p>
+Reference:
+</p>
+<ul class="org-ul">
+<li><a href="http://www.wklken.me/posts/2015/06/07/vim-plugin-nerdcommenter.html">http://www.wklken.me/posts/2015/06/07/vim-plugin-nerdcommenter.html</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-7" class="outline-2">
+<h2 id="sec-7">Issues &amp; Solutions</h2>
+<div class="outline-text-2" id="text-7">
+</div><div id="outline-container-sec-7-1" class="outline-3">
+<h3 id="sec-7-1">cannot expand 'test' (rails.snippets) in .rb file</h3>
+<div class="outline-text-3" id="text-7-1">
+<p>
+Refer to <i>use multiple file types at the same time</i>.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-7-2" class="outline-3">
+<h3 id="sec-7-2">cannot expand '=' in .html.erb file</h3>
+<div class="outline-text-3" id="text-7-2">
+<p>
+Set file type to eruby (refer to <i>Command Line Mode</i>: <code>:set ft ?</code>):
+</p>
+<div class="org-src-container">
+
+<pre class="src src-example">:set ft=eruby
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-7-3" class="outline-3">
+<h3 id="sec-7-3">^M character in file</h3>
+<div class="outline-text-3" id="text-7-3">
+<div class="org-src-container">
+
+<pre class="src src-example">:%s/^M/\r\gc
+</pre>
+</div>
+
+<p>
+<b>Tip</b>: use C-v C-m to produce ^M
+</p>
+</div>
+</div>
+<div id="outline-container-sec-7-4" class="outline-3">
+<h3 id="sec-7-4">space shown as ¿</h3>
+<div class="outline-text-3" id="text-7-4">
+<div class="org-src-container">
+
+<pre class="src src-example">set listchars=
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-7-5" class="outline-3">
+<h3 id="sec-7-5">Specific js file couldn't be highlighted and autocompleted</h3>
+<div class="outline-text-3" id="text-7-5">
+<p>
+What's weird: rename the given file then everything's ok.
+Solution: Remove the corresponding file in .vimviews.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-7-6" class="outline-3">
+<h3 id="sec-7-6">Couldn't resize vim splits inside tmux</h3>
+<div class="outline-text-3" id="text-7-6">
+<p>
+(<a href="http://superuser.com/questions/549930/cant-resize-vim-splits-inside-tmux">link</a>)
+In .vimrc.local, add:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-example">set mouse+=a
+if &amp;term =~ '^screen'
+    " tmux knows the extended mouse mode
+    set ttymouse=xterm2
+endif
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-7-7" class="outline-3">
+<h3 id="sec-7-7">The YCMD server shut down</h3>
+<div class="outline-text-3" id="text-7-7">
+<div class="org-src-container">
+
+<pre class="src src-example">sudo apt-get install clang-3.6 lldb-3.6
+</pre>
+</div>
+<p>
+then
+</p>
+<div class="org-src-container">
+
+<pre class="src src-example">cd ~/.vim/bundle/YouCompleteMe
+./install.sh --tern-completer
+</pre>
+</div>
+<p>
+(refer to <a href="http://llvm.org/apt/">llvm apt doc &gt; install stable branch</a>)
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-8" class="outline-2">
+<h2 id="sec-8">Advanced topics</h2>
+<div class="outline-text-2" id="text-8">
+</div><div id="outline-container-sec-8-1" class="outline-3">
+<h3 id="sec-8-1">Refresh all files in buffer from disk in vim</h3>
+<div class="outline-text-3" id="text-8-1">
+<p>
+(refer to <a href="https://stackoverflow.com/a/21331776">https://stackoverflow.com/a/21331776</a>)
+</p>
+
+<p>
+Especially after a git commit, the status of some of the opened files are not updated. 
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">:checktime
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-8-2" class="outline-3">
+<h3 id="sec-8-2">set line length</h3>
+<div class="outline-text-3" id="text-8-2">
+<div class="org-src-container">
+
+<pre class="src src-text">:set colorcolumn=72
+:highlight ColorColumn ctermbg=magenta
+</pre>
+</div>
+<p>
+<b>Note</b>: or <code>set cc=72</code>
+</p>
+
+<p>
+Refer to <a href="http://superuser.com/questions/249779/how-to-setup-a-line-length-marker-in-vim-gvim">http://superuser.com/questions/249779/how-to-setup-a-line-length-marker-in-vim-gvim</a>.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-8-3" class="outline-3">
+<h3 id="sec-8-3">use multiple file types at the same time</h3>
+<div class="outline-text-3" id="text-8-3">
+<div class="org-src-container">
+
+<pre class="src src-example">:set ft='ruby.rails'
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-8-4" class="outline-3">
+<h3 id="sec-8-4">view the currently mapped keys in vim</h3>
+<div class="outline-text-3" id="text-8-4">
+<p>
+(<a href="http://stackoverflow.com/questions/7642746/is-there-any-way-to-view-the-currently-mapped-keys-in-vim">http://stackoverflow.com/questions/7642746/is-there-any-way-to-view-the-currently-mapped-keys-in-vim</a>)
+</p>
+
+<p>
+You can do that with the :map command. There are also other variants.
+</p>
+
+<ul class="org-ul">
+<li>:nmap for normal mode mappings
+</li>
+<li>:vmap for visual mode mappings
+</li>
+<li>:imap for insert mode mappings
+</li>
+</ul>
+
+<p>
+The above list is not complete. Typing :help map in Vim will give you more info.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-8-5" class="outline-3">
+<h3 id="sec-8-5">Remove unwanted trailing whitespaces</h3>
+<div class="outline-text-3" id="text-8-5">
+<p>
+Refer to <a href="http://vim.wikia.com/wiki/Remove_unwanted_spaces">http://vim.wikia.com/wiki/Remove_unwanted_spaces</a>.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-example">:%s/\s\+$//gc
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-8-6" class="outline-3">
+<h3 id="sec-8-6">disable spelling check</h3>
+<div class="outline-text-3" id="text-8-6">
+<div class="org-src-container">
+
+<pre class="src src-sh">:set nospell
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-8-7" class="outline-3">
+<h3 id="sec-8-7">Build vim with lua support</h3>
+<div class="outline-text-3" id="text-8-7">
+<div class="org-src-container">
+
+<pre class="src src-sh">apt-get remove vim vim-runtime vim-tiny vim-common
+apt-get install libncurses5-dev python-dev python3-dev libperl-dev ruby-dev liblua5.2-dev
+ln -s /usr/include/lua5.2 /usr/include/lua
+ln -s /usr/lib/x86_64-linux-gnu/liblua5.2.so /usr/local/lib/liblua.so
+./configure --disable-gui <span style="color: #E6DB74;">\</span>
+            --with-features=huge <span style="color: #E6DB74;">\</span>
+            --enable-multibyte <span style="color: #E6DB74;">\</span>
+            --enable-rubyinterp <span style="color: #E6DB74;">\</span>
+            --enable-pythoninterp <span style="color: #E6DB74;">\</span>
+            --with-python-config-dir=/usr/lib/python2.7/config-x86_64-linux-gnu <span style="color: #E6DB74;">\</span>
+            --enable-python3interp <span style="color: #E6DB74;">\</span>
+            --with-python3-config-dir=/usr/lib/python3.4/config-3.4m-x86_64-linux-gnu <span style="color: #E6DB74;">\</span>
+            --enable-perlinterp <span style="color: #E6DB74;">\</span>
+            --enable-luainterp <span style="color: #E6DB74;">\</span>
+            --enable-gui=gtk2 --enable-cscope --prefix=/usr
+make <span style="color: #F92672;">VIMRUNTIMEDIR</span>=/usr/share/vim/vim74
+apt-get install checkinstall
+checkinstall
+make install
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-8-8" class="outline-3">
+<h3 id="sec-8-8">Building vim with lua &amp; python, etc.</h3>
+<div class="outline-text-3" id="text-8-8">
+<p>
+(<a href="https://github.com/Valloric/YouCompleteMe/wiki/Building-Vim-from-source">https://github.com/Valloric/YouCompleteMe/wiki/Building-Vim-from-source</a>)
+</p>
+<ol class="org-ol">
+<li>first install all the prerequisite libs:
+</li>
+</ol>
+<div class="org-src-container">
+
+<pre class="src src-sh">apt-get install libncurses5-dev libgnome2-dev libgnomeui-dev <span style="color: #E6DB74;">\</span>
+    libgtk2.0-dev libatk1.0-dev libbonoboui2-dev <span style="color: #E6DB74;">\</span>
+    libcairo2-dev libx11-dev libxpm-dev libxt-dev python-dev <span style="color: #E6DB74;">\</span>
+    python3-dev ruby-dev git
+
+apt-get install libncurses5-dev python-dev python3-dev ruby-dev git
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-8-9" class="outline-3">
+<h3 id="sec-8-9">vi/vim使用进阶: 目录 @ 易水博客</h3>
+<div class="outline-text-3" id="text-8-9">
+<p>
+(<a href="http://easwy.com/blog/archives/advanced-vim-skills-catalog/">link</a>)
+写本系列文章的最初想法，是介绍如何用vi/vim开发软件。但纵观整个系列，讲述的其实和软件开发关系并不大，基本都在讲vim的使用技巧、vim的配置及vimrc、vim的命令和vim的插件。
+</p>
+</div>
+</div>
+<div id="outline-container-sec-8-10" class="outline-3">
+<h3 id="sec-8-10">How to navigate in large project in VIM</h3>
+<div class="outline-text-3" id="text-8-10">
+<p>
+refer to <a href="http://stackoverflow.com/a/7387750">this link</a>.
+</p>
+
+<p>
+I like simple solutions, my favorite way to navigate at the moment is:
+</p>
+</div>
+
+<div id="outline-container-sec-8-10-1" class="outline-4">
+<h4 id="sec-8-10-1">1. Add to ~/.vimrc.local</h4>
+<div class="outline-text-4" id="text-8-10-1">
+<div class="org-src-container">
+
+<pre class="src src-text">set path=$PWD/**
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-8-10-2" class="outline-4">
+<h4 id="sec-8-10-2">2. Then find the file anywhere in the current dir (pwd)</h4>
+<div class="outline-text-4" id="text-8-10-2">
+<div class="org-src-container">
+
+<pre class="src src-example">:find user_spec.rb
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-8-10-3" class="outline-4">
+<h4 id="sec-8-10-3">3. [ME] Combined with Ctrl+P</h4>
+</div>
+</div>
+<div id="outline-container-sec-8-11" class="outline-3">
+<h3 id="sec-8-11">How to rename a variable/name etc.?</h3>
+<div class="outline-text-3" id="text-8-11">
+<p>
+(refer to <a href="http://stackoverflow.com/a/8026421">this link</a>)
+</p>
+<div class="org-src-container">
+
+<pre class="src src-js"><span style="color: #66D9EF;">var</span> <span style="color: #F92672;">funyfun</span> = <span style="color: #66D9EF;">function</span>(<span style="color: #F92672;">arg1</span>, <span style="color: #F92672;">arg2</span>) {
+
+    arg1 = ...arg2;
+    arg2....();
+}
+</pre>
+</div>
+<p>
+Requst: to refactor <code>arg1</code>, for <code>ex</code>, in the scope of that function
+</p>
+
+<p>
+Resolution:
+</p>
+<ol class="org-ol">
+<li>Move cursor on top of <code>arg1</code> and type <code>*N</code>
+</li>
+<li>Type <code>ciw</code> and insert replacement.
+</li>
+<li>Now you can use <code>n</code> and <code>N</code> to navigate the occurrences and by pressing <code>.</code>. Vim will redo the replacement on the current match.
+</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-sec-8-12" class="outline-3">
+<h3 id="sec-8-12">How to copy/paste between diffrent vims (using system clipboard)</h3>
+<div class="outline-text-3" id="text-8-12">
+<p>
+(<a href="http://blog.csdn.net/paul08colin/article/details/6838889">link</a>)
+用vim这么久了，始终也不知道怎么在vim中使用系统粘贴板，通常要在网上复制一段代码都是先gedit打开文件，中键粘贴后关闭，然后再用vim打开编辑，真的不爽；上次论坛上有人问到了怎么在vim中使用系统粘贴板，印象里回复很多，有好几页的回复却没有解决问题，今天实在受不了了又在网上找办法，竟意外地找到了，贴出来分享一下。
+</p>
+
+<p>
+如果只是想使用系统粘贴板的话直接在输入模式按Shift+Inset就可以了，下面讲一下vim的粘贴板的基础知识，有兴趣的可以看看，应该会有所收获的。
+vim帮助文档里与粘贴板有关的内容如下：
+</p>
+
+<p>
+vim有12个粘贴板，分别是0、1、2、&#x2026;、9、a、“、＋；用:reg命令可以查看各个粘贴板里的内容。在vim中简单用y只是复制到“（双引号)粘贴板里，同样用p粘贴的也是这个粘贴板里的内容；
+</p>
+
+
+<p>
+要将vim的内容复制到某个粘贴板，需要退出编辑模式，进入正常模式后，选择要复制的内容，然后按"Ny完成复制，其中N为粘贴板号(注意是按一下双引号然后按粘贴板号最后按y)，例如要把内容复制到粘贴板a，选中内容后按"ay就可以了，有两点需要说明一下：
+“号粘贴板（临时粘贴板）比较特殊，直接按y就复制到这个粘贴板中了，直接按p就粘贴这个粘贴板中的内容；
++号粘贴板是系统粘贴板，用"+y将内容复制到该粘贴板后可以使用Ctrl＋V将其粘贴到其他文档（如firefox、gedit）中，同理，要把在其他地方用Ctrl＋C或右键复制的内容复制到vim中，需要在正常模式下按"+p；
+</p>
+
+
+<p>
+要将vim某个粘贴板里的内容粘贴进来，需要退出编辑模式，在正常模式按"Np，其中N为粘贴板号，如上所述，可以按"5p将5号粘贴板里的内容粘贴进来，也可以按"+p将系统全局粘贴板里的内容粘贴进来。
+注意：在我这里，只有vim.gtk或vim.gnome才能使用系统全局粘贴板，默认的vim.basic看不到+号寄存器。
+</p>
+</div>
+</div>
+<div id="outline-container-sec-8-13" class="outline-3">
+<h3 id="sec-8-13">How to force vim to syntax-highting a file as html?</h3>
+<div class="outline-text-3" id="text-8-13">
+<p>
+(<a href="http://stackoverflow.com/questions/3853028/how-to-force-vim-to-syntax-highlight-a-file-as-html">link</a> @stackoverflow)
+</p>
+<div class="org-src-container">
+
+<pre class="src src-example">au BufReadPost *.ezt set syntax=html
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-8-14" class="outline-3">
+<h3 id="sec-8-14">How to fold/unfold HTML tags with Vim</h3>
+<div class="outline-text-3" id="text-8-14">
+<p>
+(<a href="https://groups.google.com/forum/#!topic/vim_mac/gxfdCr-Ve64">https://groups.google.com/forum/#!topic/vim_mac/gxfdCr-Ve64</a>)
+</p>
+
+<p>
+I think the situation is:
+</p>
+<ul class="org-ul">
+<li>syntax/html.vim does not support syntax folding.
+</li>
+
+<li>xml does support folding, and its similar to html.
+</li>
+
+<li>Try editing an html file, and:
+<p>
+:let g:xml_syntax_folding= 1
+</p>
+<p>
+:set ft=xml
+</p>
+</li>
+</ul>
+
+<p>
+As was pointed out, html is rather looser than xml and so its regions 
+may not be well specified &#x2013; and then xml's folding (and probably other 
+things) will then fail.
+</p>
+
+<p>
+As an alternative, use  :set fdm=marker
+and put &lt;!&#x2013; {{{1 &#x2013;&gt;  where you want folds.
+</p>
+
+<p>
+Regards,
+Chip Campbell
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: fengyz</p>
+<p class="date">Created: 2017-07-17 Mon 17:51</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

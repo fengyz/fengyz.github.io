@@ -1,0 +1,557 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>book-metaprogramming-ruby2</title>
+<!-- 2017-08-01 Tue 08:02 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="fengyz" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="solarized-light.min.css" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">book-metaprogramming-ruby2</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">Part I Ruby 元编程</a>
+<ul>
+<li><a href="#sec-1-1">1. 元这个字眼</a>
+<ul>
+<li><a href="#sec-1-1-1">1.1 鬼城与自由市场</a></li>
+<li><a href="#sec-1-1-2">1.2 程序员 Bob 的故事</a></li>
+<li><a href="#sec-1-1-3">1.3 元编程和 Ruby</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-2">2. 星期一：对象模型</a>
+<ul>
+<li><a href="#sec-1-2-1">2.1 打开类</a></li>
+<li><a href="#sec-1-2-2">2.2 类的真相</a></li>
+<li><a href="#sec-1-2-3">2.3 小测验：混乱的模块</a></li>
+<li><a href="#sec-1-2-4">2.4 调用方法时发生了什么</a></li>
+<li><a href="#sec-1-2-5">2.5 小测验：混乱的模块</a></li>
+<li><a href="#sec-1-2-6">2.6 对象模型小结</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-3">3. 星期二：方法</a>
+<ul>
+<li><a href="#sec-1-3-1">3.1 代码繁复的问题</a></li>
+<li><a href="#sec-1-3-2">3.2 动态方法</a></li>
+<li><a href="#sec-1-3-3">3.3 method_missing 方法</a></li>
+<li><a href="#sec-1-3-4">3.4 小测验：消灭 Bug</a></li>
+<li><a href="#sec-1-3-5">3.5 白板类</a></li>
+<li><a href="#sec-1-3-6">3.6 小结</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-4">4. 星期三：代码块</a>
+<ul>
+<li><a href="#sec-1-4-1">4.1 学习代码块</a></li>
+<li><a href="#sec-1-4-2">4.2 小测验：Ruby的#符号</a></li>
+<li><a href="#sec-1-4-3">4.3 代码块是闭包</a></li>
+<li><a href="#sec-1-4-4">4.4 instance_eval 方法</a></li>
+<li><a href="#sec-1-4-5">4.5 可调用对象</a></li>
+<li><a href="#sec-1-4-6">4.6 编写领域专属语言（DSL）</a></li>
+<li><a href="#sec-1-4-7">4.7 小测验：改良的 DSL</a></li>
+<li><a href="#sec-1-4-8">4.8 小结</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-5">5. 星期四：类定义</a>
+<ul>
+<li><a href="#sec-1-5-1">5.1 揭秘类定义</a></li>
+<li><a href="#sec-1-5-2">5.2 小测验：Taboo 类</a></li>
+<li><a href="#sec-1-5-3">5.3 单件方法</a></li>
+<li><a href="#sec-1-5-4">5.4 单件类</a></li>
+<li><a href="#sec-1-5-5">5.5 小测验：模块的麻烦</a></li>
+<li><a href="#sec-1-5-6">5.6 方法包装器</a></li>
+<li><a href="#sec-1-5-7">5.7 小测验：打破数学规律</a></li>
+<li><a href="#sec-1-5-8">5.8 小结</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-6">6. 星期五：编写代码的代码</a>
+<ul>
+<li><a href="#sec-1-6-1">6.1 通向周末的编程之路</a></li>
+<li><a href="#sec-1-6-2">6.2 Kernel#eval 方法</a></li>
+<li><a href="#sec-1-6-3">6.3 小测验：校验过的属性（第一步）</a></li>
+<li><a href="#sec-1-6-4">6.4 小测验：校验过的属性（第二步）</a></li>
+<li><a href="#sec-1-6-5">6.5 小测验：校验过的属性（第三步）</a></li>
+<li><a href="#sec-1-6-6">6.6 小测验：校验过的属性（第四步）</a></li>
+<li><a href="#sec-1-6-7">6.7 钩子方法</a></li>
+<li><a href="#sec-1-6-8">6.8 小测验：校验过的属性（第五步）</a></li>
+<li><a href="#sec-1-6-9">6.9 小结</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-7">7. 尾声</a></li>
+</ul>
+</li>
+<li><a href="#sec-2">Part II Rails 中的元编程</a>
+<ul>
+<li><a href="#sec-2-1">8. 准备 Rails 之旅</a>
+<ul>
+<li><a href="#sec-2-1-1">8.1 Ruby on Rails</a></li>
+<li><a href="#sec-2-1-2">8.2 安装 Rails</a></li>
+<li><a href="#sec-2-1-3">8.3 Rails 源代码</a></li>
+</ul>
+</li>
+<li><a href="#sec-2-2">9. Active Record 的设计</a>
+<ul>
+<li><a href="#sec-2-2-1">9.1 简短的 Active Record 示例</a></li>
+<li><a href="#sec-2-2-2">9.2 Active Record 的组成</a></li>
+<li><a href="#sec-2-2-3">9.3 经验之谈</a></li>
+</ul>
+</li>
+<li><a href="#sec-2-3">10. Active Support 的 Concern 模块</a>
+<ul>
+<li><a href="#sec-2-3-1">10.1 Concern 模块出现之前</a></li>
+<li><a href="#sec-2-3-2">10.2 ActiveSupport::Concern 模块</a></li>
+<li><a href="#sec-2-3-3">10.3 经验之谈</a></li>
+</ul>
+</li>
+<li><a href="#sec-2-4">11. alias_method_chain 方法沉浮录</a>
+<ul>
+<li><a href="#sec-2-4-1">11.1 alias_method_chain 方法的兴起</a></li>
+<li><a href="#sec-2-4-2">11.2 alias_method_chain 方法的衰亡</a></li>
+<li><a href="#sec-2-4-3">11.3 经验之谈</a></li>
+</ul>
+</li>
+<li><a href="#sec-2-5">12. 属性方法的发展</a>
+<ul>
+<li><a href="#sec-2-5-1">12.1 属性方法实战</a></li>
+<li><a href="#sec-2-5-2">12.2 属性方法的发展史</a></li>
+<li><a href="#sec-2-5-3">12.3 经验之谈</a></li>
+</ul>
+</li>
+<li><a href="#sec-2-6">13. 最后的思考</a>
+<ul>
+<li><a href="#sec-2-6-1">13.1 元编程不过是编程</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#sec-3">Part III 附录</a>
+<ul>
+<li><a href="#sec-3-1">附录A 常见惯用法</a>
+<ul>
+<li><a href="#sec-3-1-1">A.1 拟态方法</a></li>
+<li><a href="#sec-3-1-2">A.2 空指针保护</a></li>
+<li><a href="#sec-3-1-3">A.3 Self Yield</a></li>
+<li><a href="#sec-3-1-4">A.4 Symbol#to_proc 方法</a></li>
+</ul>
+</li>
+<li><a href="#sec-3-2">附录B 领域专属语言</a>
+<ul>
+<li><a href="#sec-3-2-1">B.1 关于领域专属语言</a></li>
+<li><a href="#sec-3-2-2">B.2 内部和外部领域专属语言</a></li>
+<li><a href="#sec-3-2-3">B.3 领域专属语言和元编程</a></li>
+</ul>
+</li>
+<li><a href="#sec-3-3">附录C 法术手册</a></li>
+<li><a href="#sec-3-4">索引</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">Part I Ruby 元编程</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1">1. 元这个字眼</h3>
+<div class="outline-text-3" id="text-1-1">
+</div><div id="outline-container-sec-1-1-1" class="outline-4">
+<h4 id="sec-1-1-1">1.1 鬼城与自由市场</h4>
+</div>
+<div id="outline-container-sec-1-1-2" class="outline-4">
+<h4 id="sec-1-1-2">1.2 程序员 Bob 的故事</h4>
+</div>
+<div id="outline-container-sec-1-1-3" class="outline-4">
+<h4 id="sec-1-1-3">1.3 元编程和 Ruby</h4>
+</div>
+</div>
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2">2. 星期一：对象模型</h3>
+<div class="outline-text-3" id="text-1-2">
+</div><div id="outline-container-sec-1-2-1" class="outline-4">
+<h4 id="sec-1-2-1">2.1 打开类</h4>
+</div>
+<div id="outline-container-sec-1-2-2" class="outline-4">
+<h4 id="sec-1-2-2">2.2 类的真相</h4>
+</div>
+<div id="outline-container-sec-1-2-3" class="outline-4">
+<h4 id="sec-1-2-3">2.3 小测验：混乱的模块</h4>
+</div>
+<div id="outline-container-sec-1-2-4" class="outline-4">
+<h4 id="sec-1-2-4">2.4 调用方法时发生了什么</h4>
+</div>
+<div id="outline-container-sec-1-2-5" class="outline-4">
+<h4 id="sec-1-2-5">2.5 小测验：混乱的模块</h4>
+</div>
+<div id="outline-container-sec-1-2-6" class="outline-4">
+<h4 id="sec-1-2-6">2.6 对象模型小结</h4>
+</div>
+</div>
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3">3. 星期二：方法</h3>
+<div class="outline-text-3" id="text-1-3">
+</div><div id="outline-container-sec-1-3-1" class="outline-4">
+<h4 id="sec-1-3-1">3.1 代码繁复的问题</h4>
+</div>
+<div id="outline-container-sec-1-3-2" class="outline-4">
+<h4 id="sec-1-3-2">3.2 动态方法</h4>
+</div>
+<div id="outline-container-sec-1-3-3" class="outline-4">
+<h4 id="sec-1-3-3">3.3 method_missing 方法</h4>
+</div>
+<div id="outline-container-sec-1-3-4" class="outline-4">
+<h4 id="sec-1-3-4">3.4 小测验：消灭 Bug</h4>
+</div>
+<div id="outline-container-sec-1-3-5" class="outline-4">
+<h4 id="sec-1-3-5">3.5 白板类</h4>
+</div>
+<div id="outline-container-sec-1-3-6" class="outline-4">
+<h4 id="sec-1-3-6">3.6 小结</h4>
+</div>
+</div>
+<div id="outline-container-sec-1-4" class="outline-3">
+<h3 id="sec-1-4">4. 星期三：代码块</h3>
+<div class="outline-text-3" id="text-1-4">
+</div><div id="outline-container-sec-1-4-1" class="outline-4">
+<h4 id="sec-1-4-1">4.1 学习代码块</h4>
+</div>
+<div id="outline-container-sec-1-4-2" class="outline-4">
+<h4 id="sec-1-4-2">4.2 小测验：Ruby的#符号</h4>
+</div>
+<div id="outline-container-sec-1-4-3" class="outline-4">
+<h4 id="sec-1-4-3">4.3 代码块是闭包</h4>
+</div>
+<div id="outline-container-sec-1-4-4" class="outline-4">
+<h4 id="sec-1-4-4">4.4 instance_eval 方法</h4>
+</div>
+<div id="outline-container-sec-1-4-5" class="outline-4">
+<h4 id="sec-1-4-5">4.5 可调用对象</h4>
+</div>
+<div id="outline-container-sec-1-4-6" class="outline-4">
+<h4 id="sec-1-4-6">4.6 编写领域专属语言（DSL）</h4>
+</div>
+<div id="outline-container-sec-1-4-7" class="outline-4">
+<h4 id="sec-1-4-7">4.7 小测验：改良的 DSL</h4>
+</div>
+<div id="outline-container-sec-1-4-8" class="outline-4">
+<h4 id="sec-1-4-8">4.8 小结</h4>
+</div>
+</div>
+<div id="outline-container-sec-1-5" class="outline-3">
+<h3 id="sec-1-5">5. 星期四：类定义</h3>
+<div class="outline-text-3" id="text-1-5">
+</div><div id="outline-container-sec-1-5-1" class="outline-4">
+<h4 id="sec-1-5-1">5.1 揭秘类定义</h4>
+</div>
+<div id="outline-container-sec-1-5-2" class="outline-4">
+<h4 id="sec-1-5-2">5.2 小测验：Taboo 类</h4>
+</div>
+<div id="outline-container-sec-1-5-3" class="outline-4">
+<h4 id="sec-1-5-3">5.3 单件方法</h4>
+</div>
+<div id="outline-container-sec-1-5-4" class="outline-4">
+<h4 id="sec-1-5-4">5.4 单件类</h4>
+</div>
+<div id="outline-container-sec-1-5-5" class="outline-4">
+<h4 id="sec-1-5-5">5.5 小测验：模块的麻烦</h4>
+</div>
+<div id="outline-container-sec-1-5-6" class="outline-4">
+<h4 id="sec-1-5-6">5.6 方法包装器</h4>
+</div>
+<div id="outline-container-sec-1-5-7" class="outline-4">
+<h4 id="sec-1-5-7">5.7 小测验：打破数学规律</h4>
+</div>
+<div id="outline-container-sec-1-5-8" class="outline-4">
+<h4 id="sec-1-5-8">5.8 小结</h4>
+</div>
+</div>
+<div id="outline-container-sec-1-6" class="outline-3">
+<h3 id="sec-1-6">6. 星期五：编写代码的代码</h3>
+<div class="outline-text-3" id="text-1-6">
+</div><div id="outline-container-sec-1-6-1" class="outline-4">
+<h4 id="sec-1-6-1">6.1 通向周末的编程之路</h4>
+</div>
+<div id="outline-container-sec-1-6-2" class="outline-4">
+<h4 id="sec-1-6-2">6.2 Kernel#eval 方法</h4>
+</div>
+<div id="outline-container-sec-1-6-3" class="outline-4">
+<h4 id="sec-1-6-3">6.3 小测验：校验过的属性（第一步）</h4>
+</div>
+<div id="outline-container-sec-1-6-4" class="outline-4">
+<h4 id="sec-1-6-4">6.4 小测验：校验过的属性（第二步）</h4>
+</div>
+<div id="outline-container-sec-1-6-5" class="outline-4">
+<h4 id="sec-1-6-5">6.5 小测验：校验过的属性（第三步）</h4>
+</div>
+<div id="outline-container-sec-1-6-6" class="outline-4">
+<h4 id="sec-1-6-6">6.6 小测验：校验过的属性（第四步）</h4>
+</div>
+<div id="outline-container-sec-1-6-7" class="outline-4">
+<h4 id="sec-1-6-7">6.7 钩子方法</h4>
+</div>
+<div id="outline-container-sec-1-6-8" class="outline-4">
+<h4 id="sec-1-6-8">6.8 小测验：校验过的属性（第五步）</h4>
+</div>
+<div id="outline-container-sec-1-6-9" class="outline-4">
+<h4 id="sec-1-6-9">6.9 小结</h4>
+</div>
+</div>
+<div id="outline-container-sec-1-7" class="outline-3">
+<h3 id="sec-1-7">7. 尾声</h3>
+</div>
+</div>
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">Part II Rails 中的元编程</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1">8. 准备 Rails 之旅</h3>
+<div class="outline-text-3" id="text-2-1">
+</div><div id="outline-container-sec-2-1-1" class="outline-4">
+<h4 id="sec-2-1-1">8.1 Ruby on Rails</h4>
+</div>
+<div id="outline-container-sec-2-1-2" class="outline-4">
+<h4 id="sec-2-1-2">8.2 安装 Rails</h4>
+</div>
+<div id="outline-container-sec-2-1-3" class="outline-4">
+<h4 id="sec-2-1-3">8.3 Rails 源代码</h4>
+</div>
+</div>
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2">9. Active Record 的设计</h3>
+<div class="outline-text-3" id="text-2-2">
+</div><div id="outline-container-sec-2-2-1" class="outline-4">
+<h4 id="sec-2-2-1">9.1 简短的 Active Record 示例</h4>
+</div>
+<div id="outline-container-sec-2-2-2" class="outline-4">
+<h4 id="sec-2-2-2">9.2 Active Record 的组成</h4>
+</div>
+<div id="outline-container-sec-2-2-3" class="outline-4">
+<h4 id="sec-2-2-3">9.3 经验之谈</h4>
+</div>
+</div>
+<div id="outline-container-sec-2-3" class="outline-3">
+<h3 id="sec-2-3">10. Active Support 的 Concern 模块</h3>
+<div class="outline-text-3" id="text-2-3">
+</div><div id="outline-container-sec-2-3-1" class="outline-4">
+<h4 id="sec-2-3-1">10.1 Concern 模块出现之前</h4>
+</div>
+<div id="outline-container-sec-2-3-2" class="outline-4">
+<h4 id="sec-2-3-2">10.2 ActiveSupport::Concern 模块</h4>
+</div>
+<div id="outline-container-sec-2-3-3" class="outline-4">
+<h4 id="sec-2-3-3">10.3 经验之谈</h4>
+</div>
+</div>
+<div id="outline-container-sec-2-4" class="outline-3">
+<h3 id="sec-2-4">11. alias_method_chain 方法沉浮录</h3>
+<div class="outline-text-3" id="text-2-4">
+</div><div id="outline-container-sec-2-4-1" class="outline-4">
+<h4 id="sec-2-4-1">11.1 alias_method_chain 方法的兴起</h4>
+</div>
+<div id="outline-container-sec-2-4-2" class="outline-4">
+<h4 id="sec-2-4-2">11.2 alias_method_chain 方法的衰亡</h4>
+</div>
+<div id="outline-container-sec-2-4-3" class="outline-4">
+<h4 id="sec-2-4-3">11.3 经验之谈</h4>
+</div>
+</div>
+<div id="outline-container-sec-2-5" class="outline-3">
+<h3 id="sec-2-5">12. 属性方法的发展</h3>
+<div class="outline-text-3" id="text-2-5">
+</div><div id="outline-container-sec-2-5-1" class="outline-4">
+<h4 id="sec-2-5-1">12.1 属性方法实战</h4>
+</div>
+<div id="outline-container-sec-2-5-2" class="outline-4">
+<h4 id="sec-2-5-2">12.2 属性方法的发展史</h4>
+</div>
+<div id="outline-container-sec-2-5-3" class="outline-4">
+<h4 id="sec-2-5-3">12.3 经验之谈</h4>
+</div>
+</div>
+<div id="outline-container-sec-2-6" class="outline-3">
+<h3 id="sec-2-6">13. 最后的思考</h3>
+<div class="outline-text-3" id="text-2-6">
+</div><div id="outline-container-sec-2-6-1" class="outline-4">
+<h4 id="sec-2-6-1">13.1 元编程不过是编程</h4>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3">Part III 附录</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1">附录A 常见惯用法</h3>
+<div class="outline-text-3" id="text-3-1">
+</div><div id="outline-container-sec-3-1-1" class="outline-4">
+<h4 id="sec-3-1-1">A.1 拟态方法</h4>
+</div>
+<div id="outline-container-sec-3-1-2" class="outline-4">
+<h4 id="sec-3-1-2">A.2 空指针保护</h4>
+</div>
+<div id="outline-container-sec-3-1-3" class="outline-4">
+<h4 id="sec-3-1-3">A.3 Self Yield</h4>
+</div>
+<div id="outline-container-sec-3-1-4" class="outline-4">
+<h4 id="sec-3-1-4">A.4 Symbol#to_proc 方法</h4>
+</div>
+</div>
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2">附录B 领域专属语言</h3>
+<div class="outline-text-3" id="text-3-2">
+</div><div id="outline-container-sec-3-2-1" class="outline-4">
+<h4 id="sec-3-2-1">B.1 关于领域专属语言</h4>
+</div>
+<div id="outline-container-sec-3-2-2" class="outline-4">
+<h4 id="sec-3-2-2">B.2 内部和外部领域专属语言</h4>
+</div>
+<div id="outline-container-sec-3-2-3" class="outline-4">
+<h4 id="sec-3-2-3">B.3 领域专属语言和元编程</h4>
+</div>
+</div>
+<div id="outline-container-sec-3-3" class="outline-3">
+<h3 id="sec-3-3">附录C 法术手册</h3>
+</div>
+<div id="outline-container-sec-3-4" class="outline-3">
+<h3 id="sec-3-4">索引</h3>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: fengyz</p>
+<p class="date">Created: 2017-08-01 Tue 08:02</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

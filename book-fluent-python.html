@@ -1,0 +1,696 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>1. The Python Data Model</title>
+<!-- 2017-12-06 Wed 22:51 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="fengyz" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="solarized-light.min.css" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">1. The Python Data Model</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">A Pythonic card deck</a></li>
+<li><a href="#sec-2">How special methods are used</a>
+<ul>
+<li><a href="#sec-2-1">Emulating numeric types</a></li>
+<li><a href="#sec-2-2">String representation</a></li>
+<li><a href="#sec-2-3">Arithmetic operators</a></li>
+<li><a href="#sec-2-4">Boolean value of a custom type</a></li>
+</ul>
+</li>
+<li><a href="#sec-3">Overview of special methods</a></li>
+<li><a href="#sec-4">Why <code>len</code> is not a method</a></li>
+<li><a href="#sec-5">Chapter summary</a></li>
+<li><a href="#sec-6">Further reading</a></li>
+<li><a href="#sec-7">Soapbox</a>
+<ul>
+<li><a href="#sec-7-1">Data Model or Object Model?</a></li>
+<li><a href="#sec-7-2">Magic methods</a></li>
+<li><a href="#sec-7-3">Metaobjects</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<p>
+The Python interpreter invokes <i>special methods</i> to perform basic object operations, often triggered by <i>special syntax</i>. The special method names are always spelled with leading and trailing double underscores, i.e. <code>__getitem__</code>. For example, the syntax <code>obj[key]</code> is supported by the <code>__getitem__</code> special method. To evaluate <code>my_collection[key]</code>, the interpreter calls <code>my_collection.__getitem__(key)</code>.
+</p>
+
+<p>
+The special method names allow your objects to implement, support and interact with basic language constructs such as:
+</p>
+<ul class="org-ul">
+<li>iteration;
+</li>
+<li>collections;
+</li>
+<li>attribute access;
+</li>
+<li>operator overloading;
+</li>
+<li>function and method invocation;
+</li>
+<li>object creation and destruction;
+</li>
+<li>string representation and formatting;
+</li>
+<li>managed contexts (i.e. with blocks);
+</li>
+</ul>
+
+<p>
+<b>Tip</b>: The special methods are also known as dunder methods, e.g. <span class="underline"><span class="underline">getitem</span></span> is called "dunder-getitem".
+</p>
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">A Pythonic card deck</h2>
+<div class="outline-text-2" id="text-1">
+<div class="center">
+<p>
+Example 1-1. A deck as a sequence of cards.
+</p>
+
+
+<div class="figure">
+<p><img src="book-fluent-python/example-1-1.png" alt="example-1-1.png" />
+</p>
+</div>
+</div>
+
+<hr  />
+<p>
+ME: TDD with doctest
+</p>
+
+<p>
+example_1_1.py:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #E6DB74;">"""A deck as a sequence of cards.</span>
+
+<span style="color: #E6DB74;">&gt;&gt;&gt; beer_card = Card('7', 'diamonds')</span>
+<span style="color: #E6DB74;">&gt;&gt;&gt; beer_card</span>
+<span style="color: #E6DB74;">Card(rank='7', suit='diamonds')</span>
+<span style="color: #E6DB74;">&gt;&gt;&gt; deck = FrenchDeck()</span>
+<span style="color: #E6DB74;">&gt;&gt;&gt; len(deck)</span>
+<span style="color: #E6DB74;">52</span>
+<span style="color: #E6DB74;">&gt;&gt;&gt; deck[0]</span>
+<span style="color: #E6DB74;">Card(rank='2', suit='spades')</span>
+<span style="color: #E6DB74;">&gt;&gt;&gt; deck[51]</span>
+<span style="color: #E6DB74;">Card(rank='A', suit='hearts')</span>
+<span style="color: #E6DB74;">"""</span>
+
+<span style="color: #66D9EF;">import</span> collections
+
+<span style="color: #F92672;">Card</span> = collections.namedtuple(<span style="color: #E6DB74;">'Card'</span>, [<span style="color: #E6DB74;">'rank'</span>, <span style="color: #E6DB74;">'suit'</span>])
+
+<span style="color: #66D9EF;">class</span> <span style="color: #66D9EF;">FrenchDeck</span>:
+    <span style="color: #F92672;">ranks</span> = [<span style="color: #A6E22E;">str</span>(n) <span style="color: #66D9EF;">for</span> n <span style="color: #66D9EF;">in</span> <span style="color: #A6E22E;">range</span>(2, 11)] + <span style="color: #A6E22E;">list</span>(<span style="color: #E6DB74;">'JQKA'</span>)
+    <span style="color: #F92672;">suits</span> = <span style="color: #E6DB74;">'spades diamonds clubs hearts'</span>.split()
+
+    <span style="color: #66D9EF;">def</span> <span style="color: #F92672; font-style: italic;">__init__</span>(<span style="color: #66D9EF;">self</span>):
+        <span style="color: #66D9EF;">self</span>._cards = [Card(rank, suit) <span style="color: #66D9EF;">for</span> suit <span style="color: #66D9EF;">in</span> <span style="color: #66D9EF;">self</span>.suits
+                                        <span style="color: #66D9EF;">for</span> rank <span style="color: #66D9EF;">in</span> <span style="color: #66D9EF;">self</span>.ranks]
+
+    <span style="color: #66D9EF;">def</span> <span style="color: #F92672; font-style: italic;">__len__</span>(<span style="color: #66D9EF;">self</span>):
+        <span style="color: #66D9EF;">return</span> <span style="color: #A6E22E;">len</span>(<span style="color: #66D9EF;">self</span>._cards)
+
+    <span style="color: #66D9EF;">def</span> <span style="color: #F92672; font-style: italic;">__getitem__</span>(<span style="color: #66D9EF;">self</span>, position):
+        <span style="color: #66D9EF;">return</span> <span style="color: #66D9EF;">self</span>._cards[position]
+</pre>
+</div>
+
+<p>
+Then:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">$ python -m doctest example_1_1.py
+</pre>
+</div>
+<hr  />
+
+<p>
+Python already has a function to get a random item from a sequence: random.choice. We can just use it on a deck instance:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python">&gt;&gt;&gt; <span style="color: #66D9EF;">from</span> random <span style="color: #66D9EF;">import</span> choice 
+&gt;&gt;&gt; choice(deck)
+Card(rank=<span style="color: #E6DB74;">'3'</span>, suit=<span style="color: #E6DB74;">'hearts'</span>) 
+&gt;&gt;&gt; choice(deck) 
+Card(rank=<span style="color: #E6DB74;">'K'</span>, suit=<span style="color: #E6DB74;">'spades'</span>) 
+&gt;&gt;&gt; choice(deck) 
+Card(rank=<span style="color: #E6DB74;">'2'</span>, suit=<span style="color: #E6DB74;">'clubs'</span>)
+</pre>
+</div>
+
+<p>
+We’ve just seen <b>two advantages of using special methods to leverage the Python Data Model</b>:
+</p>
+<ol class="org-ol">
+<li>The users of your classes don’t have to memorize arbitrary method names for standard operations (“How to get the number of items? Is it .size() .length() or what?”)
+</li>
+<li>It’s easier to benefit from the rich Python standard library and avoid reinventing the wheel, like the random.choice function.
+</li>
+</ol>
+
+<p>
+But it gets better.
+</p>
+
+<p>
+Because our <span class="underline"><span class="underline">getitem</span></span> <i>delegates</i> to the [] operator of self._cards, our deck automatically supports <span class="underline">slicing</span>. Here’s how we look at the top three cards from a brand new deck, and then pick just the aces by starting on index 12 and skipping 13 cards at a time:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python">&gt;&gt;&gt; deck[:3]
+[Card(rank=<span style="color: #E6DB74;">'2'</span>, suit=<span style="color: #E6DB74;">'spades'</span>), Card(rank=<span style="color: #E6DB74;">'3'</span>, suit=<span style="color: #E6DB74;">'spades'</span>), Card(rank=<span style="color: #E6DB74;">'4'</span>, suit=<span style="color: #E6DB74;">'spades'</span>)]
+&gt;&gt;&gt; deck[12::13]
+[Card(rank=<span style="color: #E6DB74;">'A'</span>, suit=<span style="color: #E6DB74;">'spades'</span>), Card(rank=<span style="color: #E6DB74;">'A'</span>, suit=<span style="color: #E6DB74;">'diamonds'</span>), Card(rank=<span style="color: #E6DB74;">'A'</span>, suit=<span style="color: #E6DB74;">'clubs'</span>), Card(rank=<span style="color: #E6DB74;">'A'</span>, suit=<span style="color: #E6DB74;">'hearts'</span>)]
+</pre>
+</div>
+
+<p>
+Just by implementing the <span class="underline"><span class="underline">getitem</span></span> special method, our deck is also <i>iterable</i>:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python">&gt;&gt;&gt; <span style="color: #66D9EF;">for</span> card <span style="color: #66D9EF;">in</span> deck: <span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">doctest: +ELLIPSIS </span>
+... <span style="color: #66D9EF;">print</span>(card)
+Card(rank=<span style="color: #E6DB74;">'2'</span>, suit=<span style="color: #E6DB74;">'spades'</span>) 
+Card(rank=<span style="color: #E6DB74;">'3'</span>, suit=<span style="color: #E6DB74;">'spades'</span>) 
+Card(rank=<span style="color: #E6DB74;">'4'</span>, suit=<span style="color: #E6DB74;">'spades'</span>)
+...
+</pre>
+</div>
+
+<p>
+The deck can also be iterated in reverse:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python">&gt;&gt;&gt; <span style="color: #66D9EF;">for</span> card <span style="color: #66D9EF;">in</span> <span style="color: #A6E22E;">reversed</span>(deck): <span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">doctest: +ELLIPSIS </span>
+...     <span style="color: #66D9EF;">print</span>(card)
+Card(rank=<span style="color: #E6DB74;">'A'</span>, suit=<span style="color: #E6DB74;">'hearts'</span>)
+Card(rank=<span style="color: #E6DB74;">'K'</span>, suit=<span style="color: #E6DB74;">'hearts'</span>)
+Card(rank=<span style="color: #E6DB74;">'Q'</span>, suit=<span style="color: #E6DB74;">'hearts'</span>)
+...
+</pre>
+</div>
+
+<p>
+<b>Tip</b>: Whenever possible, the Python console listings in this book were extracted from doctests to insure accuracy. When the output was too long, the elided part is marked by an ellipsis &#x2026; like in the last line above. In such cases, we used the <code># doctest: +ELLIPSIS</code> directive to make the doctest pass.
+</p>
+
+<p>
+Iteration is often implicit. If a collection has no <code>__contains__</code> method, the <code>in</code> operator does a sequential scan. Case in point: in works with our FrenchDeck class because it is iterable. Check it out:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python">&gt;&gt;&gt; Card(<span style="color: #E6DB74;">'Q'</span>, <span style="color: #E6DB74;">'hearts'</span>) <span style="color: #66D9EF;">in</span> deck 
+<span style="color: #AE81FF;">True</span>
+&gt;&gt;&gt; Card(<span style="color: #E6DB74;">'7'</span>, <span style="color: #E6DB74;">'beasts'</span>) <span style="color: #66D9EF;">in</span> deck 
+<span style="color: #AE81FF;">False</span>
+</pre>
+</div>
+
+<p>
+How about sorting? A common system of ranking cards is by rank (with aces being highest), then by suit in the order: spades (highest), then hearts, diamonds and clubs (lowest). Here is a function that ranks cards by that rule, returning 0 for the 2 of clubs and 51 for the ace of spades:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #F92672;">suit_values</span> = <span style="color: #A6E22E;">dict</span>(spades=3, hearts=2, diamonds=1, clubs=0)
+
+<span style="color: #66D9EF;">def</span> <span style="color: #F92672; font-style: italic;">spades_high</span>(card):
+    <span style="color: #F92672;">rank_value</span> = FrenchDeck.ranks.index(card.rank)
+    <span style="color: #66D9EF;">return</span> rank_value * <span style="color: #A6E22E;">len</span>(suit_values) + suit_values[card.suit]
+</pre>
+</div>
+
+<p>
+Given spades_high, we can now list our deck in order of increasing rank:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python">&gt;&gt;&gt; <span style="color: #66D9EF;">for</span> card <span style="color: #66D9EF;">in</span> <span style="color: #A6E22E;">sorted</span>(deck, key=spades_high): <span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">doctest: +ELLIPSIS ... print(card)</span>
+Card(rank=<span style="color: #E6DB74;">'2'</span>, suit=<span style="color: #E6DB74;">'clubs'</span>)
+Card(rank=<span style="color: #E6DB74;">'2'</span>, suit=<span style="color: #E6DB74;">'diamonds'</span>)
+Card(rank=<span style="color: #E6DB74;">'2'</span>, suit=<span style="color: #E6DB74;">'hearts'</span>) ... (46 cards ommitted) 
+Card(rank=<span style="color: #E6DB74;">'A'</span>, suit=<span style="color: #E6DB74;">'diamonds'</span>) 
+Card(rank=<span style="color: #E6DB74;">'A'</span>, suit=<span style="color: #E6DB74;">'hearts'</span>) 
+Card(rank=<span style="color: #E6DB74;">'A'</span>, suit=<span style="color: #E6DB74;">'spades'</span>)
+</pre>
+</div>
+
+<p>
+Although FrenchDeck <i>implicitly inherits from object</i>, its functionality is not inherited, but comes from leveraging the Data Model and composition. By implementing the special methods <span class="underline"><span class="underline">len</span></span> and <span class="underline"><span class="underline">getitem</span></span> our FrenchDeck <i>behaves like a standard Python sequence</i>, allowing it to benefit from core language features — like iteration and slicing—and from the standard library, as shown by the examples using random.choice, reversed and sorted. Thanks to composition, the <span class="underline"><span class="underline">len</span></span> and <span class="underline"><span class="underline">geti tem</span></span> implementations can hand off all the work to a list object, self._cards.
+</p>
+
+<p>
+<b>Note</b>: How about shuffling?<br  />
+As implemented so far, a FrenchDeck cannot be shuffled, because it is immutable: the cards and their positions cannot be changed, ex‐ cept by violating encapsulation and handling the _cards attribute directly. In <i><i>Chapter 11</i></i> that will be fixed by adding a one-line <code>__setitem__</code> method.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">How special methods are used</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+But for built-in types like list, str, bytearray etc., the interpreter takes a shortcut: the CPython implementation of len() actually returns the value of the ob_size field in the PyVarObject C struct that represents any variable-sized built-in object in memory. This is much faster than calling a method.
+</p>
+
+<p>
+Normally, your code should not have many direct calls to special methods. Unless you are doing a lot of <i>metaprogramming</i>, you should be implementing special methods more often than invoking them explicitly. <b>The only special method</b> that is frequently called by user code directly is <code>__init__</code>, to <i>invoke the initializer of the superclass in your own <code>__init__</code> implementation</i>.
+</p>
+
+<p>
+If you need to invoke a special method, it is usually <i>better</i> to call the related built-in function, such as len, iter, str etc. These built-ins call the corresponding special method, but often provide other services and — for built-in types — are faster than method calls. See for example “A closer look at the iter function” on page 438 in <i><i>Chapter 14</i></i>.
+</p>
+
+<p>
+<i>Avoid</i> creating arbitrary, custom attributes with the__foo__syntax because such names may acquire special meanings in the future, even if they are unused today.
+</p>
+</div>
+<div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1">Emulating numeric types</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Several special methods allow user objects to respond to operators such as +. We will cover that in more detail in <i><i>Chapter 13</i></i>.
+</p>
+
+<p>
+Example 1-2 is a Vector class implementing the operations just described, through the use of the special methods <span class="underline"><span class="underline">repr</span></span>, <span class="underline"><span class="underline">abs</span></span>, <span class="underline"><span class="underline">add</span></span> and <span class="underline"><span class="underline">mul</span></span>:
+</p>
+
+<p>
+<a id="example_1_2" name="example_1_2"></a>
+Example 1-2. A simple 2D vector class.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #E6DB74;">"""2D vector.</span>
+
+<span style="color: #E6DB74;">&gt;&gt;&gt; v1 = Vector(2, 4)</span>
+<span style="color: #E6DB74;">&gt;&gt;&gt; v2 = Vector(2, 1)</span>
+<span style="color: #E6DB74;">&gt;&gt;&gt; v1 + v2</span>
+<span style="color: #E6DB74;">Vector(4, 5)</span>
+
+<span style="color: #E6DB74;">&gt;&gt;&gt; v = Vector(3, 4)</span>
+<span style="color: #E6DB74;">&gt;&gt;&gt; abs(v)</span>
+<span style="color: #E6DB74;">5.0</span>
+
+<span style="color: #E6DB74;">&gt;&gt;&gt; v * 3</span>
+<span style="color: #E6DB74;">Vector(9, 12)</span>
+<span style="color: #E6DB74;">&gt;&gt;&gt; abs(v * 3)</span>
+<span style="color: #E6DB74;">15.0</span>
+<span style="color: #E6DB74;">"""</span>
+
+<span style="color: #66D9EF;">from</span> math <span style="color: #66D9EF;">import</span> hypot
+
+<span style="color: #66D9EF;">class</span> <span style="color: #66D9EF;">Vector</span>:
+    <span style="color: #66D9EF;">def</span> <span style="color: #F92672; font-style: italic;">__init__</span>(<span style="color: #66D9EF;">self</span>, x=0, y=0):
+        <span style="color: #66D9EF;">self</span>.x = x
+        <span style="color: #66D9EF;">self</span>.y = y
+
+    <span style="color: #66D9EF;">def</span> <span style="color: #F92672; font-style: italic;">__repr__</span>(<span style="color: #66D9EF;">self</span>):
+        <span style="color: #66D9EF;">return</span> <span style="color: #E6DB74;">"Vector(%r, %r)"</span> % (<span style="color: #66D9EF;">self</span>.x, <span style="color: #66D9EF;">self</span>.y)
+
+    <span style="color: #66D9EF;">def</span> <span style="color: #F92672; font-style: italic;">__abs__</span>(<span style="color: #66D9EF;">self</span>):
+        <span style="color: #66D9EF;">return</span> hypot(<span style="color: #66D9EF;">self</span>.x, <span style="color: #66D9EF;">self</span>.y)
+
+    <span style="color: #66D9EF;">def</span> <span style="color: #F92672; font-style: italic;">__bool__</span>(<span style="color: #66D9EF;">self</span>):
+        <span style="color: #66D9EF;">return</span> <span style="color: #A6E22E;">bool</span>(<span style="color: #A6E22E;">abs</span>(<span style="color: #66D9EF;">self</span>))
+
+    <span style="color: #66D9EF;">def</span> <span style="color: #F92672; font-style: italic;">__add__</span>(<span style="color: #66D9EF;">self</span>, other):
+        <span style="color: #F92672;">x</span> = <span style="color: #66D9EF;">self</span>.x + other.x
+        <span style="color: #F92672;">y</span> = <span style="color: #66D9EF;">self</span>.y + other.y
+        <span style="color: #66D9EF;">return</span> Vector(x, y)
+
+    <span style="color: #66D9EF;">def</span> <span style="color: #F92672; font-style: italic;">__mul__</span>(<span style="color: #66D9EF;">self</span>, scalar):
+        <span style="color: #66D9EF;">return</span> Vector(<span style="color: #66D9EF;">self</span>.x * scalar, <span style="color: #66D9EF;">self</span>.y * scalar)
+</pre>
+</div>
+
+<p>
+As mentioned before, the Python interpreter is the only frequent caller of most special methods. 
+</p>
+
+<p>
+In the next sections we discuss the code for each special method.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2">String representation</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+The <code>__repr__</code> special method is called by the repr built-in to get string representation of the object for inspection. If we did not implement <span class="underline"><span class="underline">repr</span></span>, vector instances would be shown in the console like &lt;Vector object at 0x10e100070&gt;.
+</p>
+
+<p>
+The interactive console and debugger call <code>repr</code> on the results of the expressions evaluated, as does the '%r' place holder in classic formatting with % operator, and the !r conversion field in the new <a href="http://docs.python.org/library/string.html#format-string-syntax">Format String Syntax</a> used in the <code>str.format method</code>.
+</p>
+
+<p>
+<b>Note</b> that in our <span class="underline"><span class="underline">repr</span></span> implementation we used <code>%r</code> to obtain <span class="underline">the standard representation of the attributes</span> to be displayed. This is good practice, as it shows the crucial difference between Vector(1, 2) and Vector('1', '2') — the latter would not work in the context of this example, because the constructors arguments must be numbers, not str.
+</p>
+
+<p>
+<b>Note</b>: The string returned by <span class="underline"><span class="underline">repr</span></span> should be unambiguous and, if possible, match the source code necessary to <i>recreate the object</i> being represented. That is why our chosen representation looks like calling the constructor of the class, e.g. Vector(3, 4).
+</p>
+
+<p>
+Contrast <code>__repr__</code> with <code>__str__</code>, which is called by the <code>str()</code> constructor and implicitly used by the print function. <span class="underline"><span class="underline">str</span></span> should return <i>a string suitable for display to end-users</i>.
+</p>
+
+<p>
+If you only implement one of these special methods, choose <span class="underline"><span class="underline">repr</span></span>, because when no custom <span class="underline"><span class="underline">str</span></span> is available, Python will call <span class="underline"><span class="underline">repr</span></span> as a <i>fallback</i>.
+</p>
+
+<p>
+<b>Tip</b>: <a href="https://stackoverflow.com/questions/1436703/difference-between-str-and-repr-in-python">Difference between <span class="underline"><span class="underline">str</span></span> and <span class="underline"><span class="underline">repr</span></span> in Python</a> is a StackOverflow question with excellent contributions from Pythonistas Alex Martelli and Martijn Pieters.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-2-3" class="outline-3">
+<h3 id="sec-2-3">Arithmetic operators</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+<a href="#example_1_2">Example 1-2</a> implements two operators: + and *, to show basic usage of <span class="underline"><span class="underline">add</span></span> and <span class="underline"><span class="underline">mul</span></span>. Note that in both cases, the methods create and return a new instance of Vector, and do not modify either operand — self or other are merely read. This is <i>the expected behavior of infix operators</i>: to create new objects and not touch their operands. I will have a lot more to say about that in <i><i>Chapter 13</i></i>.
+</p>
+
+<p>
+<b>Note</b>: As implemented, Example 1-2 allows multiplying a Vector by a number, but not a number by a Vector, which <i>violates the commutative property of multiplication</i>. We will fix that with the special method <code>__rmul__</code> in <i><i>Chapter 13</i></i>.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-2-4" class="outline-3">
+<h3 id="sec-2-4">Boolean value of a custom type</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+Although Python has a bool type, it accepts any object in a boolean context, such as the expression controlling an if or while statement, or as operands to <code>and</code>, <code>or</code> and <code>not</code>. To determine whether a value x is truthy or falsy, Python applies <code>bool(x)</code>, which always returns True or False.
+</p>
+
+<p>
+By default, instances of user-defined classes are considered <i>truthy</i>, unless either <span class="underline"><span class="underline">bool</span></span> or <span class="underline"><span class="underline">len</span></span> is implemented. 
+</p>
+<ul class="org-ul">
+<li>Basically, bool(x) calls x.__bool__() and uses the result. 
+</li>
+<li>If <span class="underline"><span class="underline">bool</span></span> is not implemented, Python tries to invoke x.__len__(), and if that returns zero, bool returns False. 
+</li>
+<li>Otherwise bool returns True.
+</li>
+</ul>
+
+<p>
+Note how the special method <span class="underline"><span class="underline">bool</span></span> allows your objects to be consistent with <i>the truth value testing rules</i> defined in the <a href="https://docs.python.org/3/library/stdtypes.html#truth">Built-in Types chapter</a> of the Python Standard Library documentation.
+</p>
+
+<p>
+<b>Tip</b>: A <i>faster</i> implementation of Vector.__bool__ is this:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #66D9EF;">def</span> <span style="color: #F92672; font-style: italic;">__bool__</span>(<span style="color: #66D9EF;">self</span>):
+    <span style="color: #66D9EF;">return</span> <span style="color: #A6E22E;">bool</span>(<span style="color: #66D9EF;">self</span>.x <span style="color: #66D9EF;">or</span> <span style="color: #66D9EF;">self</span>.y)
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3">Overview of special methods</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+The <a href="https://docs.python.org/3/reference/datamodel.html">Data Model</a> page of the Python Language Reference lists <i>83</i> special method names, <i>47</i> of which are used to implement arithmetic, bitwise and comparison operators.
+</p>
+
+<div class="center">
+<p>
+Table 1-1. Special method names (operators excluded).
+</p>
+
+
+<div class="figure">
+<p><img src="book-fluent-python/table-1-1.png" alt="table-1-1.png" />
+</p>
+</div>
+</div>
+
+<div class="center">
+<p>
+Table 1-2. Special method names for operators.
+</p>
+
+
+<div class="figure">
+<p><img src="book-fluent-python/table-1-2.png" alt="table-1-2.png" />
+</p>
+</div>
+</div>
+
+<p>
+<b>Tip</b>: The reversed operators are fallbacks used when operands are swap‐ ped (b * a instead of a * b), while augmented assignment are short‐ cuts combining an infix operator with variable assignment (a = a * b becomes a *= b). <i><i>Chapter 13</i></i> explains both reversed operators and augmented assignment in detail.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4">Why <code>len</code> is not a method</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+I asked this question to core developer Raymond Hettinger in 2013 and the key to his answer was a quote from the Zen of Python: “practicality beats purity”.
+</p>
+
+<p>
+In other words, len is not called as a method because it gets special treatment as part of the Python Data Model, just like abs. But thanks to the special method <span class="underline"><span class="underline">len</span></span> you can also make len work with your own custom objects. This is fair compromise between the need for efficient built-in objects and the consistency of the language. Also from the Zen of Python: “Special cases aren’t special enough to break the rules.”
+</p>
+
+<p>
+<b>Tip</b>: If you think of abs and len as unary operators you may be more inclined to forgive their functional look-and-feel, as opposed to the method call syntax one might expect in a OO language. In fact, the ABC language — a direct ancestor of Python which pioneered many of its features — had an # operator that was the equivalent of len (you’d write #s). When used as an infix operator, written x#s, it counted the occurrences of x in s, which in Python you get as s.count(x), for any sequence s.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5">Chapter summary</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+By implementing special methods, your objects can behave like the built-in types, en‐ abling the expressive coding style the community considers Pythonic.
+</p>
+
+<p>
+A basic requirement for a Python object is to provide usable string representations of itself, one used for debugging and logging, another for presentation to end users. That is why the special methods <span class="underline"><span class="underline">repr</span></span> and <span class="underline"><span class="underline">str</span></span> exist in the Data Model.
+</p>
+
+<p>
+Emulating sequences, as shown with the FrenchDeck example, is one of the most widely used applications of the special methods. Making the most of sequence types is the subject of Chapter 2, and implementing your own sequence will be covered in Chap‐ ter 10 we will create a multi-dimensional extension of the Vector class.
+</p>
+
+<p>
+Thanks to operator overloading, Python offers a rich selection of numeric types, from the built-ins to decimal.Decimal and fractions.Fraction, all supporting infix arith‐ metic operators. Implementing operators, including reversed operators and augmented assignment will be shown in Chapter 13 via enhancements of the Vector example.
+</p>
+
+<p>
+The use and implementation of the majority of the remaining special methods of the Python Data Model is covered throughout this book.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6">Further reading</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+The <a href="https://docs.python.org/3/reference/datamodel.html">Data Model</a> chapter of the Python Language Reference is the canonical source for the subject of this chapter and much of this book.
+</p>
+
+<p>
+Python in a Nutshell, 2nd Edition, by Alex Martelli, has excellent coverage of the Data Model.
+</p>
+
+<p>
+David Beazley has two books covering the Data Model in detail in the context of Python 3: Python Essential Reference, 4th Edition, and Python Cookbook, 3rd Edition, co- authored with Brian K. Jones.
+</p>
+
+<p>
+The Art of the Metaobject Protocol (AMOP), by Gregor Kiczales, Jim des Rivieres, and Daniel G. Bobrow explains the concept of a MOP (Meta Object Protocol), of which the Python Data Model is one example.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-7" class="outline-2">
+<h2 id="sec-7">Soapbox</h2>
+<div class="outline-text-2" id="text-7">
+</div><div id="outline-container-sec-7-1" class="outline-3">
+<h3 id="sec-7-1">Data Model or Object Model?</h3>
+<div class="outline-text-3" id="text-7-1">
+<p>
+What the Python documentation calls the “Python Data Model”, most authors would say is the “Python Object Model”. Alex Martelli’s Python in a Nutshell 2e and David Beazley’s Python Essential Reference 4e are the best books covering the “Python Data Model”, but they always refer to it as the “object model”. In the English language Wiki‐ pedia, the first definition of <a href="https://en.wikipedia.org/wiki/Object_model">Object Model</a> is “The properties of objects in general in a specific computer programming language.” This is what the “Python Data Model” is about. In this book I will use “Data Model” because that is how the Python object model is called in the documentation, and is the title of the <a href="https://docs.python.org/3/reference/datamodel.html">chapter of the Python Language Reference most relevant to our discussions</a>.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-7-2" class="outline-3">
+<h3 id="sec-7-2">Magic methods</h3>
+<div class="outline-text-3" id="text-7-2">
+<p>
+The Ruby community calls their equivalent of the special methods <i>magic methods</i>. Many in the Python community adopt that term as well. I believe the special methods are actually the opposite of magic. Python and Ruby are the same in this regard: both em‐ power their users with a rich metaobject protocol which is not magic, but enables users to leverage the same tools available to core developers.
+</p>
+
+<p>
+In contrast, consider JavaScript. Objects in that language have features that are magic, in the sense that you cannot emulate them in your own user-defined objects. For ex‐ ample, before JavaScript 1.8.5 you could not define read-only attributes in your Java‐ Script objects, but some built-in objects always had read-only attributes. In JavaScript, read-only attributes were “magic”, requiring supernatural powers that a user of the lan‐ guage did not have until ECMAScript 5.1 came out in 2009. The metaobject protocol of JavaScript is evolving, but historically it has been more limited than those of Python and Ruby.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-7-3" class="outline-3">
+<h3 id="sec-7-3">Metaobjects</h3>
+<div class="outline-text-3" id="text-7-3">
+<p>
+<i>The Art of The Metaobject Procotol</i> (AMOP) is my favorite computer book title. Less subjectively, the term <i>metaobject protocol</i> is useful to think about the Python Data Model and similar features in other languages. The <b>metaobject</b> part refers to <span class="underline">the objects that are the building blocks of the language itself</span>. In this context, <i>prococol is a synonym of interface</i>. So a <i>metaobject protocol</i> is a fancy synonym for <i>object model</i>: <span class="underline">an API for core language constructs</span>.
+</p>
+
+<p>
+A rich metaobject protocol enables extending a language to support new programming paradigms. [ME: DSL?] Aspect-oriented programming is much easier to imple‐ ment in a dynamic language like Python, and several frameworks do it, but the most important is <a href="http://zopeinterface.readthedocs.io/en/latest/">zope.interface</a>, which is briefly discussed in the Further reading section of <i><i>Chapter 11</i></i>.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: fengyz</p>
+<p class="date">Created: 2017-12-06 Wed 22:51</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

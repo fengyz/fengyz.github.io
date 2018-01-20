@@ -1,0 +1,1622 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>tangshi</title>
+<!-- 2017-03-10 Fri 16:04 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="fengyz" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">tangshi</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">唐诗三百首</a>
+<ul>
+<li><a href="#sec-1-1">《唐诗三百首》简介</a></li>
+<li><a href="#sec-1-2">五言绝句</a>
+<ul>
+<li><a href="#sec-1-2-1">行宫(元稹)</a></li>
+<li><a href="#sec-1-2-2"><span class="todo TODO">TODO</span> 登鹳雀楼(王之涣)</a>
+<ul>
+<li><a href="#sec-1-2-2-1">注释</a></li>
+<li><a href="#sec-1-2-2-2">译文</a></li>
+<li><a href="#sec-1-2-2-3">赏析</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-2-3">新嫁娘词(王建)</a></li>
+<li><a href="#sec-1-2-4">相思(王维)</a></li>
+<li><a href="#sec-1-2-5">杂诗(王维)</a></li>
+<li><a href="#sec-1-2-6">鹿柴(王维)</a></li>
+<li><a href="#sec-1-2-7">竹里馆(王维)</a></li>
+<li><a href="#sec-1-2-8">山中送别(王维)</a></li>
+<li><a href="#sec-1-2-9">问刘十九(白居易)</a></li>
+<li><a href="#sec-1-2-10">哥舒歌(西鄙人)</a></li>
+<li><a href="#sec-1-2-11">夜思(李白)</a></li>
+<li><a href="#sec-1-2-12">怨情(李白)</a></li>
+<li><a href="#sec-1-2-13">登乐游原(李商隐)</a></li>
+<li><a href="#sec-1-2-14">听筝(李端)</a></li>
+<li><a href="#sec-1-2-15">渡汉江(李频)</a></li>
+<li><a href="#sec-1-2-16">八阵图(杜甫)</a></li>
+<li><a href="#sec-1-2-17">宿建德江(孟浩然)</a></li>
+<li><a href="#sec-1-2-18">春晓(孟浩然)</a></li>
+<li><a href="#sec-1-2-19">春怨(金昌绪)</a></li>
+<li><a href="#sec-1-2-20">江雪(柳宗元)</a></li>
+<li><a href="#sec-1-2-21">秋夜寄邱员外(韦应物)</a></li>
+<li><a href="#sec-1-2-22">终南望余雪(祖咏)</a></li>
+<li><a href="#sec-1-2-23">宫词(张祜)</a></li>
+<li><a href="#sec-1-2-24">寻隐者不遇(贾岛)</a></li>
+<li><a href="#sec-1-2-25">送崔九(裴迪)</a></li>
+<li><a href="#sec-1-2-26">送灵澈(刘长卿)</a></li>
+<li><a href="#sec-1-2-27">听弹琴(刘长卿)</a></li>
+<li><a href="#sec-1-2-28">送上人(刘长卿)</a></li>
+<li><a href="#sec-1-2-29">玉台体(权德舆)</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-3">七言绝句</a>
+<ul>
+<li><a href="#sec-1-3-1">芙蓉楼送辛渐(王昌龄)</a></li>
+<li><a href="#sec-1-3-2">闺怨(王昌龄)</a></li>
+<li><a href="#sec-1-3-3">春宫曲(王昌龄)</a></li>
+<li><a href="#sec-1-3-4">九月九日忆山东兄弟(王维)</a></li>
+<li><a href="#sec-1-3-5">凉州词(王翰)</a></li>
+<li><a href="#sec-1-3-6">后宫词(白居易)</a></li>
+<li><a href="#sec-1-3-7">宫中词(朱庆馀)</a></li>
+<li><a href="#sec-1-3-8">近试上张水部(朱庆馀)</a></li>
+<li><a href="#sec-1-3-9">逢入京使(岑参)</a></li>
+<li><a href="#sec-1-3-10">黄鹤楼送孟浩然之广陵(李白)</a></li>
+<li><a href="#sec-1-3-11">早发白帝城(李白)</a></li>
+<li><a href="#sec-1-3-12">夜上受降城闻笛(李益)</a></li>
+<li><a href="#sec-1-3-13">贾生(李商隐)</a></li>
+<li><a href="#sec-1-3-14">隋宫(李商隐)</a></li>
+<li><a href="#sec-1-3-15">瑶池(李商隐)</a></li>
+<li><a href="#sec-1-3-16">嫦娥(李商隐)</a></li>
+<li><a href="#sec-1-3-17">夜雨寄北(李商隐)</a></li>
+<li><a href="#sec-1-3-18">寄令狐郎中(李商隐)</a></li>
+<li><a href="#sec-1-3-19">为有(李商隐)</a></li>
+<li><a href="#sec-1-3-20">江南逢李龟年(杜甫)</a></li>
+<li><a href="#sec-1-3-21">赠别二首·其一(杜牧)</a></li>
+<li><a href="#sec-1-3-22">赠别二首·其二(杜牧)</a></li>
+<li><a href="#sec-1-3-23">金谷园(杜牧)</a></li>
+<li><a href="#sec-1-3-24">寄扬州韩绰判官(杜牧)</a></li>
+<li><a href="#sec-1-3-25">遣怀(杜牧)</a></li>
+<li><a href="#sec-1-3-26">秋夕(杜牧)</a></li>
+<li><a href="#sec-1-3-27">将赴吴兴登乐游原一绝(杜牧)</a></li>
+<li><a href="#sec-1-3-28">赤壁(杜牧)</a></li>
+<li><a href="#sec-1-3-29">泊秦淮(杜牧)</a></li>
+<li><a href="#sec-1-3-30">征人怨(柳中庸)</a></li>
+<li><a href="#sec-1-3-31">金陵图(韦庄)</a></li>
+<li><a href="#sec-1-3-32">滁州西涧(韦应物)</a></li>
+<li><a href="#sec-1-3-33">桃花溪(张旭)</a></li>
+<li><a href="#sec-1-3-34">寄人(张泌)</a></li>
+<li><a href="#sec-1-3-35">题金陵渡(张祜)</a></li>
+<li><a href="#sec-1-3-36">赠内人(张祜)</a></li>
+<li><a href="#sec-1-3-37">集灵台二首·其一(张祜)</a></li>
+<li><a href="#sec-1-3-38">集灵台二首·其二(张祜)</a></li>
+<li><a href="#sec-1-3-39">枫桥夜泊(张继)</a></li>
+<li><a href="#sec-1-3-40">陇西行(陈陶)</a></li>
+<li><a href="#sec-1-3-41">杂诗(佚名)</a></li>
+<li><a href="#sec-1-3-42">回乡偶书(贺知章)</a></li>
+<li><a href="#sec-1-3-43">瑶瑟怨(温庭筠)</a></li>
+<li><a href="#sec-1-3-44">月夜(刘方平)</a></li>
+<li><a href="#sec-1-3-45">春怨(刘方平)</a></li>
+<li><a href="#sec-1-3-46">乌衣巷(刘禹锡)</a></li>
+<li><a href="#sec-1-3-47">春词(刘禹锡)</a></li>
+<li><a href="#sec-1-3-48">马嵬坡(郑畋)</a></li>
+<li><a href="#sec-1-3-49">寒食(韩翃)</a></li>
+<li><a href="#sec-1-3-50">已凉(韩偓)</a></li>
+<li><a href="#sec-1-3-51">宫词(顾况)</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-4">五言律诗</a>
+<ul>
+<li><a href="#sec-1-4-1">送杜少府之任蜀州(王勃)</a></li>
+<li><a href="#sec-1-4-2">送梓州李使君(王维)</a></li>
+<li><a href="#sec-1-4-3">汉江临眺(王维)</a></li>
+<li><a href="#sec-1-4-4">终南别业(王维)</a></li>
+<li><a href="#sec-1-4-5">终南山(王维)</a></li>
+<li><a href="#sec-1-4-6">酬张少府(王维)</a></li>
+<li><a href="#sec-1-4-7">过香积寺(王维)</a></li>
+<li><a href="#sec-1-4-8">辋川闲居赠裴秀才迪(王维)</a></li>
+<li><a href="#sec-1-4-9">山居秋暝(王维)</a></li>
+<li><a href="#sec-1-4-10">归嵩山作(王维)</a></li>
+<li><a href="#sec-1-4-11">次北固山下(王湾)</a></li>
+<li><a href="#sec-1-4-12">云阳馆与韩绅宿别(司空曙)</a></li>
+<li><a href="#sec-1-4-13">喜外弟卢纶见宿(司空曙)</a></li>
+<li><a href="#sec-1-4-14">贼平后送人北归(司空曙)</a></li>
+<li><a href="#sec-1-4-15">赋得古原草送别(白居易)</a></li>
+<li><a href="#sec-1-4-16">题大庾岭北驿(宋之问)</a></li>
+<li><a href="#sec-1-4-17">寄左省杜拾遗(岑参)</a></li>
+<li><a href="#sec-1-4-18">听蜀僧浚弹琴(李白)</a></li>
+<li><a href="#sec-1-4-19">夜泊牛渚怀古(李白)</a></li>
+<li><a href="#sec-1-4-20">赠孟浩然(李白)</a></li>
+<li><a href="#sec-1-4-21">渡荆门送别(李白)</a></li>
+<li><a href="#sec-1-4-22">送友人(李白)</a></li>
+<li><a href="#sec-1-4-23">喜见外弟又言别(李益)</a></li>
+<li><a href="#sec-1-4-24">凉思(李商隐)</a></li>
+<li><a href="#sec-1-4-25">北青萝(李商隐)</a></li>
+<li><a href="#sec-1-4-26">蝉(李商隐)</a></li>
+<li><a href="#sec-1-4-27">风雨(李商隐)</a></li>
+<li><a href="#sec-1-4-28">落花(李商隐)</a></li>
+<li><a href="#sec-1-4-29">登岳阳楼(杜甫)</a></li>
+<li><a href="#sec-1-4-30">奉济驿重送严公四韵(杜甫)</a></li>
+<li><a href="#sec-1-4-31">别房太尉墓(杜甫)</a></li>
+<li><a href="#sec-1-4-32">旅夜书怀(杜甫)</a></li>
+<li><a href="#sec-1-4-33">至德二载甫自京金光门(杜甫)</a></li>
+<li><a href="#sec-1-4-34">月夜忆舍弟(杜甫)</a></li>
+<li><a href="#sec-1-4-35">天末怀李白(杜甫)</a></li>
+<li><a href="#sec-1-4-36">月夜(杜甫)</a></li>
+<li><a href="#sec-1-4-37">春望(杜甫)</a></li>
+<li><a href="#sec-1-4-38">春宿左省(杜甫)</a></li>
+<li><a href="#sec-1-4-39">旅宿(杜牧)</a></li>
+<li><a href="#sec-1-4-40">春宫怨(杜荀鹤)</a></li>
+<li><a href="#sec-1-4-41">和晋陵陆丞早春游望(杜审言)</a></li>
+<li><a href="#sec-1-4-42">杂诗(沈佺期)</a></li>
+<li><a href="#sec-1-4-43">宿桐庐江寄广陵旧游(孟浩然)</a></li>
+<li><a href="#sec-1-4-44">留别王维(孟浩然)</a></li>
+<li><a href="#sec-1-4-45">早寒有怀(孟浩然)</a></li>
+<li><a href="#sec-1-4-46">岁暮归南山(孟浩然)</a></li>
+<li><a href="#sec-1-4-47">过故人庄(孟浩然)</a></li>
+<li><a href="#sec-1-4-48">秦中寄远上人(孟浩然)</a></li>
+<li><a href="#sec-1-4-49">望洞庭湖赠张丞相(孟浩然)</a></li>
+<li><a href="#sec-1-4-50">与诸子登岘山(孟浩然)</a></li>
+<li><a href="#sec-1-4-51">宴梅道士山房(孟浩然)</a></li>
+<li><a href="#sec-1-4-52">章台夜思(韦庄)</a></li>
+<li><a href="#sec-1-4-53">淮上喜会梁州故人(韦应物)</a></li>
+<li><a href="#sec-1-4-54">赋得暮雨送李曹(韦应物)</a></li>
+<li><a href="#sec-1-4-55">经邹鲁祭孔子而叹之(唐玄宗)</a></li>
+<li><a href="#sec-1-4-56">灞上秋居(马戴)</a></li>
+<li><a href="#sec-1-4-57">楚江怀古(马戴)</a></li>
+<li><a href="#sec-1-4-58">除夜有怀(崔涂)</a></li>
+<li><a href="#sec-1-4-59">孤雁(崔涂)</a></li>
+<li><a href="#sec-1-4-60">题破山寺后禅院(常建)</a></li>
+<li><a href="#sec-1-4-61">望月怀远(张九龄)</a></li>
+<li><a href="#sec-1-4-62">书边事(张乔)</a></li>
+<li><a href="#sec-1-4-63">没蕃故人(张藉)</a></li>
+<li><a href="#sec-1-4-64">秋日赴阙题潼关驿楼(许浑)</a></li>
+<li><a href="#sec-1-4-65">早秋(许浑)</a></li>
+<li><a href="#sec-1-4-66">送人东游(温庭筠)</a></li>
+<li><a href="#sec-1-4-67">寻陆鸿渐不遇(僧皎然)</a></li>
+<li><a href="#sec-1-4-68">寻南溪常道士(刘长卿)</a></li>
+<li><a href="#sec-1-4-69">新年作(刘长卿)</a></li>
+<li><a href="#sec-1-4-70">秋日登吴公台上寺远眺(刘长卿)</a></li>
+<li><a href="#sec-1-4-71">送李中丞归汉阳别业(刘长卿)</a></li>
+<li><a href="#sec-1-4-72">饯别王十一南游(刘长卿)</a></li>
+<li><a href="#sec-1-4-73">蜀先主庙(刘禹锡)</a></li>
+<li><a href="#sec-1-4-74">阙题(刘昚虚)</a></li>
+<li><a href="#sec-1-4-75">送李端(卢纶)</a></li>
+<li><a href="#sec-1-4-76">送僧归日本(钱起)</a></li>
+<li><a href="#sec-1-4-77">谷口书斋寄杨补阙(钱起)</a></li>
+<li><a href="#sec-1-4-78">在狱咏蝉(骆宾王)</a></li>
+<li><a href="#sec-1-4-79">江乡故人偶集客舍(戴叔伦)</a></li>
+<li><a href="#sec-1-4-80">酬程延秋夜即事见赠(韩翃)</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-5">七言律诗</a>
+<ul>
+<li><a href="#sec-1-5-1">遣悲怀三首·其一(元稹)</a></li>
+<li><a href="#sec-1-5-2">遣悲怀三首·其二(元稹)</a></li>
+<li><a href="#sec-1-5-3">遣悲怀三首·其三(元稹)</a></li>
+<li><a href="#sec-1-5-4">赠郭给事(王维)</a></li>
+<li><a href="#sec-1-5-5">和贾至舍人早朝大明宫之作(王维)</a></li>
+<li><a href="#sec-1-5-6">奉和圣制从蓬莱向兴庆阁道(王维)</a></li>
+<li><a href="#sec-1-5-7">积雨辋川庄作(王维)</a></li>
+<li><a href="#sec-1-5-8">自河南经乱,关内阻饥(白居易)</a></li>
+<li><a href="#sec-1-5-9">奉和中书舍人贾至早朝大明(岑参)</a></li>
+<li><a href="#sec-1-5-10">登金陵凤凰台(李白)</a></li>
+<li><a href="#sec-1-5-11">无题·重帏深下莫愁堂(李商隐)</a></li>
+<li><a href="#sec-1-5-12">无题·相见时难别亦难(李商隐)</a></li>
+<li><a href="#sec-1-5-13">无题·凤尾香罗薄几重(李商隐)</a></li>
+<li><a href="#sec-1-5-14">无题·来是空言去绝踪(李商隐)</a></li>
+<li><a href="#sec-1-5-15">无题·飒飒东风细雨来(李商隐)</a></li>
+<li><a href="#sec-1-5-16">春雨(李商隐)</a></li>
+<li><a href="#sec-1-5-17">筹笔驿(李商隐)</a></li>
+<li><a href="#sec-1-5-18">锦瑟(李商隐)</a></li>
+<li><a href="#sec-1-5-19">无题·昨夜星辰昨夜风(李商隐)</a></li>
+<li><a href="#sec-1-5-20">隋宫(李商隐)</a></li>
+<li><a href="#sec-1-5-21">送魏万之京(李颀)</a></li>
+<li><a href="#sec-1-5-22">咏怀古迹·其一(杜甫)</a></li>
+<li><a href="#sec-1-5-23">咏怀古迹·其二(杜甫)</a></li>
+<li><a href="#sec-1-5-24">咏怀古迹·其三(杜甫)</a></li>
+<li><a href="#sec-1-5-25">咏怀古迹·其四(杜甫)</a></li>
+<li><a href="#sec-1-5-26">咏怀古迹·其五(杜甫)</a></li>
+<li><a href="#sec-1-5-27">宿府(杜甫)</a></li>
+<li><a href="#sec-1-5-28">阁夜(杜甫)</a></li>
+<li><a href="#sec-1-5-29">闻官军收河南河北(杜甫)</a></li>
+<li><a href="#sec-1-5-30">登高(杜甫)</a></li>
+<li><a href="#sec-1-5-31">登楼(杜甫)</a></li>
+<li><a href="#sec-1-5-32">蜀相(杜甫)</a></li>
+<li><a href="#sec-1-5-33">客至(杜甫)</a></li>
+<li><a href="#sec-1-5-34">野望(杜甫)</a></li>
+<li><a href="#sec-1-5-35">登柳州城楼寄漳汀封连四(柳宗元)</a></li>
+<li><a href="#sec-1-5-36">春思(皇甫冉)</a></li>
+<li><a href="#sec-1-5-37">寄李儋元锡(韦应物)</a></li>
+<li><a href="#sec-1-5-38">望蓟门(祖咏)</a></li>
+<li><a href="#sec-1-5-39">贫女(秦韬玉)</a></li>
+<li><a href="#sec-1-5-40">送李少府贬峡中王少府贬(高适)</a></li>
+<li><a href="#sec-1-5-41">九日登望仙台呈刘明府(崔曙)</a></li>
+<li><a href="#sec-1-5-42">登黄鹤楼(崔颢)</a></li>
+<li><a href="#sec-1-5-43">行经华阴(崔颢)</a></li>
+<li><a href="#sec-1-5-44">利州南渡(温庭筠)</a></li>
+<li><a href="#sec-1-5-45">苏武庙(温庭筠)</a></li>
+<li><a href="#sec-1-5-46">江州重别薛六柳八二员外(刘长卿)</a></li>
+<li><a href="#sec-1-5-47">长沙过贾谊宅(刘长卿)</a></li>
+<li><a href="#sec-1-5-48">自夏口至鹦鹉洲夕望岳阳(刘长卿)</a></li>
+<li><a href="#sec-1-5-49">西塞山怀古(刘长卿)</a></li>
+<li><a href="#sec-1-5-50">晚次鄂州(卢纶)</a></li>
+<li><a href="#sec-1-5-51">赠阙下裴舍人(钱起)</a></li>
+<li><a href="#sec-1-5-52">宫词(薛逢)</a></li>
+<li><a href="#sec-1-5-53">同题仙游观(韩翃)</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-6">五言古诗</a>
+<ul>
+<li><a href="#sec-1-6-1">贼退示官吏·并序(元结)</a></li>
+<li><a href="#sec-1-6-2">同从弟南斋玩月忆山阴(王昌龄)</a></li>
+<li><a href="#sec-1-6-3">渭川田家(王维)</a></li>
+<li><a href="#sec-1-6-4">西施咏(王维)</a></li>
+<li><a href="#sec-1-6-5">送别(王维)</a></li>
+<li><a href="#sec-1-6-6">送綦毋潜落第还乡(王维)</a></li>
+<li><a href="#sec-1-6-7">青溪(王维)</a></li>
+<li><a href="#sec-1-6-8">与高适薛据登慈恩寺浮(岑参)</a></li>
+<li><a href="#sec-1-6-9">下终南山过斛斯山人宿(李白)</a></li>
+<li><a href="#sec-1-6-10">月下独酌(李白)</a></li>
+<li><a href="#sec-1-6-11">春思(李白)</a></li>
+<li><a href="#sec-1-6-12">梦李白·其一(杜甫)</a></li>
+<li><a href="#sec-1-6-13">梦李白·其二(杜甫)</a></li>
+<li><a href="#sec-1-6-14">望岳(杜甫)</a></li>
+<li><a href="#sec-1-6-15">赠卫八处士(杜甫)</a></li>
+<li><a href="#sec-1-6-16">佳人(杜甫)</a></li>
+<li><a href="#sec-1-6-17">秋登兰山寄张五(孟浩然)</a></li>
+<li><a href="#sec-1-6-18">夏日南亭怀辛大(孟浩然)</a></li>
+<li><a href="#sec-1-6-19">宿业师山房待丁大不至(孟浩然)</a></li>
+<li><a href="#sec-1-6-20">寻西山隐者不遇(邱为)</a></li>
+<li><a href="#sec-1-6-21">晨诣超师院读禅经(柳宗元)</a></li>
+<li><a href="#sec-1-6-22">溪居(柳宗元)</a></li>
+<li><a href="#sec-1-6-23">送杨氏女(韦应物)</a></li>
+<li><a href="#sec-1-6-24">长安遇冯著(韦应物)</a></li>
+<li><a href="#sec-1-6-25">夕次盱眙县(韦应物)</a></li>
+<li><a href="#sec-1-6-26">东郊(韦应物)</a></li>
+<li><a href="#sec-1-6-27">郡斋雨中与诸文士燕集(韦应物)</a></li>
+<li><a href="#sec-1-6-28">初发扬子寄元大校书(韦应物)</a></li>
+<li><a href="#sec-1-6-29">寄全椒山中道士(韦应物)</a></li>
+<li><a href="#sec-1-6-30">宿王昌龄隐居(常建)</a></li>
+<li><a href="#sec-1-6-31">感遇·孤鸿海上来(张九龄)</a></li>
+<li><a href="#sec-1-6-32">感遇·兰叶春葳蕤(张九龄)</a></li>
+<li><a href="#sec-1-6-33">感遇·幽人归独卧(张九龄)</a></li>
+<li><a href="#sec-1-6-34">感遇·江南有丹桔(张九龄)</a></li>
+<li><a href="#sec-1-6-35">春泛若耶溪(綦毋潜)</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-7">七言古诗</a>
+<ul>
+<li><a href="#sec-1-7-1">石鱼湖上醉歌·并序(元结)</a></li>
+<li><a href="#sec-1-7-2">长恨歌(白居易)</a></li>
+<li><a href="#sec-1-7-3">琵琶行·并序(白居易)</a></li>
+<li><a href="#sec-1-7-4">走马川行奉送封大夫出师(岑参)</a></li>
+<li><a href="#sec-1-7-5">轮台歌奉送封大夫出师(岑参)</a></li>
+<li><a href="#sec-1-7-6">白雪歌送武判官归京(岑参)</a></li>
+<li><a href="#sec-1-7-7">宣州谢朓楼饯别校书叔云(李白)</a></li>
+<li><a href="#sec-1-7-8">庐山谣寄卢侍御虚舟(李白)</a></li>
+<li><a href="#sec-1-7-9">梦游天姥吟留别(李白)</a></li>
+<li><a href="#sec-1-7-10">金陵酒肆留别(李白)</a></li>
+<li><a href="#sec-1-7-11">韩碑(李商隐)</a></li>
+<li><a href="#sec-1-7-12">听董大弹胡笳声兼寄语(李颀)</a></li>
+<li><a href="#sec-1-7-13">听安万善吹筚篥歌(李颀)</a></li>
+<li><a href="#sec-1-7-14">古意(李颀)</a></li>
+<li><a href="#sec-1-7-15">送陈章甫(李颀)</a></li>
+<li><a href="#sec-1-7-16">琴歌(李颀)</a></li>
+<li><a href="#sec-1-7-17">古柏行(杜甫)</a></li>
+<li><a href="#sec-1-7-18">观公孙大娘弟子舞剑器(杜甫)</a></li>
+<li><a href="#sec-1-7-19">韦讽录事宅观曹将军画马图(杜甫)</a></li>
+<li><a href="#sec-1-7-20">丹青引赠曹霸将军(杜甫)</a></li>
+<li><a href="#sec-1-7-21">寄韩谏议(杜甫)</a></li>
+<li><a href="#sec-1-7-22">夜归鹿门山歌(孟浩然)</a></li>
+<li><a href="#sec-1-7-23">渔翁(柳宗元)</a></li>
+<li><a href="#sec-1-7-24">登幽州台歌(陈子昂)</a></li>
+<li><a href="#sec-1-7-25">石鼓歌(韩愈)</a></li>
+<li><a href="#sec-1-7-26">山石(韩愈)</a></li>
+<li><a href="#sec-1-7-27">八月十五夜赠张功曹(韩愈)</a></li>
+<li><a href="#sec-1-7-28">谒衡岳庙遂宿岳寺题门楼(韩愈)</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-8">乐府</a>
+<ul>
+<li><a href="#sec-1-8-1">凉州词(王之涣)</a></li>
+<li><a href="#sec-1-8-2">出塞(王昌龄)</a></li>
+<li><a href="#sec-1-8-3">塞上曲·蝉鸣空桑林(王昌龄)</a></li>
+<li><a href="#sec-1-8-4">塞下曲·饮马渡秋水(王昌龄)</a></li>
+<li><a href="#sec-1-8-5">长信怨(王昌龄)</a></li>
+<li><a href="#sec-1-8-6">渭城曲(王维)</a></li>
+<li><a href="#sec-1-8-7">秋夜曲(王维)</a></li>
+<li><a href="#sec-1-8-8">洛阳女儿行(王维)</a></li>
+<li><a href="#sec-1-8-9">老将行(王维)</a></li>
+<li><a href="#sec-1-8-10">桃源行(王维)</a></li>
+<li><a href="#sec-1-8-11">清平调·云想衣裳花想容(李白)</a></li>
+<li><a href="#sec-1-8-12">清平调·一枝红艳露凝香(李白)</a></li>
+<li><a href="#sec-1-8-13">清平调·名花倾国两相欢(李白)</a></li>
+<li><a href="#sec-1-8-14">行路难(李白)</a></li>
+<li><a href="#sec-1-8-15">行路难·大道如青天(李白)</a></li>
+<li><a href="#sec-1-8-16">行路难·有耳莫洗颍川水(李白)</a></li>
+<li><a href="#sec-1-8-17">将进酒(李白)</a></li>
+<li><a href="#sec-1-8-18">玉阶怨(李白)</a></li>
+<li><a href="#sec-1-8-19">长相思·在长安(李白)</a></li>
+<li><a href="#sec-1-8-20">长相思·摧心肝(李白)</a></li>
+<li><a href="#sec-1-8-21">长干行(李白)</a></li>
+<li><a href="#sec-1-8-22">蜀道难(李白)</a></li>
+<li><a href="#sec-1-8-23">子夜吴歌·春歌(李白)</a></li>
+<li><a href="#sec-1-8-24">子夜吴歌·夏歌(李白)</a></li>
+<li><a href="#sec-1-8-25">子夜吴歌·秋歌(李白)</a></li>
+<li><a href="#sec-1-8-26">子夜吴歌·冬歌(李白)</a></li>
+<li><a href="#sec-1-8-27">关山月(李白)</a></li>
+<li><a href="#sec-1-8-28">江南曲(李益)</a></li>
+<li><a href="#sec-1-8-29">古从军行(李颀)</a></li>
+<li><a href="#sec-1-8-30">哀王孙(杜甫)</a></li>
+<li><a href="#sec-1-8-31">兵车行(杜甫)</a></li>
+<li><a href="#sec-1-8-32">丽人行(杜甫)</a></li>
+<li><a href="#sec-1-8-33">哀江头(杜甫)</a></li>
+<li><a href="#sec-1-8-34">金缕衣(佚名)</a></li>
+<li><a href="#sec-1-8-35">独不见(沈佺期)</a></li>
+<li><a href="#sec-1-8-36">烈女操(孟郊)</a></li>
+<li><a href="#sec-1-8-37">游子吟(孟郊)</a></li>
+<li><a href="#sec-1-8-38">燕歌行·并序(高适)</a></li>
+<li><a href="#sec-1-8-39">长干行·君家何处住(崔颢)</a></li>
+<li><a href="#sec-1-8-40">长干行·家临九江水(崔颢)</a></li>
+<li><a href="#sec-1-8-41">塞下曲·鹫翎金仆姑(卢纶)</a></li>
+<li><a href="#sec-1-8-42">塞下曲·林暗草惊风(卢纶)</a></li>
+<li><a href="#sec-1-8-43">塞下曲·月黑雁飞高(卢纶)</a></li>
+<li><a href="#sec-1-8-44">塞下曲·野幕蔽琼筵(卢纶)</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-9">更多&gt;&gt;《全唐诗》</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">唐诗三百首</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+(<a href="http://www.gushiwen.org/gushi/tangshi.aspx">http://www.gushiwen.org/gushi/tangshi.aspx</a>)
+</p>
+</div>
+
+<div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1">《唐诗三百首》简介</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+唐诗三百首
+</p>
+
+<p>
+《唐诗三百首》是一部流传很广的唐诗选集。唐朝（618年~907年）二百九十年间，是中国诗歌发展的黄金时代，云蒸霞蔚，名家辈出，唐诗数量多达五万首。孙琴安《唐诗选本六百种提要·自序》指出，“唐诗选本经大量散佚，至今尚存三百余种。当中最流行而家传户晓的，要算《唐诗三百首》。”《唐诗三百首》选诗范围相当广泛，收录了77家诗，共310首，在数量以杜甫诗数多，有38首、王维诗29首、李白诗27首、李商隐诗22首。它是中小学生接触中国古典诗歌最好的入门书籍。
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2">五言绝句</h3>
+<div class="outline-text-3" id="text-1-2">
+</div><div id="outline-container-sec-1-2-1" class="outline-4">
+<h4 id="sec-1-2-1">行宫(元稹)</h4>
+</div>
+
+<div id="outline-container-sec-1-2-2" class="outline-4">
+<h4 id="sec-1-2-2"><span class="todo TODO">TODO</span> 登鹳雀楼(王之涣)</h4>
+<div class="outline-text-4" id="text-1-2-2">
+<p>
+白日依山尽，黄河入海流。
+</p>
+
+<p>
+欲穷千里目，更上一层楼。
+</p>
+</div>
+
+<div id="outline-container-sec-1-2-2-1" class="outline-5">
+<h5 id="sec-1-2-2-1">注释</h5>
+<div class="outline-text-5" id="text-1-2-2-1">
+<ol class="org-ol">
+<li>鹳雀楼：旧址在山西永济县，楼高三层，前对中条山，下临黄河。传说常有鹳雀在此停留，故有此名。
+</li>
+<li>白日：太阳。
+</li>
+<li>依：依傍。
+</li>
+<li>尽：消失。 这句话是说太阳依傍山峦沉落。
+</li>
+<li>穷：尽，使达到极点。
+</li>
+<li>千里目：眼界宽阔。
+</li>
+<li>更：替、换。（不是通常理解的“再”的意思）
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2-2-2" class="outline-5">
+<h5 id="sec-1-2-2-2">译文</h5>
+<div class="outline-text-5" id="text-1-2-2-2">
+<p>
+夕阳依傍着西山慢慢地沉没，
+</p>
+
+<p>
+滔滔黄河朝着东海汹涌奔流。
+</p>
+
+<p>
+若想把千里的风光景物看够，
+</p>
+
+<p>
+那就要登上更高的一层城楼。
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2-2-3" class="outline-5">
+<h5 id="sec-1-2-2-3">赏析</h5>
+<div class="outline-text-5" id="text-1-2-2-3">
+<p>
+这首诗写诗人在登高望远中表现出来的不凡的胸襟抱负，反映了盛唐时期人们积极向上的进取精神。
+</p>
+
+<p>
+其中，前两句写所见。“白日依山尽”写远景，写山，写的是登楼望见的景色，“黄河入海流”写近景，写水写得景象壮观，气势磅礴。这里，诗人运用极其朴素、极其浅显的语言，既高度形象又高度概括地把进入广大视野的万里河山，收入短短十个字中；而后人在千载之下读到这十个字时，也如临其地，如见其景，感到胸襟为之一开。
+</p>
+
+<p>
+首句写遥望一轮落日向着楼前一望无际、连绵起伏的群山西沉，在视野的尽头冉冉而没。这是天空景、远方景、西望景。次句写目送流经楼前下方的黄河奔腾咆哮、滚滚南来，又在远处折而东向，流归大海。这是由地面望到天边，由近望到远，由西望到东。这两句诗合起来，就把上下、远近、东西的景物，全都容纳进诗笔之下，使画面显得特别宽广，特别辽远。就次句诗而言，诗人身在鹳雀楼上，不可能望见黄河入海，句中写的是诗人目送黄河远去天边而产生的意中景，是把当前景与意中景溶合为一的写法。这样写，更增加了画面的广度和深度。而称太阳为“白日”，这是写实的笔调。落日衔山，云遮雾障，那本已减弱的太阳的光辉，此时显得更加暗淡，所以诗人直接观察到“白日”的奇景。至于“黄河”。当然也是写实。它宛若一条金色的飘带，飞舞于层峦叠嶂之间。诗人眼前所呈现的，是一幅溢光流彩、金碧交辉的壮丽图画。这幅图画还处于瞬息多变的动态之中。白日依山而尽，这仅仅是一个极短暂的过程；黄河向海而流，却是一种永恒的运动。如果说．这种景色很美，那么，它便是一种动态的美，充满了无限生机的活泼的美。这不是所谓“定格”，不是被珍藏的化石或标本。读者深深地为诗人的大手笔所折服。
+</p>
+
+<p>
+后两句写所想。“欲穷千里目”，写诗人一种无止境探求的愿望，还想看得更远，看到目力所能达到的地方，唯一的办法就是要站得更高些，“更上一层楼”。“千里”“一层”，都是虚数，是诗人想象中纵横两方面的空间。“欲穷”“更上”词语中包含了多少希望，多少憧憬。这两句诗，是千古传诵的名句，既别翻新意，出人意表，又与前两句诗承接得十分自然、十分紧密；同时，在收尾处用一“楼”字，也起了点题作用，说明这是一首登楼诗。
+</p>
+
+<p>
+从这后半首诗，可推知前半首写的可能是在第二层楼所见，而诗人还想进一步穷目力所及看尽远方景物，更登上了楼的顶层。诗句看来只是平铺直叙地写出了这一登楼的过程，而含意深远，耐人探索。这里有诗人的向上进取的精神、高瞻远瞩的胸襟，也道出了要站得高才看得远的哲理。
+</p>
+
+<p>
+就全诗的写作特点而言，这首诗是日僧空海在《文镜秘府论》中所说的“景入理势”。有人说，诗忌说理。这应当只是说，诗歌不要生硬地、枯燥地、抽象地说理，而不是在诗歌中不能揭示和宣扬哲理。象这首诗，把道理与景物、情事溶化得天衣无缝，使读者并不觉得它在说理，而理自在其中。这是根据诗歌特点、运用形象思维来显示生活哲理的典范。　
+</p>
+
+<p>
+这首诗在写法上还有一个特点：它是一首全篇用对仗的绝句。前两句“白日”和“黄河”两个名词相对，“白”与“黄”两个色彩相对，“依”与“入”两个动词相对。后两句也如此，构成了形式上的完美。沈德在《唐诗别》中选录这首诗时曾指出：“四语皆对，读来不嫌其排，骨高故也。”绝句总共只有两联，而两联都用对仗，如果不是气势充沛，一意贯连，很容易雕琢呆板或支离破碎。这首诗，前一联用的是正名对，所谓“正正相对”，语句极为工整，又厚重有力，就更显示出所写景象的雄大；后一联用的是，虽然两句相对，但是没有对仗的痕迹。所以说诗人运用对仗的技巧也是十分成熟的。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-1-2-3" class="outline-4">
+<h4 id="sec-1-2-3">新嫁娘词(王建)</h4>
+</div>
+
+<div id="outline-container-sec-1-2-4" class="outline-4">
+<h4 id="sec-1-2-4">相思(王维)</h4>
+</div>
+<div id="outline-container-sec-1-2-5" class="outline-4">
+<h4 id="sec-1-2-5">杂诗(王维)</h4>
+</div>
+<div id="outline-container-sec-1-2-6" class="outline-4">
+<h4 id="sec-1-2-6">鹿柴(王维)</h4>
+</div>
+<div id="outline-container-sec-1-2-7" class="outline-4">
+<h4 id="sec-1-2-7">竹里馆(王维)</h4>
+</div>
+<div id="outline-container-sec-1-2-8" class="outline-4">
+<h4 id="sec-1-2-8">山中送别(王维)</h4>
+</div>
+<div id="outline-container-sec-1-2-9" class="outline-4">
+<h4 id="sec-1-2-9">问刘十九(白居易)</h4>
+</div>
+<div id="outline-container-sec-1-2-10" class="outline-4">
+<h4 id="sec-1-2-10">哥舒歌(西鄙人)</h4>
+</div>
+<div id="outline-container-sec-1-2-11" class="outline-4">
+<h4 id="sec-1-2-11">夜思(李白)</h4>
+</div>
+<div id="outline-container-sec-1-2-12" class="outline-4">
+<h4 id="sec-1-2-12">怨情(李白)</h4>
+</div>
+<div id="outline-container-sec-1-2-13" class="outline-4">
+<h4 id="sec-1-2-13">登乐游原(李商隐)</h4>
+</div>
+<div id="outline-container-sec-1-2-14" class="outline-4">
+<h4 id="sec-1-2-14">听筝(李端)</h4>
+</div>
+<div id="outline-container-sec-1-2-15" class="outline-4">
+<h4 id="sec-1-2-15">渡汉江(李频)</h4>
+</div>
+<div id="outline-container-sec-1-2-16" class="outline-4">
+<h4 id="sec-1-2-16">八阵图(杜甫)</h4>
+</div>
+<div id="outline-container-sec-1-2-17" class="outline-4">
+<h4 id="sec-1-2-17">宿建德江(孟浩然)</h4>
+</div>
+<div id="outline-container-sec-1-2-18" class="outline-4">
+<h4 id="sec-1-2-18">春晓(孟浩然)</h4>
+</div>
+<div id="outline-container-sec-1-2-19" class="outline-4">
+<h4 id="sec-1-2-19">春怨(金昌绪)</h4>
+</div>
+<div id="outline-container-sec-1-2-20" class="outline-4">
+<h4 id="sec-1-2-20">江雪(柳宗元)</h4>
+</div>
+<div id="outline-container-sec-1-2-21" class="outline-4">
+<h4 id="sec-1-2-21">秋夜寄邱员外(韦应物)</h4>
+</div>
+<div id="outline-container-sec-1-2-22" class="outline-4">
+<h4 id="sec-1-2-22">终南望余雪(祖咏)</h4>
+</div>
+<div id="outline-container-sec-1-2-23" class="outline-4">
+<h4 id="sec-1-2-23">宫词(张祜)</h4>
+</div>
+<div id="outline-container-sec-1-2-24" class="outline-4">
+<h4 id="sec-1-2-24">寻隐者不遇(贾岛)</h4>
+</div>
+<div id="outline-container-sec-1-2-25" class="outline-4">
+<h4 id="sec-1-2-25">送崔九(裴迪)</h4>
+</div>
+<div id="outline-container-sec-1-2-26" class="outline-4">
+<h4 id="sec-1-2-26">送灵澈(刘长卿)</h4>
+</div>
+<div id="outline-container-sec-1-2-27" class="outline-4">
+<h4 id="sec-1-2-27">听弹琴(刘长卿)</h4>
+</div>
+<div id="outline-container-sec-1-2-28" class="outline-4">
+<h4 id="sec-1-2-28">送上人(刘长卿)</h4>
+</div>
+<div id="outline-container-sec-1-2-29" class="outline-4">
+<h4 id="sec-1-2-29">玉台体(权德舆)</h4>
+</div>
+</div>
+
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3">七言绝句</h3>
+<div class="outline-text-3" id="text-1-3">
+</div><div id="outline-container-sec-1-3-1" class="outline-4">
+<h4 id="sec-1-3-1">芙蓉楼送辛渐(王昌龄)</h4>
+</div>
+<div id="outline-container-sec-1-3-2" class="outline-4">
+<h4 id="sec-1-3-2">闺怨(王昌龄)</h4>
+</div>
+<div id="outline-container-sec-1-3-3" class="outline-4">
+<h4 id="sec-1-3-3">春宫曲(王昌龄)</h4>
+</div>
+<div id="outline-container-sec-1-3-4" class="outline-4">
+<h4 id="sec-1-3-4">九月九日忆山东兄弟(王维)</h4>
+</div>
+<div id="outline-container-sec-1-3-5" class="outline-4">
+<h4 id="sec-1-3-5">凉州词(王翰)</h4>
+</div>
+<div id="outline-container-sec-1-3-6" class="outline-4">
+<h4 id="sec-1-3-6">后宫词(白居易)</h4>
+</div>
+<div id="outline-container-sec-1-3-7" class="outline-4">
+<h4 id="sec-1-3-7">宫中词(朱庆馀)</h4>
+</div>
+<div id="outline-container-sec-1-3-8" class="outline-4">
+<h4 id="sec-1-3-8">近试上张水部(朱庆馀)</h4>
+</div>
+<div id="outline-container-sec-1-3-9" class="outline-4">
+<h4 id="sec-1-3-9">逢入京使(岑参)</h4>
+</div>
+<div id="outline-container-sec-1-3-10" class="outline-4">
+<h4 id="sec-1-3-10">黄鹤楼送孟浩然之广陵(李白)</h4>
+</div>
+<div id="outline-container-sec-1-3-11" class="outline-4">
+<h4 id="sec-1-3-11">早发白帝城(李白)</h4>
+</div>
+<div id="outline-container-sec-1-3-12" class="outline-4">
+<h4 id="sec-1-3-12">夜上受降城闻笛(李益)</h4>
+</div>
+<div id="outline-container-sec-1-3-13" class="outline-4">
+<h4 id="sec-1-3-13">贾生(李商隐)</h4>
+</div>
+<div id="outline-container-sec-1-3-14" class="outline-4">
+<h4 id="sec-1-3-14">隋宫(李商隐)</h4>
+</div>
+<div id="outline-container-sec-1-3-15" class="outline-4">
+<h4 id="sec-1-3-15">瑶池(李商隐)</h4>
+</div>
+<div id="outline-container-sec-1-3-16" class="outline-4">
+<h4 id="sec-1-3-16">嫦娥(李商隐)</h4>
+</div>
+<div id="outline-container-sec-1-3-17" class="outline-4">
+<h4 id="sec-1-3-17">夜雨寄北(李商隐)</h4>
+</div>
+<div id="outline-container-sec-1-3-18" class="outline-4">
+<h4 id="sec-1-3-18">寄令狐郎中(李商隐)</h4>
+</div>
+<div id="outline-container-sec-1-3-19" class="outline-4">
+<h4 id="sec-1-3-19">为有(李商隐)</h4>
+</div>
+<div id="outline-container-sec-1-3-20" class="outline-4">
+<h4 id="sec-1-3-20">江南逢李龟年(杜甫)</h4>
+</div>
+<div id="outline-container-sec-1-3-21" class="outline-4">
+<h4 id="sec-1-3-21">赠别二首·其一(杜牧)</h4>
+</div>
+<div id="outline-container-sec-1-3-22" class="outline-4">
+<h4 id="sec-1-3-22">赠别二首·其二(杜牧)</h4>
+</div>
+<div id="outline-container-sec-1-3-23" class="outline-4">
+<h4 id="sec-1-3-23">金谷园(杜牧)</h4>
+</div>
+<div id="outline-container-sec-1-3-24" class="outline-4">
+<h4 id="sec-1-3-24">寄扬州韩绰判官(杜牧)</h4>
+</div>
+<div id="outline-container-sec-1-3-25" class="outline-4">
+<h4 id="sec-1-3-25">遣怀(杜牧)</h4>
+</div>
+<div id="outline-container-sec-1-3-26" class="outline-4">
+<h4 id="sec-1-3-26">秋夕(杜牧)</h4>
+</div>
+<div id="outline-container-sec-1-3-27" class="outline-4">
+<h4 id="sec-1-3-27">将赴吴兴登乐游原一绝(杜牧)</h4>
+</div>
+<div id="outline-container-sec-1-3-28" class="outline-4">
+<h4 id="sec-1-3-28">赤壁(杜牧)</h4>
+</div>
+<div id="outline-container-sec-1-3-29" class="outline-4">
+<h4 id="sec-1-3-29">泊秦淮(杜牧)</h4>
+</div>
+<div id="outline-container-sec-1-3-30" class="outline-4">
+<h4 id="sec-1-3-30">征人怨(柳中庸)</h4>
+</div>
+<div id="outline-container-sec-1-3-31" class="outline-4">
+<h4 id="sec-1-3-31">金陵图(韦庄)</h4>
+</div>
+<div id="outline-container-sec-1-3-32" class="outline-4">
+<h4 id="sec-1-3-32">滁州西涧(韦应物)</h4>
+</div>
+<div id="outline-container-sec-1-3-33" class="outline-4">
+<h4 id="sec-1-3-33">桃花溪(张旭)</h4>
+</div>
+<div id="outline-container-sec-1-3-34" class="outline-4">
+<h4 id="sec-1-3-34">寄人(张泌)</h4>
+</div>
+<div id="outline-container-sec-1-3-35" class="outline-4">
+<h4 id="sec-1-3-35">题金陵渡(张祜)</h4>
+</div>
+<div id="outline-container-sec-1-3-36" class="outline-4">
+<h4 id="sec-1-3-36">赠内人(张祜)</h4>
+</div>
+<div id="outline-container-sec-1-3-37" class="outline-4">
+<h4 id="sec-1-3-37">集灵台二首·其一(张祜)</h4>
+</div>
+<div id="outline-container-sec-1-3-38" class="outline-4">
+<h4 id="sec-1-3-38">集灵台二首·其二(张祜)</h4>
+</div>
+<div id="outline-container-sec-1-3-39" class="outline-4">
+<h4 id="sec-1-3-39">枫桥夜泊(张继)</h4>
+</div>
+<div id="outline-container-sec-1-3-40" class="outline-4">
+<h4 id="sec-1-3-40">陇西行(陈陶)</h4>
+</div>
+<div id="outline-container-sec-1-3-41" class="outline-4">
+<h4 id="sec-1-3-41">杂诗(佚名)</h4>
+</div>
+<div id="outline-container-sec-1-3-42" class="outline-4">
+<h4 id="sec-1-3-42">回乡偶书(贺知章)</h4>
+</div>
+<div id="outline-container-sec-1-3-43" class="outline-4">
+<h4 id="sec-1-3-43">瑶瑟怨(温庭筠)</h4>
+</div>
+<div id="outline-container-sec-1-3-44" class="outline-4">
+<h4 id="sec-1-3-44">月夜(刘方平)</h4>
+</div>
+<div id="outline-container-sec-1-3-45" class="outline-4">
+<h4 id="sec-1-3-45">春怨(刘方平)</h4>
+</div>
+<div id="outline-container-sec-1-3-46" class="outline-4">
+<h4 id="sec-1-3-46">乌衣巷(刘禹锡)</h4>
+</div>
+<div id="outline-container-sec-1-3-47" class="outline-4">
+<h4 id="sec-1-3-47">春词(刘禹锡)</h4>
+</div>
+<div id="outline-container-sec-1-3-48" class="outline-4">
+<h4 id="sec-1-3-48">马嵬坡(郑畋)</h4>
+</div>
+<div id="outline-container-sec-1-3-49" class="outline-4">
+<h4 id="sec-1-3-49">寒食(韩翃)</h4>
+</div>
+<div id="outline-container-sec-1-3-50" class="outline-4">
+<h4 id="sec-1-3-50">已凉(韩偓)</h4>
+</div>
+<div id="outline-container-sec-1-3-51" class="outline-4">
+<h4 id="sec-1-3-51">宫词(顾况)</h4>
+</div>
+</div>
+
+<div id="outline-container-sec-1-4" class="outline-3">
+<h3 id="sec-1-4">五言律诗</h3>
+<div class="outline-text-3" id="text-1-4">
+</div><div id="outline-container-sec-1-4-1" class="outline-4">
+<h4 id="sec-1-4-1">送杜少府之任蜀州(王勃)</h4>
+</div>
+<div id="outline-container-sec-1-4-2" class="outline-4">
+<h4 id="sec-1-4-2">送梓州李使君(王维)</h4>
+</div>
+<div id="outline-container-sec-1-4-3" class="outline-4">
+<h4 id="sec-1-4-3">汉江临眺(王维)</h4>
+</div>
+<div id="outline-container-sec-1-4-4" class="outline-4">
+<h4 id="sec-1-4-4">终南别业(王维)</h4>
+</div>
+<div id="outline-container-sec-1-4-5" class="outline-4">
+<h4 id="sec-1-4-5">终南山(王维)</h4>
+</div>
+<div id="outline-container-sec-1-4-6" class="outline-4">
+<h4 id="sec-1-4-6">酬张少府(王维)</h4>
+</div>
+<div id="outline-container-sec-1-4-7" class="outline-4">
+<h4 id="sec-1-4-7">过香积寺(王维)</h4>
+</div>
+<div id="outline-container-sec-1-4-8" class="outline-4">
+<h4 id="sec-1-4-8">辋川闲居赠裴秀才迪(王维)</h4>
+</div>
+<div id="outline-container-sec-1-4-9" class="outline-4">
+<h4 id="sec-1-4-9">山居秋暝(王维)</h4>
+</div>
+<div id="outline-container-sec-1-4-10" class="outline-4">
+<h4 id="sec-1-4-10">归嵩山作(王维)</h4>
+</div>
+<div id="outline-container-sec-1-4-11" class="outline-4">
+<h4 id="sec-1-4-11">次北固山下(王湾)</h4>
+</div>
+<div id="outline-container-sec-1-4-12" class="outline-4">
+<h4 id="sec-1-4-12">云阳馆与韩绅宿别(司空曙)</h4>
+</div>
+<div id="outline-container-sec-1-4-13" class="outline-4">
+<h4 id="sec-1-4-13">喜外弟卢纶见宿(司空曙)</h4>
+</div>
+<div id="outline-container-sec-1-4-14" class="outline-4">
+<h4 id="sec-1-4-14">贼平后送人北归(司空曙)</h4>
+</div>
+<div id="outline-container-sec-1-4-15" class="outline-4">
+<h4 id="sec-1-4-15">赋得古原草送别(白居易)</h4>
+</div>
+<div id="outline-container-sec-1-4-16" class="outline-4">
+<h4 id="sec-1-4-16">题大庾岭北驿(宋之问)</h4>
+</div>
+<div id="outline-container-sec-1-4-17" class="outline-4">
+<h4 id="sec-1-4-17">寄左省杜拾遗(岑参)</h4>
+</div>
+<div id="outline-container-sec-1-4-18" class="outline-4">
+<h4 id="sec-1-4-18">听蜀僧浚弹琴(李白)</h4>
+</div>
+<div id="outline-container-sec-1-4-19" class="outline-4">
+<h4 id="sec-1-4-19">夜泊牛渚怀古(李白)</h4>
+</div>
+<div id="outline-container-sec-1-4-20" class="outline-4">
+<h4 id="sec-1-4-20">赠孟浩然(李白)</h4>
+</div>
+<div id="outline-container-sec-1-4-21" class="outline-4">
+<h4 id="sec-1-4-21">渡荆门送别(李白)</h4>
+</div>
+<div id="outline-container-sec-1-4-22" class="outline-4">
+<h4 id="sec-1-4-22">送友人(李白)</h4>
+</div>
+<div id="outline-container-sec-1-4-23" class="outline-4">
+<h4 id="sec-1-4-23">喜见外弟又言别(李益)</h4>
+</div>
+<div id="outline-container-sec-1-4-24" class="outline-4">
+<h4 id="sec-1-4-24">凉思(李商隐)</h4>
+</div>
+<div id="outline-container-sec-1-4-25" class="outline-4">
+<h4 id="sec-1-4-25">北青萝(李商隐)</h4>
+</div>
+<div id="outline-container-sec-1-4-26" class="outline-4">
+<h4 id="sec-1-4-26">蝉(李商隐)</h4>
+</div>
+<div id="outline-container-sec-1-4-27" class="outline-4">
+<h4 id="sec-1-4-27">风雨(李商隐)</h4>
+</div>
+<div id="outline-container-sec-1-4-28" class="outline-4">
+<h4 id="sec-1-4-28">落花(李商隐)</h4>
+</div>
+<div id="outline-container-sec-1-4-29" class="outline-4">
+<h4 id="sec-1-4-29">登岳阳楼(杜甫)</h4>
+</div>
+<div id="outline-container-sec-1-4-30" class="outline-4">
+<h4 id="sec-1-4-30">奉济驿重送严公四韵(杜甫)</h4>
+</div>
+<div id="outline-container-sec-1-4-31" class="outline-4">
+<h4 id="sec-1-4-31">别房太尉墓(杜甫)</h4>
+</div>
+<div id="outline-container-sec-1-4-32" class="outline-4">
+<h4 id="sec-1-4-32">旅夜书怀(杜甫)</h4>
+</div>
+<div id="outline-container-sec-1-4-33" class="outline-4">
+<h4 id="sec-1-4-33">至德二载甫自京金光门(杜甫)</h4>
+</div>
+<div id="outline-container-sec-1-4-34" class="outline-4">
+<h4 id="sec-1-4-34">月夜忆舍弟(杜甫)</h4>
+</div>
+<div id="outline-container-sec-1-4-35" class="outline-4">
+<h4 id="sec-1-4-35">天末怀李白(杜甫)</h4>
+</div>
+<div id="outline-container-sec-1-4-36" class="outline-4">
+<h4 id="sec-1-4-36">月夜(杜甫)</h4>
+</div>
+<div id="outline-container-sec-1-4-37" class="outline-4">
+<h4 id="sec-1-4-37">春望(杜甫)</h4>
+</div>
+<div id="outline-container-sec-1-4-38" class="outline-4">
+<h4 id="sec-1-4-38">春宿左省(杜甫)</h4>
+</div>
+<div id="outline-container-sec-1-4-39" class="outline-4">
+<h4 id="sec-1-4-39">旅宿(杜牧)</h4>
+</div>
+<div id="outline-container-sec-1-4-40" class="outline-4">
+<h4 id="sec-1-4-40">春宫怨(杜荀鹤)</h4>
+</div>
+<div id="outline-container-sec-1-4-41" class="outline-4">
+<h4 id="sec-1-4-41">和晋陵陆丞早春游望(杜审言)</h4>
+</div>
+<div id="outline-container-sec-1-4-42" class="outline-4">
+<h4 id="sec-1-4-42">杂诗(沈佺期)</h4>
+</div>
+<div id="outline-container-sec-1-4-43" class="outline-4">
+<h4 id="sec-1-4-43">宿桐庐江寄广陵旧游(孟浩然)</h4>
+</div>
+<div id="outline-container-sec-1-4-44" class="outline-4">
+<h4 id="sec-1-4-44">留别王维(孟浩然)</h4>
+</div>
+<div id="outline-container-sec-1-4-45" class="outline-4">
+<h4 id="sec-1-4-45">早寒有怀(孟浩然)</h4>
+</div>
+<div id="outline-container-sec-1-4-46" class="outline-4">
+<h4 id="sec-1-4-46">岁暮归南山(孟浩然)</h4>
+</div>
+<div id="outline-container-sec-1-4-47" class="outline-4">
+<h4 id="sec-1-4-47">过故人庄(孟浩然)</h4>
+</div>
+<div id="outline-container-sec-1-4-48" class="outline-4">
+<h4 id="sec-1-4-48">秦中寄远上人(孟浩然)</h4>
+</div>
+<div id="outline-container-sec-1-4-49" class="outline-4">
+<h4 id="sec-1-4-49">望洞庭湖赠张丞相(孟浩然)</h4>
+</div>
+<div id="outline-container-sec-1-4-50" class="outline-4">
+<h4 id="sec-1-4-50">与诸子登岘山(孟浩然)</h4>
+</div>
+<div id="outline-container-sec-1-4-51" class="outline-4">
+<h4 id="sec-1-4-51">宴梅道士山房(孟浩然)</h4>
+</div>
+<div id="outline-container-sec-1-4-52" class="outline-4">
+<h4 id="sec-1-4-52">章台夜思(韦庄)</h4>
+</div>
+<div id="outline-container-sec-1-4-53" class="outline-4">
+<h4 id="sec-1-4-53">淮上喜会梁州故人(韦应物)</h4>
+</div>
+<div id="outline-container-sec-1-4-54" class="outline-4">
+<h4 id="sec-1-4-54">赋得暮雨送李曹(韦应物)</h4>
+</div>
+<div id="outline-container-sec-1-4-55" class="outline-4">
+<h4 id="sec-1-4-55">经邹鲁祭孔子而叹之(唐玄宗)</h4>
+</div>
+<div id="outline-container-sec-1-4-56" class="outline-4">
+<h4 id="sec-1-4-56">灞上秋居(马戴)</h4>
+</div>
+<div id="outline-container-sec-1-4-57" class="outline-4">
+<h4 id="sec-1-4-57">楚江怀古(马戴)</h4>
+</div>
+<div id="outline-container-sec-1-4-58" class="outline-4">
+<h4 id="sec-1-4-58">除夜有怀(崔涂)</h4>
+</div>
+<div id="outline-container-sec-1-4-59" class="outline-4">
+<h4 id="sec-1-4-59">孤雁(崔涂)</h4>
+</div>
+<div id="outline-container-sec-1-4-60" class="outline-4">
+<h4 id="sec-1-4-60">题破山寺后禅院(常建)</h4>
+</div>
+<div id="outline-container-sec-1-4-61" class="outline-4">
+<h4 id="sec-1-4-61">望月怀远(张九龄)</h4>
+</div>
+<div id="outline-container-sec-1-4-62" class="outline-4">
+<h4 id="sec-1-4-62">书边事(张乔)</h4>
+</div>
+<div id="outline-container-sec-1-4-63" class="outline-4">
+<h4 id="sec-1-4-63">没蕃故人(张藉)</h4>
+</div>
+<div id="outline-container-sec-1-4-64" class="outline-4">
+<h4 id="sec-1-4-64">秋日赴阙题潼关驿楼(许浑)</h4>
+</div>
+<div id="outline-container-sec-1-4-65" class="outline-4">
+<h4 id="sec-1-4-65">早秋(许浑)</h4>
+</div>
+<div id="outline-container-sec-1-4-66" class="outline-4">
+<h4 id="sec-1-4-66">送人东游(温庭筠)</h4>
+</div>
+<div id="outline-container-sec-1-4-67" class="outline-4">
+<h4 id="sec-1-4-67">寻陆鸿渐不遇(僧皎然)</h4>
+</div>
+<div id="outline-container-sec-1-4-68" class="outline-4">
+<h4 id="sec-1-4-68">寻南溪常道士(刘长卿)</h4>
+</div>
+<div id="outline-container-sec-1-4-69" class="outline-4">
+<h4 id="sec-1-4-69">新年作(刘长卿)</h4>
+</div>
+<div id="outline-container-sec-1-4-70" class="outline-4">
+<h4 id="sec-1-4-70">秋日登吴公台上寺远眺(刘长卿)</h4>
+</div>
+<div id="outline-container-sec-1-4-71" class="outline-4">
+<h4 id="sec-1-4-71">送李中丞归汉阳别业(刘长卿)</h4>
+</div>
+<div id="outline-container-sec-1-4-72" class="outline-4">
+<h4 id="sec-1-4-72">饯别王十一南游(刘长卿)</h4>
+</div>
+<div id="outline-container-sec-1-4-73" class="outline-4">
+<h4 id="sec-1-4-73">蜀先主庙(刘禹锡)</h4>
+</div>
+<div id="outline-container-sec-1-4-74" class="outline-4">
+<h4 id="sec-1-4-74">阙题(刘昚虚)</h4>
+</div>
+<div id="outline-container-sec-1-4-75" class="outline-4">
+<h4 id="sec-1-4-75">送李端(卢纶)</h4>
+</div>
+<div id="outline-container-sec-1-4-76" class="outline-4">
+<h4 id="sec-1-4-76">送僧归日本(钱起)</h4>
+</div>
+<div id="outline-container-sec-1-4-77" class="outline-4">
+<h4 id="sec-1-4-77">谷口书斋寄杨补阙(钱起)</h4>
+</div>
+<div id="outline-container-sec-1-4-78" class="outline-4">
+<h4 id="sec-1-4-78">在狱咏蝉(骆宾王)</h4>
+</div>
+<div id="outline-container-sec-1-4-79" class="outline-4">
+<h4 id="sec-1-4-79">江乡故人偶集客舍(戴叔伦)</h4>
+</div>
+<div id="outline-container-sec-1-4-80" class="outline-4">
+<h4 id="sec-1-4-80">酬程延秋夜即事见赠(韩翃)</h4>
+</div>
+</div>
+
+<div id="outline-container-sec-1-5" class="outline-3">
+<h3 id="sec-1-5">七言律诗</h3>
+<div class="outline-text-3" id="text-1-5">
+</div><div id="outline-container-sec-1-5-1" class="outline-4">
+<h4 id="sec-1-5-1">遣悲怀三首·其一(元稹)</h4>
+</div>
+<div id="outline-container-sec-1-5-2" class="outline-4">
+<h4 id="sec-1-5-2">遣悲怀三首·其二(元稹)</h4>
+</div>
+<div id="outline-container-sec-1-5-3" class="outline-4">
+<h4 id="sec-1-5-3">遣悲怀三首·其三(元稹)</h4>
+</div>
+<div id="outline-container-sec-1-5-4" class="outline-4">
+<h4 id="sec-1-5-4">赠郭给事(王维)</h4>
+</div>
+<div id="outline-container-sec-1-5-5" class="outline-4">
+<h4 id="sec-1-5-5">和贾至舍人早朝大明宫之作(王维)</h4>
+</div>
+<div id="outline-container-sec-1-5-6" class="outline-4">
+<h4 id="sec-1-5-6">奉和圣制从蓬莱向兴庆阁道(王维)</h4>
+</div>
+<div id="outline-container-sec-1-5-7" class="outline-4">
+<h4 id="sec-1-5-7">积雨辋川庄作(王维)</h4>
+</div>
+<div id="outline-container-sec-1-5-8" class="outline-4">
+<h4 id="sec-1-5-8">自河南经乱,关内阻饥(白居易)</h4>
+</div>
+<div id="outline-container-sec-1-5-9" class="outline-4">
+<h4 id="sec-1-5-9">奉和中书舍人贾至早朝大明(岑参)</h4>
+</div>
+<div id="outline-container-sec-1-5-10" class="outline-4">
+<h4 id="sec-1-5-10">登金陵凤凰台(李白)</h4>
+</div>
+<div id="outline-container-sec-1-5-11" class="outline-4">
+<h4 id="sec-1-5-11">无题·重帏深下莫愁堂(李商隐)</h4>
+</div>
+<div id="outline-container-sec-1-5-12" class="outline-4">
+<h4 id="sec-1-5-12">无题·相见时难别亦难(李商隐)</h4>
+</div>
+<div id="outline-container-sec-1-5-13" class="outline-4">
+<h4 id="sec-1-5-13">无题·凤尾香罗薄几重(李商隐)</h4>
+</div>
+<div id="outline-container-sec-1-5-14" class="outline-4">
+<h4 id="sec-1-5-14">无题·来是空言去绝踪(李商隐)</h4>
+</div>
+<div id="outline-container-sec-1-5-15" class="outline-4">
+<h4 id="sec-1-5-15">无题·飒飒东风细雨来(李商隐)</h4>
+</div>
+<div id="outline-container-sec-1-5-16" class="outline-4">
+<h4 id="sec-1-5-16">春雨(李商隐)</h4>
+</div>
+<div id="outline-container-sec-1-5-17" class="outline-4">
+<h4 id="sec-1-5-17">筹笔驿(李商隐)</h4>
+</div>
+<div id="outline-container-sec-1-5-18" class="outline-4">
+<h4 id="sec-1-5-18">锦瑟(李商隐)</h4>
+</div>
+<div id="outline-container-sec-1-5-19" class="outline-4">
+<h4 id="sec-1-5-19">无题·昨夜星辰昨夜风(李商隐)</h4>
+</div>
+<div id="outline-container-sec-1-5-20" class="outline-4">
+<h4 id="sec-1-5-20">隋宫(李商隐)</h4>
+</div>
+<div id="outline-container-sec-1-5-21" class="outline-4">
+<h4 id="sec-1-5-21">送魏万之京(李颀)</h4>
+</div>
+<div id="outline-container-sec-1-5-22" class="outline-4">
+<h4 id="sec-1-5-22">咏怀古迹·其一(杜甫)</h4>
+</div>
+<div id="outline-container-sec-1-5-23" class="outline-4">
+<h4 id="sec-1-5-23">咏怀古迹·其二(杜甫)</h4>
+</div>
+<div id="outline-container-sec-1-5-24" class="outline-4">
+<h4 id="sec-1-5-24">咏怀古迹·其三(杜甫)</h4>
+</div>
+<div id="outline-container-sec-1-5-25" class="outline-4">
+<h4 id="sec-1-5-25">咏怀古迹·其四(杜甫)</h4>
+</div>
+<div id="outline-container-sec-1-5-26" class="outline-4">
+<h4 id="sec-1-5-26">咏怀古迹·其五(杜甫)</h4>
+</div>
+<div id="outline-container-sec-1-5-27" class="outline-4">
+<h4 id="sec-1-5-27">宿府(杜甫)</h4>
+</div>
+<div id="outline-container-sec-1-5-28" class="outline-4">
+<h4 id="sec-1-5-28">阁夜(杜甫)</h4>
+</div>
+<div id="outline-container-sec-1-5-29" class="outline-4">
+<h4 id="sec-1-5-29">闻官军收河南河北(杜甫)</h4>
+</div>
+<div id="outline-container-sec-1-5-30" class="outline-4">
+<h4 id="sec-1-5-30">登高(杜甫)</h4>
+</div>
+<div id="outline-container-sec-1-5-31" class="outline-4">
+<h4 id="sec-1-5-31">登楼(杜甫)</h4>
+</div>
+<div id="outline-container-sec-1-5-32" class="outline-4">
+<h4 id="sec-1-5-32">蜀相(杜甫)</h4>
+</div>
+<div id="outline-container-sec-1-5-33" class="outline-4">
+<h4 id="sec-1-5-33">客至(杜甫)</h4>
+</div>
+<div id="outline-container-sec-1-5-34" class="outline-4">
+<h4 id="sec-1-5-34">野望(杜甫)</h4>
+</div>
+<div id="outline-container-sec-1-5-35" class="outline-4">
+<h4 id="sec-1-5-35">登柳州城楼寄漳汀封连四(柳宗元)</h4>
+</div>
+<div id="outline-container-sec-1-5-36" class="outline-4">
+<h4 id="sec-1-5-36">春思(皇甫冉)</h4>
+</div>
+<div id="outline-container-sec-1-5-37" class="outline-4">
+<h4 id="sec-1-5-37">寄李儋元锡(韦应物)</h4>
+</div>
+<div id="outline-container-sec-1-5-38" class="outline-4">
+<h4 id="sec-1-5-38">望蓟门(祖咏)</h4>
+</div>
+<div id="outline-container-sec-1-5-39" class="outline-4">
+<h4 id="sec-1-5-39">贫女(秦韬玉)</h4>
+</div>
+<div id="outline-container-sec-1-5-40" class="outline-4">
+<h4 id="sec-1-5-40">送李少府贬峡中王少府贬(高适)</h4>
+</div>
+<div id="outline-container-sec-1-5-41" class="outline-4">
+<h4 id="sec-1-5-41">九日登望仙台呈刘明府(崔曙)</h4>
+</div>
+<div id="outline-container-sec-1-5-42" class="outline-4">
+<h4 id="sec-1-5-42">登黄鹤楼(崔颢)</h4>
+</div>
+<div id="outline-container-sec-1-5-43" class="outline-4">
+<h4 id="sec-1-5-43">行经华阴(崔颢)</h4>
+</div>
+<div id="outline-container-sec-1-5-44" class="outline-4">
+<h4 id="sec-1-5-44">利州南渡(温庭筠)</h4>
+</div>
+<div id="outline-container-sec-1-5-45" class="outline-4">
+<h4 id="sec-1-5-45">苏武庙(温庭筠)</h4>
+</div>
+<div id="outline-container-sec-1-5-46" class="outline-4">
+<h4 id="sec-1-5-46">江州重别薛六柳八二员外(刘长卿)</h4>
+</div>
+<div id="outline-container-sec-1-5-47" class="outline-4">
+<h4 id="sec-1-5-47">长沙过贾谊宅(刘长卿)</h4>
+</div>
+<div id="outline-container-sec-1-5-48" class="outline-4">
+<h4 id="sec-1-5-48">自夏口至鹦鹉洲夕望岳阳(刘长卿)</h4>
+</div>
+<div id="outline-container-sec-1-5-49" class="outline-4">
+<h4 id="sec-1-5-49">西塞山怀古(刘长卿)</h4>
+</div>
+<div id="outline-container-sec-1-5-50" class="outline-4">
+<h4 id="sec-1-5-50">晚次鄂州(卢纶)</h4>
+</div>
+<div id="outline-container-sec-1-5-51" class="outline-4">
+<h4 id="sec-1-5-51">赠阙下裴舍人(钱起)</h4>
+</div>
+<div id="outline-container-sec-1-5-52" class="outline-4">
+<h4 id="sec-1-5-52">宫词(薛逢)</h4>
+</div>
+<div id="outline-container-sec-1-5-53" class="outline-4">
+<h4 id="sec-1-5-53">同题仙游观(韩翃)</h4>
+</div>
+</div>
+
+<div id="outline-container-sec-1-6" class="outline-3">
+<h3 id="sec-1-6">五言古诗</h3>
+<div class="outline-text-3" id="text-1-6">
+</div><div id="outline-container-sec-1-6-1" class="outline-4">
+<h4 id="sec-1-6-1">贼退示官吏·并序(元结)</h4>
+</div>
+<div id="outline-container-sec-1-6-2" class="outline-4">
+<h4 id="sec-1-6-2">同从弟南斋玩月忆山阴(王昌龄)</h4>
+</div>
+<div id="outline-container-sec-1-6-3" class="outline-4">
+<h4 id="sec-1-6-3">渭川田家(王维)</h4>
+</div>
+<div id="outline-container-sec-1-6-4" class="outline-4">
+<h4 id="sec-1-6-4">西施咏(王维)</h4>
+</div>
+<div id="outline-container-sec-1-6-5" class="outline-4">
+<h4 id="sec-1-6-5">送别(王维)</h4>
+</div>
+<div id="outline-container-sec-1-6-6" class="outline-4">
+<h4 id="sec-1-6-6">送綦毋潜落第还乡(王维)</h4>
+</div>
+<div id="outline-container-sec-1-6-7" class="outline-4">
+<h4 id="sec-1-6-7">青溪(王维)</h4>
+</div>
+<div id="outline-container-sec-1-6-8" class="outline-4">
+<h4 id="sec-1-6-8">与高适薛据登慈恩寺浮(岑参)</h4>
+</div>
+<div id="outline-container-sec-1-6-9" class="outline-4">
+<h4 id="sec-1-6-9">下终南山过斛斯山人宿(李白)</h4>
+</div>
+<div id="outline-container-sec-1-6-10" class="outline-4">
+<h4 id="sec-1-6-10">月下独酌(李白)</h4>
+</div>
+<div id="outline-container-sec-1-6-11" class="outline-4">
+<h4 id="sec-1-6-11">春思(李白)</h4>
+</div>
+<div id="outline-container-sec-1-6-12" class="outline-4">
+<h4 id="sec-1-6-12">梦李白·其一(杜甫)</h4>
+</div>
+<div id="outline-container-sec-1-6-13" class="outline-4">
+<h4 id="sec-1-6-13">梦李白·其二(杜甫)</h4>
+</div>
+<div id="outline-container-sec-1-6-14" class="outline-4">
+<h4 id="sec-1-6-14">望岳(杜甫)</h4>
+</div>
+<div id="outline-container-sec-1-6-15" class="outline-4">
+<h4 id="sec-1-6-15">赠卫八处士(杜甫)</h4>
+</div>
+<div id="outline-container-sec-1-6-16" class="outline-4">
+<h4 id="sec-1-6-16">佳人(杜甫)</h4>
+</div>
+<div id="outline-container-sec-1-6-17" class="outline-4">
+<h4 id="sec-1-6-17">秋登兰山寄张五(孟浩然)</h4>
+</div>
+<div id="outline-container-sec-1-6-18" class="outline-4">
+<h4 id="sec-1-6-18">夏日南亭怀辛大(孟浩然)</h4>
+</div>
+<div id="outline-container-sec-1-6-19" class="outline-4">
+<h4 id="sec-1-6-19">宿业师山房待丁大不至(孟浩然)</h4>
+</div>
+<div id="outline-container-sec-1-6-20" class="outline-4">
+<h4 id="sec-1-6-20">寻西山隐者不遇(邱为)</h4>
+</div>
+<div id="outline-container-sec-1-6-21" class="outline-4">
+<h4 id="sec-1-6-21">晨诣超师院读禅经(柳宗元)</h4>
+</div>
+<div id="outline-container-sec-1-6-22" class="outline-4">
+<h4 id="sec-1-6-22">溪居(柳宗元)</h4>
+</div>
+<div id="outline-container-sec-1-6-23" class="outline-4">
+<h4 id="sec-1-6-23">送杨氏女(韦应物)</h4>
+</div>
+<div id="outline-container-sec-1-6-24" class="outline-4">
+<h4 id="sec-1-6-24">长安遇冯著(韦应物)</h4>
+</div>
+<div id="outline-container-sec-1-6-25" class="outline-4">
+<h4 id="sec-1-6-25">夕次盱眙县(韦应物)</h4>
+</div>
+<div id="outline-container-sec-1-6-26" class="outline-4">
+<h4 id="sec-1-6-26">东郊(韦应物)</h4>
+</div>
+<div id="outline-container-sec-1-6-27" class="outline-4">
+<h4 id="sec-1-6-27">郡斋雨中与诸文士燕集(韦应物)</h4>
+</div>
+<div id="outline-container-sec-1-6-28" class="outline-4">
+<h4 id="sec-1-6-28">初发扬子寄元大校书(韦应物)</h4>
+</div>
+<div id="outline-container-sec-1-6-29" class="outline-4">
+<h4 id="sec-1-6-29">寄全椒山中道士(韦应物)</h4>
+</div>
+<div id="outline-container-sec-1-6-30" class="outline-4">
+<h4 id="sec-1-6-30">宿王昌龄隐居(常建)</h4>
+</div>
+<div id="outline-container-sec-1-6-31" class="outline-4">
+<h4 id="sec-1-6-31">感遇·孤鸿海上来(张九龄)</h4>
+</div>
+<div id="outline-container-sec-1-6-32" class="outline-4">
+<h4 id="sec-1-6-32">感遇·兰叶春葳蕤(张九龄)</h4>
+</div>
+<div id="outline-container-sec-1-6-33" class="outline-4">
+<h4 id="sec-1-6-33">感遇·幽人归独卧(张九龄)</h4>
+</div>
+<div id="outline-container-sec-1-6-34" class="outline-4">
+<h4 id="sec-1-6-34">感遇·江南有丹桔(张九龄)</h4>
+</div>
+<div id="outline-container-sec-1-6-35" class="outline-4">
+<h4 id="sec-1-6-35">春泛若耶溪(綦毋潜)</h4>
+</div>
+</div>
+
+<div id="outline-container-sec-1-7" class="outline-3">
+<h3 id="sec-1-7">七言古诗</h3>
+<div class="outline-text-3" id="text-1-7">
+</div><div id="outline-container-sec-1-7-1" class="outline-4">
+<h4 id="sec-1-7-1">石鱼湖上醉歌·并序(元结)</h4>
+</div>
+<div id="outline-container-sec-1-7-2" class="outline-4">
+<h4 id="sec-1-7-2">长恨歌(白居易)</h4>
+</div>
+<div id="outline-container-sec-1-7-3" class="outline-4">
+<h4 id="sec-1-7-3">琵琶行·并序(白居易)</h4>
+</div>
+<div id="outline-container-sec-1-7-4" class="outline-4">
+<h4 id="sec-1-7-4">走马川行奉送封大夫出师(岑参)</h4>
+</div>
+<div id="outline-container-sec-1-7-5" class="outline-4">
+<h4 id="sec-1-7-5">轮台歌奉送封大夫出师(岑参)</h4>
+</div>
+<div id="outline-container-sec-1-7-6" class="outline-4">
+<h4 id="sec-1-7-6">白雪歌送武判官归京(岑参)</h4>
+</div>
+<div id="outline-container-sec-1-7-7" class="outline-4">
+<h4 id="sec-1-7-7">宣州谢朓楼饯别校书叔云(李白)</h4>
+</div>
+<div id="outline-container-sec-1-7-8" class="outline-4">
+<h4 id="sec-1-7-8">庐山谣寄卢侍御虚舟(李白)</h4>
+</div>
+<div id="outline-container-sec-1-7-9" class="outline-4">
+<h4 id="sec-1-7-9">梦游天姥吟留别(李白)</h4>
+</div>
+<div id="outline-container-sec-1-7-10" class="outline-4">
+<h4 id="sec-1-7-10">金陵酒肆留别(李白)</h4>
+</div>
+<div id="outline-container-sec-1-7-11" class="outline-4">
+<h4 id="sec-1-7-11">韩碑(李商隐)</h4>
+</div>
+<div id="outline-container-sec-1-7-12" class="outline-4">
+<h4 id="sec-1-7-12">听董大弹胡笳声兼寄语(李颀)</h4>
+</div>
+<div id="outline-container-sec-1-7-13" class="outline-4">
+<h4 id="sec-1-7-13">听安万善吹筚篥歌(李颀)</h4>
+</div>
+<div id="outline-container-sec-1-7-14" class="outline-4">
+<h4 id="sec-1-7-14">古意(李颀)</h4>
+</div>
+<div id="outline-container-sec-1-7-15" class="outline-4">
+<h4 id="sec-1-7-15">送陈章甫(李颀)</h4>
+</div>
+<div id="outline-container-sec-1-7-16" class="outline-4">
+<h4 id="sec-1-7-16">琴歌(李颀)</h4>
+</div>
+<div id="outline-container-sec-1-7-17" class="outline-4">
+<h4 id="sec-1-7-17">古柏行(杜甫)</h4>
+</div>
+<div id="outline-container-sec-1-7-18" class="outline-4">
+<h4 id="sec-1-7-18">观公孙大娘弟子舞剑器(杜甫)</h4>
+</div>
+<div id="outline-container-sec-1-7-19" class="outline-4">
+<h4 id="sec-1-7-19">韦讽录事宅观曹将军画马图(杜甫)</h4>
+</div>
+<div id="outline-container-sec-1-7-20" class="outline-4">
+<h4 id="sec-1-7-20">丹青引赠曹霸将军(杜甫)</h4>
+</div>
+<div id="outline-container-sec-1-7-21" class="outline-4">
+<h4 id="sec-1-7-21">寄韩谏议(杜甫)</h4>
+</div>
+<div id="outline-container-sec-1-7-22" class="outline-4">
+<h4 id="sec-1-7-22">夜归鹿门山歌(孟浩然)</h4>
+</div>
+<div id="outline-container-sec-1-7-23" class="outline-4">
+<h4 id="sec-1-7-23">渔翁(柳宗元)</h4>
+</div>
+<div id="outline-container-sec-1-7-24" class="outline-4">
+<h4 id="sec-1-7-24">登幽州台歌(陈子昂)</h4>
+</div>
+<div id="outline-container-sec-1-7-25" class="outline-4">
+<h4 id="sec-1-7-25">石鼓歌(韩愈)</h4>
+</div>
+<div id="outline-container-sec-1-7-26" class="outline-4">
+<h4 id="sec-1-7-26">山石(韩愈)</h4>
+</div>
+<div id="outline-container-sec-1-7-27" class="outline-4">
+<h4 id="sec-1-7-27">八月十五夜赠张功曹(韩愈)</h4>
+</div>
+<div id="outline-container-sec-1-7-28" class="outline-4">
+<h4 id="sec-1-7-28">谒衡岳庙遂宿岳寺题门楼(韩愈)</h4>
+</div>
+</div>
+
+<div id="outline-container-sec-1-8" class="outline-3">
+<h3 id="sec-1-8">乐府</h3>
+<div class="outline-text-3" id="text-1-8">
+</div><div id="outline-container-sec-1-8-1" class="outline-4">
+<h4 id="sec-1-8-1">凉州词(王之涣)</h4>
+</div>
+<div id="outline-container-sec-1-8-2" class="outline-4">
+<h4 id="sec-1-8-2">出塞(王昌龄)</h4>
+</div>
+<div id="outline-container-sec-1-8-3" class="outline-4">
+<h4 id="sec-1-8-3">塞上曲·蝉鸣空桑林(王昌龄)</h4>
+</div>
+<div id="outline-container-sec-1-8-4" class="outline-4">
+<h4 id="sec-1-8-4">塞下曲·饮马渡秋水(王昌龄)</h4>
+</div>
+<div id="outline-container-sec-1-8-5" class="outline-4">
+<h4 id="sec-1-8-5">长信怨(王昌龄)</h4>
+</div>
+<div id="outline-container-sec-1-8-6" class="outline-4">
+<h4 id="sec-1-8-6">渭城曲(王维)</h4>
+</div>
+<div id="outline-container-sec-1-8-7" class="outline-4">
+<h4 id="sec-1-8-7">秋夜曲(王维)</h4>
+</div>
+<div id="outline-container-sec-1-8-8" class="outline-4">
+<h4 id="sec-1-8-8">洛阳女儿行(王维)</h4>
+</div>
+<div id="outline-container-sec-1-8-9" class="outline-4">
+<h4 id="sec-1-8-9">老将行(王维)</h4>
+</div>
+<div id="outline-container-sec-1-8-10" class="outline-4">
+<h4 id="sec-1-8-10">桃源行(王维)</h4>
+</div>
+<div id="outline-container-sec-1-8-11" class="outline-4">
+<h4 id="sec-1-8-11">清平调·云想衣裳花想容(李白)</h4>
+</div>
+<div id="outline-container-sec-1-8-12" class="outline-4">
+<h4 id="sec-1-8-12">清平调·一枝红艳露凝香(李白)</h4>
+</div>
+<div id="outline-container-sec-1-8-13" class="outline-4">
+<h4 id="sec-1-8-13">清平调·名花倾国两相欢(李白)</h4>
+</div>
+<div id="outline-container-sec-1-8-14" class="outline-4">
+<h4 id="sec-1-8-14">行路难(李白)</h4>
+</div>
+<div id="outline-container-sec-1-8-15" class="outline-4">
+<h4 id="sec-1-8-15">行路难·大道如青天(李白)</h4>
+</div>
+<div id="outline-container-sec-1-8-16" class="outline-4">
+<h4 id="sec-1-8-16">行路难·有耳莫洗颍川水(李白)</h4>
+</div>
+<div id="outline-container-sec-1-8-17" class="outline-4">
+<h4 id="sec-1-8-17">将进酒(李白)</h4>
+</div>
+<div id="outline-container-sec-1-8-18" class="outline-4">
+<h4 id="sec-1-8-18">玉阶怨(李白)</h4>
+</div>
+<div id="outline-container-sec-1-8-19" class="outline-4">
+<h4 id="sec-1-8-19">长相思·在长安(李白)</h4>
+</div>
+<div id="outline-container-sec-1-8-20" class="outline-4">
+<h4 id="sec-1-8-20">长相思·摧心肝(李白)</h4>
+</div>
+<div id="outline-container-sec-1-8-21" class="outline-4">
+<h4 id="sec-1-8-21">长干行(李白)</h4>
+</div>
+<div id="outline-container-sec-1-8-22" class="outline-4">
+<h4 id="sec-1-8-22">蜀道难(李白)</h4>
+</div>
+<div id="outline-container-sec-1-8-23" class="outline-4">
+<h4 id="sec-1-8-23">子夜吴歌·春歌(李白)</h4>
+</div>
+<div id="outline-container-sec-1-8-24" class="outline-4">
+<h4 id="sec-1-8-24">子夜吴歌·夏歌(李白)</h4>
+</div>
+<div id="outline-container-sec-1-8-25" class="outline-4">
+<h4 id="sec-1-8-25">子夜吴歌·秋歌(李白)</h4>
+</div>
+<div id="outline-container-sec-1-8-26" class="outline-4">
+<h4 id="sec-1-8-26">子夜吴歌·冬歌(李白)</h4>
+</div>
+<div id="outline-container-sec-1-8-27" class="outline-4">
+<h4 id="sec-1-8-27">关山月(李白)</h4>
+</div>
+<div id="outline-container-sec-1-8-28" class="outline-4">
+<h4 id="sec-1-8-28">江南曲(李益)</h4>
+</div>
+<div id="outline-container-sec-1-8-29" class="outline-4">
+<h4 id="sec-1-8-29">古从军行(李颀)</h4>
+</div>
+<div id="outline-container-sec-1-8-30" class="outline-4">
+<h4 id="sec-1-8-30">哀王孙(杜甫)</h4>
+</div>
+<div id="outline-container-sec-1-8-31" class="outline-4">
+<h4 id="sec-1-8-31">兵车行(杜甫)</h4>
+</div>
+<div id="outline-container-sec-1-8-32" class="outline-4">
+<h4 id="sec-1-8-32">丽人行(杜甫)</h4>
+</div>
+<div id="outline-container-sec-1-8-33" class="outline-4">
+<h4 id="sec-1-8-33">哀江头(杜甫)</h4>
+</div>
+<div id="outline-container-sec-1-8-34" class="outline-4">
+<h4 id="sec-1-8-34">金缕衣(佚名)</h4>
+</div>
+<div id="outline-container-sec-1-8-35" class="outline-4">
+<h4 id="sec-1-8-35">独不见(沈佺期)</h4>
+</div>
+<div id="outline-container-sec-1-8-36" class="outline-4">
+<h4 id="sec-1-8-36">烈女操(孟郊)</h4>
+</div>
+<div id="outline-container-sec-1-8-37" class="outline-4">
+<h4 id="sec-1-8-37">游子吟(孟郊)</h4>
+</div>
+<div id="outline-container-sec-1-8-38" class="outline-4">
+<h4 id="sec-1-8-38">燕歌行·并序(高适)</h4>
+</div>
+<div id="outline-container-sec-1-8-39" class="outline-4">
+<h4 id="sec-1-8-39">长干行·君家何处住(崔颢)</h4>
+</div>
+<div id="outline-container-sec-1-8-40" class="outline-4">
+<h4 id="sec-1-8-40">长干行·家临九江水(崔颢)</h4>
+</div>
+<div id="outline-container-sec-1-8-41" class="outline-4">
+<h4 id="sec-1-8-41">塞下曲·鹫翎金仆姑(卢纶)</h4>
+</div>
+<div id="outline-container-sec-1-8-42" class="outline-4">
+<h4 id="sec-1-8-42">塞下曲·林暗草惊风(卢纶)</h4>
+</div>
+<div id="outline-container-sec-1-8-43" class="outline-4">
+<h4 id="sec-1-8-43">塞下曲·月黑雁飞高(卢纶)</h4>
+</div>
+<div id="outline-container-sec-1-8-44" class="outline-4">
+<h4 id="sec-1-8-44">塞下曲·野幕蔽琼筵(卢纶)</h4>
+</div>
+</div>
+<div id="outline-container-sec-1-9" class="outline-3">
+<h3 id="sec-1-9">更多&gt;&gt;《全唐诗》</h3>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: fengyz</p>
+<p class="date">Created: 2017-03-10 Fri 16:04</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

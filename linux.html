@@ -1,0 +1,1014 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>linux</title>
+<!-- 2017-01-14 Sat 22:49 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="fengyz" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">linux</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. Frequently used commands</a>
+<ul>
+<li><a href="#sec-1-1">1.1. Enter CLI and return o GUI</a></li>
+<li><a href="#sec-1-2">1.2. grep a string in a directory recursively</a></li>
+<li><a href="#sec-1-3">1.3. Change ownership of a directory</a></li>
+<li><a href="#sec-1-4">1.4. Modify time of directory/file</a></li>
+<li><a href="#sec-1-5">1.5. curl</a></li>
+<li><a href="#sec-1-6">1.6. lsof: 从系统获得与网络连接相关的信息</a></li>
+</ul>
+</li>
+<li><a href="#sec-2">2. Advanded Topics</a>
+<ul>
+<li><a href="#sec-2-1">2.1. zsh</a>
+<ul>
+<li><a href="#sec-2-1-1">2.1.1. oh-my-zsh</a></li>
+</ul>
+</li>
+<li><a href="#sec-2-2">2.2. Swap Caps Lock and Ctrl</a>
+<ul>
+<li><a href="#sec-2-2-1">2.2.1. on MacBook Pro</a></li>
+<li><a href="#sec-2-2-2">2.2.2. on Win10</a></li>
+</ul>
+</li>
+<li><a href="#sec-2-3">2.3. Convert image format in batch mode using ImageMagick</a></li>
+<li><a href="#sec-2-4">2.4. 10个调整让Ubuntu宾至如归</a>
+<ul>
+<li><a href="#sec-2-4-1">2.4.1. 1. TLP</a></li>
+</ul>
+</li>
+<li><a href="#sec-2-5">2.5. Disable overlay scroll bars in Ubuntu 14.04</a></li>
+<li><a href="#sec-2-6">2.6. How to convert the unity launcher into a dock-style launcher</a></li>
+<li><a href="#sec-2-7">2.7. 只列出监听中的连接</a></li>
+<li><a href="#sec-2-8">2.8. Linux终端使用wget下载百度云资源</a></li>
+<li><a href="#sec-2-9">2.9. SSH</a>
+<ul>
+<li><a href="#sec-2-9-1">2.9.1. SSH原理与运用（一）：远程登录 by 阮一峰</a></li>
+<li><a href="#sec-2-9-2">2.9.2. SSH原理与运用（二）：远程操作与端口转发</a></li>
+</ul>
+</li>
+<li><a href="#sec-2-10">2.10. 500 OOPS: cannot open config </a></li>
+<li><a href="#sec-2-11">2.11. Resume scp transfer</a></li>
+</ul>
+</li>
+<li><a href="#sec-3">3. Tools</a>
+<ul>
+<li><a href="#sec-3-1">3.1. Snappy: a universal linux packager</a>
+<ul>
+<li><a href="#sec-3-1-1">3.1.1. Popular snaps</a></li>
+</ul>
+</li>
+<li><a href="#sec-3-2">3.2. Screen Capture</a></li>
+<li><a href="#sec-3-3">3.3. Exuberant Ctags</a>
+<ul>
+<li><a href="#sec-3-3-1">3.3.1. Exuberant Ctags中文手册</a></li>
+<li><a href="#sec-3-3-2">3.3.2. vi/vim使用进阶: 使用标签(tag)文件</a></li>
+</ul>
+</li>
+<li><a href="#sec-3-4">3.4. DoctorJs&#xa0;&#xa0;&#xa0;<span class="tag"><span class="cancelled">cancelled</span></span></a></li>
+<li><a href="#sec-3-5">3.5. jsctags</a>
+<ul>
+<li><a href="#sec-3-5-1">3.5.1. Intallation</a></li>
+<li><a href="#sec-3-5-2">3.5.2. Usage with vim</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#sec-4">4. Technology Trends</a>
+<ul>
+<li><a href="#sec-4-1">4.1. 一秒启动Linux&#xa0;&#xa0;&#xa0;<span class="tag"><span class="linux">linux</span>&#xa0;<span class="automobile">automobile</span>&#xa0;<span class="booting">booting</span></span></a></li>
+</ul>
+</li>
+<li><a href="#sec-5">5. Linux on MacBook Pro</a>
+<ul>
+<li><a href="#sec-5-1">5.1. Install ubuntu on Macbook Pro</a>
+<ul>
+<li><a href="#sec-5-1-1">5.1.1. How to create a bootable USB stick on OS X</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#sec-6">6. Linux on Dell Desktop</a>
+<ul>
+<li><a href="#sec-6-1">6.1. Install ubuntu on dell desktop</a>
+<ul>
+<li><a href="#sec-6-1-1">6.1.1. 0. sync linuxhome</a></li>
+<li><a href="#sec-6-1-2">6.1.2. 1. tmux</a></li>
+<li><a href="#sec-6-1-3">6.1.3. 2. emacs</a></li>
+<li><a href="#sec-6-1-4">6.1.4. 3. vim</a></li>
+<li><a href="#sec-6-1-5">6.1.5. 4. nodejs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#sec-7">7. Resources</a>
+<ul>
+<li><a href="#sec-7-1">7.1. Community / Forums</a>
+<ul>
+<li><a href="#sec-7-1-1">7.1.1. Ubuntu China</a></li>
+</ul>
+</li>
+<li><a href="#sec-7-2">7.2. aliyun ubuntu mirror</a></li>
+</ul>
+</li>
+<li><a href="#sec-8">8. Issues &amp; Solutions</a>
+<ul>
+<li><a href="#sec-8-1">8.1. how to install newest clang 3.8 by apt</a></li>
+<li><a href="#sec-8-2">8.2. How to install 'add-apt-repository' using the terminal? [duplicate]</a></li>
+<li><a href="#sec-8-3">8.3. ubuntu下能否不重新编译vim而添加lua等支持？</a></li>
+</ul>
+</li>
+<li><a href="#sec-9">9. Install ubuntu 16.04 LTS on x230t</a>
+<ul>
+<li><a href="#sec-9-1">9.1. Install sogou input method</a>
+<ul>
+<li><a href="#sec-9-1-1">9.1.1. couldn't install sogou input method</a></li>
+</ul>
+</li>
+<li><a href="#sec-9-2">9.2. Install chrome</a></li>
+<li><a href="#sec-9-3">9.3. Swap ctrl &amp; capslock</a></li>
+<li><a href="#sec-9-4">9.4. Install git</a></li>
+<li><a href="#sec-9-5">9.5. Install docker</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Frequently used commands</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> Enter CLI and return o GUI</h3>
+<div class="outline-text-3" id="text-1-1">
+<ul class="org-ul">
+<li>Enter CLI: <code>C-M-F2 ~ F6</code>
+</li>
+<li>Return to GUI: <code>C-M-F7</code>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> grep a string in a directory recursively</h3>
+<div class="outline-text-3" id="text-1-2">
+<div class="org-src-container">
+
+<pre class="src src-example">grep -r "some text" path_to_dir
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3"><span class="section-number-3">1.3</span> Change ownership of a directory</h3>
+<div class="outline-text-3" id="text-1-3">
+<div class="org-src-container">
+
+<pre class="src src-example">sudo chown -R $USER /path/to/project/directory
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-4" class="outline-3">
+<h3 id="sec-1-4"><span class="section-number-3">1.4</span> Modify time of directory/file</h3>
+<div class="outline-text-3" id="text-1-4">
+<div class="org-src-container">
+
+<pre class="src src-example">touch -d "2000-1-1 1:00:00" mydir
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-1-5" class="outline-3">
+<h3 id="sec-1-5"><span class="section-number-3">1.5</span> curl</h3>
+<div class="outline-text-3" id="text-1-5">
+<p>
+(<a href="http://www.ruanyifeng.com/blog/2011/09/curl.html">http://www.ruanyifeng.com/blog/2011/09/curl.html</a>)
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">curl http://localhost:3000/headers --headers <span style="color: #E6DB74;">"Cookie:connect.sid=xxxxxxxxxxxxx"</span>
+
+curl http://localhost:3000/headers --cookie <span style="color: #E6DB74;">"connect.sid=xxxxxxxxxxxxx"</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-1-6" class="outline-3">
+<h3 id="sec-1-6"><span class="section-number-3">1.6</span> lsof: 从系统获得与网络连接相关的信息</h3>
+<div class="outline-text-3" id="text-1-6">
+<p>
+(<a href="http://www.wenwenyun.com/opration/linux/2014/1122/2922.html">http://www.wenwenyun.com/opration/linux/2014/1122/2922.html</a>)
+</p>
+
+<ul class="org-ul">
+<li>使用-i显示所有连接
+</li>
+<li>使用-i 6仅获取IPv6流量
+</li>
+<li>仅显示TCP连接（同理可获得UDP连接）: <code>lsof -iTCP</code>
+</li>
+<li>使用-i:port来显示与指定端口相关的网络信息: 或者，你也可以通过端口搜索，这对于要找出什么阻止了另外一个应用绑定到指定端口实在是太棒了。
+</li>
+<li>使用@host来显示指定到指定主机的连接: <code>lsof -i@172.16.12.5</code>
+</li>
+<li>使用@host:port显示基于主机与端口的连接: <code>lsof -i@172.16.12.5:22</code>
+</li>
+<li>找出监听端口: <code>lsof -i -sTCP:LISTEN</code>
+</li>
+<li>找出已建立的连接: <code>lsof -i -sTCP:ESTABLISHED</code>
+</li>
+<li>使用-u显示指定用户打开了什么: <code>lsof -u daniel</code>
+</li>
+<li>显示除指定用户以外的其它所有用户所做的事情: <code>lsof -u ^daniel</code>
+</li>
+<li>杀死指定用户所做的一切事情: kill -9 `lsof -t -u daniel`
+</li>
+<li>显示与指定目录交互的所有一切: <code>lsof /var/log/messages/</code>
+</li>
+<li>显示与指定文件交互的所有一切: <code>lsof /home/daniel/firewall_whitelist.txt</code>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Advanded Topics</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> zsh</h3>
+<div class="outline-text-3" id="text-2-1">
+</div><div id="outline-container-sec-2-1-1" class="outline-4">
+<h4 id="sec-2-1-1"><span class="section-number-4">2.1.1</span> oh-my-zsh</h4>
+<div class="outline-text-4" id="text-2-1-1">
+<p>
+<a href="https://github.com/robbyrussell/oh-my-zsh">https://github.com/robbyrussell/oh-my-zsh</a>
+</p>
+
+<p>
+终极 Shell——ZSH: <a href="http://zhuanlan.zhihu.com/p/19556676">http://zhuanlan.zhihu.com/p/19556676</a>
+My Extravagant Zsh Prompt: <a href="http://stevelosh.com/blog/2010/02/my-extravagant-zsh-prompt/">http://stevelosh.com/blog/2010/02/my-extravagant-zsh-prompt/</a>
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> Swap Caps Lock and Ctrl</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+<a href="http://www.emacswiki.org/emacs/MovingTheCtrlKey#toc6">Moving The Ctrl Key @emacswiki</a>
+</p>
+
+<p>
+Ultimate solution:
+</p>
+
+<p>
+setxkbmap -option ctrl:swapcaps     # Swap Left Control and Caps Lock
+setxkbmap -option ctrl:nocaps       # Make Caps Lock a Control key
+</p>
+
+<p>
+Add it in <a href="http://blog.csdn.net/chenchong08/article/details/7833242">.profile</a> and you're done.
+</p>
+</div>
+<div id="outline-container-sec-2-2-1" class="outline-4">
+<h4 id="sec-2-2-1"><span class="section-number-4">2.2.1</span> on MacBook Pro</h4>
+<div class="outline-text-4" id="text-2-2-1">
+<p>
+<a href="macos.html">Swap Caps Lock and Ctrl</a>
+</p>
+</div>
+</div>
+<div id="outline-container-sec-2-2-2" class="outline-4">
+<h4 id="sec-2-2-2"><span class="section-number-4">2.2.2</span> on Win10</h4>
+<div class="outline-text-4" id="text-2-2-2">
+<p>
+<a href="http://hanjc.me/post/2015-09-14-win7-exchange-capslock-and-ctrl/">http://hanjc.me/post/2015-09-14-win7-exchange-capslock-and-ctrl/</a>
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2-3" class="outline-3">
+<h3 id="sec-2-3"><span class="section-number-3">2.3</span> Convert image format in batch mode using ImageMagick</h3>
+<div class="outline-text-3" id="text-2-3">
+<div class="org-src-container">
+
+<pre class="src src-example">mogrify -format gif *.png
+</pre>
+</div>
+<p>
+All png files under current directory will be converted to gifs.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-2-4" class="outline-3">
+<h3 id="sec-2-4"><span class="section-number-3">2.4</span> 10个调整让Ubuntu宾至如归</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+(<a href="http://www.linuxidc.com/Linux/2014-08/105794.htm">link</a>)
+</p>
+</div>
+<div id="outline-container-sec-2-4-1" class="outline-4">
+<h4 id="sec-2-4-1"><span class="section-number-4">2.4.1</span> 1. TLP</h4>
+<div class="outline-text-4" id="text-2-4-1">
+<p>
+这是一款优化电源设置的软件，可以让你享受更长的电池寿命。
+</p>
+<div class="org-src-container">
+
+<pre class="src src-example">sudo add-apt-repository -y ppa:linrunner/tlp
+sudo apt-get update
+sudo apt-get install -y tlp tlp-rdw tp-smapi-dkms acpi-call-tools
+sudo tlp start
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-2-5" class="outline-3">
+<h3 id="sec-2-5"><span class="section-number-3">2.5</span> Disable overlay scroll bars in Ubuntu 14.04</h3>
+<div class="outline-text-3" id="text-2-5">
+<p>
+(<a href="http://www.infoworld.com/article/2698420/disable-overlay-scroll-bars-in-ubuntu-14-04.html">link</a>)
+</p>
+</div>
+</div>
+<div id="outline-container-sec-2-6" class="outline-3">
+<h3 id="sec-2-6"><span class="section-number-3">2.6</span> How to convert the unity launcher into a dock-style launcher</h3>
+<div class="outline-text-3" id="text-2-6">
+<p>
+(<a href="http://www.howtogeek.com/202708/how-to-convert-the-unity-launcher-into-a-dock-style-launcher/">link</a> and <a href="http://askubuntu.com/questions/507449/how-to-move-taskbar-to-bottom-position-as-in-windows">link</a>)
+Install unity-tweak-tool and cairo-dock.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-2-7" class="outline-3">
+<h3 id="sec-2-7"><span class="section-number-3">2.7</span> 只列出监听中的连接</h3>
+<div class="outline-text-3" id="text-2-7">
+<p>
+(refer to <a href="http://wenku.baidu.com/link?url=DnqVqCU-6VDmvlg26siO1xFEmTUC4JTKnV3Jt_ifFYvc79j0PCPSjUWT-k6Jpo3DiLUcytfI_NCip7XTr0fhDGx0mCx-brBPiZ5jPQDfe7K">link</a>)
+</p>
+<div class="org-src-container">
+
+<pre class="src src-example">netstat -tnl
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-2-8" class="outline-3">
+<h3 id="sec-2-8"><span class="section-number-3">2.8</span> Linux终端使用wget下载百度云资源</h3>
+<div class="outline-text-3" id="text-2-8">
+<p>
+<a href="http://blog.csdn.net/boycy/article/details/41210981">http://blog.csdn.net/boycy/article/details/41210981</a>
+</p>
+
+<p>
+使用 F12 开发者工具获取地址
+</p>
+<div class="org-src-container">
+
+<pre class="src src-example">wget -c --referer=http://pan.baidu.com/s/1hq04k1e -O testfile.PNG "http://nb.baidupcs.com/file/6a0a41574d8603ff04786b046da3e361?...........testfile.PNG"
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-2-9" class="outline-3">
+<h3 id="sec-2-9"><span class="section-number-3">2.9</span> SSH</h3>
+<div class="outline-text-3" id="text-2-9">
+</div><div id="outline-container-sec-2-9-1" class="outline-4">
+<h4 id="sec-2-9-1"><span class="section-number-4">2.9.1</span> SSH原理与运用（一）：远程登录 by 阮一峰</h4>
+<div class="outline-text-4" id="text-2-9-1">
+<p>
+(<a href="http://www.ruanyifeng.com/blog/2011/12/ssh_remote_login.html">http://www.ruanyifeng.com/blog/2011/12/ssh_remote_login.html</a>)
+</p>
+</div>
+</div>
+<div id="outline-container-sec-2-9-2" class="outline-4">
+<h4 id="sec-2-9-2"><span class="section-number-4">2.9.2</span> SSH原理与运用（二）：远程操作与端口转发</h4>
+<div class="outline-text-4" id="text-2-9-2">
+<p>
+(<a href="http://www.ruanyifeng.com/blog/2011/12/ssh_port_forwarding.html">http://www.ruanyifeng.com/blog/2011/12/ssh_port_forwarding.html</a>)
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-2-10" class="outline-3">
+<h3 id="sec-2-10"><span class="section-number-3">2.10</span> 500 OOPS: cannot open config <a href="file:///etc/vsftpd/vsftpd.conf">file:///etc/vsftpd/vsftpd.conf</a></h3>
+<div class="outline-text-3" id="text-2-10">
+<p>
+<a href="http://stackoverflow.com/questions/17942075/500-oops-cannot-open-config-file-etc-vsftpd-vsftpd-conf">http://stackoverflow.com/questions/17942075/500-oops-cannot-open-config-file-etc-vsftpd-vsftpd-conf</a>
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-example">sudo chown root /etc/vsftpd/vsftpd.conf
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-2-11" class="outline-3">
+<h3 id="sec-2-11"><span class="section-number-3">2.11</span> Resume scp transfer</h3>
+<div class="outline-text-3" id="text-2-11">
+<p>
+(<a href="http://superuser.com/a/603836">http://superuser.com/a/603836</a>)
+Syncing recursively and showing progress of each file:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">rsync --partial --progress -avel -e ssh ~/Downloads/themeforest-9228123-canvas-the-multipurpose-html5-template.zip rails@139.162.39.109:~/
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> Tools</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> Snappy: a universal linux packager</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+(<a href="http://www.ubuntu.com/desktop/snappy">http://www.ubuntu.com/desktop/snappy</a>)
+A ‘snap’ is a universal Linux package 
+</p>
+</div>
+
+<div id="outline-container-sec-3-1-1" class="outline-4">
+<h4 id="sec-3-1-1"><span class="section-number-4">3.1.1</span> Popular snaps</h4>
+<div class="outline-text-4" id="text-3-1-1">
+<p>
+If you are running Ubuntu 16.04 LTS, you can try all of this without having to install snapd. Check out snaps on uappexplorer.com or just use the command line to install any of these great snaps.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> Screen Capture</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+Shutter (see <a href="http://lifehacker.com/5889994/the-best-screen-capture-tool-for-linux">The Best Screen Capture Tool for Linux</a>
+</p>
+</div>
+</div>
+<div id="outline-container-sec-3-3" class="outline-3">
+<h3 id="sec-3-3"><span class="section-number-3">3.3</span> Exuberant Ctags</h3>
+<div class="outline-text-3" id="text-3-3">
+</div><div id="outline-container-sec-3-3-1" class="outline-4">
+<h4 id="sec-3-3-1"><span class="section-number-4">3.3.1</span> Exuberant Ctags中文手册</h4>
+<div class="outline-text-4" id="text-3-3-1">
+<p>
+(<a href="http://easwy.com/blog/archives/exuberant-ctags-chinese-manual/">link</a>)
+</p>
+</div>
+<ol class="org-ol"><li><a id="sec-3-3-1-1" name="sec-3-3-1-1"></a>Generate tags file<br  /><div class="outline-text-5" id="text-3-3-1-1">
+<div class="org-src-container">
+
+<pre class="src src-example">ctags -R
+</pre>
+</div>
+</div>
+</li></ol>
+</div>
+<div id="outline-container-sec-3-3-2" class="outline-4">
+<h4 id="sec-3-3-2"><span class="section-number-4">3.3.2</span> vi/vim使用进阶: 使用标签(tag)文件</h4>
+<div class="outline-text-4" id="text-3-3-2">
+<p>
+(<a href="http://easwy.com/blog/archives/advanced-vim-skills-use-ctags-tag-file/">link</a>)
+C-[: jump to definition
+C-t: go back
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-3-4" class="outline-3">
+<h3 id="sec-3-4"><span class="section-number-3">3.4</span> DoctorJs&#xa0;&#xa0;&#xa0;<span class="tag"><span class="cancelled">cancelled</span></span></h3>
+<div class="outline-text-3" id="text-3-4">
+<p>
+(<a href="https://github.com/mozilla/doctorjs">link</a>)
+</p>
+</div>
+</div>
+<div id="outline-container-sec-3-5" class="outline-3">
+<h3 id="sec-3-5"><span class="section-number-3">3.5</span> jsctags</h3>
+<div class="outline-text-3" id="text-3-5">
+<p>
+(<a href="https://github.com/ramitos/jsctags">link</a>)
+working with vim, depends on <a href="vim.html">tern</a> (refer to <a href="vim.html">Tagbar</a>)
+</p>
+</div>
+<div id="outline-container-sec-3-5-1" class="outline-4">
+<h4 id="sec-3-5-1"><span class="section-number-4">3.5.1</span> Intallation</h4>
+<div class="outline-text-4" id="text-3-5-1">
+<div class="org-src-container">
+
+<pre class="src src-example">npm install -g git+https://github.com/ramitos/jsctags.git
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-3-5-2" class="outline-4">
+<h4 id="sec-3-5-2"><span class="section-number-4">3.5.2</span> Usage with vim</h4>
+<div class="outline-text-4" id="text-3-5-2">
+<p>
+If you'd like to take a JavaScript project and generate a tags file that Vim can parse, you can use the below command. It searches your directory for any .js files, excluding ./node<sub>modules</sub>, formats the tags correctly for Vim and outputs them into tags.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-example">find . -type f -iregex .*\.js$ -not -path "./node_modules/*" -exec jsctags {} -f \; | sed '/^$/d' | sort &gt; tags
+</pre>
+</div>
+
+<p>
+If you would like tags generated for files within node<sub>modules</sub>/, just remove the -not -path "./node<sub>modules</sub>/* part of the command:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-example">find . -type f -iregex .*\.js$ -exec jsctags {} -f \; | sed '/^$/d' | sort &gt; tags
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> Technology Trends</h2>
+<div class="outline-text-2" id="text-4">
+</div><div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1"><span class="section-number-3">4.1</span> <a href="http://www.solidot.org/story?sid=46284">一秒启动Linux</a>&#xa0;&#xa0;&#xa0;<span class="tag"><span class="linux">linux</span>&#xa0;<span class="automobile">automobile</span>&#xa0;<span class="booting">booting</span></span></h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+在欧洲举行的嵌入式Linux会议上，德国公司Linutronix 的Jan Altenberg<a href="http://www.phoronix.com/scan.php?page=news_item&px=Booting-Linux-1-Second&utm_source=feedburner&utm_medium=feed&utm_campaign=Feed%253A+Phoronix+%2528Phoronix%2529">介绍了</a>如何一秒启动Linux。一秒启动对于汽车等应用环境十分有用。使用Atmel AT91 ARM9 SoC和NAND flash存储器，运行Angstrom Linux的标准启动时间是11秒，简单优化后可以降低到8秒，深入广泛的修改包括内核配置修改和命令行调整，可以将启动时间减少到 656毫秒。具体细节可浏览他的<a href="http://elinux.org/images/9/97/Boot_one_second_altenberg.pdf">演讲报告</a>（PDF）。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> Linux on MacBook Pro</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+Model: MacBook Pro A1150 [ME: failed because this model (MacBook Pro1,1) is too old.]
+</p>
+</div>
+<div id="outline-container-sec-5-1" class="outline-3">
+<h3 id="sec-5-1"><span class="section-number-3">5.1</span> Install ubuntu on Macbook Pro</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+refer to <a href="http://linux.cn/article-3245-1.html">如何在MacBook Pro Retina上安装Linux</a>.
+</p>
+</div>
+<div id="outline-container-sec-5-1-1" class="outline-4">
+<h4 id="sec-5-1-1"><span class="section-number-4">5.1.1</span> How to create a bootable USB stick on OS X</h4>
+<div class="outline-text-4" id="text-5-1-1">
+<p>
+(<a href="http://www.ubuntu.com/download/desktop/create-a-usb-stick-on-mac-osx">link</a>)
+</p>
+</div>
+<ol class="org-ol"><li><a id="sec-5-1-1-1" name="sec-5-1-1-1"></a>1. Download ubuntu desktop<br  /><div class="outline-text-5" id="text-5-1-1-1">
+<p>
+go to <a href="http://www.ubuntu.com/download/desktop">http://www.ubuntu.com/download/desktop</a>
+</p>
+</div>
+</li>
+<li><a id="sec-5-1-1-2" name="sec-5-1-1-2"></a>2. Open the terminal<br  /></li>
+<li><a id="sec-5-1-1-3" name="sec-5-1-1-3"></a>3. Convert the .iso file to .img<br  /><div class="outline-text-5" id="text-5-1-1-3">
+<p>
+use the convert option of <code>hdiutil</code>
+</p>
+<div class="org-src-container">
+
+<pre class="src src-example">hdiutil convert -format UDRW -o ~/path/to/target.img ~/path/to/ubuntu.iso
+</pre>
+</div>
+</div>
+</li>
+<li><a id="sec-5-1-1-4" name="sec-5-1-1-4"></a>4. Run disktuil to get the current list of devices<br  /><div class="outline-text-5" id="text-5-1-1-4">
+<div class="org-src-container">
+
+<pre class="src src-example">diskutil list
+</pre>
+</div>
+</div>
+</li>
+<li><a id="sec-5-1-1-5" name="sec-5-1-1-5"></a>5. Insert your flash media<br  /></li>
+<li><a id="sec-5-1-1-6" name="sec-5-1-1-6"></a>6. Run diskutil again and determine the device node assigned to your flash media<br  /><div class="outline-text-5" id="text-5-1-1-6">
+<p>
+[ME: /dev/disk1]
+</p>
+</div>
+</li>
+<li><a id="sec-5-1-1-7" name="sec-5-1-1-7"></a>7. Run diskutil to unmount your flash media<br  /><div class="outline-text-5" id="text-5-1-1-7">
+<div class="org-src-container">
+
+<pre class="src src-example">diskutil unmountDisk /dev/disk1
+</pre>
+</div>
+</div>
+</li>
+<li><a id="sec-5-1-1-8" name="sec-5-1-1-8"></a>8. Write .img to your flash medi<br  /><div class="outline-text-5" id="text-5-1-1-8">
+<div class="org-src-container">
+
+<pre class="src src-example">sudo dd if=/path/to/downloaded.img of=/dev/rdisk1 bs=1m
+</pre>
+</div>
+<p>
+(replace /path/to/downloaded.img with the path where the image file is located; for example, ./ubuntu.img or ./ubuntu.dmg).
+</p>
+
+<ul class="org-ul">
+<li>Using <code>/dev/rdisk</code> instead of <code>/dev/disk</code> may be faster
+</li>
+<li>If you see the error dd: Invalid number '1m', you are using GNU dd. Use the same command but replace <code>bs=1m</code> with <code>bs=1M</code>
+</li>
+<li>If you see the error dd: /dev/diskN: Resource busy, make sure the disk is not in use. Start the 'Disk Utility.app' and unmount (don't eject) the drive
+</li>
+</ul>
+</div>
+</li>
+<li><a id="sec-5-1-1-9" name="sec-5-1-1-9"></a>9. Eject your flash media<br  /><div class="outline-text-5" id="text-5-1-1-9">
+<div class="org-src-container">
+
+<pre class="src src-example">diskutil eject /dev/disk1
+</pre>
+</div>
+</div>
+</li>
+<li><a id="sec-5-1-1-10" name="sec-5-1-1-10"></a>10. Restart your MacBook and press Alt/Option key while it is restarting to choose the USB stick.<br  /></li></ol>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6"><span class="section-number-2">6</span> Linux on Dell Desktop</h2>
+<div class="outline-text-2" id="text-6">
+</div><div id="outline-container-sec-6-1" class="outline-3">
+<h3 id="sec-6-1"><span class="section-number-3">6.1</span> Install ubuntu on dell desktop</h3>
+<div class="outline-text-3" id="text-6-1">
+</div><div id="outline-container-sec-6-1-1" class="outline-4">
+<h4 id="sec-6-1-1"><span class="section-number-4">6.1.1</span> 0. sync linuxhome</h4>
+</div>
+<div id="outline-container-sec-6-1-2" class="outline-4">
+<h4 id="sec-6-1-2"><span class="section-number-4">6.1.2</span> 1. tmux</h4>
+<div class="outline-text-4" id="text-6-1-2">
+</div><ol class="org-ol"><li><a id="sec-6-1-2-1" name="sec-6-1-2-1"></a>1. download libevent<br  /><div class="outline-text-5" id="text-6-1-2-1">
+<p>
+refer to <a href="tmux.html">1. error msg: libevent not found</a>
+</p>
+</div>
+</li>
+<li><a id="sec-6-1-2-2" name="sec-6-1-2-2"></a>2. download libncurses<br  /></li>
+<li><a id="sec-6-1-2-3" name="sec-6-1-2-3"></a>3. download and make tmux<br  /><div class="outline-text-5" id="text-6-1-2-3">
+<p>
+refer to tmux official site README
+</p>
+</div>
+</li></ol>
+</div>
+<div id="outline-container-sec-6-1-3" class="outline-4">
+<h4 id="sec-6-1-3"><span class="section-number-4">6.1.3</span> 2. emacs</h4>
+<div class="outline-text-4" id="text-6-1-3">
+</div><ol class="org-ol"><li><a id="sec-6-1-3-1" name="sec-6-1-3-1"></a>1. get redguardtoo's emacs settings<br  /><div class="outline-text-5" id="text-6-1-3-1">
+<div class="org-src-container">
+
+<pre class="src src-example">cd ~
+git clone https://github.com/redguardtoo/emacs.d.git .emacs.d
+</pre>
+</div>
+</div>
+</li>
+<li><a id="sec-6-1-3-2" name="sec-6-1-3-2"></a>2. overwrite .emacs.d/init.el with my own one<br  /></li>
+<li><a id="sec-6-1-3-3" name="sec-6-1-3-3"></a>3. copy eim to site-lisp/<br  /></li>
+<li><a id="sec-6-1-3-4" name="sec-6-1-3-4"></a>4. run emacs<br  /></li></ol>
+</div>
+<div id="outline-container-sec-6-1-4" class="outline-4">
+<h4 id="sec-6-1-4"><span class="section-number-4">6.1.4</span> 3. vim</h4>
+<div class="outline-text-4" id="text-6-1-4">
+</div><ol class="org-ol"><li><a id="sec-6-1-4-1" name="sec-6-1-4-1"></a>1. iinstall vim<br  /></li>
+<li><a id="sec-6-1-4-2" name="sec-6-1-4-2"></a>2. install spf13-vim<br  /><div class="outline-text-5" id="text-6-1-4-2">
+<p>
+refer to <a href="vim.html">Linux, *nix, Mac OSX Installation</a>
+</p>
+</div>
+</li>
+<li><a id="sec-6-1-4-3" name="sec-6-1-4-3"></a>3. run vim<br  /></li></ol>
+</div>
+<div id="outline-container-sec-6-1-5" class="outline-4">
+<h4 id="sec-6-1-5"><span class="section-number-4">6.1.5</span> 4. nodejs</h4>
+<div class="outline-text-4" id="text-6-1-5">
+<p>
+refer to <a href="book-web-dev-with-node-and-express.html">Getting Node</a>.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-7" class="outline-2">
+<h2 id="sec-7"><span class="section-number-2">7</span> Resources</h2>
+<div class="outline-text-2" id="text-7">
+</div><div id="outline-container-sec-7-1" class="outline-3">
+<h3 id="sec-7-1"><span class="section-number-3">7.1</span> Community / Forums</h3>
+<div class="outline-text-3" id="text-7-1">
+</div><div id="outline-container-sec-7-1-1" class="outline-4">
+<h4 id="sec-7-1-1"><span class="section-number-4">7.1.1</span> Ubuntu China</h4>
+<div class="outline-text-4" id="text-7-1-1">
+<p>
+(<a href="http://forum.ubuntu.org.cn/viewforum.php?f=141">link</a>)
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-7-2" class="outline-3">
+<h3 id="sec-7-2"><span class="section-number-3">7.2</span> aliyun ubuntu mirror</h3>
+<div class="outline-text-3" id="text-7-2">
+<p>
+Refer to <a href="http://mirrors.aliyun.com/help/ubuntu">http://mirrors.aliyun.com/help/ubuntu</a>.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-8" class="outline-2">
+<h2 id="sec-8"><span class="section-number-2">8</span> Issues &amp; Solutions</h2>
+<div class="outline-text-2" id="text-8">
+</div><div id="outline-container-sec-8-1" class="outline-3">
+<h3 id="sec-8-1"><span class="section-number-3">8.1</span> how to install newest clang 3.8 by apt</h3>
+<div class="outline-text-3" id="text-8-1">
+<p>
+(<a href="http://unix.stackexchange.com/questions/230697/how-to-install-newest-clang-3-8-by-apt">http://unix.stackexchange.com/questions/230697/how-to-install-newest-clang-3-8-by-apt</a>)
+</p>
+
+<p>
+Required by YouCompleteMe
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">sudo apt-add-repository <span style="color: #E6DB74;">"deb http://llvm.org/apt/trusty/ llvm-toolchain-trusty-3.8 main"</span>
+
+sudo apt-get update
+
+sudo apt-get install clang-3.8 lldb-3.8
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-8-2" class="outline-3">
+<h3 id="sec-8-2"><span class="section-number-3">8.2</span> How to install 'add-apt-repository' using the terminal? [duplicate]</h3>
+<div class="outline-text-3" id="text-8-2">
+<p>
+(<a href="http://askubuntu.com/questions/493460/how-to-install-add-apt-repository-using-the-terminal">http://askubuntu.com/questions/493460/how-to-install-add-apt-repository-using-the-terminal</a>)
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">sudo apt-get install software-properties-common
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-8-3" class="outline-3">
+<h3 id="sec-8-3"><span class="section-number-3">8.3</span> ubuntu下能否不重新编译vim而添加lua等支持？</h3>
+<div class="outline-text-3" id="text-8-3">
+<p>
+(<a href="http://forum.ubuntu.org.cn/viewtopic.php?f=68&t=452559">http://forum.ubuntu.org.cn/viewtopic.php?f=68&t=452559</a>)
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">$ sudo add-apt-repository ppa:fcwu-tw/ppa
+$ sudo apt-get update
+$ sudo apt-get install vim
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-9" class="outline-2">
+<h2 id="sec-9"><span class="section-number-2">9</span> Install ubuntu 16.04 LTS on x230t</h2>
+<div class="outline-text-2" id="text-9">
+</div><div id="outline-container-sec-9-1" class="outline-3">
+<h3 id="sec-9-1"><span class="section-number-3">9.1</span> Install sogou input method</h3>
+<div class="outline-text-3" id="text-9-1">
+</div><div id="outline-container-sec-9-1-1" class="outline-4">
+<h4 id="sec-9-1-1"><span class="section-number-4">9.1.1</span> couldn't install sogou input method</h4>
+<div class="outline-text-4" id="text-9-1-1">
+<p>
+Issue: error message
+</p>
+<div class="org-src-container">
+
+<pre class="src src-text">This software comes from a 3rd party and may contain non-free components.
+</pre>
+</div>
+
+<p>
+Solution:
+</p>
+<ol class="org-ol">
+<li>install gdebi:
+</li>
+</ol>
+<div class="org-src-container">
+
+<pre class="src src-sh">sudo apt-get install gdebi
+</pre>
+</div>
+<ol class="org-ol">
+<li>install sogou using gdebi
+</li>
+<li>start updating automatically
+</li>
+<li>logout
+</li>
+<li>add sogou input method in input configuration (top right)
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-9-2" class="outline-3">
+<h3 id="sec-9-2"><span class="section-number-3">9.2</span> Install chrome</h3>
+<div class="outline-text-3" id="text-9-2">
+<p>
+Download, then use gdebi to install it.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-9-3" class="outline-3">
+<h3 id="sec-9-3"><span class="section-number-3">9.3</span> Swap ctrl &amp; capslock</h3>
+<div class="outline-text-3" id="text-9-3">
+<div class="org-src-container">
+
+<pre class="src src-sh">setxkbmap -option <span style="color: #E6DB74;">"ctrl:swapcaps"</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-9-4" class="outline-3">
+<h3 id="sec-9-4"><span class="section-number-3">9.4</span> Install git</h3>
+<div class="outline-text-3" id="text-9-4">
+<div class="org-src-container">
+
+<pre class="src src-sh">sudo apt-get install git
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-9-5" class="outline-3">
+<h3 id="sec-9-5"><span class="section-number-3">9.5</span> Install docker</h3>
+<div class="outline-text-3" id="text-9-5">
+<p>
+Follow the official <a href="https://docs.docker.com/engine/installation/linux/ubuntulinux/">guide</a>.
+</p>
+
+<p>
+<b><b>Note</b></b>: </p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: fengyz</p>
+<p class="date">Created: 2017-01-14 Sat 22:49</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

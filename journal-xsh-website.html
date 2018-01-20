@@ -1,0 +1,1028 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>journal-xsh-website</title>
+<!-- 2017-05-18 Thu 14:01 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="fengyz" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="solarized-light.min.css" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">journal-xsh-website</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">Old (before 2016/07/15)</a>
+<ul>
+<li><a href="#sec-1-1">Create app and first controller</a>
+<ul>
+<li><a href="#sec-1-1-1">Create new project</a></li>
+<li><a href="#sec-1-1-2">Modify Gemfile and install gems</a>
+<ul>
+<li><a href="#sec-1-1-2-1">Re-run bundle (bundle install)</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-1-3">Test-run</a></li>
+<li><a href="#sec-1-1-4">Add a hello action to the Application controller</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-2">Add version control</a>
+<ul>
+<li><a href="#sec-1-2-1">Initialize repository</a></li>
+<li><a href="#sec-1-2-2">Create new repository in project xiaoshihou</a></li>
+<li><a href="#sec-1-2-3">Add remote repository and push code</a></li>
+<li><a href="#sec-1-2-4">Workflow: branch, edit, commit, merge</a>
+<ul>
+<li><a href="#sec-1-2-4-1">Branch</a></li>
+<li><a href="#sec-1-2-4-2">Edit</a></li>
+<li><a href="#sec-1-2-4-3">Commit</a></li>
+<li><a href="#sec-1-2-4-4">Merge</a>
+<ul>
+<li><a href="#sec-1-2-4-4-1">Abandon topic branch changes</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-2-4-5">Push</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#sec-1-3">Set up domain name xsh.brawn.com.cn</a>
+<ul>
+<li><a href="#sec-1-3-1">Add second-level domain name resolution</a></li>
+<li><a href="#sec-1-3-2">Copy project-55 conf file to xsh-website.conf</a></li>
+<li><a href="#sec-1-3-3">Modify /etc/nginx/sites-enabled/xsh-website.conf</a></li>
+<li><a href="#sec-1-3-4">Restart nginx</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-4">Set up automatic deployment using Capistrano</a>
+<ul>
+<li><a href="#sec-1-4-1">Initialize Capistrano</a>
+<ul>
+<li><a href="#sec-1-4-1-1">Install required gems</a></li>
+<li><a href="#sec-1-4-1-2">Initialize Capistrano</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-4-2">Edit Capfile</a></li>
+<li><a href="#sec-1-4-3">Edit config/deploy.rb</a>
+<ul>
+<li><a href="#sec-1-4-3-1">Remove the <code>lock</code> statement</a></li>
+<li><a href="#sec-1-4-3-2">Set <code>application</code> to your application's name</a></li>
+<li><a href="#sec-1-4-3-3">Set <code>repo_url</code> to your Git repository's URL</a></li>
+<li><a href="#sec-1-4-3-4">If your app is a Rails app, set <code>linked_files</code> and <code>linked_dirs</code></a></li>
+<li><a href="#sec-1-4-3-5">If your server uses RVM, set <code>rvm_ruby_version</code> to the Ruby version that your application uses</a></li>
+<li><a href="#sec-1-4-3-6">Set configuration values for Passenger</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-4-4">Editing config/deploy/production.rb</a>
+<ul>
+<li><a href="#sec-1-4-4-1">use the simple role syntax</a></li>
+<li><a href="#sec-1-4-4-2">edit the <code>role</code> code</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-4-5">Prepare the server</a>
+<ul>
+<li><a href="#sec-1-4-5-1">Install Git</a></li>
+<li><a href="#sec-1-4-5-2">Set up a user account for deployment</a></li>
+<li><a href="#sec-1-4-5-3">Set up a basic directory structure</a></li>
+<li><a href="#sec-1-4-5-4">Create initial configuration files</a></li>
+<li><a href="#sec-1-4-5-5">Configure Passenger</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-4-6">Deploy</a>
+<ul>
+<li><a href="#sec-1-4-6-1">Issues &amp; Solutions</a>
+<ul>
+<li><a href="#sec-1-4-6-1-1">Error while running bundle install</a></li>
+<li><a href="#sec-1-4-6-1-2">While visiting deployed site: Incomplete response received from application</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#sec-1-5">NEW APPROACH: DOCKERIZATION (2016-06-21)</a></li>
+<li><a href="#sec-1-6">Create basic ruby docker image</a>
+<ul>
+<li><a href="#sec-1-6-1">Add Dockerfile (#1)</a></li>
+<li><a href="#sec-1-6-2">Install docker-machine on mba #2</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#sec-2">New (from 2016/07/15)</a>
+<ul>
+<li><a href="#sec-2-1">clone infinityhorizons-website to ih/website as a reference&#xa0;&#xa0;&#xa0;<span class="tag"><span class="local">local</span>&#xa0;<span class="dev">dev</span></span></a></li>
+<li><a href="#sec-2-2">clone infinityhorizons-docs to ih/docs as a reference&#xa0;&#xa0;&#xa0;<span class="tag"><span class="local">local</span>&#xa0;<span class="dev">dev</span></span></a></li>
+<li><a href="#sec-2-3">create the container "rails-dev" by running the image centurylink/ubuntu-rails&#xa0;&#xa0;&#xa0;<span class="tag"><span class="local">local</span>&#xa0;<span class="dev">dev</span></span></a>
+<ul>
+<li><a href="#sec-2-3-1">try alpine-rails first</a></li>
+<li><a href="#sec-2-3-2">then try ubuntu-rails first</a></li>
+</ul>
+</li>
+<li><a href="#sec-2-4">run a volume container "data" to hold database</a></li>
+<li><a href="#sec-2-5">run a postgres container</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">Old (before 2016/07/15)</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1">Create app and first controller</h3>
+<div class="outline-text-3" id="text-1-1">
+</div><div id="outline-container-sec-1-1-1" class="outline-4">
+<h4 id="sec-1-1-1">Create new project</h4>
+<div class="outline-text-4" id="text-1-1-1">
+<div class="org-src-container">
+
+<pre class="src src-sh">rails new project-55 4.2.6
+</pre>
+</div>
+
+<p>
+<b>Note</b>: Use Ctrl-C to interrupt bundle install
+</p>
+</div>
+</div>
+<div id="outline-container-sec-1-1-2" class="outline-4">
+<h4 id="sec-1-1-2">Modify Gemfile and install gems</h4>
+<div class="outline-text-4" id="text-1-1-2">
+<div class="org-src-container">
+
+<pre class="src src-ruby"><span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">Use infinity-horizon Gemfile as template </span>
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">#source 'https://ruby.taobao.org'</span>
+source <span style="color: #E6DB74;">'https://rubygems.org'</span>
+
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">Bundle edge Rails instead: gem 'rails', github: 'rails/rails'</span>
+gem <span style="color: #E6DB74;">'rails'</span>, <span style="color: #E6DB74;">'4.2.6'</span>
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">Use sqlite3 as the database for Active Record</span>
+gem <span style="color: #E6DB74;">'sqlite3'</span>
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">Use SCSS for stylesheets</span>
+gem <span style="color: #E6DB74;">'sass-rails'</span>, <span style="color: #E6DB74;">'~&gt; 5.0'</span>
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">Use Uglifier as compressor for JavaScript assets</span>
+gem <span style="color: #E6DB74;">'uglifier'</span>, <span style="color: #E6DB74;">'&gt;= 1.3.0'</span>
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">Use CoffeeScript for .coffee assets and views</span>
+gem <span style="color: #E6DB74;">'coffee-rails'</span>, <span style="color: #E6DB74;">'~&gt; 4.1.0'</span>
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">See https://github.com/rails/execjs#readme for more supported runtimes</span>
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">gem 'therubyracer', platforms: :ruby</span>
+
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">Use jquery as the JavaScript library</span>
+gem <span style="color: #E6DB74;">'jquery-rails'</span>
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks</span>
+gem <span style="color: #E6DB74;">'turbolinks'</span>
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder</span>
+gem <span style="color: #E6DB74;">'jbuilder'</span>, <span style="color: #E6DB74;">'~&gt; 2.0'</span>
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">bundle exec rake doc:rails generates the API under doc/api.</span>
+gem <span style="color: #E6DB74;">'sdoc'</span>, <span style="color: #E6DB74;">'~&gt; 0.4.0'</span>, <span style="color: #AE81FF;">group</span>: <span style="color: #AE81FF;">:doc</span>
+
+<span style="color: #465457; font-style: italic;">## </span><span style="color: #465457; font-style: italic;">BEGIN: Custom gems</span>
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">i18n support</span>
+gem <span style="color: #E6DB74;">'rails-i18n'</span>
+
+gem <span style="color: #E6DB74;">'bootstrap-sass'</span>
+
+<span style="color: #465457; font-style: italic;">## </span><span style="color: #465457; font-style: italic;">END: Custom gems</span>
+
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">pretty print</span>
+gem <span style="color: #E6DB74;">'awesome_print'</span>
+
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">Use ActiveModel has_secure_password</span>
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">gem 'bcrypt', '~&gt; 3.1.7'</span>
+
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">Use Unicorn as the app server</span>
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">gem 'unicorn'</span>
+
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">Use Capistrano for deployment</span>
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">gem 'capistrano-rails', group: :development</span>
+
+group <span style="color: #AE81FF;">:development</span>, <span style="color: #AE81FF;">:test</span> <span style="color: #66D9EF;">do</span>
+  <span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">Call 'byebug' anywhere in the code to stop execution and get a debugger console</span>
+  gem <span style="color: #E6DB74;">'byebug'</span>
+
+  <span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring</span>
+  gem <span style="color: #E6DB74;">'spring'</span>
+<span style="color: #66D9EF;">end</span>
+
+group <span style="color: #AE81FF;">:test</span> <span style="color: #66D9EF;">do</span>
+  gem <span style="color: #E6DB74;">'minitest-reporters'</span>, <span style="color: #E6DB74;">'1.0.5'</span>
+  gem <span style="color: #E6DB74;">'mini_backtrace'</span>, <span style="color: #E6DB74;">'0.1.3'</span>
+  gem <span style="color: #E6DB74;">'guard-minitest'</span>, <span style="color: #E6DB74;">'2.3.1'</span>
+<span style="color: #66D9EF;">end</span>
+
+group <span style="color: #AE81FF;">:development</span> <span style="color: #66D9EF;">do</span>
+  <span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">Access an IRB console on exception pages or by using &lt;%= console %&gt; in views</span>
+  gem <span style="color: #E6DB74;">'web-console'</span>, <span style="color: #E6DB74;">'~&gt; 3.0'</span>
+
+  gem <span style="color: #E6DB74;">'capistrano'</span>
+  gem <span style="color: #E6DB74;">'capistrano-bundler'</span>
+  gem <span style="color: #E6DB74;">'capistrano-passenger'</span>, <span style="color: #E6DB74;">'&gt;= 0.1.1'</span>
+
+  <span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">Remove the following if your app does not use Rails</span>
+  gem <span style="color: #E6DB74;">'capistrano-rails'</span>
+
+  <span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">Remove the following if your server does not use RVM</span>
+  gem <span style="color: #E6DB74;">'capistrano-rvm'</span>
+<span style="color: #66D9EF;">end</span>
+</pre>
+</div>
+<p>
+<b>Note</b>: 
+</p>
+<ul class="org-ul">
+<li><a href="https://gems.ruby-china.org">https://gems.ruby-china.org</a> is too slow, <a href="https://ruby.taobao.org">https://ruby.taobao.org</a> is preferred!
+</li>
+<li>Since I use vpn, so the original <a href="https://rubygems.org">https://rubygems.org</a> is kept.
+</li>
+<li>Modify rails version to 4.2.6
+</li>
+</ul>
+</div>
+
+<div id="outline-container-sec-1-1-2-1" class="outline-5">
+<h5 id="sec-1-1-2-1">Re-run bundle (bundle install)</h5>
+</div>
+</div>
+<div id="outline-container-sec-1-1-3" class="outline-4">
+<h4 id="sec-1-1-3">Test-run</h4>
+<div class="outline-text-4" id="text-1-1-3">
+<div class="org-src-container">
+
+<pre class="src src-sh">rails s
+</pre>
+</div>
+
+<p>
+Then visit <a href="http://localhost:3000">http://localhost:3000</a>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-1-4" class="outline-4">
+<h4 id="sec-1-1-4">Add a hello action to the Application controller</h4>
+<div class="outline-text-4" id="text-1-1-4">
+<p>
+app/controllers/application<sub>controller</sub>.rb
+</p>
+<div class="org-src-container">
+
+<pre class="src src-ruby"><span style="color: #66D9EF;">class</span> <span style="color: #66D9EF;">ApplicationController</span> &lt; <span style="color: #66D9EF;">ActionController</span>::<span style="color: #66D9EF;">Base</span>
+  <span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">Prevent CSRF attacks by raising an exception.</span>
+  <span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">For APIs, you may want to use :null_session instead.</span>
+  protect_from_forgery <span style="color: #AE81FF;">with</span>: <span style="color: #AE81FF;">:exception</span>
+
+  <span style="color: #66D9EF;">def</span> <span style="color: #F92672; font-style: italic;">hello</span>
+     render <span style="color: #AE81FF;">:text</span> =&gt; <span style="color: #E6DB74;">'Hello World!'</span>
+     <span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">or</span>
+     <span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">render text: "Hello, world!"</span>
+  <span style="color: #66D9EF;">end</span>
+<span style="color: #66D9EF;">end</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2">Add version control</h3>
+<div class="outline-text-3" id="text-1-2">
+</div><div id="outline-container-sec-1-2-1" class="outline-4">
+<h4 id="sec-1-2-1">Initialize repository</h4>
+<div class="outline-text-4" id="text-1-2-1">
+<div class="org-src-container">
+
+<pre class="src src-sh">git init
+git add .
+git commit -m <span style="color: #E6DB74;">'Initialize repo'</span>
+</pre>
+</div>
+
+<p>
+<b>Tip</b>: Uodo the chages using git checkout -f to force overwriting the current changes:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">git checkout -f
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-1-2-2" class="outline-4">
+<h4 id="sec-1-2-2">Create new repository in project xiaoshihou</h4>
+</div>
+
+<div id="outline-container-sec-1-2-3" class="outline-4">
+<h4 id="sec-1-2-3">Add remote repository and push code</h4>
+<div class="outline-text-4" id="text-1-2-3">
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #A6E22E;">cd</span> /path/to/my/repo
+git remote add origin git@bitbucket.org:bread-and-wine/xiaoshihou-website.git
+git push -u origin --all <span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">pushes up the repo and its refs for the first time</span>
+git push origin --tags <span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">pushes up any tags</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-1-2-4" class="outline-4">
+<h4 id="sec-1-2-4">Workflow: branch, edit, commit, merge</h4>
+<div class="outline-text-4" id="text-1-2-4">
+<p>
+Task: Modify README.md
+</p>
+</div>
+<div id="outline-container-sec-1-2-4-1" class="outline-5">
+<h5 id="sec-1-2-4-1">Branch</h5>
+<div class="outline-text-5" id="text-1-2-4-1">
+<div class="org-src-container">
+
+<pre class="src src-sh">git checkout -b modify-README
+
+git branch
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2-4-2" class="outline-5">
+<h5 id="sec-1-2-4-2">Edit</h5>
+<div class="outline-text-5" id="text-1-2-4-2">
+<div class="org-src-container">
+
+<pre class="src src-sh">git mv README.rdoc README.md
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2-4-3" class="outline-5">
+<h5 id="sec-1-2-4-3">Commit</h5>
+<div class="outline-text-5" id="text-1-2-4-3">
+<div class="org-src-container">
+
+<pre class="src src-sh">git add .
+git commit -m <span style="color: #E6DB74;">'Improve the README file'</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2-4-4" class="outline-5">
+<h5 id="sec-1-2-4-4">Merge</h5>
+<div class="outline-text-5" id="text-1-2-4-4">
+<div class="org-src-container">
+
+<pre class="src src-sh">git co master
+git merge modify-README
+git branch -d modift-README
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2-4-4-1" class="outline-6">
+<h6 id="sec-1-2-4-4-1">Abandon topic branch changes</h6>
+<div class="outline-text-6" id="text-1-2-4-4-1">
+<div class="org-src-container">
+
+<pre class="src src-sh">git co -b topic-branch
+...
+git co master
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">better keep history for future statistics</span>
+<span style="color: #465457; font-style: italic;">#</span><span style="color: #465457; font-style: italic;">git branch -D topic-branch</span>
+</pre>
+</div>
+
+<p>
+<b>Tip</b>: -D flag will delete the branch even though we haven't merged in the changes.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2-4-5" class="outline-5">
+<h5 id="sec-1-2-4-5">Push</h5>
+<div class="outline-text-5" id="text-1-2-4-5">
+<div class="org-src-container">
+
+<pre class="src src-sh">git push --all
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3">Set up domain name xsh.brawn.com.cn</h3>
+<div class="outline-text-3" id="text-1-3">
+</div><div id="outline-container-sec-1-3-1" class="outline-4">
+<h4 id="sec-1-3-1">Add second-level domain name resolution</h4>
+<div class="outline-text-4" id="text-1-3-1">
+<p>
+Log on to aliyun console, add a A record with value '*'.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-1-3-2" class="outline-4">
+<h4 id="sec-1-3-2">Copy project-55 conf file to xsh-website.conf</h4>
+</div>
+<div id="outline-container-sec-1-3-3" class="outline-4">
+<h4 id="sec-1-3-3">Modify /etc/nginx/sites-enabled/xsh-website.conf</h4>
+<div class="outline-text-4" id="text-1-3-3">
+<div class="org-src-container">
+
+<pre class="src src-example">server {
+    listen 80;
+    server_name xsh.brawn.com.cn;
+
+    # Tell Nginx and Passenger where your app's 'public' directory is
+    root /var/www/xsh-website/current/public;
+
+    # Turn on Passenger
+    passenger_enabled on;
+    passenger_ruby /usr/local/rvm/gems/ruby-2.3.0/wrappers/ruby;
+}
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-1-3-4" class="outline-4">
+<h4 id="sec-1-3-4">Restart nginx</h4>
+<div class="outline-text-4" id="text-1-3-4">
+<div class="org-src-container">
+
+<pre class="src src-sh">sudo service nginx restart
+</pre>
+</div>
+
+<p>
+<b>Note</b>: Visiting xsh.brawn.com.cn will result in a 404 error.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-1-4" class="outline-3">
+<h3 id="sec-1-4">Set up automatic deployment using Capistrano</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+(<a href="https://www.phusionpassenger.com/library/deploy/nginx/automating_app_updates/ruby/">https://www.phusionpassenger.com/library/deploy/nginx/automating_app_updates/ruby/</a>)
+</p>
+</div>
+<div id="outline-container-sec-1-4-1" class="outline-4">
+<h4 id="sec-1-4-1">Initialize Capistrano</h4>
+<div class="outline-text-4" id="text-1-4-1">
+</div><div id="outline-container-sec-1-4-1-1" class="outline-5">
+<h5 id="sec-1-4-1-1">Install required gems</h5>
+<div class="outline-text-5" id="text-1-4-1-1">
+<p>
+Related gems have been already added to Gemfile (<i>Modify Gemfile and install gems</i>)
+</p>
+</div>
+</div>
+<div id="outline-container-sec-1-4-1-2" class="outline-5">
+<h5 id="sec-1-4-1-2">Initialize Capistrano</h5>
+<div class="outline-text-5" id="text-1-4-1-2">
+<div class="org-src-container">
+
+<pre class="src src-sh">bundle exec cap install
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-1-4-2" class="outline-4">
+<h4 id="sec-1-4-2">Edit Capfile</h4>
+<div class="outline-text-4" id="text-1-4-2">
+<p>
+Capfile is the Capistrano entry point. It defines what recipes to load. You must edit it to load the recipes you need.
+</p>
+
+<p>
+We will want Capistrano to automatically run bundle install, and we will want Capistrano to automatically tell Passenger to restart our app. These are taken care of by the capistrano-bundler and capistrano-passenger recipes. So make sure that the following lines are uncommented:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-ruby"><span style="color: #A6E22E;">require</span> <span style="color: #E6DB74;">'capistrano/bundler'</span>
+<span style="color: #A6E22E;">require</span> <span style="color: #E6DB74;">'capistrano/passenger'</span>
+</pre>
+</div>
+
+<p>
+If your app is a Rails app, then uncomment the following lines to load the capistrano-rails recipe:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-ruby"><span style="color: #A6E22E;">require</span> <span style="color: #E6DB74;">'capistrano/rails/assets'</span>
+<span style="color: #A6E22E;">require</span> <span style="color: #E6DB74;">'capistrano/rails/migrations'</span>
+</pre>
+</div>
+
+<p>
+If your server uses RVM, then uncomment the following to activate the capistrano-rvm recipe:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-ruby"><span style="color: #A6E22E;">require</span> <span style="color: #E6DB74;">'capistrano/rvm'</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-4-3" class="outline-4">
+<h4 id="sec-1-4-3">Edit config/deploy.rb</h4>
+<div class="outline-text-4" id="text-1-4-3">
+<p>
+This file contains configuration values that control how the loaded recipes should do their jobs. It also defines additional commands to be executed on servers. You must edit it according to your situation.
+</p>
+</div>
+
+<div id="outline-container-sec-1-4-3-1" class="outline-5">
+<h5 id="sec-1-4-3-1">Remove the <code>lock</code> statement</h5>
+<div class="outline-text-5" id="text-1-4-3-1">
+<p>
+The statement is meant to lock down the Capistrano script to a certain Capistrano version. But Bundler already serves as a mechanism to lock down gem versions, so the lock statement is quite redundant here.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-4-3-2" class="outline-5">
+<h5 id="sec-1-4-3-2">Set <code>application</code> to your application's name</h5>
+<div class="outline-text-5" id="text-1-4-3-2">
+<p>
+Please note that this affects which directory Capistrano deploys to as explained earlier.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-ruby">set <span style="color: #AE81FF;">:application</span>, <span style="color: #E6DB74;">'xsh-website'</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-1-4-3-3" class="outline-5">
+<h5 id="sec-1-4-3-3">Set <code>repo_url</code> to your Git repository's URL</h5>
+<div class="outline-text-5" id="text-1-4-3-3">
+<div class="org-src-container">
+
+<pre class="src src-ruby">set <span style="color: #AE81FF;">:repo_url</span>, <span style="color: #E6DB74;">'git@bitbucket.org:bread-and-wine/xiaoshihou-website.git'</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-1-4-3-4" class="outline-5">
+<h5 id="sec-1-4-3-4">If your app is a Rails app, set <code>linked_files</code> and <code>linked_dirs</code></h5>
+<div class="outline-text-5" id="text-1-4-3-4">
+<div class="org-src-container">
+
+<pre class="src src-ruby">set <span style="color: #AE81FF;">:linked_files</span>, fetch(<span style="color: #AE81FF;">:linked_files</span>, []).push(<span style="color: #E6DB74;">'config/database.yml'</span>, <span style="color: #E6DB74;">'config/secrets.yml'</span>)
+set <span style="color: #AE81FF;">:linked_dirs</span>, fetch(<span style="color: #AE81FF;">:linked_dirs</span>, []).push(<span style="color: #E6DB74;">'log'</span>, <span style="color: #E6DB74;">'tmp/pids'</span>, <span style="color: #E6DB74;">'tmp/cache'</span>, <span style="color: #E6DB74;">'tmp/sockets'</span>, <span style="color: #E6DB74;">'vendor/bundle'</span>, <span style="color: #E6DB74;">'public/system'</span>, <span style="color: #E6DB74;">'public/uploads'</span>)
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-1-4-3-5" class="outline-5">
+<h5 id="sec-1-4-3-5">If your server uses RVM, set <code>rvm_ruby_version</code> to the Ruby version that your application uses</h5>
+<div class="outline-text-5" id="text-1-4-3-5">
+<div class="org-src-container">
+
+<pre class="src src-ruby"><span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">if your sever uses RVM, set ruby version that your applicatiaon uses</span>
+set <span style="color: #AE81FF;">:rvm_ruby_version</span>, <span style="color: #E6DB74;">'2.3.0'</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-1-4-3-6" class="outline-5">
+<h5 id="sec-1-4-3-6">Set configuration values for Passenger</h5>
+<div class="outline-text-5" id="text-1-4-3-6">
+<div class="org-src-container">
+
+<pre class="src src-ruby"><span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">set variables so that Capistrano can find Passenger</span>
+set <span style="color: #AE81FF;">:passenger_environment_variables</span>, { <span style="color: #AE81FF;">:path</span> =&gt; <span style="color: #E6DB74;">'/usr/bin:$PATH'</span>  }
+set <span style="color: #AE81FF;">:passenger_restart_command</span>, <span style="color: #E6DB74;">'/usr/bin/passenger-config restart-app'</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-4-4" class="outline-4">
+<h4 id="sec-1-4-4">Editing config/deploy/production.rb</h4>
+<div class="outline-text-4" id="text-1-4-4">
+<p>
+This file defines the servers that Capistrano should deploy to, in the form of SSH login information.
+</p>
+</div>
+
+<div id="outline-container-sec-1-4-4-1" class="outline-5">
+<h5 id="sec-1-4-4-1">use the simple role syntax</h5>
+<div class="outline-text-5" id="text-1-4-4-1">
+<p>
+Comment out the code that uses the extended server syntax:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-ruby"><span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">Make sure the following is commented out!</span>
+
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">server 'example.com', user: 'deploy', roles: %w{web app}, my_property: :my_value</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-4-4-2" class="outline-5">
+<h5 id="sec-1-4-4-2">edit the <code>role</code> code</h5>
+<div class="outline-text-5" id="text-1-4-4-2">
+<p>
+Specify your server's (or servers') host names. As username, you should specify the OS user account that your application uses (e.g. myappuser). (If you do not yet have an OS user account for your application, then that will be covered in the next step, Preparing the server(s).)
+</p>
+<div class="org-src-container">
+
+<pre class="src src-ruby">role <span style="color: #AE81FF;">:app</span>, <span style="color: #E6DB74;">%w{rails@brawn.com.cn}</span>
+role <span style="color: #AE81FF;">:web</span>, <span style="color: #E6DB74;">%w{rails@brawn.com.cn}</span>
+role <span style="color: #AE81FF;">:db</span>, <span style="color: #E6DB74;">%w{rails@brawn.com.cn}</span>
+</pre>
+</div>
+
+<p>
+If you have multiple servers, simply add them to the app and web roles (but not the db role, because that role dictates which server Rails database migrations are run on). For example:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-ruby"><span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">Multi-server example</span>
+role <span style="color: #AE81FF;">:app</span>, <span style="color: #E6DB74;">%w{myappuser@myserver.com myappuser@myserver2.com}</span>
+role <span style="color: #AE81FF;">:web</span>, <span style="color: #E6DB74;">%w{myappuser@myserver.com myappuser@myserver2.com}</span>
+role <span style="color: #AE81FF;">:db</span>,  <span style="color: #E6DB74;">%w{myappuser@myserver.com}</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-4-5" class="outline-4">
+<h4 id="sec-1-4-5">Prepare the server</h4>
+<div class="outline-text-4" id="text-1-4-5">
+<p>
+Please login to your server(s) as an administrator, then follow the following instructions.
+</p>
+</div>
+
+<div id="outline-container-sec-1-4-5-1" class="outline-5">
+<h5 id="sec-1-4-5-1">Install Git</h5>
+</div>
+
+<div id="outline-container-sec-1-4-5-2" class="outline-5">
+<h5 id="sec-1-4-5-2">Set up a user account for deployment</h5>
+<div class="outline-text-5" id="text-1-4-5-2">
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">Add user account</span>
+sudo adduser rails 
+
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">Setup initial SSH key</span>
+sudo mkdir -p ~rails/.ssh
+sudo sh -c <span style="color: #E6DB74;">"cat $HOME/.ssh/authorized_keys &gt;&gt; ~rails/.ssh/authorized_keys"</span>
+sudo chown -R rails: ~rails/.ssh
+sudo chmod 700 ~rails/.ssh
+sudo sh -c <span style="color: #E6DB74;">"chmod 600 ~rails/.ssh/*"</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-4-5-3" class="outline-5">
+<h5 id="sec-1-4-5-3">Set up a basic directory structure</h5>
+<div class="outline-text-5" id="text-1-4-5-3">
+<div class="org-src-container">
+
+<pre class="src src-sh">sudo mkdir -p /var/www/xsh-website/shared
+sudo chown rails: /var/www/xsh-website /var/www/xsh-website/shared
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-4-5-4" class="outline-5">
+<h5 id="sec-1-4-5-4">Create initial configuration files</h5>
+<div class="outline-text-5" id="text-1-4-5-4">
+<p>
+<b>Tip</b>: You can skip this step if your app is not a Rails app.
+</p>
+
+<p>
+If your app is a Rails app, then it expects a <code>config/database.yml</code> and a <code>config/secrets.yml</code>. The contents of these configuration files are identical on each server, are only known to the server(s) and persist across application releases. The shared directory is the perfect place to place them. And as configured before in <code>config/deploy.rb</code>, Capistrano will automatically create symlinks within the release directory to those files.
+</p>
+
+<p>
+On each server, create the <code>shared/config</code> directory and add <code>database.yml</code> and <code>secrets.yml</code> inside:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">sudo mkdir -p /var/www/xsh-website/shared/config
+touch /var/www/xsh-website/shared/config/database.yml
+touch /var/www/xsh-website/shared/config/secrets.yml
+</pre>
+</div>
+
+<p>
+Then fix and tighten permissions:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">sudo chown -R rails: /var/www/xsh-website/shared/config
+chmod 600 /var/www/xsh-website/shared/config/database.yml
+chmod 600 /var/www/xsh-website/shared/config/secrets.yml
+</pre>
+</div>
+
+<p>
+<b>Note</b>: duplicate the content of both files on development machine!
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-4-5-5" class="outline-5">
+<h5 id="sec-1-4-5-5">Configure Passenger</h5>
+<div class="outline-text-5" id="text-1-4-5-5">
+<p>
+As configured in <code>config/deploy.rb</code>, Capistrano will deploy app releases to <code>/var/www/myapp/releases</code>, with <code>/var/www/myapp/current</code> pointing to the latest release. So Passenger must be configured to serve the app from <code>/var/www/myapp/current/public</code>.
+</p>
+
+<p>
+Open the Nginx configuration file in which your app's <b>virtual host</b> is defined. Modify the <code>root</code> directive, and point it to <code>/var/www/xsh-website/current/public</code>. Notice the public part after /var/www/myapp/current. (Refer to <i>Modify /etc/nginx/sites-enabled/xsh-website.conf</i>)
+</p>
+
+<p>
+When done, restart Nginx (refer to <i>Restart nginx</i>).
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-4-6" class="outline-4">
+<h4 id="sec-1-4-6">Deploy</h4>
+<div class="outline-text-4" id="text-1-4-6">
+<div class="org-src-container">
+
+<pre class="src src-sh">bundle exec cap production deploy
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-1-4-6-1" class="outline-5">
+<h5 id="sec-1-4-6-1">Issues &amp; Solutions</h5>
+<div class="outline-text-5" id="text-1-4-6-1">
+</div><div id="outline-container-sec-1-4-6-1-1" class="outline-6">
+<h6 id="sec-1-4-6-1-1">Error while running bundle install</h6>
+<div class="outline-text-6" id="text-1-4-6-1-1">
+<p>
+S: modify gems repo to <a href="https://ruby.taobao.org">https://ruby.taobao.org</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-4-6-1-2" class="outline-6">
+<h6 id="sec-1-4-6-1-2">While visiting deployed site: Incomplete response received from application</h6>
+<div class="outline-text-6" id="text-1-4-6-1-2">
+<p>
+S: add secret key in secrets.yml.
+<b>Tip</b>: Use <code>bundle exec rake secret</code> to get secret key.
+</p>
+
+<p>
+Refer to <a href="http://stackoverflow.com/questions/29241053/incomplete-response-received-from-application-from-nginx-passenger">http://stackoverflow.com/questions/29241053/incomplete-response-received-from-application-from-nginx-passenger</a>.
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-5" class="outline-3">
+<h3 id="sec-1-5">NEW APPROACH: DOCKERIZATION (2016-06-21)</h3>
+</div>
+
+<div id="outline-container-sec-1-6" class="outline-3">
+<h3 id="sec-1-6">Create basic ruby docker image</h3>
+<div class="outline-text-3" id="text-1-6">
+<p>
+(fengyz/docker-ruby-basic)
+</p>
+</div>
+<div id="outline-container-sec-1-6-1" class="outline-4">
+<h4 id="sec-1-6-1">Add Dockerfile (#1)</h4>
+</div>
+<div id="outline-container-sec-1-6-2" class="outline-4">
+<h4 id="sec-1-6-2">Install docker-machine on mba #2</h4>
+<div class="outline-text-4" id="text-1-6-2">
+<p>
+Refer to <a href="file:///Users/fengyz/org/notes/docker.html">Install Docker for Mac</a>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">New (from 2016/07/15)</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1">clone infinityhorizons-website to ih/website as a reference&#xa0;&#xa0;&#xa0;<span class="tag"><span class="local">local</span>&#xa0;<span class="dev">dev</span></span></h3>
+<div class="outline-text-3" id="text-2-1">
+<div class="org-src-container">
+
+<pre class="src src-sh">git clone git@bitbucket.org:bread-and-wine/infinityhorizons-website.git ih/website
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2">clone infinityhorizons-docs to ih/docs as a reference&#xa0;&#xa0;&#xa0;<span class="tag"><span class="local">local</span>&#xa0;<span class="dev">dev</span></span></h3>
+<div class="outline-text-3" id="text-2-2">
+<div class="org-src-container">
+
+<pre class="src src-sh">git clone git@bitbucket.org:bread-and-wine/infinityhorizons-docs.git ih/docs
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-2-3" class="outline-3">
+<h3 id="sec-2-3">create the container "rails-dev" by running the image centurylink/ubuntu-rails&#xa0;&#xa0;&#xa0;<span class="tag"><span class="local">local</span>&#xa0;<span class="dev">dev</span></span></h3>
+<div class="outline-text-3" id="text-2-3">
+</div><div id="outline-container-sec-2-3-1" class="outline-4">
+<h4 id="sec-2-3-1">try alpine-rails first</h4>
+<div class="outline-text-4" id="text-2-3-1">
+<div class="org-src-container">
+
+<pre class="src src-sh">docker pull centurylink/alpine-rails
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-2-3-2" class="outline-4">
+<h4 id="sec-2-3-2">then try ubuntu-rails first</h4>
+<div class="outline-text-4" id="text-2-3-2">
+<div class="org-src-container">
+
+<pre class="src src-sh">docker pull centurylink/ubuntu-rails
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-2-4" class="outline-3">
+<h3 id="sec-2-4">run a volume container "data" to hold database</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+use busybox as a volume container
+(refer to <a href="file:///Users/fengyz/org/notes/docker.html">busybox</a>)
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">docker create --name data -v ~/data/postgresql:/var/lib/postgresql busybox /bin/true
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-2-5" class="outline-3">
+<h3 id="sec-2-5">run a postgres container</h3>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: fengyz</p>
+<p class="date">Created: 2017-05-18 Thu 14:01</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

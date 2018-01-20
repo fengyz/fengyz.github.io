@@ -1,0 +1,569 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>hiaidou</title>
+<!-- 2016-05-26 Thu 09:36 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="fengyz" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">hiaidou</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. <span class="timestamp-wrapper"><span class="timestamp">&lt;2016-04-21 Thu&gt;</span></span> SMG 培训</a>
+<ul>
+<li><a href="#sec-1-1">1.1. “契约”老师（薛？）</a>
+<ul>
+<li><a href="#sec-1-1-1">1.1.1. 目标：涨粉</a></li>
+<li><a href="#sec-1-1-2">1.1.2. 运营：内容服务</a></li>
+<li><a href="#sec-1-1-3">1.1.3. 运营：功能服务</a></li>
+<li><a href="#sec-1-1-4">1.1.4. 发展方向</a></li>
+<li><a href="#sec-1-1-5">1.1.5. 变现方式</a></li>
+<li><a href="#sec-1-1-6">1.1.6. 变现方式总结</a></li>
+<li><a href="#sec-1-1-7">1.1.7. IP、产业链</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-2">1.2. 啪电影</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> <span class="timestamp-wrapper"><span class="timestamp">&lt;2016-04-21 Thu&gt;</span></span> SMG 培训</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+地点：东三里桥路第二个入口走到底
+</p>
+</div>
+
+<div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> “契约”老师（薛？）</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+WeMedia 创始人（<a href="http://baike.baidu.com/view/1959124.htm">http://baike.baidu.com/view/1959124.htm</a>）
+</p>
+
+<p>
+以产品的思路
+</p>
+
+<p>
+天使轮估值1000万，现估值1亿（？）左右
+</p>
+</div>
+
+<div id="outline-container-sec-1-1-1" class="outline-4">
+<h4 id="sec-1-1-1"><span class="section-number-4">1.1.1</span> 目标：涨粉</h4>
+<div class="outline-text-4" id="text-1-1-1">
+<ul class="org-ul">
+<li>target audience 是谁？
+</li>
+<li>聚集点：可触及用户，where，when，应用场景
+</li>
+<li>方式：高效吸引用户
+</li>
+</ul>
+</div>
+
+<ol class="org-ol"><li><a id="sec-1-1-1-1" name="sec-1-1-1-1"></a>四大名助为例<br  /><div class="outline-text-5" id="text-1-1-1-1">
+<p>
+两个方法（免费）：
+</p>
+
+<ul class="org-ul">
+<li>报名，必须关注公众号
+</li>
+<li>孟非讲段子，欲知后话如何，必须关注公众号【技术实现，方式设计】
+</li>
+</ul>
+
+<p>
+参与度，
+</p>
+</div>
+</li>
+<li><a id="sec-1-1-1-2" name="sec-1-1-1-2"></a>餐厅<br  /><div class="outline-text-5" id="text-1-1-1-2">
+<p>
+<b>植入用户场景</b>
+</p>
+<ul class="org-ul">
+<li>通过公众号订餐
+</li>
+<li>通过微信支付优惠
+</li>
+<li>使用 wifi 需要关注公众号：回复密码
+</li>
+</ul>
+</div>
+</li></ol>
+</div>
+
+<div id="outline-container-sec-1-1-2" class="outline-4">
+<h4 id="sec-1-1-2"><span class="section-number-4">1.1.2</span> 运营：内容服务</h4>
+<div class="outline-text-4" id="text-1-1-2">
+<p>
+精准定位，有效内容
+</p>
+</div>
+
+<ol class="org-ol"><li><a id="sec-1-1-2-1" name="sec-1-1-2-1"></a>例子1：八卦<br  /><div class="outline-text-5" id="text-1-1-2-1">
+<p>
+目标用户群（八卦为例）
+</p>
+<ul class="org-ul">
+<li>终端用户：读者
+</li>
+<li>从业者
+</li>
+</ul>
+</div>
+</li>
+
+<li><a id="sec-1-1-2-2" name="sec-1-1-2-2"></a>例子2：保健品<br  /><div class="outline-text-5" id="text-1-1-2-2">
+<p>
+目标用户群：老太太 -》广场舞 -》聚集目标用户群
+</p>
+
+<ul class="org-ul">
+<li>平滑植入
+</li>
+<li>结合自己的兴趣和特长
+</li>
+<li>自身资源
+</li>
+<li>外部资源
+</li>
+</ul>
+
+<p>
+例子，军事类公众号，游戏圈出身，爱好军事，视频类节目，方法：单个视频播放量400万左右，每月3个，总量 1200万。爆点话题：坦克震是什么？关注公众号，吸引用户。-》善于利用自身资源。利用外部资源：与游戏公司合作，交换用户，关注换游戏道具，关键点：目标用户重叠度高
+</p>
+
+<p>
+中心化流量平台（媒体网站等）《-》封闭（微信，关注后才能看到内容）
+</p>
+</div>
+</li></ol>
+</div>
+
+<div id="outline-container-sec-1-1-3" class="outline-4">
+<h4 id="sec-1-1-3"><span class="section-number-4">1.1.3</span> 运营：功能服务</h4>
+<div class="outline-text-4" id="text-1-1-3">
+<p>
+打分，投票，下期节目预告，菜单，互动，菜单，wifi
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-1-4" class="outline-4">
+<h4 id="sec-1-1-4"><span class="section-number-4">1.1.4</span> 发展方向</h4>
+<div class="outline-text-4" id="text-1-1-4">
+</div><ol class="org-ol"><li><a id="sec-1-1-4-1" name="sec-1-1-4-1"></a>富媒体<br  /><div class="outline-text-5" id="text-1-1-4-1">
+<p>
+视频前景更好，吸引力，形式多样化，变现方式 -》富媒体
+</p>
+
+<p>
+例子：旅游类型公众号（舌尖上的中国，爸爸去哪儿了），有趣，跨界 -》平滑过渡/植入
+</p>
+
+<p>
+例子：金融类，面向圈内人士，没有时间。不要做知识类，做娱乐类（美女帅哥类，八卦类），满足娱乐需求。
+</p>
+</div>
+</li>
+
+<li><a id="sec-1-1-4-2" name="sec-1-1-4-2"></a>人格化<br  /><div class="outline-text-5" id="text-1-1-4-2">
+<p>
+papi酱为例，生活化，更人性化
+</p>
+</div>
+</li></ol>
+</div>
+<div id="outline-container-sec-1-1-5" class="outline-4">
+<h4 id="sec-1-1-5"><span class="section-number-4">1.1.5</span> 变现方式</h4>
+<div class="outline-text-4" id="text-1-1-5">
+<p>
+站在产业链考虑
+</p>
+</div>
+<ol class="org-ol"><li><a id="sec-1-1-5-1" name="sec-1-1-5-1"></a>广告<br  /><div class="outline-text-5" id="text-1-1-5-1">
+<p>
+优点：简单，搞笑
+</p>
+
+<p>
+缺点：伤害用户体验， 溢价差，天花板
+</p>
+
+<p>
+产业链：地方特点，推广告内容 -》几万块 -》渠道费用
+</p>
+
+<p>
+更好的方式：活动策划，创意策划，请明星 -》几十万，百万，深入下游 -》自媒体，传统媒体，投放方式更加丰富，盘活上下游资源，充分利用产业链资源
+</p>
+</div>
+</li>
+
+<li><a id="sec-1-1-5-2" name="sec-1-1-5-2"></a>电商<br  /><div class="outline-text-5" id="text-1-1-5-2">
+<p>
+微信公众号很难外流
+</p>
+
+<p>
+例子：一位神奇的麻麻，“小小？麻麻”，团购，双11美亚团购，内容+广告【类似于 dealmoon】
+</p>
+
+<p>
+例子：一个神奇的淘宝店，支付宝认证时间2014年，两皇冠（100-200万好评）-》通过微信公众号，教大家怎么变得更美【内容服务 -》平滑过渡】
+</p>
+
+<p>
+例子：爸妈营，亲子类，卖亲子游，新概念大赛一等奖，从事过旅游类公司，2014年每月流水过百万，当时尚未全职操作。
+</p>
+
+<p>
+例子：罗辑思维，卖知识，每月流水几百万（硬支撑）
+</p>
+
+<p>
+例子：彬彬有礼，商城“胜女”，女权主义话题，满足情感需求、消费需求
+</p>
+
+<p>
+例子：大排摩托，垂直化，打开率高（20%，一般10%），自营零配件，月流水百万
+</p>
+
+<p>
+启示：
+</p>
+<ul class="org-ul">
+<li>内容专业化：把自己塑造为专家
+</li>
+<li>主题人格化：像身边的朋友 -》不要欺骗，真正需要
+</li>
+<li>行业细分化：笑话不行，用户属性不清晰。结合产业链，例如亲子类可以连接亲子游、儿童保险、教育等等。
+</li>
+<li>导购而非强推
+</li>
+<li>从流量到变现的自循环：广告可以赚钱，广告投放者要销售，为什么不自己销售 -》电商模式。如果导购的话要强调差异化（例如签名、优惠价格等等）
+</li>
+</ul>
+</div>
+</li>
+
+<li><a id="sec-1-1-5-3" name="sec-1-1-5-3"></a>O2O<br  /><div class="outline-text-5" id="text-1-1-5-3">
+<p>
+燕郊通，面向北京燕郊，生活类网站，组织徒步游。聚集到线下，规模化，可视化。曾组织数千人的中秋晚会，影响力大过本地媒体。冠名商、赞助商。
+</p>
+</div>
+</li></ol>
+</div>
+
+<div id="outline-container-sec-1-1-6" class="outline-4">
+<h4 id="sec-1-1-6"><span class="section-number-4">1.1.6</span> 变现方式总结</h4>
+<div class="outline-text-4" id="text-1-1-6">
+<ul class="org-ul">
+<li>社群
+</li>
+<li>赞赏
+</li>
+<li>人自身：自身价值，升迁
+</li>
+<li>付费：付费工具，卖文章阅读
+</li>
+<li>孵化：项目，例如四大名助自媒体，综艺娱乐类，积累用户，孵化出更多节目（传统媒体或新媒体）。账号矩阵，变现能力 -》自运营
+</li>
+
+<li>会员费
+</li>
+<li>项目
+</li>
+<li>技能
+</li>
+<li>工作
+</li>
+<li>创业
+</li>
+<li>内部
+</li>
+<li>外部
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-1-7" class="outline-4">
+<h4 id="sec-1-1-7"><span class="section-number-4">1.1.7</span> IP、产业链</h4>
+<div class="outline-text-4" id="text-1-1-7">
+<p>
+微博时代尚无融资，微信平台融资消息剧增
+</p>
+
+<p>
+自媒体如何获得投资者青睐？
+</p>
+
+<p>
+投资者愿意投哪种自媒体：
+</p>
+<ul class="org-ul">
+<li>电商？成功概率更大。-》推荐途径。
+</li>
+<li>IP？概率低。不简单。内容。需要资本推动。例子：大鹏的屌丝男士。
+</li>
+</ul>
+
+<p>
+自媒体处于产业链的哪一环？
+</p>
+
+<p>
+例子：酒店，
+</p>
+<ul class="org-ul">
+<li>目标人群：酒店管理者。
+</li>
+</ul>
+
+<p>
+需求：
+</p>
+<ul class="org-ul">
+<li>选址，
+</li>
+<li>供应链，
+</li>
+<li>招聘
+</li>
+<li>拉广告
+</li>
+<li>资本需求 -》 与担保公司、资金合作
+</li>
+</ul>
+
+<p>
+额外收益：引起产业链中强者注意力
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> 啪电影</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+高先生
+</p>
+
+<p>
+汽车媒体
+</p>
+
+<p>
+对于车企而言，除了传统媒体，更喜欢跨界媒体（娱乐等）
+</p>
+
+<p>
+生存：广告，与其投给别人，不如自己经营
+</p>
+
+<p>
+打造自己的跨界账号 -》选择电影类账号，原因：电影影响力，轻松破亿
+</p>
+
+<p>
+难度：账号打造内容，老板负责多平台推送，娱乐化的一代，喜欢轻松内容，
+</p>
+
+<p>
+周更频率，半年10万粉，80/90年次
+</p>
+
+<p>
+调性：轻松惬意
+</p>
+
+<p>
+每一期选题（每月很多电影），挑选最近口碑较好/较差【极端】，例如，叶问3，关注点泰森，标题党“如果不是我缺钱，谁会和你这个小身板打”，阅读量飙升 -》关注热点，不同角度叙事
+</p>
+
+<p>
+例子：太阳的后裔，友谊的小船等等
+</p>
+
+<p>
+注意：符合自己的账号调性
+</p>
+
+<p>
+“好稿子一定是大家策划出来的”
+</p>
+
+<p>
+例子：去年明星八卦，微信原创文章，近千人朋友圈扩散，一晚阅读量9万。
+</p>
+
+<p>
+广告软文，逻辑思维，联想能力，团队合作。
+</p>
+
+<p>
+运营外包（大学生），提供主题。
+</p>
+
+<p>
+95后看电影，注重节奏。
+</p>
+
+<p>
+选择大众口味电影，尽量避免小众电影。
+</p>
+
+<p>
+例子：暴走漫画</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: fengyz</p>
+<p class="date">Created: 2016-05-26 Thu 09:36</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

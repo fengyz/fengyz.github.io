@@ -1,0 +1,16 @@
+#    -*- mode: org -*-
+
+
+Archived entries from file /Users/fengyz/org/notes/tmux.org
+
+
+* 0. download the latest version of tmux
+  :PROPERTIES:
+  :ARCHIVE_TIME: 2016-04-17 Sun 18:12
+  :ARCHIVE_FILE: ~/org/notes/tmux.org
+  :ARCHIVE_OLPATH: Basics/Installation
+  :ARCHIVE_CATEGORY: tmux
+  :END:
+#+BEGIN_SRC example
+wget https://github.com/tmux/tmux/releases/download/2.2/tmux-2.2.tar.gz
+#+END_SRC

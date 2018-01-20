@@ -1,0 +1,864 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>tmux</title>
+<!-- 2016-04-24 Sun 07:51 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="fengyz" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">tmux</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. Overview</a>
+<ul>
+<li><a href="#sec-1-1">1.1. What is a terminal multiplexer?</a></li>
+</ul>
+</li>
+<li><a href="#sec-2">2. Resources</a>
+<ul>
+<li><a href="#sec-2-1">2.1. Tutorials</a></li>
+<li><a href="#sec-2-2">2.2. Tmux shortcuts &amp; cheatsheet</a></li>
+<li><a href="#sec-2-3">2.3. A tmux crash course: tips and tweaks</a></li>
+</ul>
+</li>
+<li><a href="#sec-3">3. Basics</a>
+<ul>
+<li><a href="#sec-3-1">3.1. Installation</a>
+<ul>
+<li><a href="#sec-3-1-1">3.1.1. 0. download the latest version of tmux</a></li>
+<li><a href="#sec-3-1-2">3.1.2. 1. error msg: libevent not found</a></li>
+<li><a href="#sec-3-1-3">3.1.3. 2. error msg: curses not found</a></li>
+<li><a href="#sec-3-1-4">3.1.4. 3. ./configure &amp;&amp; make</a></li>
+<li><a href="#sec-3-1-5">3.1.5. 4. sudo make install</a></li>
+</ul>
+</li>
+<li><a href="#sec-3-2">3.2. The Tmux prefix</a>
+<ul>
+<li><a href="#sec-3-2-1">3.2.1. Recommendations</a></li>
+<li><a href="#sec-3-2-2">3.2.2. The config file</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#sec-4">4. The best of Tmux</a>
+<ul>
+<li><a href="#sec-4-1">4.1. Panes</a></li>
+</ul>
+</li>
+<li><a href="#sec-5">5. Windows</a>
+<ul>
+<li><a href="#sec-5-1">5.1. Sessions</a></li>
+<li><a href="#sec-5-2">5.2. Navigation throug Tmux sessions</a></li>
+<li><a href="#sec-5-3">5.3. Fast text navigation and copying</a>
+<ul>
+<li><a href="#sec-5-3-1">5.3.1. Navigate text</a></li>
+</ul>
+</li>
+<li><a href="#sec-5-4">5.4. <span class="todo TODO">TODO</span> Send copied text to System’s clipboard</a></li>
+</ul>
+</li>
+<li><a href="#sec-6">6. Commands and keys</a></li>
+<li><a href="#sec-7">7. Advanced Topics</a>
+<ul>
+<li><a href="#sec-7-1">7.1. How to Copy and Paste with tmux on Mac OS X</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Overview</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+<a href="http://tmux.github.io/">tmux</a> is a terminal multiplexer
+</p>
+</div>
+
+<div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> What is a terminal multiplexer?</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+It lets you switch easily between several programs in one terminal, detach them (they keep running in the background) and reattach them to a different terminal. And do a lot more. See <a href="http://www.openbsd.org/cgi-bin/man.cgi?query=tmux&sektion=1">the manual</a>.
+</p>
+
+<p>
+<a href="https://github.com/tmux/tmux/releases/download/2.1/tmux-2.1.tar.gz">Download tmux 2.1</a> (<a href="https://raw.githubusercontent.com/tmux/tmux/master/CHANGES">changelog</a>) or get <a href="https://github.com/tmux/tmux">the development version</a>. tmux is hosted on <a href="http://github.com/tmux">GitHub</a> and needs <a href="http://www.monkey.org/~provos/libevent/">libevent</a> and <a href="http://invisible-island.net/ncurses/">ncurses</a>.
+</p>
+
+<p>
+For support contact the <a href="mailto:tmux-users@googlegroups.com">mailto:tmux-users@googlegroups.com</a> mailing list or IRC channel <a href="//irc.freenode.net/tmux">#tmux on freenode</a>.
+</p>
+
+<p>
+There are some programs to use with tmux on <a href="https://github.com/search?q=tmux&type=Repositories&ref=simplesearch">GitHub</a> and <a href="http://pragprog.com/book/bhtmux/tmux">a book on tmux</a>.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Resources</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> Tutorials</h3>
+<div class="outline-text-3" id="text-2-1">
+<ul class="org-ul">
+<li><a href="http://tangosource.com/blog/a-tmux-crash-course-tips-and-tweaks/">A Tmux crash course: tips and tweaks</a> by Tonatiuh Nunez: If you are one of those devs who uses the terminal a lot and ends up with way too many tabs open, or practices pair programming, then this post is for you. During the last months, I’ve started using Tmux a lot. Since I’ve found it to be very useful, I thought I would write a post where I share a few recommendations and pro-tips. I’ll show you what Tmux is and how to use it in combination with Vim to make a more effective and elegant use of the Terminal.
+</li>
+<li><a href="http://jingyan.baidu.com/article/380abd0a4870111d90192cae.html">多终端管理器TMUX使用详解</a>: 使用它最直观的好处就是，通过一个终端登录远程主机并运行tmux后，在其中可以开启多个控制台而无需再使用更多的SSH会话来连接这台远程主机；其功能远不止于此。
+</li>
+<li>[[<a href="http://os.51cto.com/art/201410/453671.htm][%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Tmux%E6%8F%90%E9%AB%98%E7%BB%88%E7%AB%AF%E7%8E%AF%E5%A2%83%E4%B8%8B%E7%9A%84%E6%95%88%E7%8E%87">http://os.51cto.com/art/201410/453671.htm][%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Tmux%E6%8F%90%E9%AB%98%E7%BB%88%E7%AB%AF%E7%8E%AF%E5%A2%83%E4%B8%8B%E7%9A%84%E6%95%88%E7%8E%87</a>
+</li>
+</ul>
+<p>
+]]
+</p>
+</div>
+</div>
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> Tmux shortcuts &amp; cheatsheet</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+(<a href="https://gist.github.com/MohamedAlaa/2961058">link</a>)
+</p>
+</div>
+</div>
+<div id="outline-container-sec-2-3" class="outline-3">
+<h3 id="sec-2-3"><span class="section-number-3">2.3</span> A tmux crash course: tips and tweaks</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+(<a href="http://tangosource.com/blog/a-tmux-crash-course-tips-and-tweaks/">http://tangosource.com/blog/a-tmux-crash-course-tips-and-tweaks/</a>)
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> Basics</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Tmux is a tool that allows running multiple terminal sessions through a single terminal window. It allows you to have terminal sessions running in the background and attach and detach from them as needed.
+</p>
+</div>
+
+<div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> Installation</h3>
+<div class="outline-text-3" id="text-3-1">
+</div><div id="outline-container-sec-3-1-1" class="outline-4">
+<h4 id="sec-3-1-1"><span class="section-number-4">3.1.1</span> 0. download the latest version of tmux</h4>
+<div class="outline-text-4" id="text-3-1-1">
+<div class="org-src-container">
+
+<pre class="src src-example">wget https://github.com/tmux/tmux/releases/download/2.2/tmux-2.2.tar.gz
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-3-1-2" class="outline-4">
+<h4 id="sec-3-1-2"><span class="section-number-4">3.1.2</span> 1. error msg: libevent not found</h4>
+<div class="outline-text-4" id="text-3-1-2">
+<p>
+solution: <a href="http://stackoverflow.com/questions/21926202/libevent-not-found-error-in-tmux">libevent not found error in tmux @stackoverflow</a>
+</p>
+<div class="org-src-container">
+
+<pre class="src src-example">sudo apt-get install libevent-dev
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3-1-3" class="outline-4">
+<h4 id="sec-3-1-3"><span class="section-number-4">3.1.3</span> 2. error msg: curses not found</h4>
+<div class="outline-text-4" id="text-3-1-3">
+<p>
+solution: <a href="http://blog.csdn.net/yao_qinwei/article/details/8805101">Install ncurses-devel uder ubuntu 12.04</a>
+</p>
+<div class="org-src-container">
+
+<pre class="src src-example">sudo apt-get install libncurses5-dev
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3-1-4" class="outline-4">
+<h4 id="sec-3-1-4"><span class="section-number-4">3.1.4</span> 3. ./configure &amp;&amp; make</h4>
+</div>
+
+<div id="outline-container-sec-3-1-5" class="outline-4">
+<h4 id="sec-3-1-5"><span class="section-number-4">3.1.5</span> 4. sudo make install</h4>
+</div>
+</div>
+
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> The Tmux prefix</h3>
+<div class="outline-text-3" id="text-3-2">
+<div class="org-src-container">
+
+<pre class="src src-text">C-b
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-3-2-1" class="outline-4">
+<h4 id="sec-3-2-1"><span class="section-number-4">3.2.1</span> Recommendations</h4>
+<div class="outline-text-4" id="text-3-2-1">
+</div><ol class="org-ol"><li><a id="sec-3-2-1-1" name="sec-3-2-1-1"></a>1. Map Ctrl key to Caps-Lock<br  /><div class="outline-text-5" id="text-3-2-1-1">
+<p>
+See <a href="linux.html">Swap Caps Lock and Ctrl</a>.
+</p>
+</div>
+</li>
+
+<li><a id="sec-3-2-1-2" name="sec-3-2-1-2"></a>2. Change the Tmux prefix to C-a<br  /><div class="outline-text-5" id="text-3-2-1-2">
+<p>
+Because the new prefix keys are very close to each other on the keyboard.
+</p>
+
+<p>
+Add the following lines in your ~/.tmux.conf file:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-example">unbind C-b
+set -g prefix C-a
+</pre>
+</div>
+</div>
+</li></ol>
+</div>
+
+<div id="outline-container-sec-3-2-2" class="outline-4">
+<h4 id="sec-3-2-2"><span class="section-number-4">3.2.2</span> The config file</h4>
+<div class="outline-text-4" id="text-3-2-2">
+<p>
+~/.tmux.conf is a file that Tmux reads every time a new session opens. It's where the customizations for Tmux need to be placed.
+</p>
+
+<p>
+Suggestion: In the case that you need (and chances are you will) to apply a new change made to the file without opening a new session, you can add the following line to the ~/.tmux.conf file:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-example"># bind a reload key
+bind R source-file ~/.tmux.conf \; display-message "Config reloaded..."
+</pre>
+</div>
+
+<p>
+Then use C-b r to reload your configuration without having to open a new session.
+</p>
+</div>
+
+<ol class="org-ol"><li><a id="sec-3-2-2-1" name="sec-3-2-2-1"></a>Use mouse<br  /><div class="outline-text-5" id="text-3-2-2-1">
+<div class="org-src-container">
+
+<pre class="src src-text">set -g mouse on
+</pre>
+</div>
+<p>
+The default key bindings allow the mouse to be used to select and resize panes, to copy text and to change window using the status line. These take effect if the mouse option is turned on.
+</p>
+
+<p>
+Refer to <a href="http://www.openbsd.org/cgi-bin/man.cgi/OpenBSD-current/man1/tmux.1?query=tmux&sec=1#x4d4f55534520535550504f5254">the official manual</a>.
+</p>
+</div>
+</li></ol>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> The best of Tmux</h2>
+<div class="outline-text-2" id="text-4">
+</div><div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1"><span class="section-number-3">4.1</span> Panes</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+I like the idea of dividing the screen vertically, so that on one side of the screen I have Vim and on the other side I have the output of my code.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> Windows</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+In Tmux, a window is a container for one or more panes. Tmux windows allow you to arrange multiple panes inside windows depending on what you need. For instance, in my case I usually have one window called “server” for running the app’s server (where I can see the log), another window called “editor” (where I do the coding). One pane for Vim and another for running the code tests. And another window called “shell”, which is a bash shell where I can run system commands. Tmux windows are useful since they allow users to allocate panes inside of them, to see more about each pane by going to the window that contains it. This is an efficient use of the available screen space.
+</p>
+
+<p>
+The list of existent windows in a Tmux session displays at the bottom of the screen. The index number displays next to the name.
+</p>
+</div>
+<div id="outline-container-sec-5-1" class="outline-3">
+<h3 id="sec-5-1"><span class="section-number-3">5.1</span> Sessions</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+A Tmux session can contain multiple windows. Sessions are a neat feature; I can create a Tmux session that is exclusive to a particular project. To create a new session just run the following command on your terminal:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-example">$ tmux new -s &lt;name-of-my-session&gt;
+</pre>
+</div>
+
+<p>
+If I need to work on a different project I will just create a new session for that. Although the focus will be on the new session, the original session will remain alive. This allows me to get back to it later, and continue where I left off. To create a new session press Ctrl-b : and then enter the following command:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-example">new -s &lt;name-of-my-new-session&gt;
+</pre>
+</div>
+<p>
+Tmux sessions remain alive until you restart your machine or you explicitly kill the session. As long as you don’t restart your machine, you can jump from a project’s session to another as you need it.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-5-2" class="outline-3">
+<h3 id="sec-5-2"><span class="section-number-3">5.2</span> Navigation throug Tmux sessions</h3>
+<div class="outline-text-3" id="text-5-2">
+<p>
+To get a list of the existing sessions, press Ctrl-b s.
+</p>
+
+<p>
+Each session listed has an ID number, starting from zero. In order to go to that session type the session’s ID number in your keyboard. In the case that you are not in Tmux but you have one or more sessions running just use:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-example">tmux attach
+</pre>
+</div>
+<p>
+This command will take you back to your Tmux sessions.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-5-3" class="outline-3">
+<h3 id="sec-5-3"><span class="section-number-3">5.3</span> Fast text navigation and copying</h3>
+<div class="outline-text-3" id="text-5-3">
+<p>
+I always disliked the fact that to copy content from iTerm2 quickly you need to use the keyboard plus the mouse. I think that there should be a quicker way to do it without having to use the mouse. Fortunately, Tmux allows for that, since it is run from the command line, where the use of the mouse is not allowed.
+</p>
+</div>
+<div id="outline-container-sec-5-3-1" class="outline-4">
+<h4 id="sec-5-3-1"><span class="section-number-4">5.3.1</span> Navigate text</h4>
+<div class="outline-text-4" id="text-5-3-1">
+<p>
+Tmux allows for text navigation in a way that is very similar to Vim. You know, where the k key goes one line up, w moves one word forwards, and so on. Yet you can increase Tmux’s similarity with Vim by telling it to use the <b>vi</b> mode. Here is what you need to add in your <b>~/.tmux.conf</b> file to accomplish his:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-example"># invoke reattach-to-user-namespace every time a new window/pane opens
+set-option -g default-command "reattach-to-user-namespace -l bash"
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-5-4" class="outline-3">
+<h3 id="sec-5-4"><span class="section-number-3">5.4</span> <span class="todo TODO">TODO</span> Send copied text to System’s clipboard</h3>
+<div class="outline-text-3" id="text-5-4">
+<ul class="org-ul">
+<li>State "TODO"       from              <span class="timestamp-wrapper"><span class="timestamp">[2015-11-21 Sat 22:23]</span></span>
+</li>
+</ul>
+<p>
+By default, when you copy text from Tmux, the text is only available to be pasted inside that same Tmux session. In order to make that text available to be pasted anywhere, you have to tell Tmux to copy to system’s clipboard. Here’s how to do it:
+</p>
+</div>
+</div>
+</div>
+
+
+
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6"><span class="section-number-2">6</span> Commands and keys</h2>
+<div class="outline-text-2" id="text-6">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left">Key/Command</th>
+<th scope="col" class="left">Purpose</th>
+<th scope="col" class="left">Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="left">C-b</td>
+<td class="left">prefix</td>
+<td class="left"><a href="#sec-3-2-1-2">changed to C-a</a></td>
+</tr>
+
+<tr>
+<td class="left">C-b ?</td>
+<td class="left">list all keys</td>
+<td class="left">press q to return</td>
+</tr>
+
+<tr>
+<td class="left">c-b t</td>
+<td class="left">display a clock</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">C-b R</td>
+<td class="left">reload conf</td>
+<td class="left"><a href="#sec-3-2-2">map a key to reload conf</a></td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="left">Panes</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="left">C-b %</td>
+<td class="left">add a new vertical pane</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">C-b "</td>
+<td class="left">add a horizontal pane</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">C-b z</td>
+<td class="left">maximize current pane</td>
+<td class="left">press again to restore</td>
+</tr>
+
+<tr>
+<td class="left">C-b &lt;ARROW&gt;</td>
+<td class="left">navigate through panes</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">C-b x</td>
+<td class="left">close current pane</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">C-b !</td>
+<td class="left">put current pane in new window</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">C-b M-&lt;ARROW&gt;</td>
+<td class="left">adjust size of pane in 5 units</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">C-b C-&lt;ARROW&gt;</td>
+<td class="left">adjust size of pane in 1 units</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">C-b &lt;SPACE&gt;</td>
+<td class="left">switch through predefined layouts</td>
+<td class="left">even-horizontal/vertical, main-horizontal/vertical, tiled</td>
+</tr>
+
+<tr>
+<td class="left">C-b q</td>
+<td class="left">display pane number</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">C-b o</td>
+<td class="left">go to next pane in current window</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">C-b &lt;ARROW&gt;</td>
+<td class="left">switch to pane</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">C-b }/{</td>
+<td class="left">relocate pane forwards/backwards</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">C-b M-o</td>
+<td class="left">rotate panes clockwise</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">C-b C-o</td>
+<td class="left">rotate panes anti-clockwise</td>
+<td class="left">&#xa0;</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="left">Windows</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="left">C-b c</td>
+<td class="left">create new window</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">C-b &lt;index-number&gt;</td>
+<td class="left">navigate through windows</td>
+<td class="left">The index number displays next to the name.</td>
+</tr>
+
+<tr>
+<td class="left">C-b &amp;</td>
+<td class="left">close current window</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">C-b p</td>
+<td class="left">previous window</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">C-b n</td>
+<td class="left">next window</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">C-b l</td>
+<td class="left">switch last two windows</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">C-b w</td>
+<td class="left">switch windows using list</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">C-b ,</td>
+<td class="left">rename current window</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">C-b .</td>
+<td class="left">resort windows</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">C-b f</td>
+<td class="left">find string in all windows</td>
+<td class="left">&#xa0;</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="left">Sessions</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="left">C-b s</td>
+<td class="left">list all sessions</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">tmux ls</td>
+<td class="left">list all sessoin</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">C-b : new -s &lt;name&gt;</td>
+<td class="left">new session</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">C-b d</td>
+<td class="left">detach from current sessoin</td>
+<td class="left">tmux attach will go back to the previous session</td>
+</tr>
+
+<tr>
+<td class="left">C-b D</td>
+<td class="left">select the session to detach</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">C-b C-z</td>
+<td class="left">suspend the current session</td>
+<td class="left">tmux attach will go back to the previous session</td>
+</tr>
+
+<tr>
+<td class="left">C-b r</td>
+<td class="left">redraw attached session</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">C-b : kill-session</td>
+<td class="left">kill current session</td>
+<td class="left">&#xa0;</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="left">Copy mode</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="left">C-b [</td>
+<td class="left">enter copy mode</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">jkhl</td>
+<td class="left">move around</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">&lt;space&gt;</td>
+<td class="left">begin marking copy area</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">&lt;enter&gt;</td>
+<td class="left">copy</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">C-b ]</td>
+<td class="left">paste</td>
+<td class="left">&#xa0;</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="left">Command</td>
+<td class="left">&#xa0;</td>
+<td class="left">&#xa0;</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="left">C-b :</td>
+<td class="left">input command inside tmux</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">show-options -g</td>
+<td class="left">show all options</td>
+<td class="left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="left">show-window-options -g</td>
+<td class="left">show all options about window</td>
+<td class="left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-sec-7" class="outline-2">
+<h2 id="sec-7"><span class="section-number-2">7</span> Advanced Topics</h2>
+<div class="outline-text-2" id="text-7">
+</div><div id="outline-container-sec-7-1" class="outline-3">
+<h3 id="sec-7-1"><span class="section-number-3">7.1</span> How to Copy and Paste with tmux on Mac OS X</h3>
+<div class="outline-text-3" id="text-7-1">
+<p>
+<a href="https://robots.thoughtbot.com/how-to-copy-and-paste-with-tmux-on-mac-os-x">https://robots.thoughtbot.com/how-to-copy-and-paste-with-tmux-on-mac-os-x</a>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: fengyz</p>
+<p class="date">Created: 2016-04-24 Sun 07:51</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

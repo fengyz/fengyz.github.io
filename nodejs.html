@@ -1,0 +1,791 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>nodejs</title>
+<!-- 2016-10-26 Wed 06:55 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="fengyz" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">nodejs</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. i18n</a>
+<ul>
+<li><a href="#sec-1-1">1.1. References</a></li>
+</ul>
+</li>
+<li><a href="#sec-2">2. Advanced Topics</a>
+<ul>
+<li><a href="#sec-2-1">2.1. 深入浅出Node.js（五）：初探Node.js的异步I/O实现</a></li>
+<li><a href="#sec-2-2">2.2. Awesome Node.js 一组惊艳的Nodejs包和资源，nodejs进阶必备</a></li>
+<li><a href="#sec-2-3">2.3. 写给 Node.js 学徒的 7 个建议</a></li>
+<li><a href="#sec-2-4">2.4. 5 Steps to making a Node.js frontend app 10x faster</a>
+<ul>
+<li><a href="#sec-2-4-1">2.4.1. Step 1: Parallelize Everything</a></li>
+<li><a href="#sec-2-4-2">2.4.2. Step 2: Cache, Cache, Cache</a></li>
+<li><a href="#sec-2-4-3">2.4.3. Step 3: Intelligent JS and CSS loading on the front-end</a></li>
+<li><a href="#sec-2-4-4">2.4.4. Step 4: Cut out the middle-man for fetching data</a></li>
+<li><a href="#sec-2-4-5">2.4.5. Step 5: Do More on the Client</a></li>
+</ul>
+</li>
+<li><a href="#sec-2-5">2.5. Why I chose node.js over ruby on rails.</a></li>
+<li><a href="#sec-2-6">2.6. How to use request module</a></li>
+<li><a href="#sec-2-7">2.7. i18n</a>
+<ul>
+<li><a href="#sec-2-7-1">2.7.1. 网站国际化(i18n)应该怎么做？i18n-node + handlebars实现的例子</a></li>
+</ul>
+</li>
+<li><a href="#sec-2-8">2.8. ECMAScript 6 in Node.js</a></li>
+<li><a href="#sec-2-9">2.9. PM2</a>
+<ul>
+<li><a href="#sec-2-9-1">2.9.1. 用PM2守护Node.js进程</a></li>
+<li><a href="#sec-2-9-2">2.9.2. 告别node-forever,拥抱PM2[转载]</a></li>
+</ul>
+</li>
+<li><a href="#sec-2-10">2.10. TDD in nodejs with mocha&#xa0;&#xa0;&#xa0;<span class="tag"><span class="superagent">superagent</span>&#xa0;<span class="mocha">mocha</span>&#xa0;<span class="expect">expect</span></span></a></li>
+<li><a href="#sec-2-11">2.11. How To Use Mocha With Node.js For Test-Driven Development to Avoid Pain and Ship Products Faster&#xa0;&#xa0;&#xa0;<span class="tag"><span class="chai">chai</span>&#xa0;<span class="mocha">mocha</span>&#xa0;<span class="superagent">superagent</span></span></a></li>
+<li><a href="#sec-2-12">2.12. Superagent</a></li>
+<li><a href="#sec-2-13">2.13. Chai</a>
+<ul>
+<li><a href="#sec-2-13-1">2.13.1. Chai-http</a></li>
+</ul>
+</li>
+<li><a href="#sec-2-14">2.14. Testing nodejs with mocha and chai&#xa0;&#xa0;&#xa0;<span class="tag"><span class="chai">chai</span>&#xa0;<span class="chai_http">chai_http</span>&#xa0;<span class="featured">featured</span></span></a></li>
+<li><a href="#sec-2-15">2.15. Node.js的测试&#xa0;&#xa0;&#xa0;<span class="tag"><span class="mocha">mocha</span>&#xa0;<span class="chai">chai</span>&#xa0;<span class="sinon">sinon</span>&#xa0;<span class="mochery">mochery</span>&#xa0;<span class="rewire">rewire</span></span></a></li>
+<li><a href="#sec-2-16">2.16. Testing in Node.js&#xa0;&#xa0;&#xa0;<span class="tag"><span class="mocha">mocha</span>&#xa0;<span class="chai">chai</span>&#xa0;<span class="expect">expect</span>&#xa0;<span class="assert">assert</span></span></a></li>
+</ul>
+</li>
+<li><a href="#sec-3">3. Resources</a>
+<ul>
+<li><a href="#sec-3-1">3.1. boke.io: 多栈开发，关注前端、Node.js、native</a>
+<ul>
+<li><a href="#sec-3-1-1">3.1.1. 基于gulp和webpack的前端工程化</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#sec-4">4. Install node.js 4 on ubuntu</a></li>
+<li><a href="#sec-5">5. System based on node.js</a>
+<ul>
+<li><a href="#sec-5-1">5.1. Hexo: a fast, simple &amp; powerful blog framework</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> i18n</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> References</h3>
+<div class="outline-text-3" id="text-1-1">
+<ul class="org-ul">
+<li><a href="https://cnodejs.org/topic/51f885ea44e76d216a513ea1">i18n - 本地化 Node.js 应用</a>: package 'i18n'
+</li>
+<li><a href="http://segmentfault.com/a/1190000002632604">网站国际化(i18n)应该怎么做？i18n-node + handlebars实现的例子</a>: nodejs的 <a href="https://github.com/mashpie/i18n-node">i18n-node</a> 提供了非常简单的i18n中间件，并且支持多种的模版实现。如果大家搜索可能还会看到i18n-node2这个package。它是对于早期i18n-node的一个扩展，由Jquery的John Resig实现，目前的i18n-node已经基本包含了这些内容。下面的代码展示了如何使用i18n-node module结合handlebars的helper函数来实现基本的i18n。 <code>__</code> 函数不考虑单复数， <code>__n</code> 函数考虑单复数。
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Advanced Topics</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> 深入浅出Node.js（五）：初探Node.js的异步I/O实现</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+(<a href="http://www.infoq.com/cn/articles/nodejs-asynchronous-io/">深入浅出Node.js（五）：初探Node.js的异步I/O实现</a>)
+</p>
+
+<p>
+可以简单的概述为：Linux平台下没有完美的异步I/O支持。
+</p>
+
+<p>
+所幸的是，libev的作者Marc Alexander Lehmann重新实现了一个异步I/O的库：libeio。libeio实质依然是采用线程池与阻塞I/O模拟出来的异步I/O。
+</p>
+
+<p>
+那么在Windows平台下的状况如何呢？而实际上，Windows有一种独有的内核异步IO方案：IOCP。IOCP的思路是真正的异步I/O方案，调用异步方法，然后等待I/O完成通知。IOCP内部依旧是通过线程实现，不同在于这些线程由系统内核接手管理。IOCP的异步模型与Node.js的异步调用模型已经十分近似。
+</p>
+
+<p>
+以上两种方案则正是Node.js选择的异步I/O方案。由于Windows平台和*nix平台的差异，Node.js提供了libuv来作为抽象封装层，使得所有平台兼容性的判断都由这一层次来完成，保证上层的Node.js与下层的libeio/libev及IOCP之间各自独立。Node.js在编译期间会判断平台条件，选择性编译unix目录或是win目录下的源文件到目标程序中。
+</p>
+</div>
+</div>
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> Awesome Node.js 一组惊艳的Nodejs包和资源，nodejs进阶必备</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+(<a href="http://www.zplan.net/news.php?id=131">link</a>)
+Packages:
+</p>
+<ul class="org-ul">
+<li>Mad science
+</li>
+<li>Command-line apps
+</li>
+<li>Functional programming
+</li>
+<li>HTTP
+</li>
+<li>Debugging / Profiling
+</li>
+<li>Logging
+</li>
+<li>Web frameworks
+</li>
+<li>Command-line utilities
+</li>
+<li>Package managers
+</li>
+<li>Build tools
+</li>
+<li>Hardware
+</li>
+<li>Templating
+</li>
+<li>Documentation
+</li>
+<li>Filesystem
+</li>
+<li>Control flow
+</li>
+<li>Streams
+</li>
+<li>Real-time
+</li>
+<li>Date
+</li>
+<li>Image
+</li>
+<li>Text
+</li>
+<li>Math
+</li>
+<li>Data validation
+</li>
+<li>Parsing
+</li>
+<li>Humanize
+</li>
+<li>Compression
+</li>
+<li>Network
+</li>
+<li>Static site generators
+</li>
+<li>Content management systems
+</li>
+<li>Forum
+</li>
+<li>Blogging
+</li>
+<li>Database
+</li>
+<li>Testing
+</li>
+<li>Benchmarking
+</li>
+<li>Minifiers
+</li>
+<li>Authentication
+</li>
+<li>Node.js management
+</li>
+<li>Email
+</li>
+<li>Polyfills
+</li>
+<li>Natural language processing
+</li>
+<li>Process management
+</li>
+<li>AST
+</li>
+<li>Weird
+</li>
+<li>Miscellaneous
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-2-3" class="outline-3">
+<h3 id="sec-2-3"><span class="section-number-3">2.3</span> 写给 Node.js 学徒的 7 个建议</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+(<a href="http://blog.jobbole.com/48769/">link</a>)
+</p>
+
+<ul class="org-ul">
+<li>贴士 1: 在开发环境使用 nodemon， 在生产环境使用pm2
+</li>
+<li>贴士 2: Async 或者 Q
+</li>
+<li>贴士 3: 轻松调试 Node.js apps: node inspector
+</li>
+<li>贴士 4: Nodefly: 监视它的性能和配置文件，以确保您的应用程序运行在最佳的速度. 用简单的一行代码Nodefly开始监视你的应用程序内存泄漏，测量redis用了多久，mongo查询和一堆其它很酷的东西
+</li>
+<li>贴士 5: 利用NPM进行模块管理
+</li>
+<li>贴士 6: 不要提交 node<sub>modules</sub> 文件夹
+</li>
+<li>贴士 7: 别忘记返回
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2-4" class="outline-3">
+<h3 id="sec-2-4"><span class="section-number-3">2.4</span> 5 Steps to making a Node.js frontend app 10x faster</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+(<a href="https://engineering.gosquared.com/making-dashboard-faster">https://engineering.gosquared.com/making-dashboard-faster</a>)
+</p>
+</div>
+
+<div id="outline-container-sec-2-4-1" class="outline-4">
+<h4 id="sec-2-4-1"><span class="section-number-4">2.4.1</span> Step 1: Parallelize Everything</h4>
+<div class="outline-text-4" id="text-2-4-1">
+<p>
+So instead of:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-js">app.use(getUser);
+app.use(getSiteList);
+app.use(getCurrentSite);
+app.use(getSubscription);
+</pre>
+</div>
+
+<p>
+&#x2026; We could do something like this:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-js"><span style="color: #66D9EF;">function</span> <span style="color: #F92672; font-style: italic;">parallel</span>(<span style="color: #F92672;">middlewares</span>) {
+  <span style="color: #66D9EF;">return</span> <span style="color: #66D9EF;">function</span> (<span style="color: #F92672;">req</span>, <span style="color: #F92672;">res</span>, <span style="color: #F92672;">next</span>) {
+    async.each(middlewares, <span style="color: #66D9EF;">function</span> (<span style="color: #F92672;">mw</span>, <span style="color: #F92672;">cb</span>) {
+      mw(req, res, cb);
+    }, next);
+  };
+}
+
+app.use(parallel([
+  getUser,
+  getSiteList,
+  getCurrentSite,
+  getSubscription
+]));
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-2-4-2" class="outline-4">
+<h4 id="sec-2-4-2"><span class="section-number-4">2.4.2</span> Step 2: Cache, Cache, Cache</h4>
+</div>
+<div id="outline-container-sec-2-4-3" class="outline-4">
+<h4 id="sec-2-4-3"><span class="section-number-4">2.4.3</span> Step 3: Intelligent JS and CSS loading on the front-end</h4>
+</div>
+<div id="outline-container-sec-2-4-4" class="outline-4">
+<h4 id="sec-2-4-4"><span class="section-number-4">2.4.4</span> Step 4: Cut out the middle-man for fetching data</h4>
+</div>
+<div id="outline-container-sec-2-4-5" class="outline-4">
+<h4 id="sec-2-4-5"><span class="section-number-4">2.4.5</span> Step 5: Do More on the Client</h4>
+</div>
+</div>
+
+<div id="outline-container-sec-2-5" class="outline-3">
+<h3 id="sec-2-5"><span class="section-number-3">2.5</span> Why I chose node.js over ruby on rails.</h3>
+<div class="outline-text-3" id="text-2-5">
+<p>
+<a href="https://medium.com/@sagish/intro-why-i-chose-node-js-over-ruby-on-rails-905b0d7d15c3#.yh68ajnoj">https://medium.com/@sagish/intro-why-i-chose-node-js-over-ruby-on-rails-905b0d7d15c3#.yh68ajnoj</a>
+</p>
+</div>
+</div>
+<div id="outline-container-sec-2-6" class="outline-3">
+<h3 id="sec-2-6"><span class="section-number-3">2.6</span> How to use request module</h3>
+<div class="outline-text-3" id="text-2-6">
+<p>
+(<a href="http://blog.modulus.io/node.js-tutorial-how-to-use-request-module">link</a>)
+</p>
+
+<p>
+<a href="https://github.com/request/request">request @github</a>
+</p>
+
+<p>
+Streaming data directly from end user (web upload) to backend? Possible?
+</p>
+</div>
+</div>
+<div id="outline-container-sec-2-7" class="outline-3">
+<h3 id="sec-2-7"><span class="section-number-3">2.7</span> i18n</h3>
+<div class="outline-text-3" id="text-2-7">
+<p>
+<a href="https://cnodejs.org/topic/51f885ea44e76d216a513ea1">i18n - 本地化 Node.js 应用</a>: 由于 JSON 不允许注释，所以用 js 会方便一点，也可以写成其他的，不过文件格式是 JSON
+</p>
+
+<p>
+<a href="https://github.com/mashpie/i18n-node">i18n-node</a>: Lightweight simple translation module with dynamic json storage. Supports plain vanilla node.js apps and should work with any framework (like express, restify and probably more) that exposes an app.use() method passing in res and req objects. Uses common _<sub>('&#x2026;')</sub> syntax in app and templates. Stores language files in json files compatible to webtranslateit json format. Adds new strings on-the-fly when first used in your app. No extra parsing needed.
+</p>
+</div>
+
+<div id="outline-container-sec-2-7-1" class="outline-4">
+<h4 id="sec-2-7-1"><span class="section-number-4">2.7.1</span> 网站国际化(i18n)应该怎么做？i18n-node + handlebars实现的例子</h4>
+<div class="outline-text-4" id="text-2-7-1">
+<p>
+(<a href="https://segmentfault.com/a/1190000002632604">link</a>)
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-2-8" class="outline-3">
+<h3 id="sec-2-8"><span class="section-number-3">2.8</span> ECMAScript 6 in Node.js</h3>
+<div class="outline-text-3" id="text-2-8">
+<p>
+(<a href="https://github.com/JustinDrake/node-es6-examples">https://github.com/JustinDrake/node-es6-examples</a>)
+</p>
+<ol class="org-ol">
+<li>Block Scoping
+</li>
+<li>Generators
+</li>
+<li>Proxies
+</li>
+<li>Maps and Sets
+</li>
+<li>Weak Maps
+</li>
+<li>Symbols
+</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-sec-2-9" class="outline-3">
+<h3 id="sec-2-9"><span class="section-number-3">2.9</span> PM2</h3>
+<div class="outline-text-3" id="text-2-9">
+</div><div id="outline-container-sec-2-9-1" class="outline-4">
+<h4 id="sec-2-9-1"><span class="section-number-4">2.9.1</span> 用PM2守护Node.js进程</h4>
+<div class="outline-text-4" id="text-2-9-1">
+<p>
+(<a href="http://jingyan.baidu.com/article/d5c4b52be87767da560dc5f5.html">http://jingyan.baidu.com/article/d5c4b52be87767da560dc5f5.html</a>)
+</p>
+<div class="org-src-container">
+
+<pre class="src src-example">NODE_ENV=production pm2 start index.js --name "ghost"
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-2-9-2" class="outline-4">
+<h4 id="sec-2-9-2"><span class="section-number-4">2.9.2</span> 告别node-forever,拥抱PM2[转载]</h4>
+<div class="outline-text-4" id="text-2-9-2">
+<p>
+(<a href="https://cnodejs.org/topic/51f8c15144e76d216a588fcc">https://cnodejs.org/topic/51f8c15144e76d216a588fcc</a>)
+Node v0.6引入了集群特性,允许你在多个Node应用中共享socket.问题在于,它不能在容器外运行而且需要一些额外的配置来处理主进程和子进程.
+</p>
+
+<p>
+PM2原生支持处理这个问题,而且不需要额外的代码:PM2本身作为主进程,然后它将你的代码封装到一个特殊的集群进程里,就像node.js一样,为你的代码文件添加一些全局变量.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-2-10" class="outline-3">
+<h3 id="sec-2-10"><span class="section-number-3">2.10</span> TDD in nodejs with mocha&#xa0;&#xa0;&#xa0;<span class="tag"><span class="superagent">superagent</span>&#xa0;<span class="mocha">mocha</span>&#xa0;<span class="expect">expect</span></span></h3>
+<div class="outline-text-3" id="text-2-10">
+<p>
+(<a href="http://webapplog.com/test-driven-development-in-node-js-with-mocha/">http://webapplog.com/test-driven-development-in-node-js-with-mocha/</a>)
+</p>
+</div>
+</div>
+<div id="outline-container-sec-2-11" class="outline-3">
+<h3 id="sec-2-11"><span class="section-number-3">2.11</span> How To Use Mocha With Node.js For Test-Driven Development to Avoid Pain and Ship Products Faster&#xa0;&#xa0;&#xa0;<span class="tag"><span class="chai">chai</span>&#xa0;<span class="mocha">mocha</span>&#xa0;<span class="superagent">superagent</span></span></h3>
+<div class="outline-text-3" id="text-2-11">
+<p>
+(<a href="http://webapplog.com/tdd/">http://webapplog.com/tdd/</a>)
+mocha, assert, chai, expect, superagent
+</p>
+
+<p>
+The following are some of the methods from the chai assert library:
+</p>
+
+<ul class="org-ul">
+<li>assert(expressions, message): throws an error if the expression is false
+</li>
+<li>assert.fail(actual, expected, [message], [operator]): throws an error with values of actual, expected, and operator
+</li>
+<li>assert.ok(object, [message]): throws an error when the object is not double equal (==) to true—aka, truthy (0, and an empty string is false in JavaScript/Node.js)
+</li>
+<li>assert.notOk(object, [message]): throws an error when the object is falsy, i.e., false, 0(zero),“”(empty string), null, undefined or NaN
+</li>
+<li>assert.equal(actual, expected, [message]): throws an error when actual is not double equal (==) to expected
+</li>
+<li>asseret.notEqual(actual, expected, [message]): throws an error when actual is double equal (<code>=)—in other words, not unequal (!</code>)—to expected
+</li>
+<li>.strictEqual(actual, expected, [message]): throws an error when objects are not triple equal (<code>=</code>)
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2-12" class="outline-3">
+<h3 id="sec-2-12"><span class="section-number-3">2.12</span> Superagent</h3>
+<div class="outline-text-3" id="text-2-12">
+<p>
+(<a href="https://github.com/visionmedia/superagent">https://github.com/visionmedia/superagent</a>)
+</p>
+
+<p>
+SuperAgent is a small progressive client-side HTTP request library, and Node.js module with the same API, sporting many high-level HTTP client features. View the docs.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-2-13" class="outline-3">
+<h3 id="sec-2-13"><span class="section-number-3">2.13</span> Chai</h3>
+<div class="outline-text-3" id="text-2-13">
+<p>
+(<a href="http://chaijs.com/">http://chaijs.com/</a>)
+Chai is a BDD / TDD assertion library for node and the browser that can be delightfully paired with any javascript testing framework.
+</p>
+
+
+<p>
+Chai has several interfaces that allow the developer to choose the most comfortable. The chain-capable BDD styles provide an expressive language &amp; readable style, while the TDD assert style provides a more classical feel.
+</p>
+
+<p>
+Plugins extend Chai's assertions to new contexts such as vendor integration &amp; object construction. Developers can build their own plugins to share with community or use the plugin pattern to DRY up existing tests.
+</p>
+</div>
+<div id="outline-container-sec-2-13-1" class="outline-4">
+<h4 id="sec-2-13-1"><span class="section-number-4">2.13.1</span> Chai-http</h4>
+<div class="outline-text-4" id="text-2-13-1">
+<p>
+(<a href="http://chaijs.com/plugins/chai-http/">http://chaijs.com/plugins/chai-http/</a>)
+</p>
+
+<p>
+HTTP integration testing with Chai assertions.
+</p>
+<ul class="org-ul">
+<li>integration test request composition
+</li>
+<li>test http apps or external services
+</li>
+<li>assertions for common http tasks
+</li>
+<li>chai expect and should interfaces
+</li>
+</ul>
+</div>
+<ol class="org-ol"><li><a id="sec-2-13-1-1" name="sec-2-13-1-1"></a>Retaining cookies with each request<br  /><div class="outline-text-5" id="text-2-13-1-1">
+<p>
+Use <code>chai.request.agent()</code>
+</p>
+<div class="org-src-container">
+
+<pre class="src src-js"><span style="color: #465457; font-style: italic;">// </span><span style="color: #465457; font-style: italic;">Log in</span>
+<span style="color: #66D9EF;">var</span> <span style="color: #F92672;">agent</span> = chai.request.agent(app)
+agent
+  .post(<span style="color: #E6DB74;">'/session'</span>)
+  .send({ username: <span style="color: #E6DB74;">'me'</span>, password: <span style="color: #E6DB74;">'123'</span> })
+  .then(<span style="color: #66D9EF;">function</span> (<span style="color: #F92672;">res</span>) {
+    expect(res).to.have.cookie(<span style="color: #E6DB74;">'sessionid'</span>);
+    <span style="color: #465457; font-style: italic;">// </span><span style="color: #465457; font-style: italic;">The `agent` now has the sessionid cookie saved, and will send it</span>
+    <span style="color: #465457; font-style: italic;">// </span><span style="color: #465457; font-style: italic;">back to the server in the next request:</span>
+    <span style="color: #66D9EF;">return</span> agent.get(<span style="color: #E6DB74;">'/user/me'</span>)
+      .then(<span style="color: #66D9EF;">function</span> (<span style="color: #F92672;">res</span>) {
+         expect(res).to.have.status(200);
+      })
+  })
+</pre>
+</div>
+</div>
+</li>
+
+<li><a id="sec-2-13-1-2" name="sec-2-13-1-2"></a>Assertions<br  /><ol class="org-ol"><li><a id="sec-2-13-1-2-1" name="sec-2-13-1-2-1"></a>.status(code)<br  /></li>
+<li><a id="sec-2-13-1-2-2" name="sec-2-13-1-2-2"></a>.header(key[, value])<br  /></li>
+<li><a id="sec-2-13-1-2-3" name="sec-2-13-1-2-3"></a>.headers<br  /><div class="outline-text-6" id="text-2-13-1-2-3">
+<div class="org-src-container">
+
+<pre class="src src-js">expect(req).to.have.headers;
+</pre>
+</div>
+</div>
+</li>
+<li><a id="sec-2-13-1-2-4" name="sec-2-13-1-2-4"></a>.ip<br  /></li>
+<li><a id="sec-2-13-1-2-5" name="sec-2-13-1-2-5"></a>.json/..text/.html<br  /><div class="outline-text-6" id="text-2-13-1-2-5">
+<div class="org-src-container">
+
+<pre class="src src-js">expect(req).to.be.json;
+expect(req).to.be.html;
+expect(req).to.be.text;
+</pre>
+</div>
+</div>
+</li>
+<li><a id="sec-2-13-1-2-6" name="sec-2-13-1-2-6"></a>.redirect<br  /><div class="outline-text-6" id="text-2-13-1-2-6">
+<p>
+Assert that a Response object has a redirect status code.
+</p>
+</div>
+</li>
+
+<li><a id="sec-2-13-1-2-7" name="sec-2-13-1-2-7"></a>.redirectTo(url)<br  /></li>
+<li><a id="sec-2-13-1-2-8" name="sec-2-13-1-2-8"></a>.param(name[, value])<br  /><div class="outline-text-6" id="text-2-13-1-2-8">
+<div class="org-src-container">
+
+<pre class="src src-js">expect(req).to.have.param(<span style="color: #E6DB74;">'orderby'</span>);
+expect(req).to.have.param(<span style="color: #E6DB74;">'orderby'</span>, <span style="color: #E6DB74;">'date'</span>);
+expect(req).to.not.have.param(<span style="color: #E6DB74;">'limit'</span>);
+</pre>
+</div>
+</div>
+</li>
+
+<li><a id="sec-2-13-1-2-9" name="sec-2-13-1-2-9"></a>.cookie(name[, value])<br  /><div class="outline-text-6" id="text-2-13-1-2-9">
+<p>
+Assert that a Request or Response object has a cookie header with a given key, (optionally) equal to value
+</p>
+<pre class="example">
+expect(req).to.have.cookie('session_id');
+expect(req).to.have.cookie('session_id', '1234');
+expect(req).to.not.have.cookie('PHPSESSID');
+expect(res).to.have.cookie('session_id');
+expect(res).to.have.cookie('session_id', '1234');
+expect(res).to.not.have.cookie('PHPSESSID');
+</pre>
+</div>
+</li></ol>
+</li></ol>
+</div>
+</div>
+
+<div id="outline-container-sec-2-14" class="outline-3">
+<h3 id="sec-2-14"><span class="section-number-3">2.14</span> Testing nodejs with mocha and chai&#xa0;&#xa0;&#xa0;<span class="tag"><span class="chai">chai</span>&#xa0;<span class="chai_http">chai_http</span>&#xa0;<span class="featured">featured</span></span></h3>
+<div class="outline-text-3" id="text-2-14">
+<p>
+(<a href="http://www.cnblogs.com/irocker/p/testing-node-js-with-mocha-and-chai.html">http://www.cnblogs.com/irocker/p/testing-node-js-with-mocha-and-chai.html</a>)
+</p>
+</div>
+</div>
+<div id="outline-container-sec-2-15" class="outline-3">
+<h3 id="sec-2-15"><span class="section-number-3">2.15</span> Node.js的测试&#xa0;&#xa0;&#xa0;<span class="tag"><span class="mocha">mocha</span>&#xa0;<span class="chai">chai</span>&#xa0;<span class="sinon">sinon</span>&#xa0;<span class="mochery">mochery</span>&#xa0;<span class="rewire">rewire</span></span></h3>
+<div class="outline-text-3" id="text-2-15">
+<p>
+(<a href="http://www.jdon.com/idea/nodejs/testing.html">http://www.jdon.com/idea/nodejs/testing.html</a>)
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2-16" class="outline-3">
+<h3 id="sec-2-16"><span class="section-number-3">2.16</span> Testing in Node.js&#xa0;&#xa0;&#xa0;<span class="tag"><span class="mocha">mocha</span>&#xa0;<span class="chai">chai</span>&#xa0;<span class="expect">expect</span>&#xa0;<span class="assert">assert</span></span></h3>
+<div class="outline-text-3" id="text-2-16">
+<p>
+(<a href="http://code.tutsplus.com/tutorials/testing-in-nodejs--net-35018">http://code.tutsplus.com/tutorials/testing-in-nodejs--net-35018</a>)
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> Resources</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> <a href="http://www.boke.io/">boke.io</a>: 多栈开发，关注前端、Node.js、native</h3>
+<div class="outline-text-3" id="text-3-1">
+</div><div id="outline-container-sec-3-1-1" class="outline-4">
+<h4 id="sec-3-1-1"><span class="section-number-4">3.1.1</span> <a href="http://www.boke.io/ji-yu-gulphe-webpackde-qian-duan-gong-zuo-liu/">基于gulp和webpack的前端工程化</a></h4>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> Install node.js 4 on ubuntu</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+refer to <a href="https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions">debian and ubuntu based linux distributions</a>.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> System based on node.js</h2>
+<div class="outline-text-2" id="text-5">
+</div><div id="outline-container-sec-5-1" class="outline-3">
+<h3 id="sec-5-1"><span class="section-number-3">5.1</span> Hexo: a fast, simple &amp; powerful blog framework</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+<a href="https://hexo.io/">https://hexo.io/</a>
+</p>
+
+<ul class="org-ul">
+<li>Blazing Fast: Node.js brings you incredible generating speed. Hundreds of files take only seconds to build.
+</li>
+<li>Markdown Support: All features of GitHub Flavored Markdown are supported. You can even use most Octopress plugins in Hexo.
+</li>
+<li>One-Command Deployment: You only need one command to deploy your site to GitHub Pages, Heroku or other sites.
+</li>
+<li>Various Plugins: Hexo has a powerful plugin system. You can install more plugins for Jade, CoffeeScript plugins.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-example">npm install hexo-cli -g
+hexo init blog
+cd blog
+npm install
+hexo server
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: fengyz</p>
+<p class="date">Created: 2016-10-26 Wed 06:55</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

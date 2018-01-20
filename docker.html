@@ -1,0 +1,2577 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>docker</title>
+<!-- 2016-10-14 Fri 10:05 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="fengyz" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">docker</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. Tutorials</a>
+<ul>
+<li><a href="#sec-1-1">1.1. Docker Machine @docs.docker.com</a>
+<ul>
+<li><a href="#sec-1-1-1">1.1.1. Overview</a></li>
+<li><a href="#sec-1-1-2">1.1.2. What is docker machine?</a></li>
+<li><a href="#sec-1-1-3">1.1.3. Why should I use it?</a></li>
+<li><a href="#sec-1-1-4">1.1.4. What’s the difference between Docker Engine and Docker Machine?</a></li>
+<li><a href="#sec-1-1-5">1.1.5. Install Docker for Mac</a></li>
+<li><a href="#sec-1-1-6">1.1.6. Get started with Docker Machine and a local VM [No more virtualbox with Docker for Mac!]</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-2">1.2. Build a Minimal Docker Container for Ruby Apps</a>
+<ul>
+<li><a href="#sec-1-2-1">1.2.1. Create Dockerfile</a></li>
+<li><a href="#sec-1-2-2">1.2.2. Build Image</a></li>
+<li><a href="#sec-1-2-3">1.2.3. Conclusion</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-3">1.3. Running a Rails Development Environment in Docker by morko locher</a></li>
+<li><a href="#sec-1-4">1.4. Automate Your Dev Workflow with Docker by matthias sieber</a></li>
+<li><a href="#sec-1-5">1.5. Using Docker in Builds @travis-ci</a></li>
+</ul>
+</li>
+<li><a href="#sec-2">2. Definitive Guides</a>
+<ul>
+<li><a href="#sec-2-1">2.1. Why and How to Use Docker for Development by travis reeder @iron.io</a></li>
+<li><a href="#sec-2-2">2.2. Best practices for writing Dockerfiles @ docker.com</a></li>
+</ul>
+</li>
+<li><a href="#sec-3">3. Use Cases</a>
+<ul>
+<li><a href="#sec-3-1">3.1. My Use Cases</a>
+<ul>
+<li><a href="#sec-3-1-1">3.1.1. Linux box</a></li>
+<li><a href="#sec-3-1-2">3.1.2. Debugging</a></li>
+</ul>
+</li>
+<li><a href="#sec-3-2">3.2. Docker Use Cases @docker.com</a>
+<ul>
+<li><a href="#sec-3-2-1">3.2.1. CI/CD</a></li>
+<li><a href="#sec-3-2-2">3.2.2. DevOps</a></li>
+<li><a href="#sec-3-2-3">3.2.3. Big Data</a></li>
+<li><a href="#sec-3-2-4">3.2.4. Infrastructure Optimization</a></li>
+</ul>
+</li>
+<li><a href="#sec-3-3">3.3. Docker 的应用场景在哪里?</a>
+<ul>
+<li><a href="#sec-3-3-1">3.3.1. 1. 简化配置</a></li>
+<li><a href="#sec-3-3-2">3.3.2. 2. 代码流水线（Code Pipeline）管理</a></li>
+<li><a href="#sec-3-3-3">3.3.3. 3. 提高开发效率</a></li>
+<li><a href="#sec-3-3-4">3.3.4. 4. 隔离应用</a></li>
+<li><a href="#sec-3-3-5">3.3.5. 5. 整合服务器</a></li>
+<li><a href="#sec-3-3-6">3.3.6. 6. 调试能力Docker</a></li>
+<li><a href="#sec-3-3-7">3.3.7. 7. 多租户环境</a></li>
+<li><a href="#sec-3-3-8">3.3.8. 8. 快速部署</a></li>
+</ul>
+</li>
+<li><a href="#sec-3-4">3.4. 8 Ways to Use Docker in the Real World</a></li>
+<li><a href="#sec-3-5">3.5. Docker Use Cases</a></li>
+</ul>
+</li>
+<li><a href="#sec-4">4. Best Practices</a>
+<ul>
+<li><a href="#sec-4-1">4.1. Docker Best Practices</a></li>
+<li><a href="#sec-4-2">4.2. 5 Docker Best Practices You Should Follow</a></li>
+</ul>
+</li>
+<li><a href="#sec-5">5. Reference</a>
+<ul>
+<li><a href="#sec-5-1">5.1. 六个简化容器部署的免费工具</a></li>
+<li><a href="#sec-5-2">5.2. 组合上协作</a></li>
+<li><a href="#sec-5-3">5.3. 转换Git工作流</a></li>
+<li><a href="#sec-5-4">5.4. 不用Registry也能存储和接收镜像</a></li>
+<li><a href="#sec-5-5">5.5. 构建镜像的另一种选择</a></li>
+<li><a href="#sec-5-6">5.6. 存储后端支持</a></li>
+<li><a href="#sec-5-7">5.7. 别忘记了Peekr</a></li>
+<li><a href="#sec-5-8">5.8. Manage data in containers</a>
+<ul>
+<li><a href="#sec-5-8-1">5.8.1. Mount volumes from container (&#x2013;volumes-from)</a></li>
+<li><a href="#sec-5-8-2">5.8.2. Find and remove dangling volumes</a></li>
+</ul>
+</li>
+<li><a href="#sec-5-9">5.9. 深入理解Docker Volume（一）</a></li>
+<li><a href="#sec-5-10">5.10. Applying docker</a></li>
+<li><a href="#sec-5-11">5.11. Docker for AWS</a></li>
+<li><a href="#sec-5-12">5.12. Docker Basic @aws</a></li>
+<li><a href="#sec-5-13">5.13. 什么是 Docker？@AWS China</a></li>
+<li><a href="#sec-5-14">5.14. wenwenyun.com</a></li>
+<li><a href="#sec-5-15">5.15. Awesome projects from the Docker community</a></li>
+<li><a href="#sec-5-16">5.16. CONTAINERIZE YOUR WEB DEVELOPMENT: HOW DOCKER IS SOLVING REAL WORLD PROBLEMS FOR WEB DEVELOPERS!</a></li>
+<li><a href="#sec-5-17">5.17. 深入浅出Docker（二）：Docker命令行探秘 @infoq</a></li>
+</ul>
+</li>
+<li><a href="#sec-6">6. Solutions</a>
+<ul>
+<li><a href="#sec-6-1">6.1. LeanCloud</a></li>
+<li><a href="#sec-6-2">6.2. DaoCloud</a></li>
+<li><a href="#sec-6-3">6.3. 灵雀云</a>
+<ul>
+<li><a href="#sec-6-3-1">6.3.1. 镜像创建</a></li>
+<li><a href="#sec-6-3-2">6.3.2. 发布管理</a></li>
+<li><a href="#sec-6-3-3">6.3.3. 托管平台</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#sec-7">7. Tools</a>
+<ul>
+<li><a href="#sec-7-1">7.1. docker-ssh</a></li>
+<li><a href="#sec-7-2">7.2. boot2docker vs docker-machine: who cares?</a></li>
+<li><a href="#sec-7-3">7.3. Fig: orchestration tool for dockers</a></li>
+<li><a href="#sec-7-4">7.4. Compose: orchestration tool for multiple dockers</a>
+<ul>
+<li><a href="#sec-7-4-1">7.4.1. Install compose on macOS</a></li>
+</ul>
+</li>
+<li><a href="#sec-7-5">7.5. Consul: service discovery with docker</a>
+<ul>
+<li><a href="#sec-7-5-1">7.5.1. Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#sec-8">8. Advanced Topics</a>
+<ul>
+<li><a href="#sec-8-1">8.1. docker lagacy container links</a></li>
+<li><a href="#sec-8-2">8.2. copy file from/to host</a></li>
+<li><a href="#sec-8-3">8.3. Add daocloud registry mirror @mba&#xa0;&#xa0;&#xa0;<span class="tag"><span class="DOCKER">DOCKER</span>&#xa0;<span class="28">28</span></span></a></li>
+<li><a href="#sec-8-4">8.4. Slimming down docker containers</a>
+<ul>
+<li><a href="#sec-8-4-1">8.4.1. Cleaning APT</a></li>
+<li><a href="#sec-8-4-2">8.4.2. Flatten an image &gt;&gt;&gt;</a></li>
+</ul>
+</li>
+<li><a href="#sec-8-5">8.5. cannot use percol while using docker exec to open a new shell</a></li>
+<li><a href="#sec-8-6">8.6. connect to an existing container</a></li>
+<li><a href="#sec-8-7">8.7. detach a container</a></li>
+<li><a href="#sec-8-8">8.8. Why You Don't Need To Run SSHd In Your Docker Containers&#xa0;&#xa0;&#xa0;<span class="tag"><span class="nsenter">nsenter</span>&#xa0;<span class="container">container</span>&#xa0;<span class="ssh">ssh</span>&#xa0;<span class="important">important</span></span></a></li>
+<li><a href="#sec-8-9">8.9. Mount a volume without defining it in Dockerfile using VOLUME instruction</a></li>
+<li><a href="#sec-8-10">8.10. How to mount docker container volumes to different path?</a>
+<ul>
+<li><a href="#sec-8-10-1">8.10.1. Solution 1: mount and make a link</a></li>
+<li><a href="#sec-8-10-2">8.10.2. Solution 2: find the real host path and mount it using -v</a></li>
+</ul>
+</li>
+<li><a href="#sec-8-11">8.11. Automatic builds with BitBucket @ hub.docker.com</a>
+<ul>
+<li><a href="#sec-8-11-1">8.11.1. Linking to your Bitbucket account</a></li>
+</ul>
+</li>
+<li><a href="#sec-8-12">8.12. Developing Rails Apps In-Container with Docker Compose&#xa0;&#xa0;&#xa0;<span class="tag"><span class="important">important</span>&#xa0;<span class="to_read">to_read</span></span></a>
+<ul>
+<li><a href="#sec-8-12-1">8.12.1. Step 1: select a Rails base image</a></li>
+<li><a href="#sec-8-12-2">8.12.2. Step 2: Set up an in-container development environment</a></li>
+<li><a href="#sec-8-12-3">8.12.3. Step 3: Decomposing the monolith</a></li>
+<li><a href="#sec-8-12-4">8.12.4. Step 4: Executing Rails commands and Rake tasks</a></li>
+<li><a href="#sec-8-12-5">8.12.5. Step 5: Orchestrating containers with Docker Compose</a></li>
+</ul>
+</li>
+<li><a href="#sec-8-13">8.13. Running a Rails Development Environment in Docker</a></li>
+<li><a href="#sec-8-14">8.14. Deploying Your Docker Rails App</a></li>
+<li><a href="#sec-8-15">8.15. Docker + Capistrano = Warp Speed (Sep 6 2015)</a></li>
+<li><a href="#sec-8-16">8.16. Rails on Docker (updated @March 2016)</a></li>
+<li><a href="#sec-8-17">8.17. Example of a Rails App with Docker Compose for Development&#xa0;&#xa0;&#xa0;<span class="tag"><span class="important">important</span>&#xa0;<span class="to_read">to_read</span></span></a></li>
+<li><a href="#sec-8-18">8.18. Production Deployment With Docker&#xa0;&#xa0;&#xa0;<span class="tag"><span class="important">important</span>&#xa0;<span class="to_read">to_read</span></span></a></li>
+<li><a href="#sec-8-19">8.19. Docker, Rails, &amp; Docker Compose together in your development workflow&#xa0;&#xa0;&#xa0;<span class="tag"><span class="important">important</span>&#xa0;<span class="to_read">to_read</span></span></a></li>
+<li><a href="#sec-8-20">8.20. Quickstart: Docker Compose and Rails (official docker docs)&#xa0;&#xa0;&#xa0;<span class="tag"><span class="important">important</span>&#xa0;<span class="to_read">to_read</span></span></a></li>
+<li><a href="#sec-8-21">8.21. Docker container: Backup and Recovery @linuxconfig.org</a></li>
+<li><a href="#sec-8-22">8.22. Using puppet @docs.docker.com</a></li>
+<li><a href="#sec-8-23">8.23. What is difference between docker, puppet, chef and vagrant? @quora</a>
+<ul>
+<li><a href="#sec-8-23-1">8.23.1. Configuration Management</a></li>
+<li><a href="#sec-8-23-2">8.23.2. Docker</a></li>
+<li><a href="#sec-8-23-3">8.23.3. Vagrant</a></li>
+<li><a href="#sec-8-23-4">8.23.4. Conclusion</a></li>
+</ul>
+</li>
+<li><a href="#sec-8-24">8.24. What is the runtime performance cost of a Docker container</a></li>
+<li><a href="#sec-8-25">8.25. Using docker as a provider for vagrant</a></li>
+<li><a href="#sec-8-26">8.26. 自动化的高效团队开发环境</a></li>
+<li><a href="#sec-8-27">8.27. 浅析vagrant和docker</a></li>
+</ul>
+</li>
+<li><a href="#sec-9">9. Basic Docker Workflow</a></li>
+<li><a href="#sec-10">10. Issues &amp; Solutions</a>
+<ul>
+<li><a href="#sec-10-1">10.1. vim in docker: Error detected while processing function &lt;SNR&gt;74<sub>IndentGuidesEnable</sub> &#x2026; vim highlight group not found</a></li>
+<li><a href="#sec-10-2">10.2. .bashrc isn't executed properly while building image&#xa0;&#xa0;&#xa0;<span class="tag"><span class="DOCKER">DOCKER</span>&#xa0;<span class="23">23</span></span></a></li>
+<li><a href="#sec-10-3">10.3. rails serer running in a docker cannot be accessed from outside</a></li>
+<li><a href="#sec-10-4">10.4. M-x doesn't work on a container running under windows</a></li>
+<li><a href="#sec-10-5">10.5. Network timed out while trying to connect to </a></li>
+<li><a href="#sec-10-6">10.6. 在Docker容器bash中输入中文</a></li>
+<li><a href="#sec-10-7">10.7. oh-my-zsh installation returns non zero code</a></li>
+<li><a href="#sec-10-8">10.8. couldn't mount host path to container (windows)</a></li>
+<li><a href="#sec-10-9">10.9. Permission denied while mkdir (windows)</a></li>
+</ul>
+</li>
+<li><a href="#sec-11">11. Images In Use</a>
+<ul>
+<li><a href="#sec-11-1">11.1. busybox</a>
+<ul>
+<li><a href="#sec-11-1-1">11.1.1. What is busybox?</a></li>
+<li><a href="#sec-11-1-2">11.1.2. How to use?</a></li>
+<li><a href="#sec-11-1-3">11.1.3. Create a Dockerfile for a binary</a></li>
+<li><a href="#sec-11-1-4">11.1.4. Variants</a></li>
+</ul>
+</li>
+<li><a href="#sec-11-2">11.2. postgres</a></li>
+<li><a href="#sec-11-3">11.3. fengyz/linux-box</a></li>
+<li><a href="#sec-11-4">11.4. fengyz/rails-dev</a></li>
+</ul>
+</li>
+<li><a href="#sec-12">12. Commands</a>
+<ul>
+<li><a href="#sec-12-1">12.1. docker run</a>
+<ul>
+<li><a href="#sec-12-1-1">12.1.1. -h &lt;host<sub>name</sub>&gt;</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Tutorials</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> Docker Machine @docs.docker.com</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+(<a href="https://docs.docker.com/machine/overview/">https://docs.docker.com/machine/overview/</a>)
+</p>
+</div>
+<div id="outline-container-sec-1-1-1" class="outline-4">
+<h4 id="sec-1-1-1"><span class="section-number-4">1.1.1</span> Overview</h4>
+<div class="outline-text-4" id="text-1-1-1">
+<p>
+Use docker machine to:
+</p>
+<ul class="org-ul">
+<li>Install and run Docker on Mac or Windows
+</li>
+<li>Provision and manage multiple remote Docker hosts
+</li>
+<li>Provision Swarm clusters
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-1-1-2" class="outline-4">
+<h4 id="sec-1-1-2"><span class="section-number-4">1.1.2</span> What is docker machine?</h4>
+<div class="outline-text-4" id="text-1-1-2">
+<p>
+A tool that lest you:
+</p>
+<ul class="org-ul">
+<li>install <b>Docker Engine</b> <i>on</i> <b>virtual hosts</b>
+</li>
+<li>manage the hosts with <code>docker-machine</code> commands
+</li>
+</ul>
+
+<p>
+You can use Machine to create <b>Docker hosts</b>
+</p>
+<ul class="org-ul">
+<li>on your local Mac or Windows box, 
+</li>
+<li>on your company network, 
+</li>
+<li>in your data center, or 
+</li>
+<li>on cloud providers like AWS or Digital Ocean.
+</li>
+</ul>
+
+<p>
+Using <code>docker-machine</code> commands, you can start, inspect, stop, and restart a managed <b>host</b>, upgrade the Docker client and daemon, and configure a Docker client to talk to your host.
+</p>
+
+<p>
+Point the <i>Machine CLI</i> at a running, managed <b>host</b>, and you can run docker commands directly on that host. For example, run <code>docker-machine env default</code> to point to a <b>host</b> called <span class="underline">default</span>, follow on-screen instructions to complete <code>env</code> setup, and run <code>docker ps</code>, <code>docker run hello-world</code>, and so forth.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-1-1-3" class="outline-4">
+<h4 id="sec-1-1-3"><span class="section-number-4">1.1.3</span> Why should I use it?</h4>
+<div class="outline-text-4" id="text-1-1-3">
+<p>
+Machine is currently 
+</p>
+<ul class="org-ul">
+<li>the only way to run Docker on Mac or Windows, 
+</li>
+<li>the best way to provision multiple remote Docker hosts on various flavors of Linux.
+</li>
+</ul>
+</div>
+<ol class="org-ol"><li><a id="sec-1-1-3-1" name="sec-1-1-3-1"></a>Use Cases<br  /><ol class="org-ol"><li><a id="sec-1-1-3-1-1" name="sec-1-1-3-1-1"></a>I want to run Docker on Mac or Windows<br  /><div class="outline-text-6" id="text-1-1-3-1-1">
+<p>
+-&gt; to provision a local virtual machine with <span class="underline">Docker Engine</span>, to give you the ability to connect it, and to run <code>docker</code> commands.
+</p>
+</div>
+</li>
+<li><a id="sec-1-1-3-1-2" name="sec-1-1-3-1-2"></a>I want to provision Docker hosts on remote systems<br  /><div class="outline-text-6" id="text-1-1-3-1-2">
+<p>
+Docker Engine runs natively on Linux systems. If you have a Linux box as your primary system, and want to run docker commands, all you need to do is download and install Docker Engine. 
+</p>
+
+<p>
+However, if you want an efficient way to provision multiple Docker hosts on a network, in the cloud or even locally, you need Docker Machine.
+</p>
+
+<p>
+Whether your primary system is Mac, Windows, or Linux, you can install Docker Machine on it and use <code>docker-machine</code> commands to provision and manage large numbers of Docker hosts. It automatically 
+</p>
+<ul class="org-ul">
+<li>creates hosts, 
+</li>
+<li>installs Docker Engine on them, then 
+</li>
+<li>configures the docker clients [???]. 
+</li>
+</ul>
+
+<p>
+Each managed host (”machine”) is the combination of a <span class="underline">Docker host</span> and a configured <span class="underline">client</span>.
+</p>
+</div>
+</li></ol>
+</li></ol>
+</div>
+<div id="outline-container-sec-1-1-4" class="outline-4">
+<h4 id="sec-1-1-4"><span class="section-number-4">1.1.4</span> What’s the difference between Docker Engine and Docker Machine?</h4>
+<div class="outline-text-4" id="text-1-1-4">
+<p>
+Docker == Docker Engine = Docker daemon + REST API + CLI client
+</p>
+
+<p>
+Docker Machine is a tool for provisioning and managing Dockerized hosts (hosts with Docker Engine on them). 
+</p>
+
+<p>
+The Dockerized hosts themselves can be referred to as 'managed machines'.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-1-1-5" class="outline-4">
+<h4 id="sec-1-1-5"><span class="section-number-4">1.1.5</span> Install Docker for Mac</h4>
+<div class="outline-text-4" id="text-1-1-5">
+<p>
+(<a href="https://docs.docker.com/engine/installation/mac/">https://docs.docker.com/engine/installation/mac/</a>)
+</p>
+
+<p>
+Refer to <a href="https://docs.docker.com/docker-for-mac/">https://docs.docker.com/docker-for-mac/</a>.
+</p>
+
+<p>
+Docker for Mac is our newest offering for the Mac. It runs as a native Mac application and uses xhyve to virtualize the Docker Engine environment and Linux kernel-specific features for the Docker daemon.
+</p>
+
+<p>
+[Refer to <a href="https://docs.docker.com/docker-for-mac/">Getting Started with Docker for Mac</a>]
+</p>
+</div>
+<ol class="org-ol"><li><a id="sec-1-1-5-1" name="sec-1-1-5-1"></a>Download<br  /><div class="outline-text-5" id="text-1-1-5-1">
+<p>
+<a href="https://download.docker.com/mac/beta/Docker.dmg">https://download.docker.com/mac/beta/Docker.dmg</a>
+</p>
+</div>
+</li>
+<li><a id="sec-1-1-5-2" name="sec-1-1-5-2"></a>What to know before you install<br  /><div class="outline-text-5" id="text-1-1-5-2">
+<ul class="org-ul">
+<li>VirtualBox prior to version 4.3.30 must NOT be installed (it is incompatible with Docker for Mac)
+</li>
+<li>The installation provides 
+<ul class="org-ul">
+<li>Docker Engine, 
+</li>
+<li>Docker CLI client, 
+</li>
+<li>Docker Compose, 
+</li>
+<li>Docker Machine.
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</li>
+<li><a id="sec-1-1-5-3" name="sec-1-1-5-3"></a>Step 1. Install and Run Docker for Mac<br  /><div class="outline-text-5" id="text-1-1-5-3">
+<p>
+Double-click the downloaded dmg file.
+</p>
+</div>
+</li>
+<li><a id="sec-1-1-5-4" name="sec-1-1-5-4"></a>Step 2. Check versions of Docker Engine, Compose, and Machine<br  /><div class="outline-text-5" id="text-1-1-5-4">
+<div class="org-src-container">
+
+<pre class="src src-sh">$ docker --version
+Docker version 1.12.0-rc2, build 906eacd, experimental
+
+$ docker-compose --version
+docker-compose version 1.8.0-rc1, build 9bf6bc6
+
+$ docker-machine --version
+docker-machine version 0.8.0-rc1, build fffa6c9
+</pre>
+</div>
+</div>
+</li>
+<li><a id="sec-1-1-5-5" name="sec-1-1-5-5"></a>Step 3. Explore the application and run examples<br  /><div class="outline-text-5" id="text-1-1-5-5">
+<div class="org-src-container">
+
+<pre class="src src-sh">docker run -it ubuntu bash
+</pre>
+</div>
+<p>
+And: 
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">docker ps
+docker images
+</pre>
+</div>
+</div>
+</li>
+<li><a id="sec-1-1-5-6" name="sec-1-1-5-6"></a>Docker Settings<br  /><div class="outline-text-5" id="text-1-1-5-6">
+<p>
+Choose the menu 'Preferences'
+</p>
+</div>
+</li>
+<li><a id="sec-1-1-5-7" name="sec-1-1-5-7"></a>Installing bash completion<br  /><div class="outline-text-5" id="text-1-1-5-7">
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #A6E22E;">cd</span> /usr/local/etc/bash_completion.d
+ln -s /Applications/Docker.app/Contents/Resources/etc/docker.bash-completion
+ln -s /Applications/Docker.app/Contents/Resources/etc/docker-machine.bash-completion
+ln -s /Applications/Docker.app/Contents/Resources/etc/docker-compose.bash-completion
+</pre>
+</div>
+</div>
+</li></ol>
+</div>
+<div id="outline-container-sec-1-1-6" class="outline-4">
+<h4 id="sec-1-1-6"><span class="section-number-4">1.1.6</span> Get started with Docker Machine and a local VM [No more virtualbox with Docker for Mac!]</h4>
+<div class="outline-text-4" id="text-1-1-6">
+<p>
+(<a href="https://docs.docker.com/machine/get-started/">https://docs.docker.com/machine/get-started/</a>)
+Create, use and manage a Docker host inside of VirtualBox.
+</p>
+
+<p>
+[*Note*]
+(<a href="https://blog.docker.com/2016/03/docker-for-mac-windows-beta/">https://blog.docker.com/2016/03/docker-for-mac-windows-beta/</a>)
+</p>
+<ul class="org-ul">
+<li>Faster and more reliable: no more VirtualBox! The Docker engine is running in an Alpine Linux distribution on top of an <span class="underline">xhyve Virtual Machine on Mac OS X</span> or on a Hyper-V VM on Windows, and that VM is managed by the Docker application. You don’t need docker-machine to run Docker for Mac and Windows.
+</li>
+<li>Volume mounting for your code and data: volume data access works correctly, including file change notifications (on Mac inotify now works seamlessly inside containers for volume mounted directories). This enables edit/test cycles for “in container” development.
+</li>
+<li>Easy access to running containers on the local host network: Docker for Mac and Windows include a DNS server for containers, and are integrated with the Mac OS X and Windows networking system. On a Mac, Docker can be used even when connected to a very restrictive corporate VPN.
+</li>
+<li>Docker for Mac was architected from scratch to be able to fit the OS X sandbox security model and we are working closely with Apple to achieve this.
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> Build a Minimal Docker Container for Ruby Apps</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+(<a href="http://blog.codeship.com/build-minimal-docker-container-ruby-apps/">http://blog.codeship.com/build-minimal-docker-container-ruby-apps/</a>)
+</p>
+
+<p>
+Since we need a really small image for running our application, let’s see how we can build one. Alpine Linux is a very tiny Linux distribution. It’s built on BusyBox, and it includes only the minimum files needed to boot and run the operating system.
+</p>
+</div>
+
+<div id="outline-container-sec-1-2-1" class="outline-4">
+<h4 id="sec-1-2-1"><span class="section-number-4">1.2.1</span> Create Dockerfile</h4>
+<div class="outline-text-4" id="text-1-2-1">
+<p>
+In our Ruby application directory, let’s create the Dockerfile:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-example">FROM alpine:3.2
+MAINTAINER John Doe &lt;john@doe.com&gt;
+
+ENV BUILD_PACKAGES bash curl-dev ruby-dev build-base
+ENV RUBY_PACKAGES ruby ruby-io-console ruby-bundler
+
+# Update and install all of the required packages.
+# At the end, remove the apk cache
+RUN apk update &amp;&amp; \
+    apk upgrade &amp;&amp; \
+    apk add $BUILD_PACKAGES &amp;&amp; \
+    apk add $RUBY_PACKAGES &amp;&amp; \
+    rm -rf /var/cache/apk/*
+
+RUN mkdir /usr/app
+WORKDIR /usr/app
+
+COPY Gemfile /usr/app/
+COPY Gemfile.lock /usr/app/
+RUN bundle install
+
+COPY . /usr/app
+</pre>
+</div>
+
+<p>
+Explanation:
+</p>
+<ul class="org-ul">
+<li>updating the repositories is done via “apk update”, while upgrading the installed packages is done via “apk upgrade”.
+</li>
+<li>My personal preference is to always have a couple of useful binaries installed, like curl, wget, and bash. 
+</li>
+<li>Installation of packages in Alpine Linux is done with the apk add &lt;package-name&gt; command. 
+</li>
+<li>When installing Ruby, we need to install the latest Ruby distribution and ruby-bundler. The Ruby distribution is the language itself, while ruby-bundler is Bundler wrapped in an apk package. 
+</li>
+<li>it’s considered good practice to clean up after ourselves - as easy as removing everything in the /var/cache/apk path.
+</li>
+<li>include our tiny Checker application in this container, so that every time we create a new container it’s available to us. First, we need to create a new directory and copy the files of the application in the directory. The last step is to bundle the application.
+</li>
+<li>We also need following packages/gems for building:
+<ul class="org-ul">
+<li>ruby-io-console (apk): ruby requires 'io-console' library
+</li>
+<li>ruby-dev: provides header files
+</li>
+<li>build-base: the build packages
+</li>
+<li>curl-dev
+</li>
+</ul>
+</li>
+<li>Each RUN command creates a new layer in the image history. By concatenating all of the commands, we will create only one layer in the image history where the packages will be installed and the cache cleaned.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2-2" class="outline-4">
+<h4 id="sec-1-2-2"><span class="section-number-4">1.2.2</span> Build Image</h4>
+<div class="outline-text-4" id="text-1-2-2">
+<div class="org-src-container">
+
+<pre class="src src-sh">docker build jdoe/ruby .
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2-3" class="outline-4">
+<h4 id="sec-1-2-3"><span class="section-number-4">1.2.3</span> Conclusion</h4>
+<div class="outline-text-4" id="text-1-2-3">
+<p>
+My conclusion is that building a very minimal Docker image for Ruby is very hard. Building it is very much directed by what are <i>the minimal requirements</i> for the application that we want to deploy within the container. 
+</p>
+<ul class="org-ul">
+<li>When it comes to compiled languages, like Java, one can compile the application with its dependencies outside of the container and deploy the compiled app (with its dependencies) to a container that only has a JVM. 
+</li>
+<li>Because this is not an option with Ruby, it would be best to gradually build your own minimal images that will work for your application.
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3"><span class="section-number-3">1.3</span> Running a Rails Development Environment in Docker by morko locher</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+(<a href="https://blog.codeship.com/running-rails-development-environment-docker/">https://blog.codeship.com/running-rails-development-environment-docker/</a>)
+</p>
+</div>
+</div>
+<div id="outline-container-sec-1-4" class="outline-3">
+<h3 id="sec-1-4"><span class="section-number-3">1.4</span> Automate Your Dev Workflow with Docker by matthias sieber</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+(<a href="https://blog.codeship.com/automate-your-dev-workflow-with-docker/">https://blog.codeship.com/automate-your-dev-workflow-with-docker/</a>)
+</p>
+</div>
+</div>
+<div id="outline-container-sec-1-5" class="outline-3">
+<h3 id="sec-1-5"><span class="section-number-3">1.5</span> Using Docker in Builds @travis-ci</h3>
+<div class="outline-text-3" id="text-1-5">
+<p>
+(<a href="https://docs.travis-ci.com/user/docker/">https://docs.travis-ci.com/user/docker/</a>)
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Definitive Guides</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> Why and How to Use Docker for Development by travis reeder @iron.io</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+(<a href="https://medium.com/iron-io-blog/why-and-how-to-use-docker-for-development-a156c1de3b24#.gac3l3duj">https://medium.com/iron-io-blog/why-and-how-to-use-docker-for-development-a156c1de3b24#.gac3l3duj</a>)
+</p>
+</div>
+</div>
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> Best practices for writing Dockerfiles @ docker.com</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+<a href="https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/">https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/</a>
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> Use Cases</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> My Use Cases</h3>
+<div class="outline-text-3" id="text-3-1">
+</div><div id="outline-container-sec-3-1-1" class="outline-4">
+<h4 id="sec-3-1-1"><span class="section-number-4">3.1.1</span> Linux box</h4>
+<div class="outline-text-4" id="text-3-1-1">
+<p>
+在 docker container 里使用 linux cli 完成工作。
+</p>
+
+<ul class="org-ul">
+<li>再也不需要在 macbook 上用 brew 安装 linux tools 了
+</li>
+<li>常用工具打包到 image，push 到 docker hub -》ubiquitous dev env（注意：仅 toolset）
+</li>
+<li>一个 container 用于 coding，另一个 container 用于 testing，共用 volume ——》staging、deployment，etc.
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-3-1-2" class="outline-4">
+<h4 id="sec-3-1-2"><span class="section-number-4">3.1.2</span> Debugging</h4>
+<div class="outline-text-4" id="text-3-1-2">
+<p>
+复制 production or staging container 在 developer 处 recreate bug
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> Docker Use Cases @docker.com</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+(<a href="https://www.docker.com/use-cases">https://www.docker.com/use-cases</a>)
+</p>
+</div>
+
+<div id="outline-container-sec-3-2-1" class="outline-4">
+<h4 id="sec-3-2-1"><span class="section-number-4">3.2.1</span> CI/CD</h4>
+<div class="outline-text-4" id="text-3-2-1">
+<p>
+(<a href="https://www.docker.com/use-cases/cicd">https://www.docker.com/use-cases/cicd</a>)
+</p>
+
+<p>
+With integrations with tools like Jenkins, Docker allows developers to collaborate with each other to build more software, faster.
+</p>
+
+<p>
+【previously here】
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3-2-2" class="outline-4">
+<h4 id="sec-3-2-2"><span class="section-number-4">3.2.2</span> DevOps</h4>
+</div>
+<div id="outline-container-sec-3-2-3" class="outline-4">
+<h4 id="sec-3-2-3"><span class="section-number-4">3.2.3</span> Big Data</h4>
+</div>
+<div id="outline-container-sec-3-2-4" class="outline-4">
+<h4 id="sec-3-2-4"><span class="section-number-4">3.2.4</span> Infrastructure Optimization</h4>
+</div>
+</div>
+
+<div id="outline-container-sec-3-3" class="outline-3">
+<h3 id="sec-3-3"><span class="section-number-3">3.3</span> Docker 的应用场景在哪里?</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+(<a href="https://www.zhihu.com/question/22969309">https://www.zhihu.com/question/22969309</a>)
+</p>
+
+<p>
+下面是我总结的一些Docker的使用场景，它为你展示了如何借助Docker的优势，在低开销的情况下，打造一个一致性的环境。内容来自：八个Docker的真实应用场景
+</p>
+</div>
+
+<div id="outline-container-sec-3-3-1" class="outline-4">
+<h4 id="sec-3-3-1"><span class="section-number-4">3.3.1</span> 1. 简化配置</h4>
+<div class="outline-text-4" id="text-3-3-1">
+<p>
+这是Docker公司宣传的Docker的主要使用场景。虚拟机的最大好处是能在你的硬件设施上运行各种配置不一样的平台（软件、系统），Docker在降低额外开销的情况下提供了同样的功能。它能让你将运行环境和配置放在代码中然后部署，同一个Docker的配置可以在不同的环境中使用，这样就降低了硬件要求和应用环境之间耦合度。
+</p>
+</div>
+</div>
+<div id="outline-container-sec-3-3-2" class="outline-4">
+<h4 id="sec-3-3-2"><span class="section-number-4">3.3.2</span> 2. 代码流水线（Code Pipeline）管理</h4>
+<div class="outline-text-4" id="text-3-3-2">
+<p>
+前一个场景对于管理代码的流水线起到了很大的帮助。代码从开发者的机器到最终在生产环境上的部署，需要经过很多的中间环境。而每一个中间环境都有自己微小的差别，Docker给应用提供了一个从开发到上线均一致的环境，让代码的流水线变得简单不少。
+</p>
+</div>
+</div>
+<div id="outline-container-sec-3-3-3" class="outline-4">
+<h4 id="sec-3-3-3"><span class="section-number-4">3.3.3</span> 3. 提高开发效率</h4>
+<div class="outline-text-4" id="text-3-3-3">
+<p>
+这就带来了一些额外的好处：Docker能提升开发者的开发效率。如果你想看一个详细一点的例子，可以参考Aater在DevOpsDays Austin 2014 大会或者是DockerCon上的演讲。
+</p>
+
+<p>
+不同的开发环境中，我们都想把两件事做好。一是我们想让开发环境尽量贴近生产环境，二是我们想快速搭建开发环境。
+</p>
+
+<p>
+理想状态中，要达到第一个目标，我们需要将每一个服务都跑在独立的虚拟机中以便监控生产环境中服务的运行状态。然而，我们却不想每次都需要网络连接，每次重新编译的时候远程连接上去特别麻烦。这就是Docker做的特别好的地方，开发环境的机器通常内存比较小，之前使用虚拟的时候，我们经常需要为开发环境的机器加内存，而现在Docker可以轻易的让几十个服务在Docker中跑起来。
+</p>
+</div>
+</div>
+<div id="outline-container-sec-3-3-4" class="outline-4">
+<h4 id="sec-3-3-4"><span class="section-number-4">3.3.4</span> 4. 隔离应用</h4>
+<div class="outline-text-4" id="text-3-3-4">
+<p>
+有很多种原因会让你选择在一个机器上运行不同的应用，比如之前提到的提高开发效率的场景等。
+</p>
+
+<p>
+我们经常需要考虑两点，一是因为要降低成本而进行服务器整合，二是将一个整体式的应用拆分成松耦合的单个服务（译者注：微服务架构）。如果你想了解为什么松耦合的应用这么重要，请参考Steve Yege的这篇论文，文中将Google和亚马逊做了比较。
+</p>
+</div>
+</div>
+<div id="outline-container-sec-3-3-5" class="outline-4">
+<h4 id="sec-3-3-5"><span class="section-number-4">3.3.5</span> 5. 整合服务器</h4>
+<div class="outline-text-4" id="text-3-3-5">
+<p>
+正如通过虚拟机来整合多个应用，Docker隔离应用的能力使得Docker可以整合多个服务器以降低成本。由于没有多个操作系统的内存占用，以及能在多个实例之间共享没有使用的内存，Docker可以比虚拟机提供更好的服务器整合解决方案。
+</p>
+</div>
+</div>
+<div id="outline-container-sec-3-3-6" class="outline-4">
+<h4 id="sec-3-3-6"><span class="section-number-4">3.3.6</span> 6. 调试能力Docker</h4>
+<div class="outline-text-4" id="text-3-3-6">
+<p>
+提供了很多的工具，这些工具不一定只是针对容器，但是却适用于容器。它们提供了很多的功能，包括可以为容器设置检查点、设置版本和查看两个容器之间的差别，这些特性可以帮助调试Bug。你可以在《Docker拯救世界》的文章中找到这一点的例证。
+</p>
+</div>
+</div>
+<div id="outline-container-sec-3-3-7" class="outline-4">
+<h4 id="sec-3-3-7"><span class="section-number-4">3.3.7</span> 7. 多租户环境</h4>
+<div class="outline-text-4" id="text-3-3-7">
+<p>
+另外一个Docker有意思的使用场景是在多租户的应用中，它可以避免关键应用的重写。我们一个特别的关于这个场景的例子是为IoT（译者注：物联网）的应用开发一个快速、易用的多租户环境。这种多租户的基本代码非常复杂，很难处理，重新规划这样一个应用不但消耗时间，也浪费金钱。
+</p>
+
+<p>
+使用Docker，可以为每一个租户的应用层的多个实例创建隔离的环境，这不仅简单而且成本低廉，当然这一切得益于Docker环境的启动速度和其高效的diff命令。
+</p>
+
+<p>
+你可以在这里了解关于此场景的更多信息。
+</p>
+</div>
+</div>
+<div id="outline-container-sec-3-3-8" class="outline-4">
+<h4 id="sec-3-3-8"><span class="section-number-4">3.3.8</span> 8. 快速部署</h4>
+<div class="outline-text-4" id="text-3-3-8">
+<p>
+在虚拟机之前，引入新的硬件资源需要消耗几天的时间。Docker的虚拟化技术将这个时间降到了几分钟，Docker只是创建一个容器进程而无需启动操作系统，这个过程只需要秒级的时间。这正是Google和Facebook都看重的特性。
+</p>
+
+<p>
+你可以在数据中心创建销毁资源而无需担心重新启动带来的开销。通常数据中心的资源利用率只有30%，通过使用Docker并进行有效的资源分配可以提高资源的利用率。
+</p>
+
+<p>
+作者：Li Yingjie
+链接：<a href="https://www.zhihu.com/question/22969309/answer/38317063">https://www.zhihu.com/question/22969309/answer/38317063</a>
+来源：知乎
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+</p>
+
+<p>
+我在之前的公司主要把docker作为每日集成测试的容器，当容器带-r参数运行，会在指定任务完成后删除自身，通过-v参数可以将测试结果共享到host（测试机器）上，这样可以大量，快速完成测试环境和代码部署，基本上是秒开啊！作paas的也有，把docker当中一个小型虚拟机器使用。
+</p>
+
+<p>
+作者：涂飞平
+链接：<a href="https://www.zhihu.com/question/22969309/answer/27094830">https://www.zhihu.com/question/22969309/answer/27094830</a>
+来源：知乎
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-3-4" class="outline-3">
+<h3 id="sec-3-4"><span class="section-number-3">3.4</span> 8 Ways to Use Docker in the Real World</h3>
+<div class="outline-text-3" id="text-3-4">
+<p>
+(<a href="http://blog.flux7.com/blogs/docker/8-ways-to-use-docker-in-the-real-world">http://blog.flux7.com/blogs/docker/8-ways-to-use-docker-in-the-real-world</a>, also <a href="https://www.airpair.com/docker/posts/8-proven-real-world-ways-to-use-docker">https://www.airpair.com/docker/posts/8-proven-real-world-ways-to-use-docker</a>)
+</p>
+
+<ol class="org-ol">
+<li>Simplifying Configuration
+</li>
+<li>Code Pipeline Management
+</li>
+<li>Developer Productivity
+</li>
+<li>App Isolation
+</li>
+<li>Server Consolidation: Allow consolidating multiple servers to save on cost
+</li>
+<li>Debugging Capabilities: tip - to diff two containers, refer to "<a href="http://flux7.com/blogs/docker/docker-saves-the-day-at-flux7/">docker saves the day</a>" 【very helpful! especially 'zero bug re-creation time' - snapshotting the container】
+</li>
+<li>Multi-Tenancy
+</li>
+<li>Rapid Deployment
+</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-sec-3-5" class="outline-3">
+<h3 id="sec-3-5"><span class="section-number-3">3.5</span> Docker Use Cases</h3>
+<div class="outline-text-3" id="text-3-5">
+<p>
+(<a href="https://rominirani.com/docker-use-cases-ca12afba75b0#.9r6u7wv7r">https://rominirani.com/docker-use-cases-ca12afba75b0#.9r6u7wv7r</a>)
+</p>
+
+<p>
+It’s not about your app. It’s not about what is inside your app to a large extent. Its about packaging, shipping and delivering your app in a standard way.
+</p>
+
+<ul class="org-ul">
+<li>trying out new software: run MySQL <code>docker run -d -p 3306:3306 tutum/mysql</code>
+</li>
+<li>great for demos
+</li>
+<li>avoiding 'it works on my machine' syndrome
+</li>
+<li>learning a bit of Linux/Scripting
+</li>
+<li>better use of resources: simplicity, granularity and footprint
+</li>
+<li>made for microservices
+</li>
+<li>porting across cloud providers
+</li>
+<li>API endpoints: The point here is that before we start working on the implementation of the REST API, you would like to define the API contract and publish that document, so that the client side of the equation can start coding against that interface. -&gt; <a href="https://registry.hub.docker.com/u/clue/json-server/">JSON Server</a>, a Docker image that proovides REST API mocking based on plain JSON
+</li>
+<li>ripe for tools/innovation: the more you use Docker, the more you apply it to your medium to complex applications. it is important to be there early in the game.
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> Best Practices</h2>
+<div class="outline-text-2" id="text-4">
+</div><div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1"><span class="section-number-3">4.1</span> Docker Best Practices</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+(<a href="http://blog.bigstep.com/big-data-performance/docker-best-practices/">http://blog.bigstep.com/big-data-performance/docker-best-practices/</a>_)
+</p>
+
+<ul class="org-ul">
+<li>Make use of trusted builds
+</li>
+<li>Keep layers to a minimum
+</li>
+<li>Use only one container per process
+</li>
+<li>Don't install unnecessary packages
+</li>
+<li>Take advantage of DockerIgnore
+</li>
+<li>Build containers that are easy to replace
+</li>
+<li>Be specific about tags
+</li>
+</ul>
+
+<p>
+The bottom line: Docker containerization best practices are all about keepingit simple and clean.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-4-2" class="outline-3">
+<h3 id="sec-4-2"><span class="section-number-3">4.2</span> 5 Docker Best Practices You Should Follow</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+(<a href="http://containerjournal.com/2016/03/21/5-docker-best-practices-follow/">http://containerjournal.com/2016/03/21/5-docker-best-practices-follow/</a>)
+</p>
+
+<ul class="org-ul">
+<li>Be aware of inferitance and dependencies
+</li>
+<li>Limit container interaction
+</li>
+<li>Monitor containers for vulnerabilities
+</li>
+<li>Run containers as read only where possible
+</li>
+<li>Keep it simple
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> Reference</h2>
+<div class="outline-text-2" id="text-5">
+</div><div id="outline-container-sec-5-1" class="outline-3">
+<h3 id="sec-5-1"><span class="section-number-3">5.1</span> 六个简化容器部署的免费工具</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+(<a href="http://dockone.io/article/1516">http://dockone.io/article/1516</a>)
+</p>
+
+<p>
+【编者的话】本文来自Aqua技术博客，主要介绍了6款工具，它们是CodeFresh、Captain、Dogestry、Rocker、Convoy和Peekr，分别从敏捷开发协作、持续发布、镜像存储、镜像构建、后端存储和镜像安全方面帮助我们更容易地部署容器。
+</p>
+
+<p>
+寻求帮助总是没有错的，尤其是在做容器相关工作的时候。那些有助于进行测试、镜像、备份和其他重要过程的第三方Docker工具在它们免费的时候显得更加宝贵了。
+</p>
+
+<p>
+在四月份的时候，我强调了六个简化容器部署的工具。那为什么停下来了？因为这里有更多的免费工具——它们中的一些虽然名气不大，但在很多方面比一些有名的还好使——它可以让容器任务更容易进行。
+</p>
+</div>
+</div>
+<div id="outline-container-sec-5-2" class="outline-3">
+<h3 id="sec-5-2"><span class="section-number-3">5.2</span> 组合上协作</h3>
+<div class="outline-text-3" id="text-5-2">
+<p>
+CodeFresh是一个绝妙的协作工具。它是面向敏捷团队的一款Docker自动化和协作平台。它允许开发、质量保证和产品在Docker的组合上一起工作，包括CI/CD、手动测试和特征预览等。CodeFresh可以快速地构建Docker镜像，并针对运行的Docker镜像或组合实施集成测试和UI测试，还可以跟团队成员共享预览你的实现，并允许他们在你改动或者创建拉请求时添加注解。
+</p>
+</div>
+</div>
+<div id="outline-container-sec-5-3" class="outline-3">
+<h3 id="sec-5-3"><span class="section-number-3">5.3</span> 转换Git工作流</h3>
+<div class="outline-text-3" id="text-5-3">
+<p>
+对于基于Git的容器项目，Captain是一款很好的持续发布工具，它拥有类似于Docker-compose的句法。Captain可以在容器里自动测试每个Git提交，并且只有在测试通过后才推送到镜像仓库。你可以使用Captain来构建你仓库的Dockerfiles，运行测试和向远程仓库发送已选择的镜像。
+</p>
+</div>
+</div>
+<div id="outline-container-sec-5-4" class="outline-3">
+<h3 id="sec-5-4"><span class="section-number-3">5.4</span> 不用Registry也能存储和接收镜像</h3>
+<div class="outline-text-3" id="text-5-4">
+<p>
+我见过把Dogestry用得非常好的一些客户，他们不使用镜像仓库，而只是将镜像存放在他们的机器上。Dogestry是一个简易的命令行应用和服务器，允许你使用Amazon S3，这时它就像是一个Docker镜像仓库。你可以轻松地从你私有的S3 bucket上拉镜像和推镜像，这对于公司和独立开发者都很有优点。
+</p>
+</div>
+</div>
+<div id="outline-container-sec-5-5" class="outline-3">
+<h3 id="sec-5-5"><span class="section-number-3">5.5</span> 构建镜像的另一种选择</h3>
+<div class="outline-text-3" id="text-5-5">
+<p>
+Rocker是一种向后兼容的Docker “build”选择，并且是一个很棒的镜像构建工具。它扩展了Dockerfile，包括一个可以从容地在镜像之间手动传输单一Dockerfile来构建镜像（项目构建）和部署镜像（项目二进制文件和分发镜像）的新特征。Rocker也可以在构建阶段挂载卷、导出和导入、打标签以及在Dockerfile内部推镜像。Rocker甚至拥有它自己的"rocker-compose"。
+</p>
+</div>
+</div>
+<div id="outline-container-sec-5-6" class="outline-3">
+<h3 id="sec-5-6"><span class="section-number-3">5.6</span> 存储后端支持</h3>
+<div class="outline-text-3" id="text-5-6">
+<p>
+Rancher提供了Convoy，一个用起来得心应手的数据持久化Docker卷插件。它支持供应商特定扩展，例如快照创建、备份、容器和主机间共享，以及从备份和快照进行修复。Convoy支持多种存储后端，并且总的说来，它让Docker卷数据的管理变得更加容易了。
+</p>
+</div>
+</div>
+<div id="outline-container-sec-5-7" class="outline-3">
+<h3 id="sec-5-7"><span class="section-number-3">5.7</span> 别忘记了Peekr</h3>
+<div class="outline-text-3" id="text-5-7">
+<p>
+就像我在另一篇关于便利工具的博客里，我一定也提到了Peekr，即Aqua Security的镜像安全扫描器。Peekr会使用拥有五百万个脆弱特征的数据库来检测每个容器镜像——除了Linux发布版的包（RPM和DEB）以外，还支持主流编程语言，像Python、Java、JavaScript、PHP、Ruby和C++。它也可以通过在沙箱里运行镜像来执行动态检查，寻找可疑的活动模式。Peekr支持Docker Hub、CoreOS Quay以及Amazon ECR，你也可以扫描来自私有仓库V1和V2版本的镜像。
+</p>
+
+<p>
+我们最近升级了Peekr，它现在包含了REST API访问和默认配额为每个月50次的扫描。
+</p>
+
+<p>
+我确信还有别的工具，如果我没有强调你最喜欢的那个，你也可以跟社区分享，就在下方的评论区就可以。
+</p>
+
+<p>
+原文链接：6(More) Free Docker Tools to Make your Container Deployment Easier（翻译：苗立尧）
+</p>
+</div>
+</div>
+<div id="outline-container-sec-5-8" class="outline-3">
+<h3 id="sec-5-8"><span class="section-number-3">5.8</span> Manage data in containers</h3>
+<div class="outline-text-3" id="text-5-8">
+<p>
+(<a href="https://docs.docker.com/engine/tutorials/dockervolumes/">https://docs.docker.com/engine/tutorials/dockervolumes/</a>)
+</p>
+</div>
+
+<div id="outline-container-sec-5-8-1" class="outline-4">
+<h4 id="sec-5-8-1"><span class="section-number-4">5.8.1</span> Mount volumes from container (&#x2013;volumes-from)</h4>
+<div class="outline-text-4" id="text-5-8-1">
+<p>
+(<a href="https://docs.docker.com/engine/reference/commandline/run/#mount-volumes-from-container-volumes-from">https://docs.docker.com/engine/reference/commandline/run/#mount-volumes-from-container-volumes-from</a>)
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-5-8-2" class="outline-4">
+<h4 id="sec-5-8-2"><span class="section-number-4">5.8.2</span> Find and remove dangling volumes</h4>
+<div class="outline-text-4" id="text-5-8-2">
+<p>
+(<a href="https://docs.docker.com/engine/tutorials/dockervolumes/#removing-volumes">https://docs.docker.com/engine/tutorials/dockervolumes/#removing-volumes</a>)
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">docker volume ls -f <span style="color: #F92672;">dangling</span>=true
+docker volume rm &lt;volume_name&gt;
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-5-9" class="outline-3">
+<h3 id="sec-5-9"><span class="section-number-3">5.9</span> 深入理解Docker Volume（一）</h3>
+<div class="outline-text-3" id="text-5-9">
+<p>
+(<a href="http://dockone.io/article/128">http://dockone.io/article/128</a>)
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-5-10" class="outline-3">
+<h3 id="sec-5-10"><span class="section-number-3">5.10</span> Applying docker</h3>
+<div class="outline-text-3" id="text-5-10">
+<p>
+(<a href="https://jysperm.me/2016/02/programming-of-2015/">https://jysperm.me/2016/02/programming-of-2015/</a>)
+</p>
+
+<p>
+基于 Docker 去部署应用的思路，即既然创建容器的成本是极低的，那么可以为系统中的每个部分去创建单独的 Image, 运行单独的容器，然后通过 Docker Compose 这类工具去组合容器。Dockerfile 描述了应用的运行环境和依赖项，而 docker-compose.yml 描述了如何将一个系统中所需要的各个部分组合起来，完成了关于一个系统的完整描述。在实际运行时，因为容器之间的联系非常少，通常只暴露几个网络端口，所以给整个系统带来了非常好的横向拓展的能力，系统的每个部分都可能会运行多个容器，甚至这些容器可能会分布在不同的物理服务器上，同时提供一致的服务。
+</p>
+
+<p>
+因为 Docker 是内核级别的虚拟化，对系统调用的抽象代价很低，而因为使用了 AUFS 对文件系统进行抽象、需要建立虚拟网卡进行端口转发，所以磁盘和网络 IO 的抽象开销相对较大。所以 Docker 更适合计算密集型、依赖复杂（这样才能发挥 Docker Image 的优势）的程序，就是通常 Web 项目中负责处理请求的「应用」这部分，而将数据库等 IO 密集、部署简单、不频繁升级的程序直接部署在物理机上。
+</p>
+
+<p>
+现在 Web 后端程序面临的主要挑战就是高并发，保证单个程序的稳定性，倒不如采用分布式的架构，将一个处理能力强的实例拆分为若干个处理能力较弱的实例，转而保证一旦有实例失效，可以立刻重新创建一个实例接替它继续工作。但如果在实例中储存了一些全局的状态（例如锁）就无法通过启动多个实例的方式来横向拓展。所以比较理想的实践就是将应用实现为「无状态」的，即容器中的应用只根据来自网络的请求进行计算，对数据库、缓存和文件系统的调用同样通过网络去请求容器外部的服务。这样才可以进一步利用 Docker 的优势 —— 容器可以根据规模需要随时去在不同的物理机上创建和销毁而不需要同步数据。
+</p>
+</div>
+</div>
+<div id="outline-container-sec-5-11" class="outline-3">
+<h3 id="sec-5-11"><span class="section-number-3">5.11</span> Docker for AWS</h3>
+<div class="outline-text-3" id="text-5-11">
+<p>
+(<a href="http://www.docker.com/aws">http://www.docker.com/aws</a>)
+Running Docker on AWS provides a highly reliable, low-cost way to quickly build, ship, and run distributed applications at scale. Docker Engine enables you to easily package your app and dependencies together in a container and seamlessly move them from your local development machine to a CI pipeline and push to your production AWS cloud. Reliably manage and distribute your container images with Docker Trusted Registry (DTR) deployed in your Amazon VPC or through the hosted Docker Hub.
+</p>
+
+<p>
+The Docker Subscription for AWS is available in Amazon EC2 with a “bring your own license” option. To get started, watch the video below.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-5-12" class="outline-3">
+<h3 id="sec-5-12"><span class="section-number-3">5.12</span> Docker Basic @aws</h3>
+<div class="outline-text-3" id="text-5-12">
+<p>
+(<a href="http://docs.aws.amazon.com/AmazonECS/latest/developerguide/docker-basics.html">http://docs.aws.amazon.com/AmazonECS/latest/developerguide/docker-basics.html</a>)
+Docker is a technology that allows you to build, run, test, and deploy distributed applications that are based on Linux containers. For more information, see Docker Containers on AWS. Amazon ECS uses Docker images in task definitions to launch containers on EC2 instances in your clusters. For Amazon ECS product details, featured customer case studies, and FAQs, see the <a href="http://aws.amazon.com/ecs">Amazon EC2 Container Service product detail pages</a>.
+</p>
+
+<p>
+The documentation in this guide assumes that readers possess a basic understanding of what Docker is and how it works. For more information about Docker, see <a href="https://www.docker.com/whatisdocker/">What is Docker</a>? and the <a href="https://docs.docker.com/userguide/">Docker User Guide</a>.
+</p>
+
+<p>
+If you'd like to try out Docker before you install it, go to the <a href="https://www.docker.com/tryit/">interactive tutorial</a> on the Docker website.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-5-13" class="outline-3">
+<h3 id="sec-5-13"><span class="section-number-3">5.13</span> 什么是 Docker？@AWS China</h3>
+<div class="outline-text-3" id="text-5-13">
+<p>
+(<a href="http://aws.amazon.com/cn/docker/">http://aws.amazon.com/cn/docker/</a>)
+Docker 是一项开源技术，可让您在软件容器中构建、运行、测试和部署分布式应用程序。利用该技术，您可以将一款软件打包成一个标准化的软件开发单元，其中包括软件运行所需的全部内容：代码、运行时间、系统工具和系统库等。Docker 使您能够在任何环境下快速、可靠、一致地部署应用程序。
+</p>
+
+<p>
+通过基于 AWS 运行 Docker，您可以获得一种高度可靠的低成本方法，从而快速构建、运行、测试和部署任意规模的分布式应用程序。AWS 通过各种 AWS 服务为 Docker 开源解决方案和商业解决方案提供支持。
+</p>
+</div>
+</div>
+<div id="outline-container-sec-5-14" class="outline-3">
+<h3 id="sec-5-14"><span class="section-number-3">5.14</span> wenwenyun.com</h3>
+<div class="outline-text-3" id="text-5-14">
+<p>
+(<a href="http://www.wenwenyun.com/">http://www.wenwenyun.com/</a>)
+深入浅出系列
+</p>
+<ul class="org-ul">
+<li><a href="https://link.zhihu.com/?target=http%253A//www.wenwenyun.com/a/tip/2014/0924/533.html">深入浅出Docker（一）：Docker核心技术预览</a>
+</li>
+<li><a href="https://link.zhihu.com/?target=http%253A//www.wenwenyun.com/a/tip/2014/0924/534.html">深入浅出Docker（二）：Docker命令行探秘</a>
+</li>
+<li><a href="https://link.zhihu.com/?target=http%253A//www.wenwenyun.com/a/tip/2014/0924/535.html">深入浅出Docker（三）：Docker开源之路</a>
+</li>
+<li><a href="https://link.zhihu.com/?target=http%253A//www.wenwenyun.com/a/tip/2014/0924/536.html">深入浅出Docker（四）：Docker的集成测试部署之道</a>
+</li>
+<li><a href="https://link.zhihu.com/?target=http%253A//www.wenwenyun.com/a/tip/2014/1026/1532.html">深入浅出Docker（五）：基于Fig搭建开发环境</a>
+</li>
+</ul>
+
+<p>
+源码分析系列
+</p>
+<ul class="org-ul">
+<li>Docker源码分析(一)：Docker架构
+</li>
+<li>Docker源码分析(二)：Docker Client创建与命令执行
+</li>
+<li>Docker源码分析(三)：Docker Daemon启动
+</li>
+<li>Docker源码分析(四)：Docker Daemon之NewDaemon实现
+</li>
+<li>Docker源码分析(五)：Docker Server的创建
+</li>
+<li>Docker源码分析（六）：Docker Daemon网络
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-5-15" class="outline-3">
+<h3 id="sec-5-15"><span class="section-number-3">5.15</span> Awesome projects from the Docker community</h3>
+<div class="outline-text-3" id="text-5-15">
+<p>
+(<a href="https://blog.docker.com/2013/07/docker-projects-from-the-docker-community/">https://blog.docker.com/2013/07/docker-projects-from-the-docker-community/</a>)
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-5-16" class="outline-3">
+<h3 id="sec-5-16"><span class="section-number-3">5.16</span> CONTAINERIZE YOUR WEB DEVELOPMENT: HOW DOCKER IS SOLVING REAL WORLD PROBLEMS FOR WEB DEVELOPERS!</h3>
+<div class="outline-text-3" id="text-5-16">
+<p>
+(<a href="http://usersnap.com/blog/docker-for-web-developers">http://usersnap.com/blog/docker-for-web-developers</a>)
+</p>
+</div>
+</div>
+<div id="outline-container-sec-5-17" class="outline-3">
+<h3 id="sec-5-17"><span class="section-number-3">5.17</span> 深入浅出Docker（二）：Docker命令行探秘 @infoq</h3>
+<div class="outline-text-3" id="text-5-17">
+<p>
+(<a href="http://www.infoq.com/cn/articles/docker-command-line-quest">http://www.infoq.com/cn/articles/docker-command-line-quest</a>)
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6"><span class="section-number-2">6</span> Solutions</h2>
+<div class="outline-text-2" id="text-6">
+</div><div id="outline-container-sec-6-1" class="outline-3">
+<h3 id="sec-6-1"><span class="section-number-3">6.1</span> LeanCloud</h3>
+<div class="outline-text-3" id="text-6-1">
+<p>
+(<a href="https://leancloud.cn/">https://leancloud.cn/</a>)
+developer account: free!
+</p>
+</div>
+</div>
+<div id="outline-container-sec-6-2" class="outline-3">
+<h3 id="sec-6-2"><span class="section-number-3">6.2</span> DaoCloud</h3>
+<div class="outline-text-3" id="text-6-2">
+<p>
+(<a href="http://www.daocloud.io/">http://www.daocloud.io/</a>)
+DaoCloud产品目前涵盖以下三个领域，目前完全免费：
+</p>
+
+<ol class="org-ol">
+<li>DaoCloud应用管理平台，云端原生应用的一站式解决方案
+</li>
+</ol>
+<p>
+快速迭代，持续发布，微服务架构和容器化交付是云计算时代互联网应用的发展趋势，DaoCloud应用管理平台对接GitHub、Bitbucket、Coding、GitCafe、OSChina等国内外代码托管库，无
+缝完成持续集成，容器镜像构建，镜像托管和云平台资源调配。DaoCloud采用标准化容器技术缩短应用交付周期，降低发布风险，更高效利用IaaS云主机资源。
+</p>
+
+<ol class="org-ol">
+<li>DaoMirror镜像服务，Docker Hub官方中国区镜像服务
+</li>
+</ol>
+<p>
+Docker Hub汇集了数以万计的各类应用镜像，是学习和使用Docker技术不可或缺的重要资源。由于国内网络的特殊情况，程序员在访问Docker Hub下载镜像时，经常出现连接超时，或下载缓慢的问题。DaoMirror采用Docker官方镜像技术，结合国内CDN网络，为开发者提供透明和高速的镜像下载解决方案。DaoCloud最近对外宣布DaoMirror服务永久免费。
+</p>
+
+<ol class="org-ol">
+<li>DaoStack企业服务，企业级Docker服务，专攻私有云和混合云场景
+</li>
+</ol>
+<p>
+在移动互联网的浪潮下，企业不断思考如何与云平台对接，如何让应用拥抱互联网用户。DaoStack企业服务涵盖技术咨询、培训服务和定制解决方案，帮助企业快速掌握容器技术，建立以容器为核心的高效开发测试流程，与企业现有私有云资源对接，搭建容器管理云平台，让企业从容应对云端挑战。
+</p>
+
+<p>
+作者：Yong YU
+链接：<a href="https://www.zhihu.com/question/22969309/answer/45878105">https://www.zhihu.com/question/22969309/answer/45878105</a>
+来源：知乎
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+</p>
+</div>
+</div>
+<div id="outline-container-sec-6-3" class="outline-3">
+<h3 id="sec-6-3"><span class="section-number-3">6.3</span> 灵雀云</h3>
+<div class="outline-text-3" id="text-6-3">
+<p>
+(<a href="http://www.alauda.cn/">http://www.alauda.cn/</a>)
+</p>
+</div>
+
+<div id="outline-container-sec-6-3-1" class="outline-4">
+<h4 id="sec-6-3-1"><span class="section-number-4">6.3.1</span> 镜像创建</h4>
+<div class="outline-text-4" id="text-6-3-1">
+<p>
+以容器为载体的应用交付必不可少的一个环节就是容器镜像的生成。灵雀云将容器与应用开发流程无缝衔接，将代码转化为可随时发布的镜像，完成容器化应用的打包。
+</p>
+</div>
+
+<ol class="org-ol"><li><a id="sec-6-3-1-1" name="sec-6-3-1-1"></a>代码构建<br  /><div class="outline-text-5" id="text-6-3-1-1">
+<p>
+灵雀云与GitHub、BitBucket、OSChina、GitCafe等国内外常用代码托管服务对接，实现编译、测试、打包流程的自动化，为用户将代码转化为可随时发布的镜像。
+</p>
+</div>
+</li>
+
+<li><a id="sec-6-3-1-2" name="sec-6-3-1-2"></a>持续集成<br  /><div class="outline-text-5" id="text-6-3-1-2">
+<p>
+灵雀云采用代码托管服务的认证、授权来同步代码源，通过代码更新等事件自动触发镜像构建，从而实现容器化应用的持续集成。
+</p>
+</div>
+</li></ol>
+</div>
+
+<div id="outline-container-sec-6-3-2" class="outline-4">
+<h4 id="sec-6-3-2"><span class="section-number-4">6.3.2</span> 发布管理</h4>
+<div class="outline-text-4" id="text-6-3-2">
+<p>
+灵雀云是为容器量身定制的云平台，帮助用户以最为熟悉的Docker体验，在云端轻松发布任何容器化应用。
+</p>
+</div>
+
+<ol class="org-ol"><li><a id="sec-6-3-2-1" name="sec-6-3-2-1"></a>一键部署<br  /><div class="outline-text-5" id="text-6-3-2-1">
+<p>
+灵雀云原生支持以容器为载体的应用发布，用户无需对计算资源和运行环境作任何管理、配置，可于秒间将任意容器化应用一键部署到云端。
+</p>
+</div>
+</li>
+
+<li><a id="sec-6-3-2-2" name="sec-6-3-2-2"></a>服务集成<br  /><div class="outline-text-5" id="text-6-3-2-2">
+<p>
+容器化应用的发布并不局限于通过灵雀云构建的镜像，用户可以自由集成平台内外任意镜像资源，轻松搭建、发布由多个服务所组成的应用。
+</p>
+</div>
+</li>
+
+<li><a id="sec-6-3-2-3" name="sec-6-3-2-3"></a>多容器管理<br  /><div class="outline-text-5" id="text-6-3-2-3">
+<p>
+灵雀云支持多容器发布管理，与docker-compose兼容，可通过YAML文件描述应用的容器组件，以及容器间的依赖，并一键部署完整的多容器应用。
+</p>
+</div>
+</li></ol>
+</div>
+
+<div id="outline-container-sec-6-3-3" class="outline-4">
+<h4 id="sec-6-3-3"><span class="section-number-4">6.3.3</span> 托管平台</h4>
+<div class="outline-text-4" id="text-6-3-3">
+<p>
+灵雀云提供高可用、高性能的容器托管环境，服务于应用的完整生命周期，同时对计算、存储、网络等资源进行抽象，完全屏蔽底层基础架构，实现免运维。
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-7" class="outline-2">
+<h2 id="sec-7"><span class="section-number-2">7</span> Tools</h2>
+<div class="outline-text-2" id="text-7">
+</div><div id="outline-container-sec-7-1" class="outline-3">
+<h3 id="sec-7-1"><span class="section-number-3">7.1</span> docker-ssh</h3>
+<div class="outline-text-3" id="text-7-1">
+<p>
+(<a href="https://github.com/jeroenpeeters/docker-ssh">https://github.com/jeroenpeeters/docker-ssh</a>)
+SSH Server for Docker containers ~ Because every container should be accessible.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-7-2" class="outline-3">
+<h3 id="sec-7-2"><span class="section-number-3">7.2</span> boot2docker vs docker-machine: who cares?</h3>
+<div class="outline-text-3" id="text-7-2">
+<p>
+(<a href="http://dustinrcollins.com/boot2docker-vs-dockermachine-who-cares">http://dustinrcollins.com/boot2docker-vs-dockermachine-who-cares</a>)
+</p>
+</div>
+</div>
+<div id="outline-container-sec-7-3" class="outline-3">
+<h3 id="sec-7-3"><span class="section-number-3">7.3</span> Fig: orchestration tool for dockers</h3>
+<div class="outline-text-3" id="text-7-3">
+<p>
+Fig has been replaced by Docker Compose, and is now deprecated. The new documentation is on the Docker website.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-7-4" class="outline-3">
+<h3 id="sec-7-4"><span class="section-number-3">7.4</span> Compose: orchestration tool for multiple dockers</h3>
+<div class="outline-text-3" id="text-7-4">
+<p>
+(<a href="https://docs.docker.com/compose/">https://docs.docker.com/compose/</a>)
+</p>
+
+<p>
+Compose is a tool for defining and running multi-container Docker applications. To learn more about Compose refer to the following documentation:
+</p>
+</div>
+
+<div id="outline-container-sec-7-4-1" class="outline-4">
+<h4 id="sec-7-4-1"><span class="section-number-4">7.4.1</span> Install compose on macOS</h4>
+<div class="outline-text-4" id="text-7-4-1">
+<p>
+Refer to <a href="https://docs.docker.com/engine/installation/mac/">https://docs.docker.com/engine/installation/mac/</a>
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-7-5" class="outline-3">
+<h3 id="sec-7-5"><span class="section-number-3">7.5</span> Consul: service discovery with docker</h3>
+<div class="outline-text-3" id="text-7-5">
+<p>
+(<a href="https://www.consul.io/">https://www.consul.io/</a>)
+</p>
+</div>
+
+<div id="outline-container-sec-7-5-1" class="outline-4">
+<h4 id="sec-7-5-1"><span class="section-number-4">7.5.1</span> Reference</h4>
+<div class="outline-text-4" id="text-7-5-1">
+</div><ol class="org-ol"><li><a id="sec-7-5-1-1" name="sec-7-5-1-1"></a>Consul Service Discovery with Docker<br  /><div class="outline-text-5" id="text-7-5-1-1">
+<p>
+(<a href="http://progrium.com/blog/2014/08/20/consul-service-discovery-with-docker/">http://progrium.com/blog/2014/08/20/consul-service-discovery-with-docker/</a>)
+</p>
+
+<p>
+Consul is a powerful tool for building distributed systems.
+</p>
+</div>
+</li></ol>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-8" class="outline-2">
+<h2 id="sec-8"><span class="section-number-2">8</span> Advanced Topics</h2>
+<div class="outline-text-2" id="text-8">
+</div><div id="outline-container-sec-8-1" class="outline-3">
+<h3 id="sec-8-1"><span class="section-number-3">8.1</span> docker lagacy container links</h3>
+<div class="outline-text-3" id="text-8-1">
+<p>
+Refer to <a href="https://docs.docker.com/engine/userguide/networking/default_network/dockerlinks/">https://docs.docker.com/engine/userguide/networking/default_network/dockerlinks/</a>.
+</p>
+
+<p>
+The information in this section explains legacy container links within the Docker default bridge. This is a bridge network named bridge created automatically when you install Docker.
+</p>
+
+<p>
+Before the Docker networks feature, you could use the Docker link feature to allow containers to discover each other and securely transfer information about one container to another container. With the introduction of the Docker networks feature, you can still create links but they behave differently between default bridge network and user defined networks
+</p>
+
+<p>
+This section briefly discusses connecting via a network port and then goes into detail on container linking in default bridge network.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-8-2" class="outline-3">
+<h3 id="sec-8-2"><span class="section-number-3">8.2</span> copy file from/to host</h3>
+<div class="outline-text-3" id="text-8-2">
+<p>
+Refer to <a href="https://docs.docker.com/engine/reference/commandline/cp/">https://docs.docker.com/engine/reference/commandline/cp/</a>.
+</p>
+
+<p>
+You can copy from the container’s file system to the local machine or the reverse, from the local filesystem to the container. 
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">docker cp [OPTIONS] CONTAINER:SRC_PATH DEST_PATH|-
+docker cp [OPTIONS] SRC_PATH|- CONTAINER:DEST_PATH
+</pre>
+</div>
+
+<p>
+Copy files/folders between a container and the local filesystem
+</p>
+
+<ul class="org-ul">
+<li>Use '-' as the source to read a tar archive from stdin and extract it to a directory destination in a container.
+</li>
+<li>Use '-' as the destination to stream a tar archive of a container source to stdout.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-8-3" class="outline-3">
+<h3 id="sec-8-3"><span class="section-number-3">8.3</span> Add daocloud registry mirror @mba&#xa0;&#xa0;&#xa0;<span class="tag"><span class="DOCKER">DOCKER</span>&#xa0;<span class="28">28</span></span></h3>
+<div class="outline-text-3" id="text-8-3">
+<p>
+Docker &gt; Preferences &gt; Advanced &gt; Registry Mirros, add 'modo.m.daocloud.io', restart docker.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-8-4" class="outline-3">
+<h3 id="sec-8-4"><span class="section-number-3">8.4</span> Slimming down docker containers</h3>
+<div class="outline-text-3" id="text-8-4">
+<p>
+(<a href="https://intercityup.com/blog/downsizing-docker-containers.html">https://intercityup.com/blog/downsizing-docker-containers.html</a>)
+</p>
+</div>
+
+<div id="outline-container-sec-8-4-1" class="outline-4">
+<h4 id="sec-8-4-1"><span class="section-number-4">8.4.1</span> Cleaning APT</h4>
+<div class="outline-text-4" id="text-8-4-1">
+<div class="org-src-container">
+
+<pre class="src src-ruby"><span style="color: #66D9EF;">RUN</span> apt-get clean
+<span style="color: #66D9EF;">RUN</span> rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-8-4-2" class="outline-4">
+<h4 id="sec-8-4-2"><span class="section-number-4">8.4.2</span> Flatten an image &gt;&gt;&gt;</h4>
+<div class="outline-text-4" id="text-8-4-2">
+<p>
+A Dockerfile builds your container in many individual steps. Resulting in a container with some overhead. Whenever you want to remove the excess overhead you can flatten your image by exporting and importing and creating an new image. This is a handy trick for creating base images.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #F92672;">ID</span>=$(docker run -d image-name /bin/bash)
+docker export $<span style="color: #F92672;">ID</span> | docker import &#8211; flat-image-name
+</pre>
+</div>
+
+<p>
+If you want to save it for backup you can use gzip to compress the image.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #F92672;">ID</span>=$(docker run -d image-name /bin/bash)
+(docker export $<span style="color: #F92672;">ID</span> | gzip -c &gt; image.tgz)
+gzip -dc image.tgz | docker import - flat-image-name
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-8-5" class="outline-3">
+<h3 id="sec-8-5"><span class="section-number-3">8.5</span> cannot use percol while using docker exec to open a new shell</h3>
+<div class="outline-text-3" id="text-8-5">
+<div class="org-src-container">
+
+<pre class="src src-sh">percol --tty=/dev/tty
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-8-6" class="outline-3">
+<h3 id="sec-8-6"><span class="section-number-3">8.6</span> connect to an existing container</h3>
+<div class="outline-text-3" id="text-8-6">
+<p>
+(<a href="https://github.com/jpetazzo/nsenter">https://github.com/jpetazzo/nsenter</a>)
+</p>
+
+<p>
+Use nsenter or the simplest way:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">docker exec -it &lt;container_name&gt; /bin/zsh
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-8-7" class="outline-3">
+<h3 id="sec-8-7"><span class="section-number-3">8.7</span> detach a container</h3>
+<div class="outline-text-3" id="text-8-7">
+<p>
+(<a href="http://stackoverflow.com/questions/25267372/correct-way-to-detach-from-a-container-without-stopping-it">http://stackoverflow.com/questions/25267372/correct-way-to-detach-from-a-container-without-stopping-it</a>)
+</p>
+
+<p>
+C-p, C-q
+</p>
+
+<p>
+Then <code>docker attach &lt;container&gt;</code>
+</p>
+
+<p>
+<b>Note</b>: only use this method with containers who have only one shell running.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-8-8" class="outline-3">
+<h3 id="sec-8-8"><span class="section-number-3">8.8</span> Why You Don't Need To Run SSHd In Your Docker Containers&#xa0;&#xa0;&#xa0;<span class="tag"><span class="nsenter">nsenter</span>&#xa0;<span class="container">container</span>&#xa0;<span class="ssh">ssh</span>&#xa0;<span class="important">important</span></span></h3>
+<div class="outline-text-3" id="text-8-8">
+<p>
+(<a href="https://blog.docker.com/2014/06/why-you-dont-need-to-run-sshd-in-docker/">https://blog.docker.com/2014/06/why-you-dont-need-to-run-sshd-in-docker/</a>)
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">docker run -v /usr/local/bin:/target jpetazzo/nsenter
+<span style="color: #F92672;">PID</span>=$(docker inspect --format {{.State.Pid}} &lt;container_name_or_ID&gt;)
+nsenter --target $<span style="color: #F92672;">PID</span> --mount --uts --ipc --net --pid
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-8-9" class="outline-3">
+<h3 id="sec-8-9"><span class="section-number-3">8.9</span> Mount a volume without defining it in Dockerfile using VOLUME instruction</h3>
+<div class="outline-text-3" id="text-8-9">
+<div class="org-src-container">
+
+<pre class="src src-sh">docker run -it --name test -h test -v /Users/fengyz/Downloads/:/downloads fengyz/linux-box
+</pre>
+</div>
+
+<p>
+It works!
+</p>
+</div>
+</div>
+<div id="outline-container-sec-8-10" class="outline-3">
+<h3 id="sec-8-10"><span class="section-number-3">8.10</span> How to mount docker container volumes to different path?</h3>
+<div class="outline-text-3" id="text-8-10">
+<p>
+(<a href="http://stackoverflow.com/questions/24871006/how-to-mount-docker-container-volumes-to-different-path">http://stackoverflow.com/questions/24871006/how-to-mount-docker-container-volumes-to-different-path</a>)
+</p>
+</div>
+
+<div id="outline-container-sec-8-10-1" class="outline-4">
+<h4 id="sec-8-10-1"><span class="section-number-4">8.10.1</span> Solution 1: mount and make a link</h4>
+</div>
+<div id="outline-container-sec-8-10-2" class="outline-4">
+<h4 id="sec-8-10-2"><span class="section-number-4">8.10.2</span> Solution 2: find the real host path and mount it using -v</h4>
+<div class="outline-text-4" id="text-8-10-2">
+<p>
+Not applicable on macbook!
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-8-11" class="outline-3">
+<h3 id="sec-8-11"><span class="section-number-3">8.11</span> Automatic builds with BitBucket @ hub.docker.com</h3>
+<div class="outline-text-3" id="text-8-11">
+<p>
+(<a href="https://docs.docker.com/docker-hub/bitbucket/">https://docs.docker.com/docker-hub/bitbucket/</a>)
+</p>
+</div>
+
+<div id="outline-container-sec-8-11-1" class="outline-4">
+<h4 id="sec-8-11-1"><span class="section-number-4">8.11.1</span> Linking to your Bitbucket account</h4>
+</div>
+</div>
+
+<div id="outline-container-sec-8-12" class="outline-3">
+<h3 id="sec-8-12"><span class="section-number-3">8.12</span> Developing Rails Apps In-Container with Docker Compose&#xa0;&#xa0;&#xa0;<span class="tag"><span class="important">important</span>&#xa0;<span class="to_read">to_read</span></span></h3>
+<div class="outline-text-3" id="text-8-12">
+<p>
+(<a href="https://www.ctl.io/developers/blog/post/developing-rails-apps-in-container-with-docker-compose/">https://www.ctl.io/developers/blog/post/developing-rails-apps-in-container-with-docker-compose/</a>)
+</p>
+
+<p>
+Why using docker with Rails:
+</p>
+<ul class="org-ul">
+<li>isolating processes from one another
+</li>
+<li>limiting the scope of dependencies
+</li>
+<li>allowing you to use optimized images
+</li>
+</ul>
+</div>
+
+<div id="outline-container-sec-8-12-1" class="outline-4">
+<h4 id="sec-8-12-1"><span class="section-number-4">8.12.1</span> Step 1: select a Rails base image</h4>
+<div class="outline-text-4" id="text-8-12-1">
+<p>
+Good base image should allow you:
+</p>
+<ul class="org-ul">
+<li>to build an application in development, and
+</li>
+<li>to run it in production.
+</li>
+</ul>
+
+<p>
+Two candicates:
+</p>
+<ul class="org-ul">
+<li>based on <a href="https://hub.docker.com/r/centurylink/alpine-rails/">Alpine</a>
+</li>
+<li>based on <a href="https://hub.docker.com/r/centurylink/ubuntu-rails/">Ubuntu</a>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-8-12-2" class="outline-4">
+<h4 id="sec-8-12-2"><span class="section-number-4">8.12.2</span> Step 2: Set up an in-container development environment</h4>
+<div class="outline-text-4" id="text-8-12-2">
+<p>
+<b>Best practice</b>:
+</p>
+<ul class="org-ul">
+<li>volume mounting app code into a container running the base image
+</li>
+<li>editing normally in local OS
+</li>
+<li>building and testing in-container
+</li>
+</ul>
+</div>
+
+<ol class="org-ol"><li><a id="sec-8-12-2-1" name="sec-8-12-2-1"></a>Using a Dockerfile<br  /><div class="outline-text-5" id="text-8-12-2-1">
+<ul class="org-ul">
+<li>Possible: to run a container using the base image and pass the volume mount instructions on the command line
+</li>
+<li>Better: to orchestrate and automate running the application by making use of a Dockerfile - Sometimes it's absolutely necessary - for example, to control the firing of the ONBUILD instruction: <i>adjust your Dockerfile to inherit from a non-onbuild variant and copy the commands from the onbuild variant Dockerfile (moving the ONBUILD lines to the end and removing the ONBUILD keywords) into your own file so that you have tighter control over them and more transparency for yourself and others looking at your Dockerfile as to what it does.</i>
+</li>
+</ul>
+
+<p>
+With CenturyLink labes images, the Dockerfile is as simple as:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-ruby"><span style="color: #66D9EF;">FROM</span> centurylink/alpine-rails
+<span style="color: #66D9EF;">RUN</span> apk --update add libpq postgresql-dev
+</pre>
+</div>
+
+<p>
+Then build:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">docker build -t myrailsapp .
+</pre>
+</div>
+
+<p>
+<b>Note</b>: for CI/CD process: Modify the Dockerfile to create the perfect image
+</p>
+<ul class="org-ul">
+<li><code>ADD</code> the code during the image build
+</li>
+<li>run the code with <code>RAILS_ENV=production</code>
+</li>
+<li>Best with a separate production version of the Dockerfile, e.g. Dockerfile.prod and then passing <code>--file</code>"Dockerfile.prod"= to the Docker CLI build command
+</li>
+</ul>
+</div>
+</li></ol>
+</div>
+
+<div id="outline-container-sec-8-12-3" class="outline-4">
+<h4 id="sec-8-12-3"><span class="section-number-4">8.12.3</span> Step 3: Decomposing the monolith</h4>
+<div class="outline-text-4" id="text-8-12-3">
+<p>
+Embrace microservice architecture:
+</p>
+<ul class="org-ul">
+<li>there are already official images that are simple to configure and run containerized with Docker for PostgreSQL and MySQL
+</li>
+<li>Do the following to use them with a Dockerized Rails app.
+</li>
+</ul>
+</div>
+
+<ol class="org-ol"><li><a id="sec-8-12-3-1" name="sec-8-12-3-1"></a>Persistent Data Storage with a Containerized Database<br  /><div class="outline-text-5" id="text-8-12-3-1">
+<p>
+There are plenty of <a href="https://docs.docker.com/userguide/dockervolumes/#data-volumes">good reasons to use a data volume container</a>. The simplest reason: they are designed to persist data.
+</p>
+
+<p>
+<b>Tip</b>: If you have some persistent data that you want to share between containers, or want to use from non-persistent containers, it’s best to create a named Data Volume Container, and then to mount the data from it. While this container doesn’t run an application, it reuses the <code>training/postgres</code> image so that all containers are using layers in common, saving disk space. (refer to <a href="https://docs.docker.com/engine/tutorials/dockervolumes/">https://docs.docker.com/engine/tutorials/dockervolumes/</a> - Creating and mounting a data volume container)
+</p>
+
+<p>
+When doing Rails development and you recreate the database container with a data volume 
+</p>
+<ul class="org-ul">
+<li>you don't lose your data and 
+</li>
+<li>you can follow the conventional mode of migrating your app's database.
+</li>
+</ul>
+
+<p>
+Run a data volume intented to house pg data:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">docker create --name data -v /var/lib/postgresql busybox /bin/true
+</pre>
+</div>
+
+<p>
+Explanation:
+</p>
+<ul class="org-ul">
+<li>To create the data volume container
+</li>
+<li>To set up the <code>/var/lib/postgresql</code> directory within the container as a volume to be mounted by other Docker containers
+</li>
+</ul>
+
+<p>
+<b>Tip</b>: This concept works for other database - you simply need to create the volume using the path expected by the database.
+</p>
+</div>
+</li>
+
+<li><a id="sec-8-12-3-2" name="sec-8-12-3-2"></a>The Database Container<br  /><div class="outline-text-5" id="text-8-12-3-2">
+<p>
+Mounting the data volume from a database container
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">docker run -d --volumes-from data --name db -e <span style="color: #F92672;">POSTGRES_PASSWORD</span>=mysecretpassword postgres
+</pre>
+</div>
+
+<p>
+<b>Note</b>: when you do decide to get rid of the containers and corresponding data volume containers, you want to remove the last container that references the volume with the <code>-v</code> flag or you could leave ophaned containers on the system just taking up valuable space.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">docker rm -v db
+</pre>
+</div>
+
+<p>
+<b>Important</b>: backup, restore, or migrate data volumes (<a href="https://docs.docker.com/engine/tutorials/dockervolumes/#/backup-restore-or-migrate-data-volumes">https://docs.docker.com/engine/tutorials/dockervolumes/#/backup-restore-or-migrate-data-volumes</a>)
+</p>
+</div>
+</li>
+
+<li><a id="sec-8-12-3-3" name="sec-8-12-3-3"></a>The Rails service container<br  /><div class="outline-text-5" id="text-8-12-3-3">
+<p>
+Now we have:
+</p>
+<ul class="org-ul">
+<li>an image,
+</li>
+<li>a running database container,
+</li>
+<li>a data volume container.
+</li>
+</ul>
+
+<p>
+We can fire up our Rails app container:
+</p>
+<ul class="org-ul">
+<li>getting the code into the container using volume mounting the dir containing the code into a dir in the container: <code>-v &lt;local_path&gt;:&lt;container_path&gt;</code>
+</li>
+<li>bind the Rails server port to the container port:
+<ol class="org-ol">
+<li>docker option: <code>-p 3000:3000</code>
+</li>
+<li>pass the <code>-b</code> flag to the <code>rails server</code> command to bind Rails to any IP address of the resulting container: =rails s -b '0.0.0.0'=
+</li>
+</ol>
+</li>
+<li>connect to the database container: One of the really nice features of Rails is that the database configuration in <code>database/config.yml</code> can be overriden by <a href="http://edgeguides.rubyonrails.org/configuring.html#configuring-a-database">setting the connection information in the special DATABASE<sub>URL</sub> environment variable</a>. When we pair this with Docker container linking and the ease of injecting environment variables into Docker containers at runtime, we get a very simple way of connecting our Rails app to our containerized database.
+</li>
+</ul>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">docker run --name webapp -e <span style="color: #F92672;">DATABASE_URL</span>=postgresql://postgres:mysecretpassword@db/ -p 3000:3000 -v ./:/usr/src/app myrailsapp bundle exec rails s -b <span style="color: #E6DB74;">'0.0.0.0'</span>
+</pre>
+</div>
+
+<p>
+<b>Note</b>: If you're using boot2docker, you'll need to forward port 3000 from the VM to a local port to see the application in the browser, or simply access the GUI via $docker<sub>host</sub><sub>ip</sub>:3000.
+</p>
+</div>
+</li></ol>
+</div>
+
+<div id="outline-container-sec-8-12-4" class="outline-4">
+<h4 id="sec-8-12-4"><span class="section-number-4">8.12.4</span> Step 4: Executing Rails commands and Rake tasks</h4>
+<div class="outline-text-4" id="text-8-12-4">
+<p>
+*A command tailor-made for this very purpose: <code>docker exec</code>
+</p>
+
+<p>
+Example: we make a change to the Gemfile locally, we dan run bundler in the container:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">docker exec webapp bundle
+</pre>
+</div>
+
+<p>
+Likewise, we can migrate the database with Rake:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">docker exec webapp rake db:migrate
+</pre>
+</div>
+
+<p>
+Run tests:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">docker exec webapp rake spec
+</pre>
+</div>
+
+<p>
+<b>Note</b>: In each case, Docker starts up the container, executes the command and then shuts the container down again. Unless we remove the container, it's there to do our bidding. Changes we make locally are reflected in the container because we've mounted the code with the -v flag. And with that, we've achieved the goal of a containerized development environment.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-8-12-5" class="outline-4">
+<h4 id="sec-8-12-5"><span class="section-number-4">8.12.5</span> Step 5: Orchestrating containers with Docker Compose</h4>
+<div class="outline-text-4" id="text-8-12-5">
+<p>
+Orchestrating:
+</p>
+<ul class="org-ul">
+<li>startup
+</li>
+<li>shutdown
+</li>
+<li>linking between these containers
+</li>
+</ul>
+
+<p>
+Docker Compose: with a single <a href="https://docs.docker.com/v1.8/compose/yml/">YAML</a> file, we can reduce the coordinated control of this multi-container app to a simple start and stop.
+</p>
+
+<p>
+The docker-compose.yml modeling the three containers:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-yaml"><span style="color: #465457; font-style: italic;">---</span>
+<span style="color: #F92672;">webapp</span>:
+    <span style="color: #F92672;">build</span>: <span style="color: #E6DB74;">"."</span>
+    <span style="color: #F92672;">ports</span>:
+        - 3000:<span style="color: #000000; background-color: #ff00ff;">3000</span>
+    <span style="color: #F92672;">volumes</span>:
+        - <span style="color: #E6DB74;">".:/usr/src/app"</span>
+    <span style="color: #F92672;">working_dir</span>: <span style="color: #E6DB74;">"/usr/src/app"</span>
+    <span style="color: #F92672;">command</span>: bundle exec rails s -b <span style="color: #E6DB74;">'0.</span><span style="color: #000000; background-color: #ff00ff;">0</span><span style="color: #E6DB74;">.0.</span><span style="color: #000000; background-color: #ff00ff;">0</span><span style="color: #E6DB74;">'</span>
+    <span style="color: #F92672;">environment</span>:
+        - DATABASE_URL=postgresql://postgres:mysecretpassword@db/
+    <span style="color: #F92672;">links</span>:
+        - db:<span style="color: #000000; background-color: #ff00ff;">db</span>
+<span style="color: #F92672;">db</span>:
+    <span style="color: #F92672;">image</span>: postgres
+    <span style="color: #F92672;">volumes_from</span>:
+        - data
+    <span style="color: #F92672;">environment</span>:
+        - POSTGRES_PASSWORD=mysecretpassword
+<span style="color: #F92672;">data</span>:
+    <span style="color: #F92672;">image</span>: busybox
+    <span style="color: #F92672;">volumes</span>:
+        - <span style="color: #E6DB74;">"/var/lib/postgresql"</span>
+</pre>
+</div>
+
+<p>
+<b>Tip</b>: Another example of <a href="https://github.com/vovimayhem/docker-compose-rails-dev-example/blob/master/docker-compose.yml">docker compose rails dev exampple yml</a>.
+</p>
+
+<p>
+To start:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">docker-compose up
+</pre>
+</div>
+
+<p>
+To run typical Rails and Rake commands, instead of using <code>docker exec &lt;command&gt;</code>, use <code>docker-compose run webapp &lt;command&gt;</code>.
+</p>
+
+<p>
+<b>Tip</b>: Create a simple alias to call the Compose run command.
+</p>
+</div>
+</div>
+</div>
+
+
+
+<div id="outline-container-sec-8-13" class="outline-3">
+<h3 id="sec-8-13"><span class="section-number-3">8.13</span> Running a Rails Development Environment in Docker</h3>
+<div class="outline-text-3" id="text-8-13">
+<p>
+(<a href="http://blog.codeship.com/running-rails-development-environment-docker/">http://blog.codeship.com/running-rails-development-environment-docker/</a>)
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-8-14" class="outline-3">
+<h3 id="sec-8-14"><span class="section-number-3">8.14</span> Deploying Your Docker Rails App</h3>
+<div class="outline-text-3" id="text-8-14">
+<p>
+(<a href="https://blog.codeship.com/deploying-docker-rails-app/">https://blog.codeship.com/deploying-docker-rails-app/</a>)
+</p>
+</div>
+</div>
+<div id="outline-container-sec-8-15" class="outline-3">
+<h3 id="sec-8-15"><span class="section-number-3">8.15</span> Docker + Capistrano = Warp Speed (Sep 6 2015)</h3>
+<div class="outline-text-3" id="text-8-15">
+<p>
+(<a href="http://rockyj.in/2015/09/06/docker_capistrano.html">http://rockyj.in/2015/09/06/docker_capistrano.html</a>)
+</p>
+
+<p>
+Needless to say that Docker is pretty awesome. This blog itself is now powered by Docker + Capistrano and I can deploy a new post simply by doing bundle exec cap deploy. What's more with Docker, I can move to any hosting provider and setup everything in 10 minutes. Also, gone are the days when I had to fiddle to Chef/Puppet scripts to try and setup servers only to find a new Ruby/JDK/Node.js version is out so I need to modify those scripts again. With Docker all you need to install on a new server is probably -
+</p>
+<ul class="org-ul">
+<li>Git and
+</li>
+<li>Docker
+</li>
+</ul>
+
+<p>
+And maybe setup a user with whom you will deploy the application.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-8-16" class="outline-3">
+<h3 id="sec-8-16"><span class="section-number-3">8.16</span> Rails on Docker (updated @March 2016)</h3>
+<div class="outline-text-3" id="text-8-16">
+<p>
+(<a href="https://robots.thoughtbot.com/rails-on-docker">https://robots.thoughtbot.com/rails-on-docker</a>)
+</p>
+</div>
+</div>
+<div id="outline-container-sec-8-17" class="outline-3">
+<h3 id="sec-8-17"><span class="section-number-3">8.17</span> Example of a Rails App with Docker Compose for Development&#xa0;&#xa0;&#xa0;<span class="tag"><span class="important">important</span>&#xa0;<span class="to_read">to_read</span></span></h3>
+<div class="outline-text-3" id="text-8-17">
+<p>
+(<a href="https://github.com/vovimayhem/docker-compose-rails-dev-example">https://github.com/vovimayhem/docker-compose-rails-dev-example</a>)
+</p>
+
+<p>
+<b>Important</b>!!!
+</p>
+</div>
+</div>
+<div id="outline-container-sec-8-18" class="outline-3">
+<h3 id="sec-8-18"><span class="section-number-3">8.18</span> Production Deployment With Docker&#xa0;&#xa0;&#xa0;<span class="tag"><span class="important">important</span>&#xa0;<span class="to_read">to_read</span></span></h3>
+<div class="outline-text-3" id="text-8-18">
+<p>
+(<a href="https://www.codeschool.com/blog/2015/01/16/production-deployment-docker/">https://www.codeschool.com/blog/2015/01/16/production-deployment-docker/</a>)
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-sec-8-19" class="outline-3">
+<h3 id="sec-8-19"><span class="section-number-3">8.19</span> Docker, Rails, &amp; Docker Compose together in your development workflow&#xa0;&#xa0;&#xa0;<span class="tag"><span class="important">important</span>&#xa0;<span class="to_read">to_read</span></span></h3>
+<div class="outline-text-3" id="text-8-19">
+<p>
+(<a href="http://blog.carbonfive.com/2015/03/17/docker-rails-docker-compose-together-in-your-development-workflow/">http://blog.carbonfive.com/2015/03/17/docker-rails-docker-compose-together-in-your-development-workflow/</a>)
+</p>
+</div>
+</div>
+<div id="outline-container-sec-8-20" class="outline-3">
+<h3 id="sec-8-20"><span class="section-number-3">8.20</span> Quickstart: Docker Compose and Rails (official docker docs)&#xa0;&#xa0;&#xa0;<span class="tag"><span class="important">important</span>&#xa0;<span class="to_read">to_read</span></span></h3>
+<div class="outline-text-3" id="text-8-20">
+<p>
+(<a href="https://docs.docker.com/compose/rails/">https://docs.docker.com/compose/rails/</a>)
+</p>
+</div>
+</div>
+<div id="outline-container-sec-8-21" class="outline-3">
+<h3 id="sec-8-21"><span class="section-number-3">8.21</span> Docker container: Backup and Recovery @linuxconfig.org</h3>
+<div class="outline-text-3" id="text-8-21">
+<p>
+(<a href="https://linuxconfig.org/docker-container-backup-and-recovery">https://linuxconfig.org/docker-container-backup-and-recovery</a>)
+</p>
+</div>
+</div>
+<div id="outline-container-sec-8-22" class="outline-3">
+<h3 id="sec-8-22"><span class="section-number-3">8.22</span> Using puppet @docs.docker.com</h3>
+<div class="outline-text-3" id="text-8-22">
+<p>
+(<a href="https://docs.docker.com/engine/admin/puppet/">https://docs.docker.com/engine/admin/puppet/</a>)
+</p>
+</div>
+</div>
+<div id="outline-container-sec-8-23" class="outline-3">
+<h3 id="sec-8-23"><span class="section-number-3">8.23</span> What is difference between docker, puppet, chef and vagrant? @quora</h3>
+<div class="outline-text-3" id="text-8-23">
+<p>
+(<a href="https://www.quora.com/What-is-difference-between-docker-puppet-chef-and-vagrant">https://www.quora.com/What-is-difference-between-docker-puppet-chef-and-vagrant</a>)
+</p>
+</div>
+<div id="outline-container-sec-8-23-1" class="outline-4">
+<h4 id="sec-8-23-1"><span class="section-number-4">8.23.1</span> Configuration Management</h4>
+<div class="outline-text-4" id="text-8-23-1">
+<p>
+Puppet, Chef, Ansible, Salt Stack and CF Engine are primarily configuration management tools. Each has its strengths:
+</p>
+<ul class="org-ul">
+<li>Puppet:  This solution seems to appeal mostly to operations teams with little to no development background.  It is highly mature, but has trouble scaling past about 1000 configured machines when using a Puppet Master (a state server to track your infrastructure).  While Puppet can be extended using the Ruby language, it is not terribly easy to do so. Puppet is difficult to pick up.
+</li>
+<li>Chef: This solution resonates best with teams that, while not developers, are familiar with unit and integration testing, use of source control and other developer tooling. Chef is also highly mature and works at massive scale due to its adoption by Facebook which also has contributed. Chef was designed from the ground up to be readily extensible using the Ruby language.  So, while it is DSL driven, extending the DSL is a simple matter that does not require one to fork the Chef software itself. Chef is very difficult to learn, though the exceptionally verbose output of a convergence run eases the identification and rectification of problems.
+</li>
+<li>Ansible: This solution is by far the simplest of systems and appeals greatly to front line developers who often moonlight as their companies operations folks. It is written in Python, so has a certain attraction to the Python community.  If you are considering configuration management for the first time ever and need an easy win, Ansible is good place to start.
+</li>
+<li>I am not familiar with Salt Stack and CF Engine.
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-8-23-2" class="outline-4">
+<h4 id="sec-8-23-2"><span class="section-number-4">8.23.2</span> Docker</h4>
+<div class="outline-text-4" id="text-8-23-2">
+<p>
+Many people say that Docker is a container technology.  While true, in the context of comparing it to Puppet and Chef, it is better to think of Docker as a way to package code into consistent units of work.  These units of work can then be deployed to testing, QA and production environments with far greater ease. 
+</p>
+
+<p>
+The Configuration Management solutions all share a complexity that reflects the difficulty of configuring bare metal and virtual machines.  This means not only launching them, but also modifying the state of their configuration &#x2013; often with the release of new software. 
+</p>
+
+<p>
+Because Docker needs to only to express the configuration for a single process, the problem becomes far easier.  The Dockerfile is, thus, a bit more than a simple bash script for configuring a process with its dependencies.  
+</p>
+
+<p>
+Docker also brings artifact management along with it via the public Docker Hub.  This can be thought of as a correlate to public Github repositories. When a developer writes code and packages it with a Docker the can push this to the Docker hub to be shared as a binary artifact. The ramifications of this are quite extensive.  This artifact can be tested for function, performance and security as a "black box" without needing to know what the contents of the "box" (container really) are.  
+</p>
+
+<p>
+Taking this one step farther, it is possible then that one developer could write a service based on Pbuntu and Python to manage users while another developer could write a service that correlates these user's behaviors to their social media handles in Scala running on Centos.  Further, the operations team need not care since all this is packaged up.  This could lead to the ops team focusing on performance and security testing rather than worrying about application packaging.
+</p>
+
+<p>
+Docker is revolutionary in its scope because of the combined container, packaging and artifact management it seeks to employ.  Keep in mind, when considering this solution, that is still very early days as of this writing.  Docker is still very weak in production due to difficulties in networking, identity management and data persistence.  
+</p>
+
+<p>
+Be sure to consider Docker, but be sure to use it in the real world with your eyes wide open.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-8-23-3" class="outline-4">
+<h4 id="sec-8-23-3"><span class="section-number-4">8.23.3</span> Vagrant</h4>
+<div class="outline-text-4" id="text-8-23-3">
+<p>
+Vagrant is a way to use Oracle's Virtual Box or VMWare Fusion on a developer workstation for the purpose of creating disposable and shareable development environments.  
+</p>
+
+<p>
+Vagrant does not compare to Puppet, Chef or Docker, Vagrant is meant to be used with them.
+</p>
+
+<p>
+Vagrant takes the entire description of your development environment and couches it in a Ruby file.  This means your development environment configuration is code and can be shared, rolled back and rolled forward with ease.  You, the developer, are free to try new and innovative things such as that new, awesome Java package or the latest version of PHP without worrying that a failure might take you days to set up or unravel.
+</p>
+
+<p>
+Vagrant is a killer development application, and should be considered by nearly every development team.  To get a sense of how Vagrant and Chef work together, please see this blog post (note it is on my companies site): DevOps Delight - ChefDk, Chef-Zero and Vagrant 
+</p>
+
+<p>
+It should be noted that there is a direct correlate to the Vagrant + Chef set up with Docker if that is the way you want to go.  If so, check out this blog post to get the same benefits: Docker 101 - 01 - Docker Development Environments
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-8-23-4" class="outline-4">
+<h4 id="sec-8-23-4"><span class="section-number-4">8.23.4</span> Conclusion</h4>
+<div class="outline-text-4" id="text-8-23-4">
+<p>
+First consider your situation in terms of the paradigm of production deployment (Containers vs. VMs). If you chose containers, then Docker/Boot2Docker is a good choice as it has a great deal of momentum right now and its ecosystem is beginning to grow. 
+</p>
+
+<p>
+If you choose the more traditional and familiar VM route, then consider the tool you are using against the core skill set of the team.  Consider the way the tool operates and the community that surrounds it.  
+</p>
+
+<p>
+When you understand why you are considering these options, and have a model for the processes you want in place moving forward then choose your tooling.  This will give your choice the mostly likely chance of success.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-8-24" class="outline-3">
+<h3 id="sec-8-24"><span class="section-number-3">8.24</span> What is the runtime performance cost of a Docker container</h3>
+<div class="outline-text-3" id="text-8-24">
+<p>
+(<a href="http://stackoverflow.com/questions/21889053/what-is-the-runtime-performance-cost-of-a-docker-container">http://stackoverflow.com/questions/21889053/what-is-the-runtime-performance-cost-of-a-docker-container</a>)
+</p>
+
+<p>
+Here is an excellent IBM research paper titled "An Updated Performance Comparison of Virtual Machines and Linux Containers" by Felter et al. that provides a comparison between bare metal, KVM, and Docker containers. <b>The general result is that Docker is nearly identical to Native performance and faster than KVM in every category</b>.
+</p>
+
+<p>
+The exception to this is Docker's NAT - if you use port mapping (e.g. docker run -p 8080:8080) then you can expect a minor hit in latency, as shown below. However, you can now use the host network stack (e.g. docker run &#x2013;net=host) when launching a Docker container, which will perform identically to the Native column (as shown in the Redis latency results lower down).
+</p>
+</div>
+</div>
+<div id="outline-container-sec-8-25" class="outline-3">
+<h3 id="sec-8-25"><span class="section-number-3">8.25</span> Using docker as a provider for vagrant</h3>
+<div class="outline-text-3" id="text-8-25">
+<p>
+(<a href="https://www.vagrantup.com/docs/docker/">https://www.vagrantup.com/docs/docker/</a>)
+</p>
+
+<p>
+Vagrant comes with support out of the box for using Docker as a provider. This allows for your development environments to be backed by Docker containers rather than virtual machines. Additionally, it provides for a good workflow for developing Dockerfiles.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-8-26" class="outline-3">
+<h3 id="sec-8-26"><span class="section-number-3">8.26</span> 自动化的高效团队开发环境</h3>
+<div class="outline-text-3" id="text-8-26">
+<p>
+(<a href="http://blog.jobbole.com/38932/">http://blog.jobbole.com/38932/</a>)
+</p>
+</div>
+</div>
+<div id="outline-container-sec-8-27" class="outline-3">
+<h3 id="sec-8-27"><span class="section-number-3">8.27</span> 浅析vagrant和docker</h3>
+<div class="outline-text-3" id="text-8-27">
+<p>
+(<a href="http://lingxiankong.github.io/blog/2014/09/29/vagrant-and-docker/">http://lingxiankong.github.io/blog/2014/09/29/vagrant-and-docker/</a>)
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-9" class="outline-2">
+<h2 id="sec-9"><span class="section-number-2">9</span> Basic Docker Workflow</h2>
+<div class="outline-text-2" id="text-9">
+<p>
+Refer to <a href="the-docker-book.html">The Docker Book - 3. Docker 入门</a>.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-10" class="outline-2">
+<h2 id="sec-10"><span class="section-number-2">10</span> Issues &amp; Solutions</h2>
+<div class="outline-text-2" id="text-10">
+</div><div id="outline-container-sec-10-1" class="outline-3">
+<h3 id="sec-10-1"><span class="section-number-3">10.1</span> vim in docker: Error detected while processing function &lt;SNR&gt;74<sub>IndentGuidesEnable</sub> &#x2026; vim highlight group not found</h3>
+<div class="outline-text-3" id="text-10-1">
+<p>
+Reason: Sounds like you're not using a colorscheme, or your colorscheme isn't defining colours for the Normal highlight group.
+</p>
+
+<p>
+Solution: adding <code>colorscheme default</code> to .vimrc.local (refer to <a href="https://github.com/nathanaelkane/vim-indent-guides/issues/31">https://github.com/nathanaelkane/vim-indent-guides/issues/31</a>)
+</p>
+</div>
+</div>
+<div id="outline-container-sec-10-2" class="outline-3">
+<h3 id="sec-10-2"><span class="section-number-3">10.2</span> .bashrc isn't executed properly while building image&#xa0;&#xa0;&#xa0;<span class="tag"><span class="DOCKER">DOCKER</span>&#xa0;<span class="23">23</span></span></h3>
+<div class="outline-text-3" id="text-10-2">
+<p>
+Refer to <a href="https://gitlab.com/gitlab-org/gitlab-ci-multi-runner/issues/82">Executor docker does not use .bashrc</a>
+</p>
+
+<p>
+Runner uses .bashrc, but problem is that most .bashrc have early return if the session is not interactive. Env variables you should add to .profile instead.
+</p>
+
+<p>
+Solution: move the content of .bashrc to .profile.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-10-3" class="outline-3">
+<h3 id="sec-10-3"><span class="section-number-3">10.3</span> rails serer running in a docker cannot be accessed from outside</h3>
+<div class="outline-text-3" id="text-10-3">
+<div class="org-src-container">
+
+<pre class="src src-sh">rails s -b 0.0.0.0
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-10-4" class="outline-3">
+<h3 id="sec-10-4"><span class="section-number-3">10.4</span> M-x doesn't work on a container running under windows</h3>
+<div class="outline-text-3" id="text-10-4">
+<p>
+Use ", x m" instead
+</p>
+</div>
+</div>
+<div id="outline-container-sec-10-5" class="outline-3">
+<h3 id="sec-10-5"><span class="section-number-3">10.5</span> Network timed out while trying to connect to <a href="https://index.docker.io">https://index.docker.io</a></h3>
+<div class="outline-text-3" id="text-10-5">
+<p>
+(<a href="http://stackoverflow.com/questions/31990757/network-timed-out-while-trying-to-connect-to-https-index-docker-io">http://stackoverflow.com/questions/31990757/network-timed-out-while-trying-to-connect-to-https-index-docker-io</a>)
+</p>
+
+<p>
+Change DNS to 114.114.114.114 (refer to <a href="https://www.114dns.com/DNS_List.html">https://www.114dns.com/DNS_List.html</a>)
+</p>
+</div>
+</div>
+<div id="outline-container-sec-10-6" class="outline-3">
+<h3 id="sec-10-6"><span class="section-number-3">10.6</span> 在Docker容器bash中输入中文</h3>
+<div class="outline-text-3" id="text-10-6">
+<p>
+(<a href="http://blog.shiqichan.com/Input-Chinese-character-in-docker-bash/">http://blog.shiqichan.com/Input-Chinese-character-in-docker-bash/</a>)
+</p>
+
+<p>
+如果你需要创建自己的Docker镜像，可在Dockerfile中加入：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-ruby"><span style="color: #66D9EF;">ENV</span> <span style="color: #66D9EF;">LANG</span>=<span style="color: #66D9EF;">C</span>.<span style="color: #66D9EF;">UTF</span>-8
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-10-7" class="outline-3">
+<h3 id="sec-10-7"><span class="section-number-3">10.7</span> oh-my-zsh installation returns non zero code</h3>
+<div class="outline-text-3" id="text-10-7">
+<p>
+(<a href="http://stackoverflow.com/questions/30726907/oh-my-zsh-installation-returns-non-zero-code">http://stackoverflow.com/questions/30726907/oh-my-zsh-installation-returns-non-zero-code</a>)
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">RUN wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh || <span style="color: #A6E22E;">true</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-10-8" class="outline-3">
+<h3 id="sec-10-8"><span class="section-number-3">10.8</span> couldn't mount host path to container (windows)</h3>
+<div class="outline-text-3" id="text-10-8">
+<ol class="org-ol">
+<li>Docker &gt; Settings &gt; Shared Drives, check the disk to be shared, then Apply
+</li>
+<li>use command:
+</li>
+</ol>
+<div class="org-src-container">
+
+<pre class="src src-sh">docker run -it -v c:/Users/fengyz:/fengyz --name linux fengyz/linux-box
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-10-9" class="outline-3">
+<h3 id="sec-10-9"><span class="section-number-3">10.9</span> Permission denied while mkdir (windows)</h3>
+<div class="outline-text-3" id="text-10-9">
+<p>
+Use a path which doesn't reside under Users dir.
+#+BEGIN<sub>SRC</sub> sh
+docker run -it -v c:/fengyz:/fengyz &#x2013;name linux fengyz/linux-box
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-11" class="outline-2">
+<h2 id="sec-11"><span class="section-number-2">11</span> Images In Use</h2>
+<div class="outline-text-2" id="text-11">
+</div><div id="outline-container-sec-11-1" class="outline-3">
+<h3 id="sec-11-1"><span class="section-number-3">11.1</span> busybox</h3>
+<div class="outline-text-3" id="text-11-1">
+<p>
+(<a href="https://hub.docker.com/_/busybox/">https://hub.docker.com/_/busybox/</a>)
+</p>
+</div>
+
+<div id="outline-container-sec-11-1-1" class="outline-4">
+<h4 id="sec-11-1-1"><span class="section-number-4">11.1.1</span> What is busybox?</h4>
+<div class="outline-text-4" id="text-11-1-1">
+<p>
+Coming in somewhere between 1 and 5 Mb in on-disk size (depending on the variant), BusyBox is a very good ingredient to craft space-efficient distributions.
+</p>
+
+<p>
+BusyBox combines tiny versions of many common UNIX utilities into a single small executable. It provides replacements for most of the utilities you usually find in GNU fileutils, shellutils, etc. The utilities in BusyBox generally have fewer options than their full-featured GNU cousins; however, the options that are included provide the expected functionality and behave very much like their GNU counterparts. BusyBox provides a fairly complete environment for any small or embedded system.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-11-1-2" class="outline-4">
+<h4 id="sec-11-1-2"><span class="section-number-4">11.1.2</span> How to use?</h4>
+<div class="outline-text-4" id="text-11-1-2">
+<div class="org-src-container">
+
+<pre class="src src-sh">docker run -it --rm busybox
+</pre>
+</div>
+<p>
+This will drop you into an sh shell to allow you to do what you want inside a BusyBox system.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-11-1-3" class="outline-4">
+<h4 id="sec-11-1-3"><span class="section-number-4">11.1.3</span> Create a Dockerfile for a binary</h4>
+<div class="outline-text-4" id="text-11-1-3">
+<div class="org-src-container">
+
+<pre class="src src-sh">FROM busybox
+COPY ./my-static-binary /my-static-binary
+CMD [<span style="color: #E6DB74;">"/my-static-binary"</span>]
+</pre>
+</div>
+
+<p>
+This Dockerfile will allow you to create a minimal image for your statically compiled binary. You will have to compile the binary in some other place like another container. For a simpler alternative that's similarly tiny but easier to extend, see alpine.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-11-1-4" class="outline-4">
+<h4 id="sec-11-1-4"><span class="section-number-4">11.1.4</span> Variants</h4>
+<div class="outline-text-4" id="text-11-1-4">
+<p>
+This image contains BusyBox built against various "libc" variants (for a comparison of "libc" variants, <a href="http://www.etalabs.net/compare_libcs.html">Eta Labs has a very nice chart</a> which lists many similarities and differences).
+</p>
+
+<ul class="org-ul">
+<li>busybox:glibc: glibc from Debian (which is then included in the image)
+</li>
+<li>busybox:musl: musl from Alpine (statically compiled)
+</li>
+<li>busybox:uclibc: uClibc via Buildroot (statically compiled)
+</li>
+</ul>
+
+<p>
+For more information about the specific particulars of the build process for each variant, see Dockerfile.builder in the same directory as each variant's Dockerfile (see links above).
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-11-2" class="outline-3">
+<h3 id="sec-11-2"><span class="section-number-3">11.2</span> postgres</h3>
+<div class="outline-text-3" id="text-11-2">
+<p>
+(<a href="https://hub.docker.com/_/postgres/">https://hub.docker.com/_/postgres/</a>)
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-11-3" class="outline-3">
+<h3 id="sec-11-3"><span class="section-number-3">11.3</span> fengyz/linux-box</h3>
+</div>
+<div id="outline-container-sec-11-4" class="outline-3">
+<h3 id="sec-11-4"><span class="section-number-3">11.4</span> fengyz/rails-dev</h3>
+</div>
+</div>
+
+<div id="outline-container-sec-12" class="outline-2">
+<h2 id="sec-12"><span class="section-number-2">12</span> Commands</h2>
+<div class="outline-text-2" id="text-12">
+</div><div id="outline-container-sec-12-1" class="outline-3">
+<h3 id="sec-12-1"><span class="section-number-3">12.1</span> docker run</h3>
+<div class="outline-text-3" id="text-12-1">
+</div><div id="outline-container-sec-12-1-1" class="outline-4">
+<h4 id="sec-12-1-1"><span class="section-number-4">12.1.1</span> -h &lt;host<sub>name</sub>&gt;</h4>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: fengyz</p>
+<p class="date">Created: 2016-10-14 Fri 10:05</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

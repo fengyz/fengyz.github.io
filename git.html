@@ -1,0 +1,1881 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>git</title>
+<!-- 2017-08-04 Fri 11:06 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="fengyz" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="solarized-light.min.css" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">git</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">References</a>
+<ul>
+<li><a href="#sec-1-1">10 个迅速提升你 Git 水平的提示</a></li>
+<li><a href="#sec-1-2">Git Reference</a></li>
+<li><a href="#sec-1-3">Git Immersion</a></li>
+<li><a href="#sec-1-4">Try Git</a></li>
+<li><a href="#sec-1-5">Pro Git Book</a></li>
+<li><a href="#sec-1-6">读懂diff</a></li>
+<li><a href="#sec-1-7">Git 使用规范流程 by 阮一峰&#xa0;&#xa0;&#xa0;<span class="tag"><span class="important">important</span>&#xa0;<span class="step_by_step">step_by_step</span>&#xa0;<span class="guide">guide</span></span></a>
+<ul>
+<li><a href="#sec-1-7-1">1. 新建分支</a></li>
+<li><a href="#sec-1-7-2">2. 提交分支commit</a></li>
+<li><a href="#sec-1-7-3">3. 撰写提交信息</a></li>
+<li><a href="#sec-1-7-4">4. 与主干同步</a></li>
+<li><a href="#sec-1-7-5">5. 合并commit</a></li>
+<li><a href="#sec-1-7-6">6. 推送到远程仓库</a></li>
+<li><a href="#sec-1-7-7">7. 发出Pull Request</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-8">常用 Git 命令清单</a></li>
+</ul>
+</li>
+<li><a href="#sec-2">Resources</a>
+<ul>
+<li><a href="#sec-2-1">GitGuys</a></li>
+</ul>
+</li>
+<li><a href="#sec-3">Tutorials</a>
+<ul>
+<li><a href="#sec-3-1"><span class="todo TODO">TODO</span> Think Like (a) Git: nice tutorial&#xa0;&#xa0;&#xa0;<span class="tag"><span class="git">git</span>&#xa0;<span class="tutorial">tutorial</span></span></a></li>
+<li><a href="#sec-3-2">猴子都能动的 Git 入门</a></li>
+<li><a href="#sec-3-3">git 简易指南</a></li>
+</ul>
+</li>
+<li><a href="#sec-4">Frequently Used Commands</a>
+<ul>
+<li><a href="#sec-4-1">常用 Git 命令清单 by 阮一峰</a>
+<ul>
+<li><a href="#sec-4-1-1">一、新建代码库</a></li>
+<li><a href="#sec-4-1-2">二、配置</a></li>
+<li><a href="#sec-4-1-3">三、增加/删除文件</a></li>
+<li><a href="#sec-4-1-4">四、代码提交</a></li>
+<li><a href="#sec-4-1-5">五、分支</a></li>
+<li><a href="#sec-4-1-6">六、标签</a></li>
+<li><a href="#sec-4-1-7">七、查看信息</a></li>
+</ul>
+</li>
+<li><a href="#sec-4-2">Show total code lines commited between two commites</a></li>
+<li><a href="#sec-4-3">Show remote branches</a>
+<ul>
+<li><a href="#sec-4-3-1">show all branches</a></li>
+<li><a href="#sec-4-3-2">remove remote branch or tag</a></li>
+</ul>
+</li>
+<li><a href="#sec-4-4">Rename local branch</a></li>
+<li><a href="#sec-4-5">Add home dir to  git&#xa0;&#xa0;&#xa0;<span class="tag"><span class="git">git</span>&#xa0;<span class="home">home</span></span></a>
+<ul>
+<li><a href="#sec-4-5-1">1. initialization</a></li>
+<li><a href="#sec-4-5-2">2. create .gitignore</a></li>
+<li><a href="#sec-4-5-3">3. create README.org</a></li>
+<li><a href="#sec-4-5-4">4. stage all files:</a></li>
+<li><a href="#sec-4-5-5">5. commit to git repository:</a></li>
+<li><a href="#sec-4-5-6">6. push it up to bitbucket:</a></li>
+</ul>
+</li>
+<li><a href="#sec-4-6">Cancel a wrong staging</a>
+<ul>
+<li><a href="#sec-4-6-1">0. Situation</a></li>
+<li><a href="#sec-4-6-2">1. remove the first two files</a></li>
+<li><a href="#sec-4-6-3">2. revert the last </a></li>
+<li><a href="#sec-4-6-4">3. Result</a></li>
+</ul>
+</li>
+<li><a href="#sec-4-7">Remove unwanted directory from the staging area</a></li>
+<li><a href="#sec-4-8">List all files in the git repository</a></li>
+<li><a href="#sec-4-9">Get list of modified </a></li>
+<li><a href="#sec-4-10">Create branches</a></li>
+<li><a href="#sec-4-11">Show branch history</a></li>
+<li><a href="#sec-4-12">Switch to another brranch with modified files</a>
+<ul>
+<li><a href="#sec-4-12-1">1. stage all modification</a></li>
+<li><a href="#sec-4-12-2">2. switch to the new branch</a></li>
+</ul>
+</li>
+<li><a href="#sec-4-13">git diff</a></li>
+</ul>
+</li>
+<li><a href="#sec-5">GitHub Token</a></li>
+<li><a href="#sec-6">My Workflow</a>
+<ul>
+<li><a href="#sec-6-1">Switch to work on x230t (on branch x230t)</a>
+<ul>
+<li><a href="#sec-6-1-1">1. git fetch</a></li>
+<li><a href="#sec-6-1-2">2. git merge remotes/origin/master</a></li>
+<li><a href="#sec-6-1-3">3. git push origin x230t</a></li>
+<li><a href="#sec-6-1-4">3. git checkout master</a></li>
+<li><a href="#sec-6-1-5">4. git merge x230t</a></li>
+<li><a href="#sec-6-1-6">5. git checkout x230t</a></li>
+</ul>
+</li>
+<li><a href="#sec-6-2">Git 使用规范流程 by 阮一峰</a>
+<ul>
+<li><a href="#sec-6-2-1">新建分支</a></li>
+<li><a href="#sec-6-2-2">提交分支 commit</a></li>
+<li><a href="#sec-6-2-3">撰写提交信息</a></li>
+<li><a href="#sec-6-2-4">与主干同步</a></li>
+<li><a href="#sec-6-2-5">合并 commits</a></li>
+<li><a href="#sec-6-2-6">推送到远程仓库</a></li>
+<li><a href="#sec-6-2-7">发出Pull Request</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#sec-7">Advanced Topics</a>
+<ul>
+<li><a href="#sec-7-1">取消 commit</a></li>
+<li><a href="#sec-7-2">change git commit message after push (&#x2013;amend)</a></li>
+<li><a href="#sec-7-3">How to Write a Git Commit Message</a></li>
+<li><a href="#sec-7-4">change commit message</a></li>
+<li><a href="#sec-7-5">remove sensitive data from git history</a></li>
+<li><a href="#sec-7-6">rename branch both locally and remotely</a></li>
+<li><a href="#sec-7-7">rename local branch</a></li>
+<li><a href="#sec-7-8">Pretty branch graph</a></li>
+<li><a href="#sec-7-9">How can I preview a merge in git?</a>
+<ul>
+<li><a href="#sec-7-9-1">Strategy 1: When you definitely want to merge, but only if there aren't conflicts</a></li>
+<li><a href="#sec-7-9-2">Strategy 2: The safer way – merge off a temporary branch:</a></li>
+<li><a href="#sec-7-9-3">Diff skills</a></li>
+</ul>
+</li>
+<li><a href="#sec-7-10">Display git branch and status in command prompt</a></li>
+<li><a href="#sec-7-11">Tilde (~) and caret (^)</a></li>
+<li><a href="#sec-7-12">Git Rebase</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">References</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1">10 个迅速提升你 Git 水平的提示</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+(<a href="http://www.oschina.net/translate/10-tips-git-next-level">http://www.oschina.net/translate/10-tips-git-next-level</a>)
+</p>
+
+<ol class="org-ol">
+<li>Git自动补全
+</li>
+<li>在 Git 中忽略文件
+</li>
+<li>是谁弄乱了我的代码？
+</li>
+<li>查看仓库历史记录
+</li>
+<li>绝对不要丢失对Commit的跟踪
+</li>
+<li>暂存文件的部分改动: 例如你对一个文件进行了多次修改并且想把他们分别提交。这种情况下，你可以在 add 命令中加上 -p 参数
+</li>
+<li>压缩多个Commit
+</li>
+<li>Stash未提交的更改
+</li>
+<li>检查丢失的提交
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2">Git Reference</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+(<a href="http://gitref.org">http://gitref.org</a>)
+</p>
+
+<p>
+This is the Git reference site. It is meant to be a quick reference for learning and remembering the most important and commonly used Git commands. The commands are organized into sections of the type of operation you may be trying to do, and will present the common options and commands needed to accomplish these common tasks.
+</p>
+
+<p>
+Each section will link to the next section, so it can be used as a tutorial. Every page will also link to more in-depth Git documentation such as the official manual pages and relevant sections in the Pro Git book, so you can learn more about any of the commands. First, we'll start with thinking about source code management like Git does.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3">Git Immersion</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+(<a href="http://gitimmersion.com/">http://gitimmersion.com/</a>)
+</p>
+
+<p>
+GIT IMMERSION IS A GUIDED TOUR THAT WALKS THROUGH THE FUNDAMENTALS OF GIT, INSPIRED BY THE PREMISE THAT TO KNOW A THING IS TO DO IT.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-1-4" class="outline-3">
+<h3 id="sec-1-4">Try Git</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+(<a href="https://try.github.io/">https://try.github.io/</a>)
+</p>
+
+<p>
+An interactive course online.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-1-5" class="outline-3">
+<h3 id="sec-1-5">Pro Git Book</h3>
+<div class="outline-text-3" id="text-1-5">
+<p>
+See <a href="book-pro-git.html">Pro Git Book</a>
+</p>
+</div>
+</div>
+<div id="outline-container-sec-1-6" class="outline-3">
+<h3 id="sec-1-6">读懂diff</h3>
+<div class="outline-text-3" id="text-1-6">
+<p>
+Refer to <a href="http://www.ruanyifeng.com/blog/2012/08/how_to_read_diff.html">http://www.ruanyifeng.com/blog/2012/08/how_to_read_diff.html</a>.
+</p>
+
+<p>
+显示结果如下：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-txt">　　diff --git a/f1 b/f1
+　　index 6f8a38c..449b072 100644
+　　--- a/f1
+　　+++ b/f1
+　　@@ -1,7 +1,7 @@
+　　 a
+　　 a
+　　 a
+　　-a
+　　+b
+　　 a
+　　 a
+　　 a
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>第一行表示结果为git格式的diff。
+</li>
+<li>第二行表示两个版本的git哈希值（index区域的6f8a38c对象，与工作目录区域的449b072对象进行比较），最后的六位数字是对象的模式（普通文件，644权限）。
+</li>
+<li>第三行表示进行比较的两个文件。"&#x2014;"表示变动前的版本，"<del>+</del>"表示变动后的版本。
+</li>
+<li>后面的行都与官方的合并格式diff相同。
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-7" class="outline-3">
+<h3 id="sec-1-7"><a href="http://www.ruanyifeng.com/blog/2015/08/git-use-process.html">Git 使用规范流程</a> by 阮一峰&#xa0;&#xa0;&#xa0;<span class="tag"><span class="important">important</span>&#xa0;<span class="step_by_step">step_by_step</span>&#xa0;<span class="guide">guide</span></span></h3>
+<div class="outline-text-3" id="text-1-7">
+<p>
+团队开发中，遵循一个合理、清晰的Git使用流程，是非常重要的。 否则，每个人都提交一堆杂乱无章的commit，项目很快就会变得难以协调和维护。 下面是<a href="https://github.com/thoughtbot/guides/tree/master/protocol/git">ThoughtBot</a> 的Git使用规范流程。我从中学到了很多，推荐你也这样使用Git。
+<img src="git/1.gif" alt="1.gif" />
+</p>
+</div>
+
+<div id="outline-container-sec-1-7-1" class="outline-4">
+<h4 id="sec-1-7-1">1. 新建分支</h4>
+<div class="outline-text-4" id="text-1-7-1">
+<p>
+首先，每次开发新功能，都应该新建一个单独的分支（这方面可以参考《<a href="http://www.ruanyifeng.com/blog/2012/07/git.html">Git分支管理策略</a>》）。
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">&#33719;&#21462;&#20027;&#24178;&#26368;&#26032;&#20195;&#30721;</span>
+$ git checkout master
+$ git pull
+
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">&#26032;&#24314;&#19968;&#20010;&#24320;&#21457;&#20998;&#25903;myfeature</span>
+$ git checkout -b myfeature
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-1-7-2" class="outline-4">
+<h4 id="sec-1-7-2">2. 提交分支commit</h4>
+<div class="outline-text-4" id="text-1-7-2">
+<p>
+分支修改后，就可以提交commit了。
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">$ git add --all
+$ git status
+$ git commit --verbose
+</pre>
+</div>
+<ul class="org-ul">
+<li><code>git add</code> 命令的 <code>all</code> 参数，表示保存所有变化（包括新建、修改和删除）。从Git 2.0开始， <code>all</code> 是 <code>git add</code> 的默认参数，所以也可以用 <code>git add .</code> 代替。
+</li>
+<li><code>git commit</code> 命令的 <code>verbose</code> 参数，会列出 <code>diff</code> 的结果。
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-7-3" class="outline-4">
+<h4 id="sec-1-7-3">3. 撰写提交信息</h4>
+<div class="outline-text-4" id="text-1-7-3">
+<p>
+提交commit时，必须给出完整扼要的提交信息，下面是一个范本。
+</p>
+<div class="org-src-container">
+
+<pre class="src src-text">Present-tense summary under 50 characters
+
+ * More information about commit (under 72 characters).
+ * More information about commit (under 72 characters).
+
+http://project.management-system.com/ticket/123
+</pre>
+</div>
+<ul class="org-ul">
+<li>第一行是不超过50个字的提要，
+</li>
+<li>然后空一行，
+</li>
+<li>罗列出改动原因、主要变动、以及需要注意的问题。
+</li>
+<li>最后，提供对应的网址（比如Bug ticket）。
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-7-4" class="outline-4">
+<h4 id="sec-1-7-4">4. 与主干同步</h4>
+<div class="outline-text-4" id="text-1-7-4">
+<p>
+分支的开发过程中，要经常与主干保持同步。
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">$ git fetch origin
+$ git rebase origin/master
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-1-7-5" class="outline-4">
+<h4 id="sec-1-7-5">5. 合并commit</h4>
+<div class="outline-text-4" id="text-1-7-5">
+<p>
+分支开发完成后，很可能有一堆commit，但是合并到主干的时候，往往希望只有一个（或最多两三个）commit，这样不仅清晰，也容易管理。
+</p>
+
+<p>
+那么，怎样才能将多个commit合并呢？这就要用到 <code>git rebase</code> 命令。
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">$ git rebase -i origin/master
+</pre>
+</div>
+
+<p>
+<code>git rebase</code> 命令的 <code>i</code> 参数表示互动（interactive），这时git会打开一个互动界面，进行下一步操作。
+</p>
+
+<p>
+下面采用<a href="https://robots.thoughtbot.com/git-interactive-rebase-squash-amend-rewriting-history">Tute Costa</a>的例子，来解释怎么合并commit。
+</p>
+<div class="org-src-container">
+
+<pre class="src src-text">pick 07c5abd Introduce OpenPGP and teach basic usage
+pick de9b1eb Fix PostChecker::Post#urls
+pick 3e7ee36 Hey kids, stop all the highlighting
+pick fa20af3 git interactive rebase, squash, amend
+
+# Rebase 8db7e8b..fa20af3 onto 8db7e8b
+#
+# Commands:
+#  p, pick = use commit
+#  r, reword = use commit, but edit the commit message
+#  e, edit = use commit, but stop for amending
+#  s, squash = use commit, but meld into previous commit
+#  f, fixup = like "squash", but discard this commit's log message
+#  x, exec = run command (the rest of the line) using shell
+#
+# These lines can be re-ordered; they <span style="color: #bebebe; background-color: #ffffff;">are executed</span> from top to bottom.
+#
+# If you remove a line here THAT COMMIT WILL BE LOST.
+#
+# However, if you remove everything, the rebase will <span style="color: #bebebe; background-color: #ffffff;">be aborted</span>.
+#
+# Note that empty commits <span style="color: #bebebe; background-color: #ffffff;">are commented</span> out
+</pre>
+</div>
+<p>
+上面的互动界面，先列出当前分支最新的4个commit（越下面越新）。每个commit前面有一个操作命令，默认是 <code>pick</code> ，表示该行commit被选中，要进行 rebase 操作。
+</p>
+
+<p>
+4个commit的下面是一大堆注释，列出可以使用的命令。
+</p>
+<ul class="org-ul">
+<li>pick：正常选中
+</li>
+<li>reword：选中，并且修改提交信息；
+</li>
+<li>edit：选中，rebase时会暂停，允许你修改这个commit（参考<a href="https://schacon.github.io/gitbook/4_interactive_rebasing.html">这里</a>）
+</li>
+<li>squash：选中，会将当前commit与上一个commit合并
+</li>
+<li>fixup：与squash相同，但不会保存当前commit的提交信息
+</li>
+<li>exec：执行其他shell命令
+</li>
+</ul>
+<p>
+上面这6个命令当中，squash和fixup可以用来合并commit。先把需要合并的commit前面的动词，改成squash（或者s）。
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-text">pick 07c5abd Introduce OpenPGP and teach basic usage
+s de9b1eb Fix PostChecker::Post#urls
+s 3e7ee36 Hey kids, stop all the highlighting
+pick fa20af3 git interactive rebase, squash, amend
+</pre>
+</div>
+<p>
+这样一改，执行后，当前分支只会剩下两个commit。第二行和第三行的commit，都会合并到第一行的commit。提交信息会同时包含，这三个commit的提交信息。
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-text"># This is a combination of 3 commits.
+# The first commit's message is:
+Introduce OpenPGP and teach basic usage
+
+# This is the 2nd commit message:
+Fix PostChecker::Post#urls
+
+# This is the 3rd commit message:
+Hey kids, stop all the highlighting
+</pre>
+</div>
+
+<p>
+如果将第三行的squash命令改成fixup命令。
+</p>
+<div class="org-src-container">
+
+<pre class="src src-text">pick 07c5abd Introduce OpenPGP and teach basic usage
+s de9b1eb Fix PostChecker::Post#urls
+f 3e7ee36 Hey kids, stop all the highlighting
+pick fa20af3 git interactive rebase, squash, amend
+</pre>
+</div>
+
+<p>
+运行结果相同，还是会生成两个commit，第二行和第三行的commit，都合并到第一行的commit。但是，新的提交信息里面，第三行commit的提交信息，会被注释掉。
+</p>
+<div class="org-src-container">
+
+<pre class="src src-text"># This is a combination of 3 commits.
+# The first commit's message is:
+Introduce OpenPGP and teach basic usage
+
+# This is the 2nd commit message:
+Fix PostChecker::Post#urls
+
+# This is the 3rd commit message:
+# Hey kids, stop all the highlighting
+</pre>
+</div>
+
+<p>
+<a href="http://ponyfoo.com/articles/git-github-hacks">Pony Foo</a> 提出另外一种合并commit的简便方法，就是先撤销过去5个commit，然后再建一个新的:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">$ git reset HEAD~5
+$ git add .
+$ git commit -am <span style="color: #E6DB74;">"Here's the bug fix that closes #28"</span>
+$ git push --force
+</pre>
+</div>
+
+<p>
+<code>squash</code> 和 <code>fixup</code> 命令，还可以当作命令行参数使用，自动合并commit。
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">$ git commit --fixup  
+$ git rebase -i --autosquash
+</pre>
+</div>
+<p>
+这个用法请参考<a href="http://fle.github.io/git-tip-keep-your-branch-clean-with-fixup-and-autosquash.html">这篇文章</a> ，这里就不解释了。
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-7-6" class="outline-4">
+<h4 id="sec-1-7-6">6. 推送到远程仓库</h4>
+<div class="outline-text-4" id="text-1-7-6">
+<p>
+合并commit后，就可以推送当前分支到远程仓库了。
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">$ git push --force origin myfeature
+</pre>
+</div>
+<p>
+<code>git push</code> 命令要加上 <code>force</code> 参数，因为rebase以后，分支历史改变了，跟远程分支不一定兼容，有可能要强行推送（参见<a href="http://willi.am/blog/2014/08/12/the-dark-side-of-the-force-push/">这里</a>）。
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-7-7" class="outline-4">
+<h4 id="sec-1-7-7">7. 发出Pull Request</h4>
+<div class="outline-text-4" id="text-1-7-7">
+<p>
+提交到远程仓库以后，就可以发出 Pull Request 到 master 分支，然后请求别人进行代码review，确认可以合并到 master。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-1-8" class="outline-3">
+<h3 id="sec-1-8">常用 Git 命令清单</h3>
+<div class="outline-text-3" id="text-1-8">
+<p>
+(<a href="http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html?bsh_bid=938838579">http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html?bsh_bid=938838579</a>)
+</p>
+
+<p>
+git &#x2013;orphan gh-pages 也很重要，用于创建一个全新的分支，不包含原分支的提交历史，Gihthub项目主页分支用这个。
+</p>
+
+<p>
+没有git bisec就算了，连git rebase也没有？git rebase算是比较常用的了。 看log建议用gitk，不用记那么多参数。 git alias 也比较有用。 但是常用的就那么几个，不常用的还是要现查手册。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">Resources</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1">GitGuys</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+(<a href="http://www.gitguys.com/">link</a>)
+GitGuys presents over 30 tutorials on the use of Git to help you, step-by-step, in setting up git from scratch through dealing with the distributed environment. Each tutorial covers a specific topic so that later, after you have Git up and running, if you need to reference a specific topic you can quickly and easily.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3">Tutorials</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="todo TODO">TODO</span> Think Like (a) Git: nice tutorial&#xa0;&#xa0;&#xa0;<span class="tag"><span class="git">git</span>&#xa0;<span class="tutorial">tutorial</span></span></h3>
+<div class="outline-text-3" id="text-3-1">
+<ul class="org-ul">
+<li>State "TODO"       from              <span class="timestamp-wrapper"><span class="timestamp">[2016-01-01 Fri 08:36]</span></span>
+</li>
+</ul>
+<p>
+(<a href="http://think-like-a-git.net/">link</a>)
+</p>
+</div>
+</div>
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2">猴子都能动的 Git 入门</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+(<a href="http://backlogtool.com/git-guide/cn/stepup/stepup1_1.html">http://backlogtool.com/git-guide/cn/stepup/stepup1_1.html</a>)
+</p>
+</div>
+</div>
+<div id="outline-container-sec-3-3" class="outline-3">
+<h3 id="sec-3-3">git 简易指南</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+(<a href="http://www.bootcss.com/p/git-guide/">link</a>)
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4">Frequently Used Commands</h2>
+<div class="outline-text-2" id="text-4">
+</div><div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1">常用 Git 命令清单 by 阮一峰</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+(<a href="http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html">http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html</a>)
+</p>
+
+
+<div class="figure">
+<p><img src="http://www.ruanyifeng.com/blogimg/asset/2015/bg2015120901.png" alt="bg2015120901.png" />
+</p>
+</div>
+
+<p>
+几个专用名词的译名如下:
+</p>
+<ul class="org-ul">
+<li>Workspace：工作区
+</li>
+<li>Index / Stage：暂存区
+</li>
+<li>Repository：仓库区（或本地仓库）
+</li>
+<li>Remote：远程仓库
+</li>
+</ul>
+</div>
+
+<div id="outline-container-sec-4-1-1" class="outline-4">
+<h4 id="sec-4-1-1">一、新建代码库</h4>
+<div class="outline-text-4" id="text-4-1-1">
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">&#22312;&#24403;&#21069;&#30446;&#24405;&#26032;&#24314;&#19968;&#20010;Git&#20195;&#30721;&#24211;</span>
+$ git init
+
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">&#26032;&#24314;&#19968;&#20010;&#30446;&#24405;&#65292;&#23558;&#20854;&#21021;&#22987;&#21270;&#20026;Git&#20195;&#30721;&#24211;</span>
+$ git init [project-name]
+
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">&#19979;&#36733;&#19968;&#20010;&#39033;&#30446;&#21644;&#23427;&#30340;&#25972;&#20010;&#20195;&#30721;&#21382;&#21490;</span>
+$ git clone [url]
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-4-1-2" class="outline-4">
+<h4 id="sec-4-1-2">二、配置</h4>
+<div class="outline-text-4" id="text-4-1-2">
+<p>
+Git的设置文件为.gitconfig，它可以在用户主目录下（全局配置），也可以在项目目录下（项目配置）。
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">&#26174;&#31034;&#24403;&#21069;&#30340;Git&#37197;&#32622;</span>
+$ git config --list
+
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">&#32534;&#36753;Git&#37197;&#32622;&#25991;&#20214;</span>
+$ git config -e [--global]
+
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">&#35774;&#32622;&#25552;&#20132;&#20195;&#30721;&#26102;&#30340;&#29992;&#25143;&#20449;&#24687;</span>
+$ git config [--global] user.name <span style="color: #E6DB74;">"[name]"</span>
+$ git config [--global] user.email <span style="color: #E6DB74;">"[email address]"</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-4-1-3" class="outline-4">
+<h4 id="sec-4-1-3">三、增加/删除文件</h4>
+<div class="outline-text-4" id="text-4-1-3">
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">&#28155;&#21152;&#25351;&#23450;&#25991;&#20214;&#21040;&#26242;&#23384;&#21306;</span>
+$ git add [file1] [file2] ...
+
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">&#28155;&#21152;&#25351;&#23450;&#30446;&#24405;&#21040;&#26242;&#23384;&#21306;&#65292;&#21253;&#25324;&#23376;&#30446;&#24405;</span>
+$ git add [dir]
+
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">&#28155;&#21152;&#24403;&#21069;&#30446;&#24405;&#30340;&#25152;&#26377;&#25991;&#20214;&#21040;&#26242;&#23384;&#21306;</span>
+$ git add .
+
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">&#28155;&#21152;&#27599;&#20010;&#21464;&#21270;&#21069;&#65292;&#37117;&#20250;&#35201;&#27714;&#30830;&#35748;</span>
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">&#23545;&#20110;&#21516;&#19968;&#20010;&#25991;&#20214;&#30340;&#22810;&#22788;&#21464;&#21270;&#65292;&#21487;&#20197;&#23454;&#29616;&#20998;&#27425;&#25552;&#20132;</span>
+$ git add -p
+
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">&#21024;&#38500;&#24037;&#20316;&#21306;&#25991;&#20214;&#65292;&#24182;&#19988;&#23558;&#36825;&#27425;&#21024;&#38500;&#25918;&#20837;&#26242;&#23384;&#21306;</span>
+$ git rm [file1] [file2] ...
+
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">&#20572;&#27490;&#36861;&#36394;&#25351;&#23450;&#25991;&#20214;&#65292;&#20294;&#35813;&#25991;&#20214;&#20250;&#20445;&#30041;&#22312;&#24037;&#20316;&#21306;</span>
+$ git rm --cached [file]
+
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">&#25913;&#21517;&#25991;&#20214;&#65292;&#24182;&#19988;&#23558;&#36825;&#20010;&#25913;&#21517;&#25918;&#20837;&#26242;&#23384;&#21306;</span>
+$ git mv [file-original] [file-renamed]
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-4-1-4" class="outline-4">
+<h4 id="sec-4-1-4">四、代码提交</h4>
+<div class="outline-text-4" id="text-4-1-4">
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">&#25552;&#20132;&#26242;&#23384;&#21306;&#21040;&#20179;&#24211;&#21306;</span>
+$ git commit -m [message]
+
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">&#25552;&#20132;&#26242;&#23384;&#21306;&#30340;&#25351;&#23450;&#25991;&#20214;&#21040;&#20179;&#24211;&#21306;</span>
+$ git commit [file1] [file2] ... -m [message]
+
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">&#25552;&#20132;&#24037;&#20316;&#21306;&#33258;&#19978;&#27425;commit&#20043;&#21518;&#30340;&#21464;&#21270;&#65292;&#30452;&#25509;&#21040;&#20179;&#24211;&#21306;</span>
+$ git commit -a
+
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">&#25552;&#20132;&#26102;&#26174;&#31034;&#25152;&#26377;diff&#20449;&#24687;</span>
+$ git commit -v
+
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">&#20351;&#29992;&#19968;&#27425;&#26032;&#30340;commit&#65292;&#26367;&#20195;&#19978;&#19968;&#27425;&#25552;&#20132;</span>
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">&#22914;&#26524;&#20195;&#30721;&#27809;&#26377;&#20219;&#20309;&#26032;&#21464;&#21270;&#65292;&#21017;&#29992;&#26469;&#25913;&#20889;&#19978;&#19968;&#27425;commit&#30340;&#25552;&#20132;&#20449;&#24687;</span>
+$ git commit --amend -m [message]
+
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">&#37325;&#20570;&#19978;&#19968;&#27425;commit&#65292;&#24182;&#21253;&#25324;&#25351;&#23450;&#25991;&#20214;&#30340;&#26032;&#21464;&#21270;</span>
+$ git commit --amend [file1] [file2] ...
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-4-1-5" class="outline-4">
+<h4 id="sec-4-1-5">五、分支</h4>
+<div class="outline-text-4" id="text-4-1-5">
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">&#21015;&#20986;&#25152;&#26377;&#26412;&#22320;&#20998;&#25903;</span>
+$ git branch
+
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">&#21015;&#20986;&#25152;&#26377;&#36828;&#31243;&#20998;&#25903;</span>
+$ git branch -r
+
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">&#21015;&#20986;&#25152;&#26377;&#26412;&#22320;&#20998;&#25903;&#21644;&#36828;&#31243;&#20998;&#25903;</span>
+$ git branch -a
+
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">&#26032;&#24314;&#19968;&#20010;&#20998;&#25903;&#65292;&#20294;&#20381;&#28982;&#20572;&#30041;&#22312;&#24403;&#21069;&#20998;&#25903;</span>
+$ git branch [branch-name]
+
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">&#26032;&#24314;&#19968;&#20010;&#20998;&#25903;&#65292;&#24182;&#20999;&#25442;&#21040;&#35813;&#20998;&#25903;</span>
+$ git checkout -b [branch]
+
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">&#26032;&#24314;&#19968;&#20010;&#20998;&#25903;&#65292;&#25351;&#21521;&#25351;&#23450;commit</span>
+$ git branch [branch] [commit]
+
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">&#26032;&#24314;&#19968;&#20010;&#20998;&#25903;&#65292;&#19982;&#25351;&#23450;&#30340;&#36828;&#31243;&#20998;&#25903;&#24314;&#31435;&#36861;&#36394;&#20851;&#31995;</span>
+$ git branch --track [branch] [remote-branch]
+
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">&#20999;&#25442;&#21040;&#25351;&#23450;&#20998;&#25903;&#65292;&#24182;&#26356;&#26032;&#24037;&#20316;&#21306;</span>
+$ git checkout [branch-name]
+
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">&#20999;&#25442;&#21040;&#19978;&#19968;&#20010;&#20998;&#25903;</span>
+$ git checkout -
+
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">&#24314;&#31435;&#36861;&#36394;&#20851;&#31995;&#65292;&#22312;&#29616;&#26377;&#20998;&#25903;&#19982;&#25351;&#23450;&#30340;&#36828;&#31243;&#20998;&#25903;&#20043;&#38388;</span>
+$ git branch --set-upstream [branch] [remote-branch]
+
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">&#21512;&#24182;&#25351;&#23450;&#20998;&#25903;&#21040;&#24403;&#21069;&#20998;&#25903;</span>
+$ git merge [branch]
+
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">&#36873;&#25321;&#19968;&#20010;commit&#65292;&#21512;&#24182;&#36827;&#24403;&#21069;&#20998;&#25903;</span>
+$ git cherry-pick [commit]
+
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">&#21024;&#38500;&#20998;&#25903;</span>
+$ git branch -d [branch-name]
+
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">&#21024;&#38500;&#36828;&#31243;&#20998;&#25903;</span>
+$ git push origin --delete [branch-name]
+$ git branch -dr [remote/branch]
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-4-1-6" class="outline-4">
+<h4 id="sec-4-1-6">六、标签</h4>
+<div class="outline-text-4" id="text-4-1-6">
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">&#21015;&#20986;&#25152;&#26377;tag</span>
+$ git tag
+
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">&#26032;&#24314;&#19968;&#20010;tag&#22312;&#24403;&#21069;commit</span>
+$ git tag [tag]
+
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">&#26032;&#24314;&#19968;&#20010;tag&#22312;&#25351;&#23450;commit</span>
+$ git tag [tag] [commit]
+
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">&#21024;&#38500;&#26412;&#22320;tag</span>
+$ git tag -d [tag]
+
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">&#21024;&#38500;&#36828;&#31243;tag</span>
+$ git push origin :refs/tags/[tagName]
+
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">&#26597;&#30475;tag&#20449;&#24687;</span>
+$ git show [tag]
+
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">&#25552;&#20132;&#25351;&#23450;tag</span>
+$ git push [remote] [tag]
+
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">&#25552;&#20132;&#25152;&#26377;tag</span>
+$ git push [remote] --tags
+
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">&#26032;&#24314;&#19968;&#20010;&#20998;&#25903;&#65292;&#25351;&#21521;&#26576;&#20010;tag</span>
+$ git checkout -b [branch] [tag]
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-4-1-7" class="outline-4">
+<h4 id="sec-4-1-7">七、查看信息</h4>
+<div class="outline-text-4" id="text-4-1-7">
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">&#26174;&#31034;&#26377;&#21464;&#26356;&#30340;&#25991;&#20214;</span>
+$ git status
+
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">&#26174;&#31034;&#24403;&#21069;&#20998;&#25903;&#30340;&#29256;&#26412;&#21382;&#21490;</span>
+$ git log
+
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">&#26174;&#31034;commit&#21382;&#21490;&#65292;&#20197;&#21450;&#27599;&#27425;commit&#21457;&#29983;&#21464;&#26356;&#30340;&#25991;&#20214;</span>
+$ git log --stat
+
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">&#25628;&#32034;&#25552;&#20132;&#21382;&#21490;&#65292;&#26681;&#25454;&#20851;&#38190;&#35789;</span>
+$ git log -S [keyword]
+
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">&#26174;&#31034;&#26576;&#20010;commit&#20043;&#21518;&#30340;&#25152;&#26377;&#21464;&#21160;&#65292;&#27599;&#20010;commit&#21344;&#25454;&#19968;&#34892;</span>
+$ git log [tag] HEAD --pretty=format:%s
+
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">&#26174;&#31034;&#26576;&#20010;commit&#20043;&#21518;&#30340;&#25152;&#26377;&#21464;&#21160;&#65292;&#20854;"&#25552;&#20132;&#35828;&#26126;"&#24517;&#39035;&#31526;&#21512;&#25628;&#32034;&#26465;&#20214;</span>
+$ git log [tag] HEAD --grep feature
+
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">&#26174;&#31034;&#26576;&#20010;&#25991;&#20214;&#30340;&#29256;&#26412;&#21382;&#21490;&#65292;&#21253;&#25324;&#25991;&#20214;&#25913;&#21517;</span>
+$ git log --follow [file]
+$ git whatchanged [file]
+
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">&#26174;&#31034;&#25351;&#23450;&#25991;&#20214;&#30456;&#20851;&#30340;&#27599;&#19968;&#27425;diff</span>
+$ git log -p [file]
+
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">&#26174;&#31034;&#36807;&#21435;5&#27425;&#25552;&#20132;</span>
+$ git log -5 --pretty --oneline
+
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">&#26174;&#31034;&#25152;&#26377;&#25552;&#20132;&#36807;&#30340;&#29992;&#25143;&#65292;&#25353;&#25552;&#20132;&#27425;&#25968;&#25490;&#24207;</span>
+$ git shortlog -sn
+
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">&#26174;&#31034;&#25351;&#23450;&#25991;&#20214;&#26159;&#20160;&#20040;&#20154;&#22312;&#20160;&#20040;&#26102;&#38388;&#20462;&#25913;&#36807;</span>
+$ git blame [file]
+
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">&#26174;&#31034;&#26242;&#23384;&#21306;&#21644;&#24037;&#20316;&#21306;&#30340;&#24046;&#24322;</span>
+$ git diff
+
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">&#26174;&#31034;&#26242;&#23384;&#21306;&#21644;&#19978;&#19968;&#20010;commit&#30340;&#24046;&#24322;</span>
+$ git diff --cached [file]
+
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">&#26174;&#31034;&#24037;&#20316;&#21306;&#19982;&#24403;&#21069;&#20998;&#25903;&#26368;&#26032;commit&#20043;&#38388;&#30340;&#24046;&#24322;</span>
+$ git diff HEAD
+
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">&#26174;&#31034;&#20004;&#27425;&#25552;&#20132;&#20043;&#38388;&#30340;&#24046;&#24322;</span>
+$ git diff [first-branch]...[second-branch]
+
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">&#26174;&#31034;&#20170;&#22825;&#20320;&#20889;&#20102;&#22810;&#23569;&#34892;&#20195;&#30721;</span>
+$ git diff --shortstat <span style="color: #E6DB74;">"@{0 day ago}"</span>
+
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">&#26174;&#31034;&#26576;&#27425;&#25552;&#20132;&#30340;&#20803;&#25968;&#25454;&#21644;&#20869;&#23481;&#21464;&#21270;</span>
+$ git show [commit]
+
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">&#26174;&#31034;&#26576;&#27425;&#25552;&#20132;&#21457;&#29983;&#21464;&#21270;&#30340;&#25991;&#20214;</span>
+$ git show --name-only [commit]
+
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">&#26174;&#31034;&#26576;&#27425;&#25552;&#20132;&#26102;&#65292;&#26576;&#20010;&#25991;&#20214;&#30340;&#20869;&#23481;</span>
+$ git show [commit]:[filename]
+
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">&#26174;&#31034;&#24403;&#21069;&#20998;&#25903;&#30340;&#26368;&#36817;&#20960;&#27425;&#25552;&#20132;</span>
+$ git reflog
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-4-2" class="outline-3">
+<h3 id="sec-4-2">Show total code lines commited between two commites</h3>
+<div class="outline-text-3" id="text-4-2">
+<div class="org-src-container">
+
+<pre class="src src-sh">git diff 769bf97 HEAD --shortstat
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-4-3" class="outline-3">
+<h3 id="sec-4-3">Show remote branches</h3>
+<div class="outline-text-3" id="text-4-3">
+<p>
+refer to <a href="http://zengrong.net/post/1746.htm">Git查看、删除、重命名远程分支和tag</a>.
+</p>
+</div>
+<div id="outline-container-sec-4-3-1" class="outline-4">
+<h4 id="sec-4-3-1">show all branches</h4>
+<div class="outline-text-4" id="text-4-3-1">
+<div class="org-src-container">
+
+<pre class="src src-sh">git branch -a
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-4-3-2" class="outline-4">
+<h4 id="sec-4-3-2">remove remote branch or tag</h4>
+<div class="outline-text-4" id="text-4-3-2">
+<div class="org-src-container">
+
+<pre class="src src-sh">git push origin --delete &lt;branchName&gt;
+git push origin --delete tag &lt;tagname&gt;
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-4-4" class="outline-3">
+<h3 id="sec-4-4">Rename local branch</h3>
+<div class="outline-text-3" id="text-4-4">
+<div class="org-src-container">
+
+<pre class="src src-sh">git branch -m &lt;old&gt; &lt;new&gt;
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-4-5" class="outline-3">
+<h3 id="sec-4-5">Add home dir to  git&#xa0;&#xa0;&#xa0;<span class="tag"><span class="git">git</span>&#xa0;<span class="home">home</span></span></h3>
+<div class="outline-text-3" id="text-4-5">
+</div><div id="outline-container-sec-4-5-1" class="outline-4">
+<h4 id="sec-4-5-1">1. initialization</h4>
+<div class="outline-text-4" id="text-4-5-1">
+<p>
+git init
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-4-5-2" class="outline-4">
+<h4 id="sec-4-5-2">2. create .gitignore</h4>
+<div class="outline-text-4" id="text-4-5-2">
+<div class="org-src-container">
+
+<pre class="src src-text">*
+!README.org
+!.emacs
+!.bashrc
+!.gitignore
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-4-5-3" class="outline-4">
+<h4 id="sec-4-5-3">3. create README.org</h4>
+<div class="outline-text-4" id="text-4-5-3">
+<div class="org-src-container">
+
+<pre class="src src-text">Only for backup of my configurations:
+
+| name       | description          | annotation |
+|------------+----------------------+------------|
+| [[file:README.org][README.org]] | this file itself     |            |
+| [[file:.emacs][.<span style="color: #000000; background-color: #ff00ff;">emacs</span>]]     | emacs conf file      |            |
+| [[<span style="color: #000000; background-color: #ff00ff;">file</span>:.bashrc][.<span style="color: #000000; background-color: #ff00ff;">bashrc</span>]]    | shell conf file      |            |
+| [[<span style="color: #000000; background-color: #ff00ff;">file</span>:.gitignore][.<span style="color: #000000; background-color: #ff00ff;">gitignore</span>]] | git ignore file list |            |
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-4-5-4" class="outline-4">
+<h4 id="sec-4-5-4">4. stage all files:</h4>
+<div class="outline-text-4" id="text-4-5-4">
+<p>
+git add .
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-4-5-5" class="outline-4">
+<h4 id="sec-4-5-5">5. commit to git repository:</h4>
+<div class="outline-text-4" id="text-4-5-5">
+<p>
+git commit
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-4-5-6" class="outline-4">
+<h4 id="sec-4-5-6">6. push it up to <a href="https://bitbucket.org/fengyz/linuxhome">bitbucket</a>:</h4>
+<div class="outline-text-4" id="text-4-5-6">
+<div class="org-src-container">
+
+<pre class="src src-sh">git remote add origin https://fengyz@bitbucket.org/fengyz/linuxhome.git
+git push -u origin --all <span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">pushes up the repo and its refs for the first time</span>
+git push -u origin --tags <span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">pushes up any tags</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-4-6" class="outline-3">
+<h3 id="sec-4-6">Cancel a wrong staging</h3>
+<div class="outline-text-3" id="text-4-6">
+</div><div id="outline-container-sec-4-6-1" class="outline-4">
+<h4 id="sec-4-6-1">0. Situation</h4>
+<div class="outline-text-4" id="text-4-6-1">
+<div class="org-src-container">
+
+<pre class="src src-sh">$ git status
+On branch master
+Your branch is up-to-date with <span style="color: #E6DB74;">'origin/master'</span>.
+Changes to be committed:
+  (use <span style="color: #E6DB74;">"git reset HEAD &lt;file&gt;..."</span> to unstage)
+
+    new file:   .emacs.d/.gitignore
+    new file:   .emacs.d/README.org
+    modified:   .gitignore
+</pre>
+</div>
+
+<p>
+What I want to do is:
+</p>
+<ul class="org-ul">
+<li>remove the first two files
+</li>
+<li>revert the last file to old status
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-4-6-2" class="outline-4">
+<h4 id="sec-4-6-2">1. remove the first two files</h4>
+<div class="outline-text-4" id="text-4-6-2">
+<p>
+git rm &#x2013;cached .emacs.d/.gitignore 
+git rm &#x2013;cached .emacs.d/README.org
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-4-6-3" class="outline-4">
+<h4 id="sec-4-6-3">2. revert the last <a href="file-path">file-path</a></h4>
+<div class="outline-text-4" id="text-4-6-3">
+<p>
+to old status
+</p>
+
+<p>
+git checkout HEAD .gitignore
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-4-6-4" class="outline-4">
+<h4 id="sec-4-6-4">3. Result</h4>
+<div class="outline-text-4" id="text-4-6-4">
+<div class="org-src-container">
+
+<pre class="src src-sh">$ git status
+On branch master
+Your branch is up-to-date with <span style="color: #E6DB74;">'origin/master'</span>.
+nothing to commit, working directory clean
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-4-7" class="outline-3">
+<h3 id="sec-4-7">Remove unwanted directory from the staging area</h3>
+<div class="outline-text-3" id="text-4-7">
+<div class="org-src-container">
+
+<pre class="src src-sh">git reset HEAD frontend/vendor/
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-4-8" class="outline-3">
+<h3 id="sec-4-8">List all files in the git repository</h3>
+<div class="outline-text-3" id="text-4-8">
+<div class="org-src-container">
+
+<pre class="src src-sh">git ls-files
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-4-9" class="outline-3">
+<h3 id="sec-4-9">Get list of modified <a href="file-path">file-path</a></h3>
+<div class="outline-text-3" id="text-4-9">
+<p>
+s between two commits
+</p>
+
+<p>
+git diff &lt;hash1&gt; &lt;hash2&gt; &#x2013;stat
+</p>
+
+<p>
+Note: if no &#x2013;stat, diff of content will be displayed.
+</p>
+
+<p>
+Reference: <a href="http://www.360doc.com/content/14/1024/16/18578054_419515529.shtml">Git 如何获得两个版本间所有变更的文件列表</a>
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-sec-4-10" class="outline-3">
+<h3 id="sec-4-10">Create branches</h3>
+<div class="outline-text-3" id="text-4-10">
+<p>
+【ME：本来想要使用 git 保持两台笔记本之间内容同步，结果 macbook 上一次偶然的提交（微不足道的修改）干扰了 thinkad 的工作－无法 push 到 remote，必需先 fetch 再 merge，因为在 thinkad 上修改了许多内容，在 merge 的时候就很担心出错。以后要采取新的策略：两台笔记本使用不同的分支推进工作，必要的时候再 merge。】
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">git branch x230t
+git checkout x230t
+</pre>
+</div>
+<p>
+or use the equivalent command:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">git checkout -b x230t
+</pre>
+</div>
+<p>
+Modify something and commit. Then push the branch to remote:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">git push origin x230t
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-4-11" class="outline-3">
+<h3 id="sec-4-11">Show branch history</h3>
+<div class="outline-text-3" id="text-4-11">
+<div class="org-src-container">
+
+<pre class="src src-sh">git log --oneline --decorate --graph --all
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-4-12" class="outline-3">
+<h3 id="sec-4-12">Switch to another brranch with modified files</h3>
+<div class="outline-text-3" id="text-4-12">
+</div><div id="outline-container-sec-4-12-1" class="outline-4">
+<h4 id="sec-4-12-1">1. stage all modification</h4>
+<div class="outline-text-4" id="text-4-12-1">
+<div class="org-src-container">
+
+<pre class="src src-sh">git add .
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-4-12-2" class="outline-4">
+<h4 id="sec-4-12-2">2. switch to the new branch</h4>
+<div class="outline-text-4" id="text-4-12-2">
+<div class="org-src-container">
+
+<pre class="src src-sh">git checkout xhr
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-4-13" class="outline-3">
+<h3 id="sec-4-13">git diff</h3>
+<div class="outline-text-3" id="text-4-13">
+<p>
+refer to <a href="http://blog.movinglane.com/blog/2015/02/02/introduction-of-git-diff/">http://blog.movinglane.com/blog/2015/02/02/introduction-of-git-diff/</a>.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5">GitHub Token</h2>
+<div class="outline-text-2" id="text-5">
+<div class="org-src-container">
+
+<pre class="src src-text">c107cc599fcc57fc9a4692448409b8f22e3d83c5
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6">My Workflow</h2>
+<div class="outline-text-2" id="text-6">
+</div><div id="outline-container-sec-6-1" class="outline-3">
+<h3 id="sec-6-1">Switch to work on x230t (on branch x230t)</h3>
+<div class="outline-text-3" id="text-6-1">
+</div><div id="outline-container-sec-6-1-1" class="outline-4">
+<h4 id="sec-6-1-1">1. git fetch</h4>
+</div>
+<div id="outline-container-sec-6-1-2" class="outline-4">
+<h4 id="sec-6-1-2">2. git merge remotes/origin/master</h4>
+</div>
+<div id="outline-container-sec-6-1-3" class="outline-4">
+<h4 id="sec-6-1-3">3. git push origin x230t</h4>
+</div>
+<div id="outline-container-sec-6-1-4" class="outline-4">
+<h4 id="sec-6-1-4">3. git checkout master</h4>
+</div>
+<div id="outline-container-sec-6-1-5" class="outline-4">
+<h4 id="sec-6-1-5">4. git merge x230t</h4>
+</div>
+<div id="outline-container-sec-6-1-6" class="outline-4">
+<h4 id="sec-6-1-6">5. git checkout x230t</h4>
+</div>
+</div>
+
+<div id="outline-container-sec-6-2" class="outline-3">
+<h3 id="sec-6-2">Git 使用规范流程 by 阮一峰</h3>
+<div class="outline-text-3" id="text-6-2">
+<p>
+(<a href="http://www.ruanyifeng.com/blog/2015/08/git-use-process.html">http://www.ruanyifeng.com/blog/2015/08/git-use-process.html</a>）
+</p>
+</div>
+
+<div id="outline-container-sec-6-2-1" class="outline-4">
+<h4 id="sec-6-2-1">新建分支</h4>
+<div class="outline-text-4" id="text-6-2-1">
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">&#33719;&#21462;&#20027;&#24178;&#26368;&#26032;&#20195;&#30721;</span>
+$ git checkout master
+$ git pull
+
+<span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">&#26032;&#24314;&#19968;&#20010;&#24320;&#21457;&#20998;&#25903;myfeature</span>
+$ git checkout -b myfeature
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-6-2-2" class="outline-4">
+<h4 id="sec-6-2-2">提交分支 commit</h4>
+<div class="outline-text-4" id="text-6-2-2">
+<div class="org-src-container">
+
+<pre class="src src-sh">$ git add --all
+$ git status
+$ git commit --verbose
+</pre>
+</div>
+
+<p>
+git commit 命令的verbose参数，会列出 diff 的结果。
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-6-2-3" class="outline-4">
+<h4 id="sec-6-2-3">撰写提交信息</h4>
+<div class="outline-text-4" id="text-6-2-3">
+<p>
+提交commit时，必须给出完整扼要的提交信息，下面是一个范本。
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">Present-tense summary under 50 characters
+
+ * More information about commit (under 72 characters).
+ * More information about commit (under 72 characters).
+
+http://project.management-system.com/ticket/123
+</pre>
+</div>
+<p>
+第一行是不超过50个字的提要，然后空一行，罗列出改动原因、主要变动、以及需要注意的问题。最后，提供对应的网址（比如Bug ticket）。
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-6-2-4" class="outline-4">
+<h4 id="sec-6-2-4">与主干同步</h4>
+<div class="outline-text-4" id="text-6-2-4">
+<p>
+分支的开发过程中，要经常与主干保持同步。
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">$ git fetch origin
+$ git rebase origin/master
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-6-2-5" class="outline-4">
+<h4 id="sec-6-2-5">合并 commits</h4>
+<div class="outline-text-4" id="text-6-2-5">
+<div class="org-src-container">
+
+<pre class="src src-sh">$ git rebase -i origin/master
+</pre>
+</div>
+
+<p>
+可以使用的命令:
+</p>
+<ul class="org-ul">
+<li>pick：正常选中
+</li>
+<li>reword：选中，并且修改提交信息；
+</li>
+<li>edit：选中，rebase时会暂停，允许你修改这个commit（参考这里）
+</li>
+<li>squash：选中，会将当前commit与上一个commit合并
+</li>
+<li>fixup：与squash相同，但不会保存当前commit的提交信息
+</li>
+<li>exec：执行其他shell命令
+</li>
+</ul>
+
+<p>
+上面这6个命令当中，squash和fixup可以用来合并commit。先把需要合并的commit前面的动词，改成squash（或者s）。
+</p>
+
+<p>
+Pony Foo提出另外一种合并commit的简便方法，就是先撤销过去5个commit，然后再建一个新的。
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">$ git reset HEAD~5
+$ git add .
+$ git commit -am <span style="color: #E6DB74;">"Here's the bug fix that closes #28"</span>
+$ git push --force
+</pre>
+</div>
+
+<p>
+squash和fixup命令，还可以当作命令行参数使用，自动合并commit。
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">$ git commit --fixup  
+$ git rebase -i --autosquash
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-6-2-6" class="outline-4">
+<h4 id="sec-6-2-6">推送到远程仓库</h4>
+<div class="outline-text-4" id="text-6-2-6">
+<div class="org-src-container">
+
+<pre class="src src-sh">$ git push --force origin myfeature
+</pre>
+</div>
+<p>
+git push命令要加上force参数，因为rebase以后，分支历史改变了，跟远程分支不一定兼容，有可能要强行推送（参见这里）。
+</p>
+</div>
+</div>
+<div id="outline-container-sec-6-2-7" class="outline-4">
+<h4 id="sec-6-2-7">发出Pull Request</h4>
+<div class="outline-text-4" id="text-6-2-7">
+<p>
+提交到远程仓库以后，就可以发出 Pull Request 到master分支，然后请求别人进行代码review，确认可以合并到master。
+</p>
+
+<p>
+<b>Note</b>: 已经push到远端的代码不应该再rebase，否则就搞乱了提交线了；如果能做到那相应的就不会有需要force的情况了。 以最上面的图来说，就是要注意在做过操作7而未做8之前不应该执行5(pull w/ rebase)操作。
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-7" class="outline-2">
+<h2 id="sec-7">Advanced Topics</h2>
+<div class="outline-text-2" id="text-7">
+</div><div id="outline-container-sec-7-1" class="outline-3">
+<h3 id="sec-7-1">取消 commit</h3>
+<div class="outline-text-3" id="text-7-1">
+<p>
+(<a href="http://blog.csdn.net/w958796636/article/details/53611133">http://blog.csdn.net/w958796636/article/details/53611133</a>)
+</p>
+
+<p>
+写完代码后，我们一般这样
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">git add . //&#28155;&#21152;&#25152;&#26377;&#25991;&#20214;
+
+git commit -m <span style="color: #E6DB74;">"&#26412;&#21151;&#33021;&#20840;&#37096;&#23436;&#25104;"</span>
+</pre>
+</div>
+
+<p>
+执行完commit后，想撤回commit，怎么办？
+</p>
+
+
+<p>
+这样凉拌：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">git reset --soft HEAD^
+</pre>
+</div>
+
+<p>
+这样就成功的撤销了你的commit
+</p>
+
+<p>
+注意，仅仅是撤回commit操作，您写的代码仍然保留。
+</p>
+
+
+<p>
+说一下个人理解： <code>HEAD^</code> 的意思是上一个版本，也可以写成 <code>HEAD~1</code>, 如果你进行了2次commit，想都撤回，可以使用 <code>HEAD~2</code>
+</p>
+
+
+<p>
+至于这几个参数：
+</p>
+<ul class="org-ul">
+<li><code>--mixed</code> 意思是：不删除工作空间改动代码，撤销commit，并且撤销 <code>git add .</code> 操作. 这个为默认参数, <code>git reset --mixed HEAD^</code> 和 <code>git reset HEAD^</code> 效果是一样的。 [ME: 建议使用这个命令]
+</li>
+<li><code>--soft</code>: 不删除工作空间改动代码，撤销commit，不撤销 <code>git add .</code>
+</li>
+<li><code>--hard</code>: 删除工作空间改动代码，撤销commit，撤销 <code>git add .</code> 注意完成这个操作后，就恢复到了上一次的commit状态。[ME: 危险！会删除工作区做的改动]
+</li>
+</ul>
+
+
+<p>
+顺便说一下，如果commit注释写错了，只是想改一下注释，只需要：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">git commit --amend
+</pre>
+</div>
+
+<p>
+此时会进入默认vim编辑器，修改注释完毕后保存就好了。
+</p>
+</div>
+</div>
+<div id="outline-container-sec-7-2" class="outline-3">
+<h3 id="sec-7-2">change git commit message after push (&#x2013;amend)</h3>
+<div class="outline-text-3" id="text-7-2">
+<p>
+(refer to <a href="http://stackoverflow.com/questions/8981194/changing-git-commit-message-after-push-given-that-no-one-pulled-from-remote">this link</a> @stackoverflow)
+If we amend a commit locally after pushing, next time while pushing we get an error, usually we have to do a merge!
+</p>
+
+<p>
+Solutions:
+</p>
+
+<p>
+Hardcore:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-example">git push --force &lt;repository&gt; &lt;branch&gt;
+</pre>
+</div>
+
+<p>
+Safer:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-example">git push --force-with-lease &lt;repository&gt; &lt;branch&gt;
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-7-3" class="outline-3">
+<h3 id="sec-7-3">How to Write a Git Commit Message</h3>
+<div class="outline-text-3" id="text-7-3">
+<p>
+(<a href="http://chris.beams.io/posts/git-commit/">http://chris.beams.io/posts/git-commit/</a>)
+</p>
+
+<p>
+The seven rules of a great git commit message
+</p>
+
+<ol class="org-ol">
+<li>Separate subject from body with a blank line
+</li>
+<li>Limit the subject line to 50 characters
+</li>
+<li>Capitalize the subject line
+</li>
+<li>Do not end the subject line with a period
+</li>
+<li>Use the imperative mood in the subject line
+</li>
+<li>Wrap the body at 72 characters
+</li>
+<li>Use the body to explain what and why vs. how
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-7-4" class="outline-3">
+<h3 id="sec-7-4">change commit message</h3>
+<div class="outline-text-3" id="text-7-4">
+<p>
+Refer to <a href="https://help.github.com/articles/changing-a-commit-message/">https://help.github.com/articles/changing-a-commit-message/</a>.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">git rebase -i HEAD~3 <span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">Displays a list of the last 3 commits on the current branch</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-7-5" class="outline-3">
+<h3 id="sec-7-5">remove sensitive data from git history</h3>
+<div class="outline-text-3" id="text-7-5">
+<p>
+(<a href="https://help.github.com/articles/remove-sensitive-data/">https://help.github.com/articles/remove-sensitive-data/</a>)
+</p>
+
+<p>
+Some day you or a collaborator may accidentally commit sensitive data, such as a password or SSH key, into a Git repository. Although you can remove the file from the latest commit with git rm, the file will still exist in the repository's history. Fortunately, there are other tools that can entirely remove unwanted files from a repository's history. This article will explain how to use two of them: git filter-branch and the BFG Repo-Cleaner.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-7-6" class="outline-3">
+<h3 id="sec-7-6">rename branch both locally and remotely</h3>
+<div class="outline-text-3" id="text-7-6">
+<p>
+Refer to <a href="https://gist.github.com/lttlrck/9628955">https://gist.github.com/lttlrck/9628955</a>.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">git branch -m old_branch new_branch         <span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">Rename branch locally    </span>
+git push origin :old_branch                 <span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">Delete the old branch    </span>
+git push --set-upstream origin new_branch   <span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">Push the new branch, set local branch to track the new remote</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-7-7" class="outline-3">
+<h3 id="sec-7-7">rename local branch</h3>
+<div class="outline-text-3" id="text-7-7">
+<p>
+(<a href="http://stackoverflow.com/questions/6591213/how-to-rename-a-local-git-branch">http://stackoverflow.com/questions/6591213/how-to-rename-a-local-git-branch</a>)
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">git branch -m &lt;oldname&gt; &lt;newname&gt;
+
+git branch -m &lt;newname&gt; <span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">if you want to rename the current branch</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-7-8" class="outline-3">
+<h3 id="sec-7-8">Pretty branch graph</h3>
+<div class="outline-text-3" id="text-7-8">
+<p>
+(<a href="http://stackoverflow.com/a/9074343">http://stackoverflow.com/a/9074343</a>)
+</p>
+<div class="org-src-container">
+
+<pre class="src src-example">[alias]
+lg1 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
+lg = !"git lg1"
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-7-9" class="outline-3">
+<h3 id="sec-7-9">How can I preview a merge in git?</h3>
+<div class="outline-text-3" id="text-7-9">
+<p>
+(<a href="http://stackoverflow.com/questions/5817579/how-can-i-preview-a-merge-in-git">http://stackoverflow.com/questions/5817579/how-can-i-preview-a-merge-in-git</a>)
+</p>
+
+<p>
+I've found that the solution the works best for me is to just perform the merge and abort it if you don't like the results. This particular syntax feels clean and simple to me. If you want to ensure you don't mess up your current branch, or you're just not ready to merge regardless of the existence of conflicts, simply create a new sub-branch off of it and merge that.
+</p>
+</div>
+
+<div id="outline-container-sec-7-9-1" class="outline-4">
+<h4 id="sec-7-9-1">Strategy 1: When you definitely want to merge, but only if there aren't conflicts</h4>
+<div class="outline-text-4" id="text-7-9-1">
+<div class="org-src-container">
+
+<pre class="src src-sh">git checkout mybranch
+git merge some-other-branch
+</pre>
+</div>
+<p>
+If git reports conflicts (and ONLY IF THERE ARE conflicts) you can then do:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">git merge --abort
+</pre>
+</div>
+
+<p>
+If the merge is successful, you cannot abort it (only reset).
+</p>
+
+<p>
+If you're not ready to merge, use the safer way below.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-7-9-2" class="outline-4">
+<h4 id="sec-7-9-2">Strategy 2: The safer way – merge off a temporary branch:</h4>
+<div class="outline-text-4" id="text-7-9-2">
+<div class="org-src-container">
+
+<pre class="src src-sh">git checkout mybranch
+git checkout -b mynew-temporary-branch
+git merge some-other-branch
+</pre>
+</div>
+
+<p>
+That way you can simply throw away the temporary branch if you just want to see what the conflicts are. You don't need to bother "aborting" the merge, and you can go back to your work &#x2013; simply checkout 'mybranch' again and you won't have any merged code or merge conflicts in your branch. This is basically a dry-run.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-7-9-3" class="outline-4">
+<h4 id="sec-7-9-3">Diff skills</h4>
+<div class="outline-text-4" id="text-7-9-3">
+<p>
+list of changes that will be merged into current branch.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">git log ..otherbranch
+</pre>
+</div>
+
+<p>
+diff from common ancestor (merge base) to the head of what will be merged. Note the three dots.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">git diff ...otherbranch
+</pre>
+</div>
+
+<p>
+graphical representation of the branches since they were merged last time.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">gitk ...otherbranch
+</pre>
+</div>
+
+<p>
+Empty string implies HEAD, so that's why just ..otherbranch instead of HEAD..otherbranch.
+</p>
+
+<p>
+The two vs. three dots have slightly different meaning for diff than for the commands that list revisions (log, gitk etc.). For log and others two dots (a..b) means everything that is in b but not a and three dots (a&#x2026;b) means everything that is in only one of a or b. But diff works with two revisions and there the simpler case represented by two dots (a..b) is simple difference from a to b and three dots (a&#x2026;b) mean difference between common ancestor and b (git diff $(git merge-base a b)..b).
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-7-10" class="outline-3">
+<h3 id="sec-7-10">Display git branch and status in command prompt</h3>
+<div class="outline-text-3" id="text-7-10">
+<p>
+<a href="http://noyobo.com/2014/08/21/mac-git-branch-status.html">http://noyobo.com/2014/08/21/mac-git-branch-status.html</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-7-11" class="outline-3">
+<h3 id="sec-7-11">Tilde (~) and caret (^)</h3>
+<div class="outline-text-3" id="text-7-11">
+<p>
+(<a href="http://backlogtool.com/git-guide/cn/stepup/stepup1_3.html">http://backlogtool.com/git-guide/cn/stepup/stepup1_3.html</a>)
+提交时使用~(tilde)和<sup>(caret)</sup>就可以指定某个提交的相对位置。最常用的就是相对于HEAD的位置。HEAD后面加上~(tilde）可以指定HEAD之前的提交记录。合并分支会有多个根节点，您可以用<sup>(caret)</sup> 来指定使用哪个为根节点。
+</p>
+
+<p>
+Also refer to <a href="http://stackoverflow.com/questions/1955985/what-does-the-caret-character-mean">http://stackoverflow.com/questions/1955985/what-does-the-caret-character-mean</a>.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-7-12" class="outline-3">
+<h3 id="sec-7-12">Git Rebase</h3>
+<div class="outline-text-3" id="text-7-12">
+<p>
+(<a href="http://weizhifeng.net/git-rebase.html">http://weizhifeng.net/git-rebase.html</a>)</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: fengyz</p>
+<p class="date">Created: 2017-08-04 Fri 11:06</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

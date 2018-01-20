@@ -1,0 +1,718 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>jira</title>
+<!-- 2016-10-09 Sun 09:59 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="fengyz" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">jira</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. My Jira</a>
+<ul>
+<li><a href="#sec-1-1">1.1. Getting organized</a>
+<ul>
+<li><a href="#sec-1-1-1">1.1.1. Projects</a></li>
+<li><a href="#sec-1-1-2">1.1.2. Categories</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-2">1.2. Bread&amp;Wine</a></li>
+</ul>
+</li>
+<li><a href="#sec-2">2. Tutorials</a>
+<ul>
+<li><a href="#sec-2-1">2.1. JIRA Agile User's Guide</a></li>
+<li><a href="#sec-2-2">2.2. Creating a Board</a>
+<ul>
+<li><a href="#sec-2-2-1">2.2.1. Creating a completely new board</a></li>
+<li><a href="#sec-2-2-2">2.2.2. Copying an existing board</a></li>
+<li><a href="#sec-2-2-3">2.2.3. Next Steps</a></li>
+</ul>
+</li>
+<li><a href="#sec-2-3">2.3. Using a Board</a>
+<ul>
+<li><a href="#sec-2-3-1">2.3.1. General</a></li>
+<li><a href="#sec-2-3-2">2.3.2. Using the Backlog</a></li>
+<li><a href="#sec-2-3-3">2.3.3. Using the Active sprints or Kanban board</a></li>
+<li><a href="#sec-2-3-4">2.3.4. Using reports</a></li>
+<li><a href="#sec-2-3-5">2.3.5. Configuring a Board</a></li>
+<li><a href="#sec-2-3-6">2.3.6. Using Keyboard Shortcuts</a></li>
+<li><a href="#sec-2-3-7">2.3.7. Working with Issues</a></li>
+<li><a href="#sec-2-3-8">2.3.8. Working with Epics</a></li>
+<li><a href="#sec-2-3-9">2.3.9. Working with Sprints</a></li>
+<li><a href="#sec-2-3-10">2.3.10. Planning a Version</a></li>
+<li><a href="#sec-2-3-11">2.3.11. Release a Version (Kanban)</a></li>
+<li><a href="#sec-2-3-12">2.3.12. Using the JIRA Agile Gadgets</a></li>
+<li><a href="#sec-2-3-13">2.3.13. JIRA Agile Tutorials</a></li>
+<li><a href="#sec-2-3-14">2.3.14. Going to JIRA Agile Automatically</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#sec-3">3. References</a>
+<ul>
+<li><a href="#sec-3-1">3.1. 公司推行jira，要求工程师每天log work，监督每个工程师有没有做满8小时的工作，想请教下各位国外IT界大牛是否有必要，是否有这样做的优秀的IT公司？</a></li>
+<li><a href="#sec-3-2">3.2. JIRA — 敏捷团队的镜子</a></li>
+</ul>
+</li>
+<li><a href="#sec-4">4. Advanced Topics</a>
+<ul>
+<li><a href="#sec-4-1">4.1. Linking Bitbucket Cloud and GitHub accounts to JIRA Software</a></li>
+<li><a href="#sec-4-2">4.2. Using Smart Commits</a>
+<ul>
+<li><a href="#sec-4-2-1">4.2.1. comment</a></li>
+<li><a href="#sec-4-2-2">4.2.2. time</a></li>
+<li><a href="#sec-4-2-3">4.2.3. transition</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> My Jira</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> Getting organized</h3>
+<div class="outline-text-3" id="text-1-1">
+</div><div id="outline-container-sec-1-1-1" class="outline-4">
+<h4 id="sec-1-1-1"><span class="section-number-4">1.1.1</span> Projects</h4>
+</div>
+<div id="outline-container-sec-1-1-2" class="outline-4">
+<h4 id="sec-1-1-2"><span class="section-number-4">1.1.2</span> Categories</h4>
+<div class="outline-text-4" id="text-1-1-2">
+<p>
+Based on everyday schedule:
+</p>
+<ul class="org-ul">
+<li>self-education
+<ul class="org-ul">
+<li>languages (english, japanese, german, etc.)
+</li>
+<li>software development
+</li>
+<li>maybe hardware development, etc.
+</li>
+<li>investment
+<ul class="org-ul">
+<li>forex
+</li>
+</ul>
+</li>
+<li>&#x2026;
+</li>
+</ul>
+</li>
+<li>family
+<ul class="org-ul">
+<li>parenting
+</li>
+</ul>
+</li>
+<li>work
+<ul class="org-ul">
+<li>software development
+</li>
+<li>forex
+</li>
+<li>&#x2026;
+</li>
+</ul>
+</li>
+<li>leisure
+<ul class="org-ul">
+<li>travel to japan
+</li>
+<li>&#x2026;
+</li>
+</ul>
+</li>
+<li>community
+<ul class="org-ul">
+<li>jiaweihui related
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> Bread&amp;Wine</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+(<a href="https://breadandwine.atlassian.net/secure/Dashboard.jspa">link</a>)
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Tutorials</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> JIRA Agile User's Guide</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+(<a href="https://confluence.atlassian.com/agile/jira-agile-user-s-guide">link</a>)
+The way that you can interact with these issues is significantly different.
+</p>
+
+<p>
+How to use JIRA Agile
+</p>
+</div>
+</div>
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> Creating a Board</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+We need a board so that we can view and work with issues.
+</p>
+
+<p>
+A board displays issues from one or more projects.
+</p>
+
+<p>
+two types of boards:
+</p>
+<ul class="org-ul">
+<li><b>Scrum boards</b>: for teams that plan their work in sprints.
+</li>
+<li><b>Kanban boards</b>: for teams that focus on managing and constraining their <span class="underline">work-in-progress</span>. Because work is not planned in advance using discrete time periods or versions, Kanban boards do <i>not</i> have a <i>Backlog</i> screen.
+</li>
+</ul>
+
+<p>
+<b>Note</b> Before you begin, please note that you will need the JIRA 'Create Shared Objects' global permission before you can create a board. If you don't have this permission you can still create a board, but it will not be visible to other people as its filter will not be shared.
+</p>
+
+<p>
+You can either copy an existing board, or create a completely new one.
+</p>
+</div>
+
+<div id="outline-container-sec-2-2-1" class="outline-4">
+<h4 id="sec-2-2-1"><span class="section-number-4">2.2.1</span> Creating a completely new board</h4>
+<div class="outline-text-4" id="text-2-2-1">
+<p>
+We can create a board with <i>sample data</i>. 
+</p>
+
+<p>
+<b>Note</b>: creating a project from JIRA Agile requires the 'Browse Projects' permission in the Default Permission Scheme.
+</p>
+
+<p>
+JIRA offers boards based on <b>filters</b>. Refer to 'Example JQL for your board's Saved Filter' at this page.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2-2-2" class="outline-4">
+<h4 id="sec-2-2-2"><span class="section-number-4">2.2.2</span> Copying an existing board</h4>
+<div class="outline-text-4" id="text-2-2-2">
+<p>
+If you would like to create a board that is <i>/similar</i> to one you are already using, you can simply create a copy.
+</p>
+
+<p>
+Even if you are the admin of a board, you are not necessarily of the filter.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2-2-3" class="outline-4">
+<h4 id="sec-2-2-3"><span class="section-number-4">2.2.3</span> Next Steps</h4>
+<div class="outline-text-4" id="text-2-2-3">
+<ul class="org-ul">
+<li>If you wish to make any changes to your new board, see Configuring a Board.
+</li>
+<li>To learn more about changing the filter for your board, see Configuring Filters.
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-sec-2-3" class="outline-3">
+<h3 id="sec-2-3"><span class="section-number-3">2.3</span> Using a Board</h3>
+<div class="outline-text-3" id="text-2-3">
+</div><div id="outline-container-sec-2-3-1" class="outline-4">
+<h4 id="sec-2-3-1"><span class="section-number-4">2.3.1</span> General</h4>
+<div class="outline-text-4" id="text-2-3-1">
+</div><ol class="org-ol"><li><a id="sec-2-3-1-1" name="sec-2-3-1-1"></a>What is a board?<br  /><div class="outline-text-5" id="text-2-3-1-1">
+<p>
+Creating a new board is simple:
+</p>
+<ul class="org-ul">
+<li>Choose which project(s) the board will display, using JIRA’s Query Language (JQL)
+</li>
+<li>Lay out status columns
+</li>
+<li>Set Swimlanes — based on assignees, parent/sub-task issues, or JQL queries of your choice
+</li>
+<li>(optional) Set Quick Filters
+</li>
+</ul>
+
+<p>
+Refer to <a href="https://confluence.atlassian.com/agile/jira-agile-user-s-guide/creating-a-board">Creating a Board</a>.
+</p>
+</div>
+</li>
+<li><a id="sec-2-3-1-2" name="sec-2-3-1-2"></a>Viewing the board<br  /><div class="outline-text-5" id="text-2-3-1-2">
+<ul class="org-ul">
+<li>Scrum board
+</li>
+<li>Kanban board: manage work that is in progress, <a href="https://confluence.atlassian.com/agile/jira-agile-user-s-guide/using-a-board/using-the-active-sprints-or-kanban-board">learn more&#x2026;</a>
+</li>
+</ul>
+</div>
+</li>
+<li><a id="sec-2-3-1-3" name="sec-2-3-1-3"></a>Navigating in a board<br  /><div class="outline-text-5" id="text-2-3-1-3">
+<ul class="org-ul">
+<li>Instant filter (Backlog only): use the search field matching issues
+</li>
+<li>Quick Filter: refer to <a href="https://confluence.atlassian.com/agile/jira-agile-user-s-guide/configuring-a-board/configuring-quick-filters">Configuring Quick Filters</a>.
+</li>
+<li>Sidebar: click the dropdown at the top of the side bar to select a board to view.
+</li>
+</ul>
+</div>
+</li></ol>
+</div>
+<div id="outline-container-sec-2-3-2" class="outline-4">
+<h4 id="sec-2-3-2"><span class="section-number-4">2.3.2</span> Using the Backlog</h4>
+<div class="outline-text-4" id="text-2-3-2">
+<p>
+This is whare you plan  your sprints. Click <b>Start Sprint</b> to move a ready-to-go sprint into the <i>Active</i> sprints.
+</p>
+
+<p>
+In the Backlog of the board you can:
+</p>
+<ul class="org-ul">
+<li>Prioritise the backlog. (Tip: right-click select issues.)
+</li>
+<li>Estimate Stories. J/K to move through issues. Plug in your estimates or <a href="https://confluence.atlassian.com/agile/glossary/story-point">story points</a> as you go. (Note: by default, the Story Points field is only available to issues of type 'Story' or 'Epic'. You can change this as described in <a href="https://confluence.atlassian.com/agile/jira-agile-administrator-s-guide/jira-agile-jira-configuration">JIRA Agile JIRA configuration</a>)
+</li>
+<li>Create Sub-Tasks. To break a story (issue) down into implementable chunks.
+</li>
+<li>Create new Issues.
+</li>
+<li>Organise via Epics. Groupe related stories into an <a href="https://confluence.atlassian.com/agile/jira-agile-user-s-guide/working-with-epics/creating-an-epic">epic</a>.
+</li>
+<li>Identify the workload for specialists. Click the "&#x2026;" on the right side of the avatars for users.
+</li>
+<li>Plan Versions. Assign issues to upcoming <a href="https://confluence.atlassian.com/agile/glossary/version">versions</a>. On the Versions panel, you can assign issues to versions via DnD.
+</li>
+<li>Plan, and Plan Again. When you're happy with the stories for the iteration, <a href="https://confluence.atlassian.com/agile/jira-agile-user-s-guide/working-with-sprints/starting-a-sprint">start a sprint</a> and the stories will move into the <i>Active sprints</i>. You can still plan subsequent iterations in the Backlog (click Add Sprint), but you won't be able to start them until the active iteration is <a href="https://confluence.atlassian.com/agile/jira-agile-user-s-guide/working-with-sprints/ending-a-sprint">completed</a>. You can, however, DnD and issue in the Backlog onto the active sprint.
+</li>
+</ul>
+</div>
+<ol class="org-ol"><li><a id="sec-2-3-2-1" name="sec-2-3-2-1"></a>Using Quick Filters<br  /><div class="outline-text-5" id="text-2-3-2-1">
+<p>
+Refines the collection of issues displayed on your board. Appear immediately below the board name in the Backlog and Active sprints.
+</p>
+
+<p>
+Refer to <a href="https://confluence.atlassian.com/agile/jira-agile-user-s-guide/configuring-a-board/configuring-quick-filters">configuring Quick Filters</a>.
+</p>
+</div>
+</li></ol>
+</div>
+
+<div id="outline-container-sec-2-3-3" class="outline-4">
+<h4 id="sec-2-3-3"><span class="section-number-4">2.3.3</span> Using the Active sprints or Kanban board</h4>
+<div class="outline-text-4" id="text-2-3-3">
+<p>
+Active sprints (<i>Scrum boards</i>) is where you transition your issues through a series of columns (statuses).
+</p>
+
+<p>
+In the Active sprints/Kanban board you can:
+</p>
+<ul class="org-ul">
+<li>Work on Issues. Choose the <span class="underline">highest ranked issues</span> in the 'To Do' column and drag them to the 'In progress' column. And as you complete each issue in it, drag it to the 'Done' column. (Tip: select one/more issues, then right-click)
+</li>
+<li>Release a Version. Click <b>Release</b> to create your new version and mark it as 'released' throughout JIRA. (See <a href="https://confluence.atlassian.com/agile/jira-agile-user-s-guide/releasing-a-version-kanban">Releasing a Version</a>)
+</li>
+</ul>
+
+<p>
+Note:
+</p>
+<ul class="org-ul">
+<li>each <i>column</i> maps to one/more JIRA statues.
+</li>
+<li>resolved issues are shown in strike-through font.
+</li>
+<li>'<a href="https://confluence.atlassian.com/agile/jira-agile-user-s-guide/configuring-a-board/configuring-columns">Days in column</a>' indicator
+</li>
+<li>the board will be refreshed every 30 seconds, if the browser window does not currently have focus. If you have focus on the window, it will show a message asking you to refresh.
+</li>
+</ul>
+</div>
+
+<ol class="org-ol"><li><a id="sec-2-3-3-1" name="sec-2-3-3-1"></a>Using Quick Filters<br  /></li></ol>
+</div>
+<div id="outline-container-sec-2-3-4" class="outline-4">
+<h4 id="sec-2-3-4"><span class="section-number-4">2.3.4</span> Using reports</h4>
+<div class="outline-text-4" id="text-2-3-4">
+</div><ol class="org-ol"><li><a id="sec-2-3-4-1" name="sec-2-3-4-1"></a>Viewing the control chart<br  /><ol class="org-ol"><li><a id="sec-2-3-4-1-1" name="sec-2-3-4-1-1"></a>Comparing different methods of calculating the rolling average on the Control Chart<br  /></li></ol>
+</li>
+<li><a id="sec-2-3-4-2" name="sec-2-3-4-2"></a>Viewing the Cumulative Flow Diagram<br  /></li>
+<li><a id="sec-2-3-4-3" name="sec-2-3-4-3"></a>Viewing the Epic Burndown<br  /></li>
+<li><a id="sec-2-3-4-4" name="sec-2-3-4-4"></a>Viewing the Epic Report<br  /></li>
+<li><a id="sec-2-3-4-5" name="sec-2-3-4-5"></a>Viewing the Burndown Chart<br  /></li>
+<li><a id="sec-2-3-4-6" name="sec-2-3-4-6"></a>viewing the Sprint Report<br  /></li>
+<li><a id="sec-2-3-4-7" name="sec-2-3-4-7"></a>Viewing the Velocity Chart<br  /></li>
+<li><a id="sec-2-3-4-8" name="sec-2-3-4-8"></a>Viewing the Version Report<br  /></li>
+<li><a id="sec-2-3-4-9" name="sec-2-3-4-9"></a>Viewing the Release Burndown<br  /></li></ol>
+</div>
+<div id="outline-container-sec-2-3-5" class="outline-4">
+<h4 id="sec-2-3-5"><span class="section-number-4">2.3.5</span> Configuring a Board</h4>
+<div class="outline-text-4" id="text-2-3-5">
+</div><ol class="org-ol"><li><a id="sec-2-3-5-1" name="sec-2-3-5-1"></a>Configuring Filters<br  /></li>
+<li><a id="sec-2-3-5-2" name="sec-2-3-5-2"></a>Enabling Ranking<br  /></li>
+<li><a id="sec-2-3-5-3" name="sec-2-3-5-3"></a>Configuring Columns<br  /><ol class="org-ol"><li><a id="sec-2-3-5-3-1" name="sec-2-3-5-3-1"></a>Using JIRA Agile Simplified Workflow<br  /></li></ol>
+</li>
+<li><a id="sec-2-3-5-4" name="sec-2-3-5-4"></a>Configuring Swimlanes<br  /></li>
+<li><a id="sec-2-3-5-5" name="sec-2-3-5-5"></a>Configuring Quick Filters<br  /></li>
+<li><a id="sec-2-3-5-6" name="sec-2-3-5-6"></a>Customising Cards<br  /></li>
+<li><a id="sec-2-3-5-7" name="sec-2-3-5-7"></a>Configuring Estimation and Tracking<br  /></li>
+<li><a id="sec-2-3-5-8" name="sec-2-3-5-8"></a>Configuring the Issue Detail View<br  /></li>
+<li><a id="sec-2-3-5-9" name="sec-2-3-5-9"></a>Configuring Working Days<br  /></li></ol>
+</div>
+<div id="outline-container-sec-2-3-6" class="outline-4">
+<h4 id="sec-2-3-6"><span class="section-number-4">2.3.6</span> Using Keyboard Shortcuts</h4>
+</div>
+<div id="outline-container-sec-2-3-7" class="outline-4">
+<h4 id="sec-2-3-7"><span class="section-number-4">2.3.7</span> Working with Issues</h4>
+<div class="outline-text-4" id="text-2-3-7">
+</div><ol class="org-ol"><li><a id="sec-2-3-7-1" name="sec-2-3-7-1"></a>Creating an Issue<br  /><ol class="org-ol"><li><a id="sec-2-3-7-1-1" name="sec-2-3-7-1-1"></a>Creating a Sub-task<br  /></li></ol>
+</li>
+<li><a id="sec-2-3-7-2" name="sec-2-3-7-2"></a>Editing an Issue<br  /></li>
+<li><a id="sec-2-3-7-3" name="sec-2-3-7-3"></a>Estimating an Issue<br  /></li>
+<li><a id="sec-2-3-7-4" name="sec-2-3-7-4"></a>Flagging an Issue<br  /></li>
+<li><a id="sec-2-3-7-5" name="sec-2-3-7-5"></a>Ranking an Issue<br  /></li>
+<li><a id="sec-2-3-7-6" name="sec-2-3-7-6"></a>Transitioning an Issue<br  /></li>
+<li><a id="sec-2-3-7-7" name="sec-2-3-7-7"></a>Viewing an Issue<br  /></li></ol>
+</div>
+<div id="outline-container-sec-2-3-8" class="outline-4">
+<h4 id="sec-2-3-8"><span class="section-number-4">2.3.8</span> Working with Epics</h4>
+<div class="outline-text-4" id="text-2-3-8">
+</div><ol class="org-ol"><li><a id="sec-2-3-8-1" name="sec-2-3-8-1"></a>Creating an Epic<br  /></li>
+<li><a id="sec-2-3-8-2" name="sec-2-3-8-2"></a>Editing or Renaming an Epic<br  /></li>
+<li><a id="sec-2-3-8-3" name="sec-2-3-8-3"></a>Adding an Issue to an Epic<br  /></li>
+<li><a id="sec-2-3-8-4" name="sec-2-3-8-4"></a>Removing an Issue from an Epic<br  /></li>
+<li><a id="sec-2-3-8-5" name="sec-2-3-8-5"></a>Completing an Epic<br  /></li>
+<li><a id="sec-2-3-8-6" name="sec-2-3-8-6"></a>Linking a Confluence Page to an Epic<br  /></li></ol>
+</div>
+<div id="outline-container-sec-2-3-9" class="outline-4">
+<h4 id="sec-2-3-9"><span class="section-number-4">2.3.9</span> Working with Sprints</h4>
+<div class="outline-text-4" id="text-2-3-9">
+</div><ol class="org-ol"><li><a id="sec-2-3-9-1" name="sec-2-3-9-1"></a>Creating a Sprint<br  /></li>
+<li><a id="sec-2-3-9-2" name="sec-2-3-9-2"></a>Editing or Reordering a Sprint<br  /></li>
+<li><a id="sec-2-3-9-3" name="sec-2-3-9-3"></a>Adding an Issue to a Sprint<br  /></li>
+<li><a id="sec-2-3-9-4" name="sec-2-3-9-4"></a>Removing an Issue from a Sprint<br  /></li>
+<li><a id="sec-2-3-9-5" name="sec-2-3-9-5"></a>Starting a Sprint<br  /></li>
+<li><a id="sec-2-3-9-6" name="sec-2-3-9-6"></a>Ending a Sprint<br  /></li>
+<li><a id="sec-2-3-9-7" name="sec-2-3-9-7"></a>Deleting a Sprint<br  /></li>
+<li><a id="sec-2-3-9-8" name="sec-2-3-9-8"></a>Linking a Confluence page to a Sprint<br  /></li></ol>
+</div>
+<div id="outline-container-sec-2-3-10" class="outline-4">
+<h4 id="sec-2-3-10"><span class="section-number-4">2.3.10</span> Planning a Version</h4>
+<div class="outline-text-4" id="text-2-3-10">
+</div><ol class="org-ol"><li><a id="sec-2-3-10-1" name="sec-2-3-10-1"></a>Creating a Version<br  /></li>
+<li><a id="sec-2-3-10-2" name="sec-2-3-10-2"></a>Adding an Issue to a Version<br  /></li>
+<li><a id="sec-2-3-10-3" name="sec-2-3-10-3"></a>Removing an Issue from a Version<br  /></li></ol>
+</div>
+<div id="outline-container-sec-2-3-11" class="outline-4">
+<h4 id="sec-2-3-11"><span class="section-number-4">2.3.11</span> Release a Version (Kanban)</h4>
+</div>
+<div id="outline-container-sec-2-3-12" class="outline-4">
+<h4 id="sec-2-3-12"><span class="section-number-4">2.3.12</span> Using the JIRA Agile Gadgets</h4>
+<div class="outline-text-4" id="text-2-3-12">
+</div><ol class="org-ol"><li><a id="sec-2-3-12-1" name="sec-2-3-12-1"></a>Using the Sprint Burndown Gadget<br  /></li>
+<li><a id="sec-2-3-12-2" name="sec-2-3-12-2"></a>Using the Days Remaining in Sprint Gadget<br  /></li>
+<li><a id="sec-2-3-12-3" name="sec-2-3-12-3"></a>Using the Wallboard Gadget<br  /></li>
+<li><a id="sec-2-3-12-4" name="sec-2-3-12-4"></a>Using the Sprint Health Gadget<br  /></li>
+<li><a id="sec-2-3-12-5" name="sec-2-3-12-5"></a>Using the Versoin Report Gadget<br  /></li></ol>
+</div>
+<div id="outline-container-sec-2-3-13" class="outline-4">
+<h4 id="sec-2-3-13"><span class="section-number-4">2.3.13</span> JIRA Agile Tutorials</h4>
+<div class="outline-text-4" id="text-2-3-13">
+</div><ol class="org-ol"><li><a id="sec-2-3-13-1" name="sec-2-3-13-1"></a>Tutorial - Adding a Column to a Board<br  /></li>
+<li><a id="sec-2-3-13-2" name="sec-2-3-13-2"></a>Tutorial - Planning and Estimating work for an Agile team<br  /></li>
+<li><a id="sec-2-3-13-3" name="sec-2-3-13-3"></a>Tutorial - Tracking a  Kanban Team<br  /></li></ol>
+</div>
+<div id="outline-container-sec-2-3-14" class="outline-4">
+<h4 id="sec-2-3-14"><span class="section-number-4">2.3.14</span> Going to JIRA Agile Automatically</h4>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> References</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> 公司推行jira，要求工程师每天log work，监督每个工程师有没有做满8小时的工作，想请教下各位国外IT界大牛是否有必要，是否有这样做的优秀的IT公司？</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+(<a href="http://www.zhihu.com/question/20829309">link</a> @zhihu)
+</p>
+
+<p>
+之前在一家美国公司做的时候推行过这样的管理制度。从管理的角度来说，记录工作日志这种事情毫无违和感，如果不需要你记录工作日志，而让你写工作日报，难道你就感觉舒服一些了？这是两条管理规则一起推动的结果，所以工程师认为记录工作日志是额外的工作。我们公司当时是，先要求提交详细的工作日报，精确到问题、小时，这样执行了两个多月，员工最初怨声载道，后来逐渐麻木习惯，然后告诉大家一个好消息，在JIRA里直接记录工作时间，一天只要凑7个小时就可以了！这样，只要谁还觉得在JIRA里记录工作麻烦的，就让丫自己去写工作日报去。JIRA进行时间管理，通过三个方面提高大家的工作效率：总体工作时间要求：每周40小时；每问题工作时间要求：平均问题解决时间，疑难问题识别问题对工作内容的覆盖率：任何超过一小时的工作都应创建问题第一条要求工程师事无巨细都必须上报，第二条要求上报内容真实可靠。硬性要求总体时间后，工程师必须想尽办法凑时间进去，而第二条，例如我当年，要求每问题平均解决时间为3小时，凡是超过3小时的必须写明问题原因。这样，工程师不敢在一个任务上面谎报大量时间，同时，靠这个办法发现了大量平时掩盖的问题，集中解决后效率提高不是一星半点。配合 <b>Fisheye</b> 插件集成SCM工具，你可以看到，一个号称花费了40小时的任务，到底有多少代码变更。直观的就可以识别出工作效率问题。这种证据是可以用在辞退工程师上的。当年实施下来，有数名工程师离职，坦白说，都是滥竽充数的。有的离职时直接跟我说，本来就是图个清闲，现在忙成这个样，不干了；有的是因为，干了几十个小时的任务，只有个位数的代码变更。我们不是什么研究算法的团队，这种事儿就是他娘的混。而真正有效率的工程师，勤恳的工程师，马上就可以看出来。管理者通过JIRA进行管理也同样是要求很高的。最后一条是套在管理者头顶的魔咒。管理者不能是浑浑噩噩的混子，而是应该对自己的团队工作范围有明确的定义，对团队工作进度有良好的管理，这样才能将所有的工作内容都使用不同类型的问题覆盖。经常有这种实施失败的案例，最大的问题并非工程师没有执行，而是管理者水平太烂，和稀泥，于是就流于形式。不说别的，如果问题能够对工作内容实现完整覆盖，很容易回答的一个问题是，团队的生产时间占总体比例是多少？如果回答不了这个问题，那是个什么鸡巴管理者就一眼看出来了。Atlassian是什么样的公司，JIRA以及他们家的一大堆产品设计如何，在行业内的地位和水平都是无须讳言的。那么，*TEMPO* 插件火成这个样子，难道老外都咸的蛋疼？
+</p>
+</div>
+</div>
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> JIRA — 敏捷团队的镜子</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+<a href="jira/JIRA_%E2%80%94_%E6%95%8F%E6%8D%B7%E5%9B%A2%E9%98%9F%E7%9A%84%E9%95%9C%E5%AD%90.pdf">jira/JIRA_%E2%80%94_%E6%95%8F%E6%8D%B7%E5%9B%A2%E9%98%9F%E7%9A%84%E9%95%9C%E5%AD%90.pdf</a>
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> Advanced Topics</h2>
+<div class="outline-text-2" id="text-4">
+</div><div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1"><span class="section-number-3">4.1</span> Linking Bitbucket Cloud and GitHub accounts to JIRA Software</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+(<a href="https://confluence.atlassian.com/bitbucket/linking-bitbucket-cloud-and-github-accounts-to-jira-software-300814271.html">https://confluence.atlassian.com/bitbucket/linking-bitbucket-cloud-and-github-accounts-to-jira-software-300814271.html</a>)
+</p>
+
+<p>
+Step 1. Create an OAuth access token for your DVCS account
+</p>
+
+<p>
+Step 2. Link the account on JIRA Software
+</p>
+
+<p>
+Example of how commit information appears in a JIRA Software project:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-example">hg commit -m "DVCS-2 add a README file to the project."
+hg push
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-4-2" class="outline-3">
+<h3 id="sec-4-2"><span class="section-number-3">4.2</span> Using Smart Commits</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+(<a href="https://confluence.atlassian.com/fisheye/using-smart-commits-298976812.html">https://confluence.atlassian.com/fisheye/using-smart-commits-298976812.html</a>)
+</p>
+
+<p>
+The basic syntax for a Smart Commit message is:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-example">&lt;ignored text&gt; &lt;ISSUE_KEY&gt; &lt;ignored text&gt; #&lt;COMMAND&gt; &lt;optional COMMAND_ARGUMENTS&gt;
+</pre>
+</div>
+
+<p>
+Any text between the issue key and the command is ignored.
+</p>
+
+<p>
+There are three commands you can use in your Smart Commit  messages:
+</p>
+</div>
+<div id="outline-container-sec-4-2-1" class="outline-4">
+<h4 id="sec-4-2-1"><span class="section-number-4">4.2.1</span> comment</h4>
+<div class="outline-text-4" id="text-4-2-1">
+<div class="org-src-container">
+
+<pre class="src src-example">&lt;ignored text&gt; &lt;ISSUE_KEY&gt; &lt;ignored text&gt; #comment &lt;comment_string&gt;
+
+JRA-34 #comment corrected indent issue
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-4-2-2" class="outline-4">
+<h4 id="sec-4-2-2"><span class="section-number-4">4.2.2</span> time</h4>
+<div class="outline-text-4" id="text-4-2-2">
+<div class="org-src-container">
+
+<pre class="src src-example">&lt;ignored text&gt; &lt;ISSUE_KEY&gt; &lt;ignored text&gt; #time &lt;value&gt;w &lt;value&gt;d &lt;value&gt;h &lt;value&gt;m &lt;comment_string&gt;
+
+JRA-34 #time 1w 2d 4h 30m Total work logged
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-4-2-3" class="outline-4">
+<h4 id="sec-4-2-3"><span class="section-number-4">4.2.3</span> transition</h4>
+<div class="outline-text-4" id="text-4-2-3">
+<div class="org-src-container">
+
+<pre class="src src-example">&lt;ignored text&gt; &lt;ISSUE_KEY&gt; &lt;ignored text&gt; #&lt;transition_name&gt; &lt;comment_string&gt;
+
+JRA-090 #close Fixed this today
+</pre>
+</div>
+
+<p>
+AND MORE&#x2026;</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: fengyz</p>
+<p class="date">Created: 2016-10-09 Sun 09:59</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

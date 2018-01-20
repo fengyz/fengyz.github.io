@@ -1,0 +1,608 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>ruby</title>
+<!-- 2017-08-11 Fri 08:18 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="fengyz" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="solarized-light.min.css" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">ruby</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">Miscellaneous</a>
+<ul>
+<li><a href="#sec-1-1">use included hook in module</a></li>
+<li><a href="#sec-1-2">Interpolation: build up strings using the special syntax #{} (note: within "").</a></li>
+<li><a href="#sec-1-3">Generate random string</a></li>
+<li><a href="#sec-1-4">Ruby ampersand colon shortcut (i.e some_objects.each($:foo)</a></li>
+</ul>
+</li>
+<li><a href="#sec-2">Toolings</a>
+<ul>
+<li><a href="#sec-2-1">IRuby Notebook</a>
+<ul>
+<li><a href="#sec-2-1-1">Install IPython/Jupytor&#xa0;&#xa0;&#xa0;<span class="tag"><span class="IMW">IMW</span>&#xa0;<span class="2">2</span></span></a></li>
+<li><a href="#sec-2-1-2">Install python3 kernel&#xa0;&#xa0;&#xa0;<span class="tag"><span class="IMW">IMW</span>&#xa0;<span class="4">4</span></span></a></li>
+<li><a href="#sec-2-1-3">Install bash kernel&#xa0;&#xa0;&#xa0;<span class="tag"><span class="IMW">IMW</span>&#xa0;<span class="6">6</span></span></a></li>
+<li><a href="#sec-2-1-4">Install ijavascript kernel&#xa0;&#xa0;&#xa0;<span class="tag"><span class="IMW">IMW</span>&#xa0;<span class="5">5</span></span></a></li>
+<li><a href="#sec-2-1-5">Install jupyter toc extension</a>
+<ul>
+<li><a href="#sec-2-1-5-1">Remove the numbering of toc</a></li>
+</ul>
+</li>
+<li><a href="#sec-2-1-6">Keyboard shortcuts</a>
+<ul>
+<li><a href="#sec-2-1-6-1">Mac OS X modifier keys:</a></li>
+<li><a href="#sec-2-1-6-2">Command Mode (press Esc to enable)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#sec-3">Testing</a>
+<ul>
+<li><a href="#sec-3-1">RSpec: Behaviour Driven Development for Ruby</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">Miscellaneous</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1">use included hook in module</h3>
+<div class="outline-text-3" id="text-1-1">
+<div class="org-src-container">
+
+<pre class="src src-ruby"><span style="color: #66D9EF;">module</span> <span style="color: #66D9EF;">FeatureMacros</span>
+  <span style="color: #66D9EF;">def</span> <span style="color: #66D9EF;">self</span>.<span style="color: #F92672; font-style: italic;">included</span>(klass)
+    <span style="color: #A6E22E;">puts</span> <span style="color: #E6DB74;">'-----&gt;'</span>
+  <span style="color: #66D9EF;">end</span>
+<span style="color: #66D9EF;">end</span>
+</pre>
+</div>
+
+<p>
+It is called after being included.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2">Interpolation: build up strings using the special syntax #{} (note: within "").</h3>
+<div class="outline-text-3" id="text-1-2">
+<div class="org-src-container">
+
+<pre class="src src-ruby"><span style="color: #66D9EF;">class</span> <span style="color: #66D9EF;">User</span>
+  <span style="color: #A6E22E;">attr_accessor</span> <span style="color: #AE81FF;">:name</span>, <span style="color: #AE81FF;">:email</span>
+
+  <span style="color: #66D9EF;">def</span> <span style="color: #F92672; font-style: italic;">initialize</span>(attributes = {})
+    <span style="color: #F92672;">@name</span> = attributes[<span style="color: #AE81FF;">:name</span>]
+    <span style="color: #F92672;">@email</span> = attributes[<span style="color: #AE81FF;">:email</span>]
+  <span style="color: #66D9EF;">end</span>
+
+  <span style="color: #66D9EF;">def</span> <span style="color: #F92672; font-style: italic;">formatted_email</span>
+    <span style="color: #E6DB74;">"</span><span style="color: #F92672;">#{@name}</span><span style="color: #E6DB74;"> &lt;</span><span style="color: #F92672;">#{@email}</span><span style="color: #E6DB74;">&gt;"</span>    <span style="color: #465457; font-style: italic;"># </span><span style="color: #465457; font-style: italic;">&lt;----- interpolation</span>
+  <span style="color: #66D9EF;">end</span>
+<span style="color: #66D9EF;">end</span>
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3">Generate random string</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+Refer to ROR Tutorial Notes 3.3.2.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-ruby">(<span style="color: #E6DB74;">'a'</span>..<span style="color: #E6DB74;">'z'</span>).to_a.shuffle[0..7].join
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-1-4" class="outline-3">
+<h3 id="sec-1-4">Ruby ampersand colon shortcut (i.e some_objects.each($:foo)</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+(<a href="http://stackoverflow.com/questions/1961030/ruby-ampersand-colon-shortcut">http://stackoverflow.com/questions/1961030/ruby-ampersand-colon-shortcut</a>)
+</p>
+
+<p>
+The &amp; calls to_proc on the object, and passes it as a block to the method. In Rails, to_proc is implemented on Symbol, so that these two calls are equivalent:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-ruby">something {|i| i.foo }
+something(&amp;<span style="color: #AE81FF;">:foo</span>)
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">Toolings</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1">IRuby Notebook</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+<a href="https://github.com/sciruby/iruby">https://github.com/sciruby/iruby</a>
+</p>
+
+<p>
+Like python notebook!
+</p>
+</div>
+
+<div id="outline-container-sec-2-1-1" class="outline-4">
+<h4 id="sec-2-1-1">Install IPython/Jupytor&#xa0;&#xa0;&#xa0;<span class="tag"><span class="IMW">IMW</span>&#xa0;<span class="2">2</span></span></h4>
+<div class="outline-text-4" id="text-2-1-1">
+<div class="org-src-container">
+
+<pre class="src src-sh">sudo apt-get install python3-dev python-virtualenv libzmq3-dev
+virtualenv -p python3 venv
+<span style="color: #A6E22E;">source</span> venv/bin/activate
+pip install <span style="color: #E6DB74;">'ipython[notebook]'</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">apt-get install libtool autoconf
+gem install rbczmq
+gem install iruby
+</pre>
+</div>
+
+<p>
+Run:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">iruby notebook --no-browser --ip=0.0.0.0
+</pre>
+</div>
+
+<p>
+Then visit at <a href="http://localhost:8888">http://localhost:8888</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2-1-2" class="outline-4">
+<h4 id="sec-2-1-2">Install python3 kernel&#xa0;&#xa0;&#xa0;<span class="tag"><span class="IMW">IMW</span>&#xa0;<span class="4">4</span></span></h4>
+<div class="outline-text-4" id="text-2-1-2">
+<p>
+Seems like there was an error occured during building docker image.
+</p>
+
+<p>
+Solutions: re-run the last few lines of Dockerfile:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">virtualenv -p python3 venv
+<span style="color: #A6E22E;">source</span> venv/bin/activate
+pip install <span style="color: #E6DB74;">'ipython[notebook]'</span>
+</pre>
+</div>
+
+<p>
+Maybe necessary:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">ipython3 kernel install
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-2-1-3" class="outline-4">
+<h4 id="sec-2-1-3">Install bash kernel&#xa0;&#xa0;&#xa0;<span class="tag"><span class="IMW">IMW</span>&#xa0;<span class="6">6</span></span></h4>
+</div>
+<div id="outline-container-sec-2-1-4" class="outline-4">
+<h4 id="sec-2-1-4">Install ijavascript kernel&#xa0;&#xa0;&#xa0;<span class="tag"><span class="IMW">IMW</span>&#xa0;<span class="5">5</span></span></h4>
+<div class="outline-text-4" id="text-2-1-4">
+<p>
+<b>Important</b>: upgrade node.js to 4.x/6.x first!
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh">npm install -g ijavascript
+ijs --ijs-install-kernel
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-2-1-5" class="outline-4">
+<h4 id="sec-2-1-5">Install jupyter toc extension</h4>
+<div class="outline-text-4" id="text-2-1-5">
+<p>
+Refer to <a href="http://nikgrozev.com/2015/12/27/pandas-in-jupyter-quickstart-and-useful-snippets/#toc">http://nikgrozev.com/2015/12/27/pandas-in-jupyter-quickstart-and-useful-snippets/#toc</a>.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #465457; font-style: italic;">## </span><span style="color: #465457; font-style: italic;">download </span>
+mkdir toc
+<span style="color: #A6E22E;">cd</span> toc
+wget https://raw.githubusercontent.com/minrk/ipython_extensions/master/nbextensions/toc.js
+wget https://raw.githubusercontent.com/minrk/ipython_extensions/master/nbextensions/toc.css
+
+<span style="color: #465457; font-style: italic;">## </span><span style="color: #465457; font-style: italic;">install and enable</span>
+<span style="color: #A6E22E;">cd</span> ..
+jupyter-nbextension install --user toc
+jupyter-nbextension enable toc/toc
+</pre>
+</div>
+
+<p>
+Usage: Then we need to restart the kernel and make the first cell “Markdown” type and add the following
+</p>
+<div class="org-src-container">
+
+<pre class="src src-html">&lt;<span style="color: #F92672; font-style: italic;">div</span> <span style="color: #F92672;">id</span>=<span style="color: #E6DB74;">"toc"</span>&gt;&lt;/<span style="color: #F92672; font-style: italic;">div</span>&gt;
+</pre>
+</div>
+
+<p>
+Or directly use the toc button on the top-right part of toolbar.
+</p>
+</div>
+
+<div id="outline-container-sec-2-1-5-1" class="outline-5">
+<h5 id="sec-2-1-5-1">Remove the numbering of toc</h5>
+<div class="outline-text-5" id="text-2-1-5-1">
+<p>
+Modify <code>/root/.local/share/jupyter/nbextensions/toc/toc.css</code>, remove the marked line
+</p>
+<div class="org-src-container">
+
+<pre class="src src-css"><span style="color: #F92672;">#toc ol.toc-item li:before </span>{
+    <span style="color: #66D9EF;">counter-increment</span>: item;
+    <span style="color: #66D9EF;">content</span>: counters(item, <span style="color: #E6DB74;">"."</span>)<span style="color: #E6DB74;">" "</span>;  <span style="color: #465457; font-style: italic;">/* </span><span style="color: #465457; font-style: italic;">&lt;------- </span><span style="color: #465457; font-style: italic;">*/</span>
+}
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2-1-6" class="outline-4">
+<h4 id="sec-2-1-6">Keyboard shortcuts</h4>
+<div class="outline-text-4" id="text-2-1-6">
+<p>
+The Jupyter Notebook has two different keyboard input modes. Edit mode allows you to type code/text into a cell and is indicated by a green cell border. Command mode binds the keyboard to notebook level actions and is indicated by a grey cell border with a blue left margin.
+</p>
+</div>
+<div id="outline-container-sec-2-1-6-1" class="outline-5">
+<h5 id="sec-2-1-6-1">Mac OS X modifier keys:</h5>
+<div class="outline-text-5" id="text-2-1-6-1">
+<ul class="org-ul">
+<li>⌘ : Command
+</li>
+<li>⌃ : Control
+</li>
+<li>⌥ : Option
+</li>
+<li>⇧ : Shift
+</li>
+<li>↩ : Return
+</li>
+<li>␣ : Space
+</li>
+<li>⇥ : Tab
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-2-1-6-2" class="outline-5">
+<h5 id="sec-2-1-6-2">Command Mode (press Esc to enable)</h5>
+<div class="outline-text-5" id="text-2-1-6-2">
+<ul class="org-ul">
+<li>F : find and replace
+</li>
+<li>↩ : enter edit mode
+</li>
+<li>⌘⇧P : open the command palette
+</li>
+<li>⇧↩ : run cell, select below
+</li>
+<li>⌃↩ : run selected cells
+</li>
+<li>⌥↩ : run cell, insert below
+</li>
+<li>Y : to code
+</li>
+<li>M : to markdown
+</li>
+<li>R : to raw
+</li>
+<li>1 : to heading 1
+</li>
+<li>2 : to heading 2
+</li>
+<li>3 : to heading 3
+</li>
+<li>4 : to heading 4
+</li>
+<li>5 : to heading 5
+</li>
+<li>6 : to heading 6
+</li>
+<li>K : select cell above
+</li>
+<li>↑ : select cell above
+</li>
+<li>↓ : select cell below
+</li>
+<li>J : select cell below
+</li>
+<li>⇧K : extend selected cells above
+</li>
+<li>⇧↑ : extend selected cells above
+</li>
+<li>⇧↓ : extend selected cells below
+</li>
+<li>⇧J : extend selected cells below
+</li>
+<li>A : insert cell above
+</li>
+<li>B : insert cell below
+</li>
+<li>X : cut selected cells
+</li>
+<li>C : copy selected cells
+</li>
+<li>⇧V : paste cells above
+</li>
+<li>V : paste cells below
+</li>
+<li>Z : undo cell deletion
+</li>
+<li>D,D : delete selected cells
+</li>
+<li>⇧M : merge selected cells, or current cell with cell below if only one cell selected
+</li>
+<li>⌘S : Save and Checkpoint
+</li>
+<li>S : Save and Checkpoint
+</li>
+<li>L : toggle line numbers
+</li>
+<li>O : toggle output of selected cells
+</li>
+<li>⇧O : toggle output scrolling of selected cells
+</li>
+<li>H : show keyboard shortcuts
+</li>
+<li>I,I : interrupt kernel
+</li>
+<li>0,0 : restart the kernel (with dialog)
+</li>
+<li>Esc : close the pager
+</li>
+<li>Q : close the pager
+</li>
+<li>⇧␣ : scroll notebook up
+</li>
+<li>␣ : scroll notebook down
+</li>
+<li>Edit Mode (press Enter to enable) 
+</li>
+<li>⇥ : code completion or indent
+</li>
+<li>⇧⇥ : tooltip
+</li>
+<li>⌘] : indent
+</li>
+<li>⌘[: dedent
+</li>
+<li>⌘A : select all
+</li>
+<li>⌘Z : undo
+</li>
+<li>⌘⇧Z : redo
+</li>
+<li>⌘Y : redo
+</li>
+<li>⌘↑ : go to cell start
+</li>
+<li>⌘↓ : go to cell end
+</li>
+<li>⌥← : go one word left
+</li>
+<li>⌥→ : go one word right
+</li>
+<li>⌥⌫ : delete word before
+</li>
+<li>⌥⌦ : delete word after
+</li>
+<li>⌃M : command mode
+</li>
+<li>Esc : command mode
+</li>
+<li>⌘⇧P : open the command palette
+</li>
+<li>⇧↩ : run cell, select below
+</li>
+<li>⌃↩ : run selected cells
+</li>
+<li>⌥↩ : run cell, insert below
+</li>
+<li>⌃⇧Minus : split cell
+</li>
+<li>⌘S : Save and Checkpoint
+</li>
+<li>↓ : move cursor down
+</li>
+<li>↑ : move cursor up
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3">Testing</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1">RSpec: Behaviour Driven Development for Ruby</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+Making TDD Productive and Fun.
+</p>
+
+<p>
+Refer to <a href="http://rspec.info/">http://rspec.info/</a>.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: fengyz</p>
+<p class="date">Created: 2017-08-11 Fri 08:18</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.5.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
