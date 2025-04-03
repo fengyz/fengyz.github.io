@@ -1,0 +1,76 @@
+{
+  "repositories": [
+    {
+      "name": "react",
+      "owner": "facebook",
+      "description": "A declarative, efficient, and flexible JavaScript library for building user interfaces.",
+      "stars": 181000,
+      "forks": 37200,
+      "language": "JavaScript",
+      "updated": "2023-01-15T12:34:56Z"
+    },
+    {
+      "name": "vue",
+      "owner": "vuejs",
+      "description": "Vue.js is a progressive, incrementally-adoptable JavaScript framework for building UI on the web.",
+      "stars": 202000,
+      "forks": 33400,
+      "language": "JavaScript",
+      "updated": "2023-01-20T08:12:34Z"
+    },
+    {
+      "name": "tensorflow",
+      "owner": "tensorflow",
+      "description": "An Open Source Machine Learning Framework for Everyone",
+      "stars": 171000,
+      "forks": 87500,
+      "language": "C++",
+      "updated": "2023-01-18T15:43:21Z"
+    },
+    {
+      "name": "flutter",
+      "owner": "flutter",
+      "description": "Flutter makes it easy and fast to build beautiful apps for mobile and beyond",
+      "stars": 147000,
+      "forks": 24300,
+      "language": "Dart",
+      "updated": "2023-01-17T10:30:45Z"
+    },
+    {
+      "name": "vscode",
+      "owner": "microsoft",
+      "description": "Visual Studio Code",
+      "stars": 142000,
+      "forks": 25600,
+      "language": "TypeScript",
+      "updated": "2023-01-19T14:25:10Z"
+    },
+    {
+      "name": "pytorch",
+      "owner": "pytorch",
+      "description": "Tensors and Dynamic neural networks in Python with strong GPU acceleration",
+      "stars": 63000,
+      "forks": 17800,
+      "language": "Python",
+      "updated": "2023-01-16T09:15:33Z"
+    },
+    {
+      "name": "svelte",
+      "owner": "sveltejs",
+      "description": "Cybernetically enhanced web apps",
+      "stars": 68000,
+      "forks": 3400,
+      "language": "JavaScript",
+      "updated": "2023-01-14T11:22:44Z"
+    },
+    {
+      "name": "kubernetes",
+      "owner": "kubernetes",
+      "description": "Production-Grade Container Scheduling and Management",
+      "stars": 98000,
+      "forks": 36200,
+      "language": "Go",
+      "updated": "2023-01-21T16:05:12Z"
+    }
+  ]
+}

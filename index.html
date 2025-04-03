@@ -4,372 +4,317 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GitHub Repos Viewer</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.3.0/marked.min.js"></script>
     <style>
-        /* Base styles */
         :root {
-            --color-background: #ffffff;
-            --color-text: #1f2937;
-            --color-text-secondary: #6b7280;
-            --color-border: #e5e7eb;
-            --color-bg-secondary: #f9fafb;
-            --color-primary: #3b82f6;
-            --color-primary-hover: #2563eb;
-            --color-success: #10b981;
-            --color-warning: #f59e0b;
-            --color-danger: #ef4444;
-            --color-header-bg: #ffffff;
-            --color-header-border: #e5e7eb;
-            --color-sidebar-bg: #f9fafb;
-            --color-sidebar-text: #1f2937;
-            --color-skeleton: #e5e7eb;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f6f8fa;
+            --text-primary: #24292e;
+            --text-secondary: #586069;
+            --border-color: #e1e4e8;
+            --highlight-color: #0366d6;
+            --highlight-bg: #f1f8ff;
+            --shadow: rgba(0, 0, 0, 0.1);
         }
 
-        .dark {
-            --color-background: #111827;
-            --color-text: #f3f4f6;
-            --color-text-secondary: #9ca3af;
-            --color-border: #374151;
-            --color-bg-secondary: #1f2937;
-            --color-primary: #3b82f6;
-            --color-primary-hover: #60a5fa;
-            --color-success: #10b981;
-            --color-warning: #f59e0b;
-            --color-danger: #ef4444;
-            --color-header-bg: #111827;
-            --color-header-border: #374151;
-            --color-sidebar-bg: #1f2937;
-            --color-sidebar-text: #f3f4f6;
-            --color-skeleton: #374151;
+        body.dark-mode {
+            --bg-primary: #0d1117;
+            --bg-secondary: #161b22;
+            --text-primary: #c9d1d9;
+            --text-secondary: #8b949e;
+            --border-color: #30363d;
+            --highlight-color: #58a6ff;
+            --highlight-bg: #1f2937;
+            --shadow: rgba(0, 0, 0, 0.4);
         }
 
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.5;
-            color: var(--color-text);
-            background-color: var(--color-background);
-            transition: background-color 0.3s, color 0.3s;
-            margin: 10px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        a {
-            color: var(--color-primary);
-            text-decoration: none;
-        }
-
-        /* Layout */
-        .app-container {
+        .container {
             display: flex;
-            min-height: calc(100vh - 20px);
-            flex-direction: column;
+            min-height: 100vh;
         }
 
-        .main-container {
-            display: flex;
+        .sidebar {
+            width: 300px;
+            background-color: var(--bg-secondary);
+            border-right: 1px solid var(--border-color);
+            overflow-y: auto;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            transition: transform 0.3s ease;
+            z-index: 10;
+        }
+
+        .content {
+            margin-left: 300px;
             flex: 1;
-            max-width: 100%;
-            position: relative;
+            padding: 20px;
+            overflow-y: auto;
         }
 
-        /* Header */
         .header {
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            padding: 1rem;
-            background-color: var(--color-header-bg);
-            border-bottom: 1px solid var(--color-header-border);
+            align-items: center;
+            padding: 16px;
+            border-bottom: 1px solid var(--border-color);
+            background-color: var(--bg-secondary);
         }
 
-        .logo {
-            font-size: 1.5rem;
+        .header-title {
+            font-size: 20px;
             font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .header-actions {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
+            color: var(--text-primary);
         }
 
         .theme-toggle {
             background: none;
             border: none;
             cursor: pointer;
-            color: var(--color-text);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            color: var(--text-primary);
+            margin-left: 8px;
+            font-size: 16px;
         }
 
-        .mobile-menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: var(--color-text);
-        }
-
-        /* Sidebar */
-        #sidebar {
-            width: 25%;
-            height: calc(100vh - 75px - 20px);
-            overflow-y: auto;
-            background-color: var(--color-sidebar-bg);
-            border-right: 1px solid var(--color-border);
-            padding: 1rem;
-            transition: transform 0.3s ease;
-        }
-
-        .sidebar-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
-
-        .search-container {
-            position: relative;
-            margin-bottom: 1rem;
-        }
-
-        .search-input {
-            width: 100%;
-            padding: 0.5rem 0.75rem;
-            padding-left: 2.5rem;
-            border: 1px solid var(--color-border);
-            border-radius: 0.375rem;
-            background-color: var(--color-background);
-            color: var(--color-text);
-        }
-
-        .search-icon {
-            position: absolute;
-            left: 0.75rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--color-text-secondary);
-            width: 1rem;
-            height: 1rem;
-        }
-
-        .filter-options {
-            display: flex;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .filter-button {
-            padding: 0.25rem 0.5rem;
-            font-size: 0.875rem;
-            border: 1px solid var(--color-border);
-            border-radius: 0.25rem;
-            background-color: var(--color-background);
-            color: var(--color-text);
-            cursor: pointer;
-        }
-
-        .filter-button.active {
-            background-color: var(--color-primary);
-            color: white;
-            border-color: var(--color-primary);
-        }
-
-        /* Main content */
-        #main-content {
-            width: 75%;
-            height: calc(100vh - 75px - 20px);
-            overflow-y: auto;
-            padding: 1.5rem;
-        }
-
-        /* Repository list */
         .repo-list {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
+            padding: 8px;
         }
 
-        .repo-card {
-            padding: 1rem;
-            border: 1px solid var(--color-border);
-            border-radius: 0.375rem;
-            background-color: var(--color-background);
+        .repo-item {
+            padding: 12px;
+            margin-bottom: 8px;
+            border-radius: 6px;
             cursor: pointer;
-            transition: border-color 0.2s, box-shadow 0.2s;
+            transition: background-color 0.2s ease;
+            background-color: var(--bg-primary);
+            border: 1px solid var(--border-color);
         }
 
-        .repo-card:hover {
-            border-color: var(--color-primary);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        .repo-item:hover {
+            background-color: var(--highlight-bg);
         }
 
-        .repo-card.active {
-            border-color: var(--color-primary);
-            border-left-width: 4px;
+        .repo-item.active {
+            background-color: var(--highlight-bg);
+            border-color: var(--highlight-color);
+            border-left: 4px solid var(--highlight-color);
         }
 
         .repo-name {
             font-weight: 600;
-            font-size: 1.125rem;
-            margin-bottom: 0.25rem;
+            color: var(--highlight-color);
+            margin-bottom: 4px;
         }
 
         .repo-description {
-            color: var(--color-text-secondary);
-            font-size: 0.875rem;
-            margin-bottom: 0.5rem;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
         }
 
-        .meta-info {
+        .repo-stats {
+            display: flex;
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .repo-stats span {
+            margin-right: 16px;
             display: flex;
             align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-            font-size: 0.75rem;
-            color: var(--color-text-secondary);
         }
 
-        .meta-item {
-            display: flex;
-            align-items: center;
-            gap: 0.25rem;
+        .repo-stats svg {
+            margin-right: 4px;
         }
 
-        .language-dot {
-            width: 0.75rem;
-            height: 0.75rem;
-            border-radius: 50%;
-            display: inline-block;
-        }
-
-        /* Repository detail view */
-        .repo-detail {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
+        .readme-container {
+            background-color: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 24px;
+            margin-top: 16px;
         }
 
         .repo-header {
             display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .repo-header-top {
-            display: flex;
             align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 1rem;
+            margin-bottom: 16px;
         }
 
-        .repo-title {
-            font-size: 1.5rem;
+        .repo-header h2 {
+            margin-right: 8px;
+        }
+
+        .repo-header a {
+            color: var(--highlight-color);
+            text-decoration: none;
+        }
+
+        .repo-header a:hover {
+            text-decoration: underline;
+        }
+
+        .markdown-body {
+            color: var(--text-primary);
+            font-size: 16px;
+            line-height: 1.5;
+            word-wrap: break-word;
+        }
+
+        .markdown-body h1, 
+        .markdown-body h2, 
+        .markdown-body h3, 
+        .markdown-body h4, 
+        .markdown-body h5, 
+        .markdown-body h6 {
+            margin-top: 24px;
+            margin-bottom: 16px;
             font-weight: 600;
+            line-height: 1.25;
         }
 
-        .action-buttons {
-            display: flex;
-            gap: 0.5rem;
+        .markdown-body h1 {
+            padding-bottom: 0.3em;
+            font-size: 2em;
+            border-bottom: 1px solid var(--border-color);
         }
 
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.25rem;
-            padding: 0.375rem 0.75rem;
-            border-radius: 0.375rem;
-            font-size: 0.875rem;
-            font-weight: 500;
-            cursor: pointer;
+        .markdown-body h2 {
+            padding-bottom: 0.3em;
+            font-size: 1.5em;
+            border-bottom: 1px solid var(--border-color);
         }
 
-        .btn-primary {
-            background-color: var(--color-primary);
-            color: white;
-            border: 1px solid var(--color-primary);
+        .markdown-body p {
+            margin-top: 0;
+            margin-bottom: 16px;
         }
 
-        .btn-secondary {
-            background-color: var(--color-background);
-            color: var(--color-text);
-            border: 1px solid var(--color-border);
+        .markdown-body a {
+            color: var(--highlight-color);
+            text-decoration: none;
         }
 
-        .repo-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
+        .markdown-body a:hover {
+            text-decoration: underline;
         }
 
-        .repo-tag {
-            display: inline-flex;
-            align-items: center;
-            padding: 0.125rem 0.5rem;
-            border-radius: 1rem;
-            background-color: var(--color-bg-secondary);
-            color: var(--color-text-secondary);
-            font-size: 0.75rem;
+        .markdown-body pre {
+            padding: 16px;
+            overflow: auto;
+            font-size: 85%;
+            line-height: 1.45;
+            background-color: var(--bg-secondary);
+            border-radius: 6px;
+            margin-bottom: 16px;
         }
 
-        /* Repo home page iframe */
-        .repo-iframe {
+        .markdown-body code {
+            padding: 0.2em 0.4em;
+            margin: 0;
+            font-size: 85%;
+            background-color: var(--bg-secondary);
+            border-radius: 3px;
+        }
+
+        .markdown-body ul, 
+        .markdown-body ol {
+            padding-left: 2em;
+            margin-bottom: 16px;
+        }
+
+        .markdown-body blockquote {
+            padding: 0 1em;
+            color: var(--text-secondary);
+            border-left: 0.25em solid var(--border-color);
+            margin-bottom: 16px;
+        }
+
+        .markdown-body table {
+            display: block;
             width: 100%;
-            height: calc(100vh - 200px);
-            border: 1px solid var(--color-border);
-            border-radius: 0.375rem;
+            overflow: auto;
+            margin-bottom: 16px;
         }
 
-        /* Utilities */
+        .markdown-body table th,
+        .markdown-body table td {
+            padding: 6px 13px;
+            border: 1px solid var(--border-color);
+        }
+
+        .markdown-body table tr {
+            background-color: var(--bg-primary);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .markdown-body table tr:nth-child(2n) {
+            background-color: var(--bg-secondary);
+        }
+
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            color: var(--text-secondary);
+        }
+
         .spinner {
+            border: 4px solid var(--border-color);
+            border-radius: 50%;
+            border-top: 4px solid var(--highlight-color);
+            width: 24px;
+            height: 24px;
             animation: spin 1s linear infinite;
+            margin-right: 12px;
+        }
+
+        .error-message {
+            color: #f85149;
+            padding: 20px;
+            border: 1px solid #f85149;
+            border-radius: 6px;
+            background-color: rgba(248, 81, 73, 0.1);
+            margin-top: 16px;
         }
 
         @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
-        /* Responsive */
+        /* Mobile responsive styles */
         @media (max-width: 768px) {
-            .mobile-menu-toggle {
-                display: block;
-            }
-
-            #sidebar {
-                position: fixed;
-                top: 75px;
-                left: 0;
-                bottom: 0;
-                width: 80%;
-                max-width: 300px;
-                z-index: 50;
+            .sidebar {
                 transform: translateX(-100%);
+                width: 85%;
             }
-
-            #sidebar.show {
+            
+            .sidebar.open {
                 transform: translateX(0);
             }
-
-            #main-content {
-                width: 100%;
+            
+            .content {
+                margin-left: 0;
             }
-
-            .overlay {
+            
+            .backdrop {
                 display: none;
                 position: fixed;
                 top: 0;
@@ -377,477 +322,294 @@
                 right: 0;
                 bottom: 0;
                 background-color: rgba(0, 0, 0, 0.5);
-                z-index: 40;
+                z-index: 5;
             }
-
-            .overlay.show {
+            
+            .backdrop.open {
                 display: block;
+            }
+            
+            .menu-toggle {
+                display: block;
+                position: fixed;
+                top: 10px;
+                left: 10px;
+                z-index: 20;
+                background-color: var(--bg-primary);
+                color: var(--text-primary);
+                border: 1px solid var(--border-color);
+                border-radius: 4px;
+                padding: 8px;
+                cursor: pointer;
             }
         }
 
-        .visually-hidden {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            white-space: nowrap;
-            border-width: 0;
+        @media (min-width: 769px) {
+            .menu-toggle {
+                display: none;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="app-container">
-        <header class="header">
-            <div class="logo">
-                <svg width="24" height="24" viewBox="0 0 16 16" fill="currentColor">
-                    <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
-                </svg>
-                <span>GitHub Repos Viewer</span>
+    <button class="menu-toggle" id="menuToggle">☰</button>
+    <div class="backdrop" id="backdrop"></div>
+    
+    <div class="container">
+        <div class="sidebar" id="sidebar">
+            <div class="header">
+                <div class="header-title">GitHub Repositories</div>
+                <button class="theme-toggle" id="themeToggle">🌓</button>
             </div>
-            <div class="header-actions">
-                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
-                    <svg id="theme-icon" width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path>
-                    </svg>
-                </button>
-                <button id="mobile-menu-toggle" class="mobile-menu-toggle" aria-label="Open menu">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="3" y1="12" x2="21" y2="12"></line>
-                        <line x1="3" y1="6" x2="21" y2="6"></line>
-                        <line x1="3" y1="18" x2="21" y2="18"></line>
-                    </svg>
-                </button>
+            <div class="repo-list" id="repoList">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    Loading repositories...
+                </div>
             </div>
-        </header>
+        </div>
         
-        <div class="main-container">
-            <div id="sidebar">
-                <div class="sidebar-header">
-                    <h2>Repositories</h2>
-                </div>
-                
-                <div class="search-container">
-                    <input type="text" id="repo-search" class="search-input" placeholder="Search repositories...">
-                    <svg class="search-icon" width="16" height="16" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path>
-                    </svg>
-                </div>
-                
-                <div class="filter-options">
-                    <button class="filter-button active" data-sort="name">Name</button>
-                    <button class="filter-button" data-sort="stars">Stars</button>
-                    <button class="filter-button" data-sort="updated">Updated</button>
-                </div>
-                
-                <div id="repo-list" class="repo-list">
-                    <!-- Repository list populated by JavaScript -->
-                </div>
-            </div>
-            
-            <div id="overlay" class="overlay"></div>
-            
-            <div id="main-content">
-                <!-- Repository details populated by JavaScript -->
-                <div class="flex justify-center items-center h-full">
-                    <p class="text-center text-lg">Select a repository to view details</p>
-                </div>
+        <div class="content" id="content">
+            <div id="welcomeMessage">
+                <h1>Select a repository</h1>
+                <p>Choose a repository from the sidebar to view its README content.</p>
             </div>
         </div>
     </div>
 
     <script>
         // DOM Elements
-        const themeToggle = document.getElementById('theme-toggle');
-        const themeIcon = document.getElementById('theme-icon');
-        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const body = document.body;
         const sidebar = document.getElementById('sidebar');
-        const overlay = document.getElementById('overlay');
-        const repoList = document.getElementById('repo-list');
-        const repoSearch = document.getElementById('repo-search');
-        const filterButtons = document.querySelectorAll('.filter-button');
-        const content = document.getElementById('main-content');
-        
-        // State
-        let darkMode = false;
-        let currentSort = 'name';
-        let repositories = [
-            {
-                name: 'react',
-                owner: 'facebook',
-                description: 'A declarative, efficient, and flexible JavaScript library for building user interfaces.',
-                language: 'JavaScript',
-                stars: 187000,
-                forks: 38000,
-                updated: '2023-04-01',
-                homepage: 'https://reactjs.org'
-            },
-            {
-                name: 'vue',
-                owner: 'vuejs',
-                description: 'Vue.js is a progressive, incrementally-adoptable JavaScript framework for building UI on the web.',
-                language: 'TypeScript',
-                stars: 199000,
-                forks: 32000,
-                updated: '2023-04-02',
-                homepage: 'https://vuejs.org'
-            },
-            {
-                name: 'angular',
-                owner: 'angular',
-                description: 'The modern web developer\'s platform',
-                language: 'TypeScript',
-                stars: 85000,
-                forks: 22000,
-                updated: '2023-03-25',
-                homepage: 'https://angular.io'
-            },
-            {
-                name: 'svelte',
-                owner: 'sveltejs',
-                description: 'Cybernetically enhanced web apps',
-                language: 'TypeScript',
-                stars: 62000,
-                forks: 3000,
-                updated: '2023-04-03',
-                homepage: 'https://svelte.dev'
-            },
-            {
-                name: 'tensorflow',
-                owner: 'tensorflow',
-                description: 'An Open Source Machine Learning Framework for Everyone',
-                language: 'Python',
-                stars: 169000,
-                forks: 87000,
-                updated: '2023-03-30',
-                homepage: 'https://tensorflow.org'
-            },
-            {
-                name: 'vscode',
-                owner: 'microsoft',
-                description: 'Visual Studio Code',
-                language: 'TypeScript',
-                stars: 138000,
-                forks: 24000,
-                updated: '2023-04-04',
-                homepage: 'https://code.visualstudio.com'
-            },
-            {
-                name: 'flutter',
-                owner: 'flutter',
-                description: 'Flutter makes it easy and fast to build beautiful apps for mobile and beyond',
-                language: 'Dart',
-                stars: 145000,
-                forks: 23000,
-                updated: '2023-04-01',
-                homepage: 'https://flutter.dev'
-            },
-            {
-                name: 'node',
-                owner: 'nodejs',
-                description: 'Node.js JavaScript runtime ✨🐢🚀✨',
-                language: 'JavaScript',
-                stars: 89000,
-                forks: 24000,
-                updated: '2023-03-29',
-                homepage: 'https://nodejs.org'
-            },
-            {
-                name: 'kubernetes',
-                owner: 'kubernetes',
-                description: 'Production-Grade Container Scheduling and Management',
-                language: 'Go',
-                stars: 95000,
-                forks: 34000,
-                updated: '2023-04-02',
-                homepage: 'https://kubernetes.io'
-            },
-            {
-                name: 'django',
-                owner: 'django',
-                description: 'The Web framework for perfectionists with deadlines.',
-                language: 'Python',
-                stars: 64000,
-                forks: 27000,
-                updated: '2023-03-28',
-                homepage: 'https://www.djangoproject.com'
-            }
-        ];
-        let filteredRepos = [...repositories];
-        
-        // Toggle dark mode
-        function toggleDarkMode() {
-            darkMode = !darkMode;
-            document.body.classList.toggle('dark', darkMode);
-            
-            // Update icon
-            if (darkMode) {
-                themeIcon.innerHTML = `
-                    <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
-                `;
-            } else {
-                themeIcon.innerHTML = `
-                    <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path>
-                `;
-            }
+        const content = document.getElementById('content');
+        const repoList = document.getElementById('repoList');
+        const themeToggle = document.getElementById('themeToggle');
+        const menuToggle = document.getElementById('menuToggle');
+        const backdrop = document.getElementById('backdrop');
+
+        // Theme toggle functionality
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            const isDarkMode = body.classList.contains('dark-mode');
+            localStorage.setItem('darkMode', isDarkMode);
+        });
+
+        // Check for saved theme preference
+        if (localStorage.getItem('darkMode') === 'true') {
+            body.classList.add('dark-mode');
         }
-        
-        // Toggle mobile menu
+
+        // Mobile menu toggle
+        menuToggle.addEventListener('click', toggleMobileMenu);
+        backdrop.addEventListener('click', toggleMobileMenu);
+
         function toggleMobileMenu() {
-            sidebar.classList.toggle('show');
-            overlay.classList.toggle('show');
+            sidebar.classList.toggle('open');
+            backdrop.classList.toggle('open');
         }
-        
-        // Event listeners
-        themeToggle.addEventListener('click', toggleDarkMode);
-        mobileMenuToggle.addEventListener('click', toggleMobileMenu);
-        overlay.addEventListener('click', toggleMobileMenu);
-        
-        // Format numbers for UI
+
+        // Format numbers for better readability (e.g. 1.2k instead of 1200)
         function formatNumber(num) {
+            if (num >= 1000000) {
+                return (num / 1000000).toFixed(1) + 'M';
+            }
             if (num >= 1000) {
                 return (num / 1000).toFixed(1) + 'k';
             }
             return num;
         }
-        
-        // Format dates for UI
-        function formatDate(dateString) {
-            const date = new Date(dateString);
-            const now = new Date();
-            const diffTime = Math.abs(now - date);
-            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-            
-            if (diffDays === 1) {
-                return 'yesterday';
-            } else if (diffDays < 30) {
-                return `${diffDays} days ago`;
-            } else {
-                return date.toLocaleDateString('en-US', { 
-                    month: 'short', 
-                    day: 'numeric', 
-                    year: date.getFullYear() !== now.getFullYear() ? 'numeric' : undefined 
-                });
+
+        // Load repositories from local JSON file
+        async function loadRepositories() {
+            try {
+                const response = await fetch('repos.json');
+                
+                if (!response.ok) {
+                    throw new Error(`Failed to load repos.json: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                
+                if (Array.isArray(data.repositories) && data.repositories.length > 0) {
+                    renderRepositories(data.repositories);
+                } else {
+                    throw new Error('Invalid JSON format or empty repository list');
+                }
+            } catch (error) {
+                console.error('Error loading repositories:', error);
+                repoList.innerHTML = `
+                    <div class="error-message">
+                        <h3>Error loading repositories</h3>
+                        <p>${error.message || 'Could not load repositories from repos.json'}</p>
+                        <p>Make sure the repos.json file exists in the same directory as this HTML file.</p>
+                    </div>
+                `;
             }
         }
-        
-        // Render a repository card
-        function renderRepoCard(repo) {
-            const repoCard = document.createElement('div');
-            repoCard.className = 'repo-card';
-            
-            // Format repo data for UI
-            const starsFormatted = formatNumber(repo.stars);
-            const forksFormatted = formatNumber(repo.forks);
-            const dateFormatted = formatDate(repo.updated);
-            
-            repoCard.innerHTML = `
-                <div class="repo-name">${repo.name}</div>
-                <div class="repo-description">${repo.description || 'No description available'}</div>
-                <div class="meta-info">
-                    ${repo.language ? `
-                    <div class="meta-item">
-                        <span class="language-dot" style="background-color: ${getLanguageColor(repo.language)}"></span>
-                        <span>${repo.language}</span>
-                    </div>
-                    ` : ''}
-                    <div class="meta-item">
-                        <svg class="w-4 h-4" viewBox="0 0 16 16" fill="currentColor">
-                            <path fill-rule="evenodd" d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z"></path>
-                        </svg>
-                        ${starsFormatted}
-                    </div>
-                    <div class="meta-item">
-                        <svg class="w-4 h-4" viewBox="0 0 16 16" fill="currentColor">
-                            <path fill-rule="evenodd" d="M5 3.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm0 2.122a2.25 2.25 0 10-1.5 0v.878A2.25 2.25 0 005.75 8.5h1.5v2.128a2.251 2.251 0 101.5 0V8.5h1.5a2.25 2.25 0 002.25-2.25v-.878a2.25 2.25 0 10-1.5 0v.878a.75.75 0 01-.75.75h-4.5A.75.75 0 015 6.25v-.878zm3.75 7.378a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm3-8.75a.75.75 0 100-1.5.75.75 0 000 1.5z"></path>
-                        </svg>
-                        ${forksFormatted}
-                    </div>
-                    <div class="meta-item">
-                        <svg class="w-4 h-4" viewBox="0 0 16 16" fill="currentColor">
-                            <path fill-rule="evenodd" d="M1.643 3.143L.427 1.927A.25.25 0 000 2.104V5.75c0 .138.112.25.25.25h3.646a.25.25 0 00.177-.427L2.715 4.215a6.5 6.5 0 11-1.18 4.458.75.75 0 10-1.493.154 8.001 8.001 0 101.6-5.684zM7.75 4a.75.75 0 01.75.75v2.992l2.028.812a.75.75 0 01-.557 1.392l-2.5-1A.75.75 0 017 8.25v-3.5A.75.75 0 017.75 4z"></path>
-                        </svg>
-                        ${dateFormatted}
-                    </div>
-                </div>
-            `;
-            
-            // Add click handler
-            repoCard.addEventListener('click', () => {
-                showRepositoryHomepage(repo);
-                
-                // Mark as active
-                document.querySelectorAll('.repo-card.active').forEach(card => {
-                    card.classList.remove('active');
-                });
-                repoCard.classList.add('active');
-                
-                // Close sidebar on mobile after selection
-                if (window.innerWidth <= 768) {
-                    toggleMobileMenu();
-                }
-            });
-            
-            return repoCard;
-        }
 
-        // Render the full repository list
-        function renderRepositoryList() {
+        // Render the repositories in the sidebar
+        function renderRepositories(repositories) {
+            // Clear the loading message
             repoList.innerHTML = '';
             
-            if (filteredRepos.length === 0) {
-                repoList.innerHTML = `
-                    <div class="p-4 text-center theme-text-secondary">
-                        No repositories found matching your search.
+            repositories.forEach(repo => {
+                const repoItem = document.createElement('div');
+                repoItem.className = 'repo-item';
+                repoItem.innerHTML = `
+                    <div class="repo-name">${repo.owner}/${repo.name}</div>
+                    <div class="repo-description">${repo.description || 'No description available.'}</div>
+                    <div class="repo-stats">
+                        <span>
+                            <svg height="16" width="16" viewBox="0 0 16 16" version="1.1" role="img">
+                                <path fill-rule="evenodd" d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25zm0 2.445L6.615 5.5a.75.75 0 01-.564.41l-3.097.45 2.24 2.184a.75.75 0 01.216.664l-.528 3.084 2.769-1.456a.75.75 0 01.698 0l2.77 1.456-.53-3.084a.75.75 0 01.216-.664l2.24-2.183-3.096-.45a.75.75 0 01-.564-.41L8 2.694v.001z"></path>
+                            </svg>
+                            ${formatNumber(repo.stars)}
+                        </span>
+                        <span>
+                            <svg height="16" width="16" viewBox="0 0 16 16" version="1.1" role="img">
+                                <path fill-rule="evenodd" d="M5 3.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm0 2.122a2.25 2.25 0 10-1.5 0v.878A2.25 2.25 0 005.75 8.5h1.5v2.128a2.251 2.251 0 101.5 0V8.5h1.5a2.25 2.25 0 002.25-2.25v-.878a2.25 2.25 0 10-1.5 0v.878a.75.75 0 01-.75.75h-4.5A.75.75 0 015 6.25v-.878zm3.75 7.378a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm3-8.75a.75.75 0 100-1.5.75.75 0 000 1.5z"></path>
+                            </svg>
+                            ${formatNumber(repo.forks)}
+                        </span>
+                        <span>${repo.language || 'Unknown'}</span>
                     </div>
                 `;
-                return;
-            }
-            
-            filteredRepos.forEach(repo => {
-                repoList.appendChild(renderRepoCard(repo));
+                
+                repoItem.addEventListener('click', () => {
+                    // Remove active class from any previously selected repo
+                    document.querySelectorAll('.repo-item.active').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                    
+                    // Add active class to the clicked repo
+                    repoItem.classList.add('active');
+                    
+                    // Load repo README
+                    loadRepoReadme(repo);
+                    
+                    // Close mobile menu if open
+                    if (sidebar.classList.contains('open')) {
+                        toggleMobileMenu();
+                    }
+                });
+                
+                repoList.appendChild(repoItem);
             });
         }
 
-        // Show repository homepage in an iframe
-        function showRepositoryHomepage(repo) {
-            // Set initial loading state
+        // Load repository README
+        function loadRepoReadme(repo) {
             content.innerHTML = `
-                <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
-                    <svg class="spinner" style="width: 2rem; height: 2rem; color: var(--color-text-secondary);" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke-width="4"></circle>
-                        <path class="opacity-75" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" stroke-width="4"></path>
-                    </svg>
-                    <span style="margin-left: 0.75rem; color: var(--color-text);">Loading repository homepage...</span>
+                <div class="loading">
+                    <div class="spinner"></div>
+                    Loading README for ${repo.name}...
                 </div>
             `;
             
-            // Create repository detail view with iframe
-            setTimeout(() => {
-                content.innerHTML = `
-                    <div class="repo-detail">
+            // Fetch README from GitHub API
+            fetchReadme(repo.owner, repo.name)
+                .then(readmeContent => {
+                    if (!readmeContent) {
+                        throw new Error('README not found');
+                    }
+                    
+                    content.innerHTML = `
                         <div class="repo-header">
-                            <div class="repo-header-top">
-                                <h1 class="repo-title">${repo.owner}/${repo.name}</h1>
-                                <div class="action-buttons">
-                                    <a href="https://github.com/${repo.owner}/${repo.name}" target="_blank" class="btn btn-primary">
-                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                                            <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
-                                        </svg>
-                                        View on GitHub
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="repo-description">${repo.description || 'No description available'}</div>
-                            <div class="repo-tags">
-                                ${repo.language ? `
-                                <span class="repo-tag">
-                                    <span class="language-dot" style="background-color: ${getLanguageColor(repo.language)}"></span>
-                                    ${repo.language}
-                                </span>` : ''}
-                                <span class="repo-tag">
-                                    <svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor">
-                                        <path fill-rule="evenodd" d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z"></path>
-                                    </svg>
-                                    ${repo.stars} stars
-                                </span>
-                                <span class="repo-tag">
-                                    <svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor">
-                                        <path fill-rule="evenodd" d="M5 3.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm0 2.122a2.25 2.25 0 10-1.5 0v.878A2.25 2.25 0 005.75 8.5h1.5v2.128a2.251 2.251 0 101.5 0V8.5h1.5a2.25 2.25 0 002.25-2.25v-.878a2.25 2.25 0 10-1.5 0v.878a.75.75 0 01-.75.75h-4.5A.75.75 0 015 6.25v-.878zm3.75 7.378a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm3-8.75a.75.75 0 100-1.5.75.75 0 000 1.5z"></path>
-                                    </svg>
-                                    ${repo.forks} forks
-                                </span>
-                                <span class="repo-tag">
-                                    <svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor">
-                                        <path fill-rule="evenodd" d="M1.643 3.143L.427 1.927A.25.25 0 000 2.104V5.75c0 .138.112.25.25.25h3.646a.25.25 0 00.177-.427L2.715 4.215a6.5 6.5 0 11-1.18 4.458.75.75 0 10-1.493.154 8.001 8.001 0 101.6-5.684zM7.75 4a.75.75 0 01.75.75v2.992l2.028.812a.75.75 0 01-.557 1.392l-2.5-1A.75.75 0 017 8.25v-3.5A.75.75 0 017.75 4z"></path>
-                                    </svg>
-                                    Updated ${formatDate(repo.updated)}
-                                </span>
-                            </div>
+                            <h2>${repo.owner}/${repo.name}</h2>
+                            <a href="https://github.com/${repo.owner}/${repo.name}" target="_blank">
+                                <svg height="16" viewBox="0 0 16 16" version="1.1" width="16" role="img">
+                                    <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+                                </svg>
+                            </a>
                         </div>
-                        
-                        <iframe 
-                            class="repo-iframe" 
-                            src="${repo.homepage}" 
-                            title="${repo.name} homepage"
-                            sandbox="allow-scripts allow-same-origin allow-forms"
-                        ></iframe>
-                    </div>
-                `;
-            }, 1000);
+                        <div class="readme-container">
+                            <div class="markdown-body">${marked.parse(readmeContent)}</div>
+                        </div>
+                    `;
+                })
+                .catch(error => {
+                    console.error('Error loading README:', error);
+                    content.innerHTML = `
+                        <div class="repo-header">
+                            <h2>${repo.owner}/${repo.name}</h2>
+                            <a href="https://github.com/${repo.owner}/${repo.name}" target="_blank">
+                                <svg height="16" viewBox="0 0 16 16" version="1.1" width="16" role="img">
+                                    <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+                                </svg>
+                            </a>
+                        </div>
+                        <div class="error-message">
+                            <h3>Error loading README</h3>
+                            <p>Could not load the README for this repository. The README might not exist or there might be an issue with the connection.</p>
+                        </div>
+                    `;
+                });
         }
 
-        // Search and filter
-        function handleSearch() {
-            const searchTerm = repoSearch.value.toLowerCase();
-            
-            filteredRepos = repositories.filter(repo => 
-                repo.name.toLowerCase().includes(searchTerm) || 
-                (repo.description && repo.description.toLowerCase().includes(searchTerm))
-            );
-            
-            sortRepositories();
-            renderRepositoryList();
-        }
-
-        // Sort repositories
-        function sortRepositories() {
-            switch (currentSort) {
-                case 'name':
-                    filteredRepos.sort((a, b) => a.name.localeCompare(b.name));
-                    break;
-                case 'stars':
-                    filteredRepos.sort((a, b) => b.stars - a.stars);
-                    break;
-                case 'updated':
-                    filteredRepos.sort((a, b) => new Date(b.updated) - new Date(a.updated));
-                    break;
+        // Fetch README from GitHub API
+        async function fetchReadme(owner, repo) {
+            try {
+                // GitHub API URL for README
+                const url = `https://api.github.com/repos/${owner}/${repo}/readme`;
+                
+                const response = await fetch(url);
+                
+                if (!response.ok) {
+                    throw new Error(`GitHub API error: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                
+                // GitHub returns README content as base64 encoded
+                // We need to decode it to get the actual content
+                const content = atob(data.content);
+                
+                return content;
+            } catch (error) {
+                // For demo purposes, if API call fails, use the fallback function
+                console.warn('Error fetching from GitHub API, using fallback:', error);
+                return fetchReadmeFallback(owner, repo);
             }
         }
 
-        // Get language color for UI
-        function getLanguageColor(language) {
-            const colors = {
-                'JavaScript': '#f1e05a',
-                'TypeScript': '#3178c6',
-                'Python': '#3572A5',
-                'Java': '#b07219',
-                'Go': '#00ADD8',
-                'C#': '#178600',
-                'PHP': '#4F5D95',
-                'Ruby': '#701516',
-                'Vue': '#41b883',
-                'Dart': '#00B4AB'
+        // Fallback function if GitHub API request fails
+        // This fetches README directly from specific repositories we know exist
+        async function fetchReadmeFallback(owner, repo) {
+            // For specific popular repos, we'll use known GitHub raw URLs
+            const knownRepos = {
+                'facebook/react': 'https://raw.githubusercontent.com/facebook/react/main/README.md',
+                'vuejs/vue': 'https://raw.githubusercontent.com/vuejs/vue/main/README.md',
+                'tensorflow/tensorflow': 'https://raw.githubusercontent.com/tensorflow/tensorflow/master/README.md',
+                'flutter/flutter': 'https://raw.githubusercontent.com/flutter/flutter/master/README.md',
+                'microsoft/vscode': 'https://raw.githubusercontent.com/microsoft/vscode/main/README.md',
+                'pytorch/pytorch': 'https://raw.githubusercontent.com/pytorch/pytorch/master/README.md',
+                'sveltejs/svelte': 'https://raw.githubusercontent.com/sveltejs/svelte/master/README.md',
+                'kubernetes/kubernetes': 'https://raw.githubusercontent.com/kubernetes/kubernetes/master/README.md'
             };
             
-            return colors[language] || '#8e8e8e';
+            const repoPath = `${owner}/${repo}`;
+            
+            if (knownRepos[repoPath]) {
+                try {
+                    const response = await fetch(knownRepos[repoPath]);
+                    
+                    if (!response.ok) {
+                        throw new Error(`Could not fetch from raw URL: ${response.status}`);
+                    }
+                    
+                    return await response.text();
+                } catch (error) {
+                    console.error('Error fetching from raw URL:', error);
+                    return null;
+                }
+            } else {
+                // If it's not a known repo, return null
+                return null;
+            }
         }
 
-        // Initialize
-        document.addEventListener('DOMContentLoaded', () => {
-            // Set up search
-            repoSearch.addEventListener('input', handleSearch);
-            
-            // Set up sort buttons
-            filterButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    // Update UI
-                    filterButtons.forEach(btn => btn.classList.remove('active'));
-                    button.classList.add('active');
-                    
-                    // Sort repos
-                    currentSort = button.dataset.sort;
-                    sortRepositories();
-                    renderRepositoryList();
-                });
-            });
-            
-            // Initial render
-            sortRepositories();
-            renderRepositoryList();
-        });
+        // Initialize the app by loading repositories from the JSON file
+        loadRepositories();
     </script>
 </body>
 </html>
