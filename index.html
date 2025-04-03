@@ -1,1 +1,416 @@
-Hello World
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Repos Viewer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+            color: #333;
+        }
+        
+        #sidebar {
+            width: 280px;
+            background-color: #f5f5f5;
+            height: 100%;
+            overflow-y: auto;
+            border-right: 1px solid #e1e4e8;
+            padding: 20px 0;
+            transition: width 0.3s ease;
+        }
+        
+        #sidebar.collapsed {
+            width: 60px;
+        }
+        
+        #toggle-sidebar {
+            background: none;
+            border: none;
+            color: #586069;
+            cursor: pointer;
+            padding: 8px 15px;
+            font-size: 16px;
+            width: 100%;
+            text-align: right;
+            margin-bottom: 15px;
+        }
+        
+        #sidebar.collapsed #toggle-sidebar {
+            text-align: center;
+        }
+        
+        #sidebar.collapsed .sidebar-title,
+        #sidebar.collapsed .repo-title {
+            display: none;
+        }
+        
+        .sidebar-header {
+            padding: 0 20px 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #e1e4e8;
+            margin-bottom: 15px;
+        }
+        
+        .sidebar-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #24292e;
+        }
+        
+        .repo-list {
+            list-style-type: none;
+        }
+        
+        .repo-item {
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            display: flex;
+            align-items: center;
+        }
+        
+        .repo-item:hover {
+            background-color: #e6e8eb;
+        }
+        
+        .repo-item.active {
+            background-color: #0366d6;
+            color: white;
+        }
+        
+        .repo-icon {
+            margin-right: 10px;
+            font-size: 18px;
+        }
+        
+        #content {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background-color: #fff;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .welcome-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            text-align: center;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .welcome-text {
+            font-size: 36px;
+            font-weight: 300;
+            color: #586069;
+            margin-bottom: 20px;
+        }
+        
+        .repo-details {
+            opacity: 0;
+            animation: fadeIn 0.5s ease forwards;
+        }
+        
+        .repo-header {
+            border-bottom: 1px solid #e1e4e8;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .repo-name {
+            font-size: 28px;
+            font-weight: 600;
+            color: #24292e;
+            margin-bottom: 10px;
+        }
+        
+        .repo-description {
+            color: #586069;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+        
+        .repo-content {
+            line-height: 1.6;
+        }
+        
+        .error-message {
+            padding: 20px;
+            background-color: #ffebe9;
+            border: 1px solid #f0a8a8;
+            border-radius: 5px;
+            color: #cf222e;
+            margin: 20px 0;
+        }
+        
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        
+        .loading-spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #0366d6;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .github-icon {
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+        
+        @media (max-width: 768px) {
+            #sidebar {
+                width: 240px;
+            }
+            
+            body.sidebar-open #sidebar {
+                position: absolute;
+                z-index: 100;
+                height: 100%;
+                box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            }
+            
+            body:not(.sidebar-open) #sidebar {
+                width: 0;
+                padding: 0;
+            }
+            
+            #mobile-toggle {
+                display: block;
+                position: fixed;
+                top: 10px;
+                left: 10px;
+                z-index: 101;
+                background: #f5f5f5;
+                border: 1px solid #e1e4e8;
+                border-radius: 4px;
+                padding: 5px 10px;
+                cursor: pointer;
+            }
+            
+            #content {
+                padding-top: 50px;
+            }
+        }
+        
+        @media (min-width: 769px) {
+            #mobile-toggle {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button id="mobile-toggle">&#9776;</button>
+    
+    <aside id="sidebar">
+        <div class="sidebar-header">
+            <span class="sidebar-title">GitHub Repositories</span>
+            <button id="toggle-sidebar">&#9776;</button>
+        </div>
+        <ul class="repo-list" id="repo-list">
+            <!-- Repository items will be dynamically added here -->
+        </ul>
+    </aside>
+    
+    <main id="content">
+        <div class="welcome-container">
+            <h1 class="welcome-text">Welcome!</h1>
+            <p>Select a repository from the left menu to view details.</p>
+        </div>
+    </main>
+
+    <script>
+        // List of GitHub repositories to display
+        const repositories = [
+            { 
+                name: 'react', 
+                owner: 'facebook',
+                description: 'A declarative, efficient, and flexible JavaScript library for building user interfaces.'
+            },
+            {
+                name: 'vue', 
+                owner: 'vuejs',
+                description: 'Vue.js is a progressive, incrementally-adoptable JavaScript framework for building UI on the web.'
+            },
+            {
+                name: 'angular', 
+                owner: 'angular',
+                description: 'One framework. Mobile & desktop.'
+            },
+            {
+                name: 'svelte', 
+                owner: 'sveltejs',
+                description: 'Cybernetically enhanced web apps.'
+            },
+            {
+                name: 'tensorflow', 
+                owner: 'tensorflow',
+                description: 'An Open Source Machine Learning Framework for Everyone.'
+            },
+            {
+                name: 'vscode', 
+                owner: 'microsoft',
+                description: 'Visual Studio Code.'
+            },
+            {
+                name: 'node', 
+                owner: 'nodejs',
+                description: 'Node.js JavaScript runtime.'
+            },
+            {
+                name: 'kubernetes', 
+                owner: 'kubernetes',
+                description: 'Production-Grade Container Scheduling and Management.'
+            }
+        ];
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const repoList = document.getElementById('repo-list');
+            const content = document.getElementById('content');
+            const toggleSidebarBtn = document.getElementById('toggle-sidebar');
+            const mobileToggleBtn = document.getElementById('mobile-toggle');
+            let activeRepo = null;
+            
+            // Generate repository list
+            repositories.forEach(repo => {
+                const li = document.createElement('li');
+                li.className = 'repo-item';
+                li.innerHTML = `
+                    <span class="repo-icon">📁</span>
+                    <span class="repo-title">${repo.owner}/${repo.name}</span>
+                `;
+                li.addEventListener('click', () => loadRepository(repo));
+                repoList.appendChild(li);
+            });
+            
+            // Toggle sidebar
+            toggleSidebarBtn.addEventListener('click', toggleSidebar);
+            
+            // Mobile sidebar toggle
+            mobileToggleBtn.addEventListener('click', function() {
+                document.body.classList.toggle('sidebar-open');
+            });
+            
+            function toggleSidebar() {
+                const sidebar = document.getElementById('sidebar');
+                sidebar.classList.toggle('collapsed');
+            }
+            
+            function loadRepository(repo) {
+                // Update active state
+                if (activeRepo) {
+                    activeRepo.classList.remove('active');
+                }
+                
+                // Find the clicked repo list item
+                const repoItems = document.querySelectorAll('.repo-item');
+                repoItems.forEach(item => {
+                    if (item.querySelector('.repo-title').textContent === `${repo.owner}/${repo.name}`) {
+                        item.classList.add('active');
+                        activeRepo = item;
+                    }
+                });
+                
+                // Show loading
+                content.innerHTML = `
+                    <div class="loading">
+                        <div class="loading-spinner"></div>
+                    </div>
+                `;
+                
+                // Close mobile sidebar
+                document.body.classList.remove('sidebar-open');
+                
+                // Fetch repository data
+                fetchRepositoryContent(repo);
+            }
+            
+            function fetchRepositoryContent(repo) {
+                // Simulate loading time
+                setTimeout(() => {
+                    try {
+                        const repoUrl = `https://github.com/${repo.owner}/${repo.name}`;
+                        
+                        // Display repository content
+                        content.innerHTML = `
+                            <div class="repo-details">
+                                <div class="repo-header">
+                                    <h1 class="repo-name">
+                                        <svg class="github-icon" height="20" width="20" viewBox="0 0 16 16" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+                                        </svg>
+                                        <a href="${repoUrl}" target="_blank">${repo.owner}/${repo.name}</a>
+                                    </h1>
+                                    <p class="repo-description">${repo.description}</p>
+                                </div>
+                                <div class="repo-content">
+                                    <h2>About this repository</h2>
+                                    <p>This is a preview of the ${repo.name} repository. In a real implementation, this content would be fetched from the GitHub API or embedded from the repository's README.</p>
+                                    
+                                    <h3>Key Features</h3>
+                                    <ul>
+                                        <li>Feature 1 of ${repo.name}</li>
+                                        <li>Feature 2 of ${repo.name}</li>
+                                        <li>Feature 3 of ${repo.name}</li>
+                                    </ul>
+                                    
+                                    <h3>Getting Started</h3>
+                                    <p>To get started with ${repo.name}, visit the <a href="${repoUrl}" target="_blank">GitHub repository</a> for complete documentation.</p>
+                                </div>
+                            </div>
+                        `;
+                    } catch (error) {
+                        content.innerHTML = `
+                            <div class="error-message">
+                                Error loading repository content: ${error.message}
+                            </div>
+                        `;
+                    }
+                }, 1000);
+            }
+        });
+        
+        // Handle external links in Safari
+        document.addEventListener('click', function(event) {
+            const target = event.target.closest('a');
+            if (target && target.getAttribute('target') === '_blank') {
+                event.preventDefault();
+                window.open(target.href, '_blank');
+            }
+        });
+    </script>
+</body>
+</html>
