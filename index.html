@@ -4,327 +4,235 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GitHub Repos Viewer</title>
-    <style>
-        :root {
-            --primary-color: #0366d6;
-            --text-color: #24292e;
-            --text-secondary: #586069;
-            --bg-color: #ffffff;
-            --bg-secondary: #f6f8fa;
-            --border-color: #e1e4e8;
-            --hover-color: #f1f2f4;
-            --active-color: #e2e8f0;
-            --header-height: 60px;
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        // Default "light" theme (GitHub-inspired)
+                        light: {
+                            primary: '#0366d6',
+                            text: '#24292e',
+                            textSecondary: '#586069',
+                            bg: '#ffffff',
+                            bgSecondary: '#f6f8fa',
+                            border: '#e1e4e8',
+                            hover: '#f1f2f4',
+                            active: '#e2e8f0',
+                        },
+                        // Dark theme (GitHub dark-inspired)
+                        dark: {
+                            primary: '#58a6ff',
+                            text: '#c9d1d9',
+                            textSecondary: '#8b949e',
+                            bg: '#0d1117',
+                            bgSecondary: '#161b22',
+                            border: '#30363d',
+                            hover: '#1f2428',
+                            active: '#2a3036',
+                        },
+                        // High contrast theme (for accessibility)
+                        highContrast: {
+                            primary: '#1168e3',
+                            text: '#000000',
+                            textSecondary: '#333333',
+                            bg: '#ffffff',
+                            bgSecondary: '#eeeeee',
+                            border: '#000000',
+                            hover: '#dddddd',
+                            active: '#bbbbbb',
+                        },
+                        // Nature theme (green-inspired)
+                        nature: {
+                            primary: '#2da44e',
+                            text: '#24292f',
+                            textSecondary: '#57606a',
+                            bg: '#f6f8fa',
+                            bgSecondary: '#eaeef2',
+                            border: '#d0d7de',
+                            hover: '#e1e7ec',
+                            active: '#c6d0d9',
+                        },
+                        // Ocean theme (blue-inspired)
+                        ocean: {
+                            primary: '#0969da',
+                            text: '#1a202c',
+                            textSecondary: '#4a5568',
+                            bg: '#f0f5fa',
+                            bgSecondary: '#e1edf8',
+                            border: '#cad5e0',
+                            hover: '#d9e6f2',
+                            active: '#c0d8eb',
+                        },
+                        // Sunset theme (orange-inspired)
+                        sunset: {
+                            primary: '#e85d04',
+                            text: '#27241d',
+                            textSecondary: '#5f5b53',
+                            bg: '#fff9f5',
+                            bgSecondary: '#ffede3',
+                            border: '#f2d5c4',
+                            hover: '#ffe8d9',
+                            active: '#ffd5b8',
+                        }
+                    }
+                }
+            }
         }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+    </script>
+    <!-- Marked.js for Markdown parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked@4.0.0/marked.min.js"></script>
+    <style id="theme-styles">
+        /* Base styles that will be overridden by themes */
+        :root {
+            --color-primary: #0366d6;
+            --color-text: #24292e;
+            --color-text-secondary: #586069;
+            --color-bg: #ffffff;
+            --color-bg-secondary: #f6f8fa;
+            --color-border: #e1e4e8;
+            --color-hover: #f1f2f4;
+            --color-active: #e2e8f0;
         }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
-            display: flex;
-            height: 100vh;
-            overflow: hidden;
-            color: var(--text-color);
-            background-color: var(--bg-color);
-            font-size: 14px;
-            line-height: 1.5;
+            background-color: var(--color-bg);
+            color: var(--color-text);
         }
         
-        #sidebar {
-            width: 280px;
-            background-color: var(--bg-secondary);
-            height: 100%;
-            overflow-y: auto;
-            border-right: 1px solid var(--border-color);
-            transition: width 0.3s ease;
+        .theme-bg {
+            background-color: var(--color-bg);
         }
         
-        #sidebar.collapsed {
-            width: 60px;
+        .theme-bg-secondary {
+            background-color: var(--color-bg-secondary);
         }
         
-        #toggle-sidebar {
-            background: none;
-            border: none;
-            color: var(--text-secondary);
-            cursor: pointer;
-            padding: 8px;
-            font-size: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .theme-text {
+            color: var(--color-text);
         }
         
-        #toggle-sidebar:hover {
-            color: var(--text-color);
+        .theme-text-secondary {
+            color: var(--color-text-secondary);
         }
         
-        #sidebar.collapsed .sidebar-title,
-        #sidebar.collapsed .repo-title {
-            display: none;
+        .theme-border {
+            border-color: var(--color-border);
         }
         
-        .sidebar-header {
-            height: var(--header-height);
-            padding: 0 16px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border-bottom: 1px solid var(--border-color);
-            background-color: var(--bg-color);
+        .theme-primary {
+            color: var(--color-primary);
         }
         
-        .sidebar-title {
-            font-size: 16px;
-            font-weight: 600;
-            color: var(--text-color);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+        .theme-primary-bg {
+            background-color: var(--color-primary);
         }
         
-        .repo-list {
-            list-style-type: none;
+        .theme-hover:hover {
+            background-color: var(--color-hover);
         }
         
-        .repo-item {
-            padding: 12px 16px;
-            cursor: pointer;
-            transition: background-color 0.2s ease;
-            display: flex;
-            align-items: center;
-            border-bottom: 1px solid var(--border-color);
+        .theme-active:active, .theme-active.active {
+            background-color: var(--color-active);
         }
         
-        .repo-item:hover {
-            background-color: var(--hover-color);
-        }
-        
-        .repo-item.active {
-            background-color: var(--active-color);
-            font-weight: 600;
-        }
-        
-        .repo-icon {
-            margin-right: 10px;
-            font-size: 16px;
-            color: var(--text-secondary);
-        }
-        
-        .repo-title {
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        
-        #content {
-            flex: 1;
-            overflow-y: auto;
-            background-color: var(--bg-color);
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .content-header {
-            height: var(--header-height);
-            padding: 0 24px;
-            display: flex;
-            align-items: center;
-            border-bottom: 1px solid var(--border-color);
-            background-color: var(--bg-color);
-            position: sticky;
-            top: 0;
-            z-index: 10;
-        }
-        
-        .content-body {
-            padding: 24px;
-            flex: 1;
-        }
-        
-        .welcome-container {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: calc(100vh - var(--header-height));
-            text-align: center;
-            opacity: 0;
-            animation: fadeIn 1s ease forwards;
-            padding: 0 24px;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        .welcome-text {
-            font-size: 32px;
-            font-weight: 300;
-            color: var(--text-color);
-            margin-bottom: 16px;
-        }
-        
-        .welcome-description {
-            color: var(--text-secondary);
-            max-width: 500px;
-            margin-bottom: 24px;
-        }
-        
-        .repo-details {
-            opacity: 0;
-            animation: fadeIn 0.5s ease forwards;
-        }
-        
-        .repo-header {
-            margin-bottom: 24px;
-        }
-        
-        .repo-name {
-            font-size: 24px;
-            font-weight: 600;
-            color: var(--text-color);
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-        }
-        
-        .repo-name a {
-            color: var(--primary-color);
-            text-decoration: none;
-        }
-        
-        .repo-name a:hover {
-            text-decoration: underline;
-        }
-        
-        .repo-meta {
-            color: var(--text-secondary);
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            margin-bottom: 16px;
-        }
-        
-        .repo-meta-item {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-        
-        .repo-readme {
-            padding: 24px;
-            background-color: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            line-height: 1.6;
-        }
-        
-        /* Markdown styling */
-        .markdown-body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
-            font-size: 14px;
-            line-height: 1.6;
-            word-wrap: break-word;
-        }
-        
+        /* Styling for the markdown content */
         .markdown-body h1 {
-            font-size: 28px;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 8px;
-            margin-bottom: 16px;
+            font-size: 1.5rem;
+            font-weight: 600;
+            border-bottom: 1px solid var(--color-border);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
         }
         
         .markdown-body h2 {
-            font-size: 24px;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 6px;
-            margin: 24px 0 16px;
+            font-size: 1.25rem;
+            font-weight: 600;
+            border-bottom: 1px solid var(--color-border);
+            padding-bottom: 0.25rem;
+            margin: 1.5rem 0;
         }
         
         .markdown-body h3 {
-            font-size: 20px;
-            margin: 24px 0 16px;
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin: 1.5rem 0;
         }
         
         .markdown-body h4 {
-            font-size: 16px;
-            margin: 24px 0 16px;
+            font-weight: 600;
+            margin: 1.5rem 0;
         }
         
         .markdown-body p {
-            margin-bottom: 16px;
+            margin-bottom: 1rem;
         }
         
-        .markdown-body ul, 
+        .markdown-body ul, .markdown-body ol {
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .markdown-body ul {
+            list-style-type: disc;
+        }
+        
         .markdown-body ol {
-            padding-left: 24px;
-            margin-bottom: 16px;
+            list-style-type: decimal;
         }
         
         .markdown-body li {
-            margin-bottom: 4px;
+            margin-bottom: 0.25rem;
         }
         
-        .markdown-body code {
-            font-family: SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace;
-            padding: 0.2em 0.4em;
-            margin: 0;
-            font-size: 85%;
-            background-color: rgba(27, 31, 35, 0.05);
-            border-radius: 3px;
+        .markdown-body code:not(pre code) {
+            font-family: monospace;
+            font-size: 0.875rem;
+            background-color: var(--color-bg-secondary);
+            border-radius: 0.25rem;
+            padding: 0.125rem 0.375rem;
         }
         
         .markdown-body pre {
-            font-family: SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace;
-            padding: 16px;
+            font-family: monospace;
+            padding: 1rem;
             overflow: auto;
-            font-size: 85%;
-            line-height: 1.45;
-            background-color: var(--bg-secondary);
-            border-radius: 3px;
-            margin-bottom: 16px;
-        }
-        
-        .markdown-body pre code {
-            padding: 0;
-            background-color: transparent;
+            font-size: 0.875rem;
+            line-height: 1.5;
+            background-color: var(--color-bg-secondary);
+            border-radius: 0.25rem;
+            margin-bottom: 1rem;
         }
         
         .markdown-body blockquote {
-            margin: 0 0 16px 0;
-            padding: 0 16px;
-            color: var(--text-secondary);
-            border-left: 4px solid var(--border-color);
+            padding-left: 1rem;
+            border-left: 4px solid var(--color-border);
+            color: var(--color-text-secondary);
+            margin-bottom: 1rem;
         }
         
         .markdown-body table {
             display: block;
             width: 100%;
             overflow: auto;
-            border-spacing: 0;
             border-collapse: collapse;
-            margin-bottom: 16px;
+            margin-bottom: 1rem;
         }
         
         .markdown-body table tr {
-            background-color: var(--bg-color);
-            border-top: 1px solid var(--border-color);
+            background-color: var(--color-bg);
+            border-top: 1px solid var(--color-border);
         }
         
         .markdown-body table tr:nth-child(2n) {
-            background-color: var(--bg-secondary);
+            background-color: var(--color-bg-secondary);
         }
         
-        .markdown-body table th,
-        .markdown-body table td {
-            padding: 8px 13px;
-            border: 1px solid var(--border-color);
+        .markdown-body table th, .markdown-body table td {
+            padding: 0.5rem;
+            border: 1px solid var(--color-border);
         }
         
         .markdown-body table th {
@@ -333,384 +241,585 @@
         
         .markdown-body img {
             max-width: 100%;
-            box-sizing: border-box;
         }
         
-        .error-message {
-            padding: 16px;
-            background-color: #ffebe9;
-            border: 1px solid #f0a8a8;
-            border-radius: 6px;
-            color: #cf222e;
-            margin: 24px 0;
+        .markdown-body a {
+            color: var(--color-primary);
+            text-decoration: none;
         }
         
-        .loading {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: calc(100vh - var(--header-height));
-            gap: 16px;
+        .markdown-body a:hover {
+            text-decoration: underline;
         }
         
-        .loading-text {
-            color: var(--text-secondary);
+        @keyframes spinner {
+            to {transform: rotate(360deg);}
+        }
+        .spinner {
+            animation: spinner 1s linear infinite;
         }
         
-        .loading-spinner {
-            border: 4px solid rgba(0, 0, 0, 0.1);
-            border-top: 4px solid var(--primary-color);
+        /* Theme selector styling */
+        .theme-option {
+            width: 24px;
+            height: 24px;
             border-radius: 50%;
-            width: 32px;
-            height: 32px;
-            animation: spin 1s linear infinite;
+            cursor: pointer;
+            position: relative;
         }
         
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        .icon {
-            display: inline-block;
-            width: 16px;
-            height: 16px;
-            vertical-align: text-bottom;
-            fill: currentColor;
-        }
-        
-        @media (max-width: 768px) {
-            #sidebar {
-                position: fixed;
-                z-index: 100;
-                transform: translateX(-100%);
-                transition: transform 0.3s ease;
-            }
-            
-            body.sidebar-open #sidebar {
-                transform: translateX(0);
-                box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            }
-            
-            #mobile-toggle {
-                display: block;
-                position: fixed;
-                top: 12px;
-                left: 12px;
-                z-index: 101;
-                background: var(--bg-color);
-                border: 1px solid var(--border-color);
-                border-radius: 4px;
-                padding: 8px;
-                cursor: pointer;
-                color: var(--text-color);
-            }
-            
-            .content-header {
-                padding-left: 48px;
-            }
-        }
-        
-        @media (min-width: 769px) {
-            #mobile-toggle {
-                display: none;
-            }
-        }
-
-        /* Dark mode support */
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --primary-color: #58a6ff;
-                --text-color: #c9d1d9;
-                --text-secondary: #8b949e;
-                --bg-color: #0d1117;
-                --bg-secondary: #161b22;
-                --border-color: #30363d;
-                --hover-color: #1f2428;
-                --active-color: #2a3036;
-            }
+        .theme-option.active::after {
+            content: "";
+            position: absolute;
+            inset: -3px;
+            border-radius: 50%;
+            border: 2px solid var(--color-primary);
         }
     </style>
-    <!-- Add marked.js for Markdown parsing -->
-    <script src="https://cdn.jsdelivr.net/npm/marked@4.0.0/marked.min.js"></script>
 </head>
-<body>
-    <button id="mobile-toggle" aria-label="Toggle navigation">
-        <svg class="icon" viewBox="0 0 16 16" width="16" height="16" fill="currentColor">
+<body class="h-screen flex overflow-hidden font-sans text-sm leading-normal">
+    <button id="mobile-toggle" class="md:hidden fixed top-3 left-3 z-50 theme-bg border theme-border rounded p-2 cursor-pointer theme-text">
+        <svg class="w-4 h-4" viewBox="0 0 16 16" fill="currentColor">
             <path fill-rule="evenodd" d="M1 2.75A.75.75 0 011.75 2h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 2.75zm0 5A.75.75 0 011.75 7h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 7.75zM1.75 12a.75.75 0 100 1.5h12.5a.75.75 0 100-1.5H1.75z"></path>
         </svg>
     </button>
     
-    <aside id="sidebar">
-        <div class="sidebar-header">
-            <span class="sidebar-title">GitHub Repositories</span>
-            <button id="toggle-sidebar" aria-label="Toggle sidebar width">
-                <svg class="icon" viewBox="0 0 16 16" width="16" height="16" fill="currentColor">
-                    <path fill-rule="evenodd" d="M6.22 3.22a.75.75 0 011.06 0l4.25 4.25a.75.75 0 010 1.06l-4.25 4.25a.75.75 0 01-1.06-1.06L9.94 8 6.22 4.28a.75.75 0 010-1.06z"></path>
+    <aside id="sidebar" class="w-70 theme-bg-secondary h-full overflow-y-auto border-r theme-border transition-all duration-300 ease-in-out md:static md:transform-none absolute transform -translate-x-full md:translate-x-0 z-40">
+        <div class="h-15 px-4 flex items-center justify-between border-b theme-border theme-bg">
+            <span class="text-base font-semibold theme-text whitespace-nowrap overflow-hidden overflow-ellipsis">GitHub Repositories</span>
+            <button id="toggle-sidebar" class="bg-transparent border-none theme-text-secondary cursor-pointer p-2 flex items-center justify-center hover:theme-text md:hidden">
+                <svg class="w-4 h-4" viewBox="0 0 16 16" fill="currentColor">
+                    <path fill-rule="evenodd" d="M3.72 3.72a.75.75 0 011.06 0L8 6.94l3.22-3.22a.75.75 0 111.06 1.06L9.06 8l3.22 3.22a.75.75 0 11-1.06 1.06L8 9.06l-3.22 3.22a.75.75 0 01-1.06-1.06L6.94 8 3.72 4.78a.75.75 0 010-1.06z"></path>
                 </svg>
             </button>
         </div>
-        <ul class="repo-list" id="repo-list">
-            <!-- Repository items will be dynamically added here -->
-        </ul>
+        
+        <!-- Theme Selector -->
+        <div class="p-4 border-b theme-border">
+            <h3 class="font-semibold mb-3 theme-text">Theme Settings</h3>
+            <div class="flex gap-3 mb-4 flex-wrap">
+                <button class="theme-option light-theme active" title="Light Theme" style="background: linear-gradient(135deg, #ffffff 0%, #f6f8fa 100%);"></button>
+                <button class="theme-option dark-theme" title="Dark Theme" style="background: linear-gradient(135deg, #0d1117 0%, #161b22 100%);"></button>
+                <button class="theme-option high-contrast-theme" title="High Contrast Theme" style="background: linear-gradient(135deg, #ffffff 0%, #eeeeee 100%); border: 1px solid #000;"></button>
+                <button class="theme-option nature-theme" title="Nature Theme" style="background: linear-gradient(135deg, #f6f8fa 0%, #eaeef2 100%); border: 1px solid #2da44e;"></button>
+                <button class="theme-option ocean-theme" title="Ocean Theme" style="background: linear-gradient(135deg, #f0f5fa 0%, #e1edf8 100%);"></button>
+                <button class="theme-option sunset-theme" title="Sunset Theme" style="background: linear-gradient(135deg, #fff9f5 0%, #ffede3 100%);"></button>
+            </div>
+            <h4 class="font-medium mb-2 theme-text">Current Theme: <span id="current-theme-name">Light</span></h4>
+            <p class="text-xs theme-text-secondary">Select a theme to customize your viewing experience.</p>
+        </div>
+        
+        <div class="px-4 pt-4">
+            <div class="mb-4">
+                <div class="relative">
+                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none theme-text-secondary">
+                        <svg class="w-4 h-4" viewBox="0 0 16 16" fill="currentColor">
+                            <path fill-rule="evenodd" d="M11.5 7a4.499 4.499 0 11-8.998 0A4.499 4.499 0 0111.5 7zm-.82 4.74a6 6 0 111.06-1.06l3.04 3.04a.75.75 0 11-1.06 1.06l-3.04-3.04z"></path>
+                        </svg>
+                    </div>
+                    <input type="text" id="search-repos" class="block w-full pl-10 pr-4 py-2 border rounded-md theme-bg theme-border theme-text placeholder:theme-text-secondary focus:outline-none focus:ring-2 focus:ring-offset-2" style="--tw-ring-color: var(--color-primary); --tw-ring-opacity: 0.5;" placeholder="Find a repository...">
+                </div>
+            </div>
+            
+            <div id="repos-list" class="overflow-y-auto">
+                <!-- Repository list will be dynamically populated here -->
+                <div class="flex justify-center items-center p-4 theme-text-secondary">
+                    <svg class="animate-spin h-5 w-5 mr-3" viewBox="0 0 24 24" fill="none">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Loading repositories...
+                </div>
+            </div>
+        </div>
     </aside>
     
-    <main id="content">
-        <div class="content-header" id="content-header">
-            <!-- Dynamic header content -->
-        </div>
-        <div class="content-body" id="content-body">
-            <div class="welcome-container">
-                <h1 class="welcome-text">Welcome!</h1>
-                <p class="welcome-description">Select a repository from the left menu to view its README content and details.</p>
+    <main class="flex-1 flex flex-col h-full overflow-hidden">
+        <header class="h-15 px-4 flex items-center justify-between border-b theme-border theme-bg">
+            <h1 class="text-lg font-semibold theme-text">GitHub Repos Viewer</h1>
+            <div class="flex items-center">
+                <button id="theme-menu-toggle" class="flex items-center gap-2 px-3 py-1.5 rounded-md theme-hover theme-text-secondary">
+                    <svg class="w-5 h-5" viewBox="0 0 16 16" fill="currentColor">
+                        <path fill-rule="evenodd" d="M8 0a8 8 0 100 16A8 8 0 008 0zm0 1.5a6.5 6.5 0 11-5.2 10.4A6.5 6.5 0 018 1.5z"></path>
+                    </svg>
+                    <span>Theme</span>
+                </button>
+            </div>
+        </header>
+        
+        <div id="content" class="flex-1 overflow-y-auto p-6 theme-bg">
+            <div class="flex flex-col items-center justify-center h-full theme-text-secondary text-center">
+                <svg class="w-12 h-12 mb-4" viewBox="0 0 16 16" fill="currentColor">
+                    <path fill-rule="evenodd" d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V1.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z"></path>
+                </svg>
+                <h2 class="text-xl font-semibold mb-2 theme-text">Select a repository</h2>
+                <p class="max-w-md">Choose a repository from the sidebar to view its details and README content.</p>
             </div>
         </div>
     </main>
-
+    
     <script>
-        // List of GitHub repositories to display
+        // Get DOM elements
+        const sidebar = document.getElementById('sidebar');
+        const mobileToggle = document.getElementById('mobile-toggle');
+        const toggleSidebar = document.getElementById('toggle-sidebar');
+        const themeMenuToggle = document.getElementById('theme-menu-toggle');
+        const content = document.getElementById('content');
+        const reposList = document.getElementById('repos-list');
+        const searchRepos = document.getElementById('search-repos');
+        const currentThemeName = document.getElementById('current-theme-name');
+        
+        // Stub data for GitHub repositories
         const repositories = [
-            { 
-                name: 'react', 
+            {
+                id: 1,
+                name: 'react',
                 owner: 'facebook',
-                description: 'A declarative, efficient, and flexible JavaScript library for building user interfaces.'
+                description: 'A declarative, efficient, and flexible JavaScript library for building user interfaces.',
+                stars: 194536,
+                forks: 39935,
+                language: 'JavaScript',
+                updated_at: '2023-03-28T12:15:00Z'
             },
             {
-                name: 'vue', 
-                owner: 'vuejs',
-                description: 'Vue.js is a progressive, incrementally-adoptable JavaScript framework for building UI on the web.'
-            },
-            {
-                name: 'angular', 
-                owner: 'angular',
-                description: 'One framework. Mobile & desktop.'
-            },
-            {
-                name: 'svelte', 
-                owner: 'sveltejs',
-                description: 'Cybernetically enhanced web apps.'
-            },
-            {
-                name: 'tensorflow', 
-                owner: 'tensorflow',
-                description: 'An Open Source Machine Learning Framework for Everyone.'
-            },
-            {
-                name: 'vscode', 
+                id: 2,
+                name: 'vscode',
                 owner: 'microsoft',
-                description: 'Visual Studio Code.'
+                description: 'Visual Studio Code',
+                stars: 137231,
+                forks: 23452,
+                language: 'TypeScript',
+                updated_at: '2023-03-27T18:30:00Z'
             },
             {
-                name: 'node', 
-                owner: 'nodejs',
-                description: 'Node.js JavaScript runtime.'
+                id: 3,
+                name: 'tensorflow',
+                owner: 'tensorflow',
+                description: 'An Open Source Machine Learning Framework for Everyone',
+                stars: 169123,
+                forks: 87245,
+                language: 'C++',
+                updated_at: '2023-03-26T09:45:00Z'
             },
             {
-                name: 'kubernetes', 
-                owner: 'kubernetes',
-                description: 'Production-Grade Container Scheduling and Management.'
+                id: 4,
+                name: 'flutter',
+                owner: 'flutter',
+                description: 'Flutter makes it easy and fast to build beautiful apps for mobile and beyond',
+                stars: 147863,
+                forks: 23784,
+                language: 'Dart',
+                updated_at: '2023-03-25T22:10:00Z'
+            },
+            {
+                id: 5,
+                name: 'awesome-python',
+                owner: 'vinta',
+                description: 'A curated list of awesome Python frameworks, libraries, software and resources',
+                stars: 144269,
+                forks: 21378,
+                language: 'Python',
+                updated_at: '2023-03-24T15:20:00Z'
+            },
+            {
+                id: 6,
+                name: 'vue',
+                owner: 'vuejs',
+                description: 'Vue.js is a progressive, incrementally-adoptable JavaScript framework for building UI on the web.',
+                stars: 199724,
+                forks: 32945,
+                language: 'JavaScript',
+                updated_at: '2023-03-23T11:30:00Z'
+            },
+            {
+                id: 7,
+                name: 'rust',
+                owner: 'rust-lang',
+                description: 'Empowering everyone to build reliable and efficient software.',
+                stars: 76982,
+                forks: 10234,
+                language: 'Rust',
+                updated_at: '2023-03-22T07:40:00Z'
+            },
+            {
+                id: 8,
+                name: 'linux',
+                owner: 'torvalds',
+                description: 'Linux kernel source tree',
+                stars: 143562,
+                forks: 45678,
+                language: 'C',
+                updated_at: '2023-03-21T05:50:00Z'
+            },
+            {
+                id: 9,
+                name: 'next.js',
+                owner: 'vercel',
+                description: 'The React Framework for Production',
+                stars: 97543,
+                forks: 21435,
+                language: 'JavaScript',
+                updated_at: '2023-03-20T14:00:00Z'
+            },
+            {
+                id: 10,
+                name: 'tailwindcss',
+                owner: 'tailwindlabs',
+                description: 'A utility-first CSS framework for rapid UI development',
+                stars: 63459,
+                forks: 3214,
+                language: 'CSS',
+                updated_at: '2023-03-19T19:15:00Z'
             }
         ];
         
-        document.addEventListener('DOMContentLoaded', function() {
-            const repoList = document.getElementById('repo-list');
-            const contentHeader = document.getElementById('content-header');
-            const contentBody = document.getElementById('content-body');
-            const toggleSidebarBtn = document.getElementById('toggle-sidebar');
-            const mobileToggleBtn = document.getElementById('mobile-toggle');
-            let activeRepo = null;
-            
-            // Set up marked.js options
-            marked.setOptions({
-                breaks: true,
-                gfm: true,
-                headerIds: true,
-                headerPrefix: 'github-readme-',
-                sanitize: false
-            });
-            
-            // Generate repository list
-            repositories.forEach(repo => {
-                const li = document.createElement('li');
-                li.className = 'repo-item';
-                li.innerHTML = `
-                    <svg class="repo-icon icon" viewBox="0 0 16 16" width="16" height="16" fill="currentColor">
-                        <path fill-rule="evenodd" d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z"></path>
-                    </svg>
-                    <span class="repo-title">${repo.owner}/${repo.name}</span>
-                `;
-                li.addEventListener('click', () => loadRepository(repo));
-                repoList.appendChild(li);
-            });
-            
-            // Toggle sidebar
-            toggleSidebarBtn.addEventListener('click', toggleSidebar);
-            
-            // Mobile sidebar toggle
-            mobileToggleBtn.addEventListener('click', function() {
-                document.body.classList.toggle('sidebar-open');
-            });
-            
-            function toggleSidebar() {
-                const sidebar = document.getElementById('sidebar');
-                sidebar.classList.toggle('collapsed');
-            }
-            
-            function loadRepository(repo) {
-                // Update active state
-                if (activeRepo) {
-                    activeRepo.classList.remove('active');
+        // Theme definitions
+        const themes = {
+            light: {
+                name: "Light",
+                colors: {
+                    primary: '#0366d6',
+                    text: '#24292e',
+                    textSecondary: '#586069',
+                    bg: '#ffffff',
+                    bgSecondary: '#f6f8fa',
+                    border: '#e1e4e8',
+                    hover: '#f1f2f4',
+                    active: '#e2e8f0',
                 }
-                
-                // Find the clicked repo list item
-                const repoItems = document.querySelectorAll('.repo-item');
-                repoItems.forEach(item => {
-                    if (item.querySelector('.repo-title').textContent === `${repo.owner}/${repo.name}`) {
-                        item.classList.add('active');
-                        activeRepo = item;
-                    }
-                });
-                
-                // Update header
-                contentHeader.innerHTML = `
-                    <h1 class="repo-name">
-                        <svg class="icon" style="margin-right: 8px;" viewBox="0 0 16 16" width="16" height="16" fill="currentColor">
-                            <path fill-rule="evenodd" d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z"></path>
-                        </svg>
-                        ${repo.owner}/<strong>${repo.name}</strong>
-                    </h1>
-                `;
-                
-                // Show loading
-                contentBody.innerHTML = `
-                    <div class="loading">
-                        <div class="loading-spinner"></div>
-                        <p class="loading-text">Loading README from GitHub...</p>
-                    </div>
-                `;
-                
-                // Close mobile sidebar
-                document.body.classList.remove('sidebar-open');
-                
-                // Fetch repository README
-                fetchRepositoryReadme(repo);
-            }
-            
-            function fetchRepositoryReadme(repo) {
-                const readmeUrl = `https://api.github.com/repos/${repo.owner}/${repo.name}/readme`;
-                
-                fetch(readmeUrl)
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('README not found or inaccessible');
-                        }
-                        return response.json();
-                    })
-                    .then(data => {
-                        // The content is Base64 encoded
-                        const readmeContent = atob(data.content);
-                        displayReadme(repo, readmeContent);
-                    })
-                    .catch(error => {
-                        // If we can't fetch the real README, show a fallback
-                        console.error('Error fetching README:', error);
-                        displayFallbackReadme(repo);
-                    });
-            }
-            
-            function displayReadme(repo, content) {
-                // Convert Markdown to HTML
-                try {
-                    const htmlContent = marked.parse(content);
-                    
-                    contentBody.innerHTML = `
-                        <div class="repo-details">
-                            <div class="repo-header">
-                                <div class="repo-meta">
-                                    <span class="repo-meta-item">
-                                        <svg class="icon" viewBox="0 0 16 16" width="16" height="16" fill="currentColor">
-                                            <path fill-rule="evenodd" d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25zm0 2.445L6.615 5.5a.75.75 0 01-.564.41l-3.097.45 2.24 2.184a.75.75 0 01.216.664l-.528 3.084 2.769-1.456a.75.75 0 01.698 0l2.77 1.456-.53-3.084a.75.75 0 01.216-.664l2.24-2.183-3.096-.45a.75.75 0 01-.564-.41L8 2.694v.001z"></path>
-                                        </svg>
-                                        Star
-                                    </span>
-                                    <span class="repo-meta-item">
-                                        <svg class="icon" viewBox="0 0 16 16" width="16" height="16" fill="currentColor">
-                                            <path fill-rule="evenodd" d="M5 3.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm0 2.122a2.25 2.25 0 10-1.5 0v.878A2.25 2.25 0 005.75 8.5h1.5v2.128a2.251 2.251 0 101.5 0V8.5h1.5a2.25 2.25 0 002.25-2.25v-.878a2.25 2.25 0 10-1.5 0v.878a.75.75 0 01-.75.75h-4.5A.75.75 0 015 6.25v-.878zm3.75 7.378a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm3-8.75a.75.75 0 100-1.5.75.75 0 000 1.5z"></path>
-                                        </svg>
-                                        Fork
-                                    </span>
-                                    <span class="repo-meta-item">
-                                        <svg class="icon" viewBox="0 0 16 16" width="16" height="16" fill="currentColor">
-                                            <path fill-rule="evenodd" d="M1.643 3.143L.427 1.927A.25.25 0 000 2.104V5.75c0 .138.112.25.25.25h3.646a.25.25 0 00.177-.427L2.715 4.215a6.5 6.5 0 11-1.18 4.458.75.75 0 10-1.493.154 8.001 8.001 0 101.6-5.684zM7.75 4a.75.75 0 01.75.75v2.992l2.028.812a.75.75 0 01-.557 1.392l-2.5-1A.75.75 0 017 8.25v-3.5A.75.75 0 017.75 4z"></path>
-                                        </svg>
-                                        Watch
-                                    </span>
-                                    <a href="https://github.com/${repo.owner}/${repo.name}" target="_blank" class="repo-meta-item" style="color: var(--primary-color); text-decoration: none;">
-                                        <svg class="icon" viewBox="0 0 16 16" width="16" height="16" fill="currentColor">
-                                            <path fill-rule="evenodd" d="M10.604 1h4.146a.25.25 0 01.25.25v4.146a.25.25 0 01-.427.177L13.03 4.03 9.28 7.78a.75.75 0 01-1.06-1.06l3.75-3.75-1.543-1.543A.25.25 0 0110.604 1zM3.75 2A1.75 1.75 0 002 3.75v8.5c0 .966.784 1.75 1.75 1.75h8.5A1.75 1.75 0 0014 12.25v-3.5a.75.75 0 00-1.5 0v3.5a.25.25 0 01-.25.25h-8.5a.25.25 0 01-.25-.25v-8.5a.25.25 0 01.25-.25h3.5a.75.75 0 000-1.5h-3.5z"></path>
-                                        </svg>
-                                        View on GitHub
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="repo-readme markdown-body">
-                                ${htmlContent}
-                            </div>
-                        </div>
-                    `;
-                } catch (error) {
-                    console.error('Error parsing markdown:', error);
-                    displayFallbackReadme(repo);
+            },
+            dark: {
+                name: "Dark",
+                colors: {
+                    primary: '#58a6ff',
+                    text: '#c9d1d9',
+                    textSecondary: '#8b949e',
+                    bg: '#0d1117',
+                    bgSecondary: '#161b22',
+                    border: '#30363d',
+                    hover: '#1f2428',
+                    active: '#2a3036',
+                }
+            },
+            highContrast: {
+                name: "High Contrast",
+                colors: {
+                    primary: '#1168e3',
+                    text: '#000000',
+                    textSecondary: '#333333',
+                    bg: '#ffffff',
+                    bgSecondary: '#eeeeee',
+                    border: '#000000',
+                    hover: '#dddddd',
+                    active: '#bbbbbb',
+                }
+            },
+            nature: {
+                name: "Nature",
+                colors: {
+                    primary: '#2da44e',
+                    text: '#24292f',
+                    textSecondary: '#57606a',
+                    bg: '#f6f8fa',
+                    bgSecondary: '#eaeef2',
+                    border: '#d0d7de',
+                    hover: '#e1e7ec',
+                    active: '#c6d0d9',
+                }
+            },
+            ocean: {
+                name: "Ocean",
+                colors: {
+                    primary: '#0969da',
+                    text: '#1a202c',
+                    textSecondary: '#4a5568',
+                    bg: '#f0f5fa',
+                    bgSecondary: '#e1edf8',
+                    border: '#cad5e0',
+                    hover: '#d9e6f2',
+                    active: '#c0d8eb',
+                }
+            },
+            sunset: {
+                name: "Sunset",
+                colors: {
+                    primary: '#e85d04',
+                    text: '#27241d',
+                    textSecondary: '#5f5b53',
+                    bg: '#fff9f5',
+                    bgSecondary: '#ffede3',
+                    border: '#f2d5c4',
+                    hover: '#ffe8d9',
+                    active: '#ffd5b8',
                 }
             }
+        };
+        
+        // Set the active theme
+        function setTheme(themeName) {
+            const theme = themes[themeName];
+            const root = document.documentElement;
             
-            function displayFallbackReadme(repo) {
-                contentBody.innerHTML = `
-                    <div class="repo-details">
-                        <div class="repo-header">
-                            <div class="repo-meta">
-                                <a href="https://github.com/${repo.owner}/${repo.name}" target="_blank" class="repo-meta-item" style="color: var(--primary-color); text-decoration: none;">
-                                    <svg class="icon" viewBox="0 0 16 16" width="16" height="16" fill="currentColor">
-                                        <path fill-rule="evenodd" d="M10.604 1h4.146a.25.25 0 01.25.25v4.146a.25.25 0 01-.427.177L13.03 4.03 9.28 7.78a.75.75 0 01-1.06-1.06l3.75-3.75-1.543-1.543A.25.25 0 0110.604 1zM3.75 2A1.75 1.75 0 002 3.75v8.5c0 .966.784 1.75 1.75 1.75h8.5A1.75 1.75 0 0014 12.25v-3.5a.75.75 0 00-1.5 0v3.5a.25.25 0 01-.25.25h-8.5a.25.25 0 01-.25-.25v-8.5a.25.25 0 01.25-.25h3.5a.75.75 0 000-1.5h-3.5z"></path>
-                                    </svg>
-                                    View on GitHub
-                                </a>
-                            </div>
-                        </div>
-                        <div class="repo-readme markdown-body">
-                            <h1>${repo.name}</h1>
-                            <p>${repo.description}</p>
-                            
-                            <blockquote>
-                                <p>Note: This is a fallback README content. The actual README couldn't be fetched from GitHub's API.</p>
-                            </blockquote>
-                            
-                            <h2>About ${repo.name}</h2>
-                            <p>This is a preview of the ${repo.name} repository maintained by ${repo.owner}. For complete and up-to-date information, please visit the <a href="https://github.com/${repo.owner}/${repo.name}" target="_blank">GitHub repository</a>.</p>
-                            
-                            <h2>Features</h2>
-                            <ul>
-                                <li>Feature details would be available in the actual README</li>
-                                <li>Visit the repository on GitHub for complete documentation</li>
-                            </ul>
-                            
-                            <h2>Getting Started</h2>
-                            <p>To get started with ${repo.name}, visit the <a href="https://github.com/${repo.owner}/${repo.name}" target="_blank">GitHub repository</a> for installation instructions and documentation.</p>
-                        </div>
-                    </div>
-                `;
-            }
+            // Set CSS variables
+            root.style.setProperty('--color-primary', theme.colors.primary);
+            root.style.setProperty('--color-text', theme.colors.text);
+            root.style.setProperty('--color-text-secondary', theme.colors.textSecondary);
+            root.style.setProperty('--color-bg', theme.colors.bg);
+            root.style.setProperty('--color-bg-secondary', theme.colors.bgSecondary);
+            root.style.setProperty('--color-border', theme.colors.border);
+            root.style.setProperty('--color-hover', theme.colors.hover);
+            root.style.setProperty('--color-active', theme.colors.active);
             
-            // Allow escaping the sidebar on mobile when clicking outside of it
-            document.addEventListener('click', function(event) {
-                if (document.body.classList.contains('sidebar-open') && 
-                    !event.target.closest('#sidebar') && 
-                    !event.target.closest('#mobile-toggle')) {
-                    document.body.classList.remove('sidebar-open');
+            // Update current theme name display
+            currentThemeName.textContent = theme.name;
+            
+            // Update active class on theme selector buttons
+            document.querySelectorAll('.theme-option').forEach(option => {
+                option.classList.remove('active');
+            });
+            document.querySelector(`.${themeName}-theme`).classList.add('active');
+            
+            // Save theme preference
+            localStorage.setItem('preferred-theme', themeName);
+        }
+        
+        // Initialize theme buttons
+        document.querySelectorAll('.theme-option').forEach(option => {
+            option.addEventListener('click', () => {
+                const themeClass = Array.from(option.classList).find(cl => cl.endsWith('-theme'));
+                if (themeClass) {
+                    const themeName = themeClass.replace('-theme', '');
+                    setTheme(themeName);
                 }
             });
         });
+        
+        // Load saved theme or default to light
+        const savedTheme = localStorage.getItem('preferred-theme') || 'light';
+        setTheme(savedTheme);
+        
+        // Format numbers for display (e.g., 1000 -> 1k)
+        function formatNumber(num) {
+            if (num >= 1000000) {
+                return (num / 1000000).toFixed(1) + 'm';
+            }
+            if (num >= 1000) {
+                return (num / 1000).toFixed(1) + 'k';
+            }
+            return num.toString();
+        }
+        
+        // Format date to relative time (e.g., "2 days ago")
+        function formatRelativeDate(dateString) {
+            const date = new Date(dateString);
+            const now = new Date();
+            const diffInSeconds = Math.floor((now - date) / 1000);
+            
+            if (diffInSeconds < 60) {
+                return 'just now';
+            }
+            
+            const diffInMinutes = Math.floor(diffInSeconds / 60);
+            if (diffInMinutes < 60) {
+                return `${diffInMinutes} minute${diffInMinutes !== 1 ? 's' : ''} ago`;
+            }
+            
+            const diffInHours = Math.floor(diffInMinutes / 60);
+            if (diffInHours < 24) {
+                return `${diffInHours} hour${diffInHours !== 1 ? 's' : ''} ago`;
+            }
+            
+            const diffInDays = Math.floor(diffInHours / 24);
+            if (diffInDays < 30) {
+                return `${diffInDays} day${diffInDays !== 1 ? 's' : ''} ago`;
+            }
+            
+            const diffInMonths = Math.floor(diffInDays / 30);
+            if (diffInMonths < 12) {
+                return `${diffInMonths} month${diffInMonths !== 1 ? 's' : ''} ago`;
+            }
+            
+            const diffInYears = Math.floor(diffInMonths / 12);
+            return `${diffInYears} year${diffInYears !== 1 ? 's' : ''} ago`;
+        }
+        
+        // Get language color based on language name
+        function getLanguageColor(language) {
+            const colors = {
+                'JavaScript': '#f1e05a',
+                'TypeScript': '#2b7489',
+                'Python': '#3572A5',
+                'Java': '#b07219',
+                'C++': '#f34b7d',
+                'C#': '#178600',
+                'PHP': '#4F5D95',
+                'Ruby': '#701516',
+                'Go': '#00ADD8',
+                'Swift': '#ffac45',
+                'Kotlin': '#F18E33',
+                'Rust': '#dea584',
+                'Dart': '#00B4AB',
+                'C': '#555555',
+                'CSS': '#563d7c',
+                'HTML': '#e34c26',
+                'Shell': '#89e051'
+            };
+            
+            return colors[language] || '#8257e5'; // Default purple for unknown languages
+        }
+        
+        // Render repository list
+        function renderRepositories(repos) {
+            reposList.innerHTML = '';
+            
+            if (repos.length === 0) {
+                reposList.innerHTML = `
+                    <div class="p-4 text-center theme-text-secondary">
+                        <svg class="w-8 h-8 mx-auto mb-2" viewBox="0 0 16 16" fill="currentColor">
+                            <path fill-rule="evenodd" d="M8 0a8 8 0 100 16A8 8 0 008 0zm0 14A6 6 0 108 2a6 6 0 000 12zm3.25-8.25a.75.75 0 00-1.5 0v2.5h-2.5a.75.75 0 000 1.5h2.5v2.5a.75.75 0 001.5 0v-2.5h2.5a.75.75 0 000-1.5h-2.5v-2.5z"></path>
+                        </svg>
+                        <p>No repositories found</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            repos.forEach(repo => {
+                const repoItem = document.createElement('div');
+                repoItem.className = 'py-3 px-3 border-b theme-border theme-hover cursor-pointer';
+                repoItem.dataset.repoId = repo.id;
+                
+                repoItem.innerHTML = `
+                    <div class="flex flex-col">
+                        <div class="flex items-center mb-1">
+                            <svg class="w-4 h-4 mr-2 theme-text-secondary" viewBox="0 0 16 16" fill="currentColor">
+                                <path fill-rule="evenodd" d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V1.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z"></path>
+                            </svg>
+                            <span class="font-semibold theme-primary">${repo.owner}/<span class="font-bold">${repo.name}</span></span>
+                        </div>
+                        <p class="ml-6 mb-2 theme-text line-clamp-2 text-sm">${repo.description || 'No description provided'}</p>
+                        <div class="ml-6 flex items-center text-xs theme-text-secondary gap-4">
+                            <div class="flex items-center gap-1">
+                                <span class="inline-block w-2.5 h-2.5 rounded-full" style="background-color: ${getLanguageColor(repo.language)}"></span>
+                                <span>${repo.language}</span>
+                            </div>
+                            <div class="flex items-center gap-1">
+                                <svg class="w-3.5 h-3.5" viewBox="0 0 16 16" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z"></path>
+                                </svg>
+                                <span>${formatNumber(repo.stars)}</span>
+                            </div>
+                            <div class="flex items-center gap-1">
+                                <svg class="w-3.5 h-3.5" viewBox="0 0 16 16" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M5 3.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm0 2.122a2.25 2.25 0 10-1.5 0v.878A2.25 2.25 0 005.75 8.5h1.5v2.128a2.251 2.251 0 101.5 0V8.5h1.5a2.25 2.25 0 002.25-2.25v-.878a2.25 2.25 0 10-1.5 0v.878a.75.75 0 01-.75.75h-4.5A.75.75 0 015 6.25v-.878zm3.75 7.378a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm3-8.75a.75.75 0 100-1.5.75.75 0 000 1.5z"></path>
+                                </svg>
+                                <span>${formatNumber(repo.forks)}</span>
+                            </div>
+                            <div>Updated ${formatRelativeDate(repo.updated_at)}</div>
+                        </div>
+                    </div>
+                `;
+                
+                repoItem.addEventListener('click', () => {
+                    // Remove active class from all repo items
+                    document.querySelectorAll('#repos-list > div').forEach(item => {
+                        item.classList.remove('theme-active', 'active');
+                    });
+                    
+                    // Add active class to the clicked repo item
+                    repoItem.classList.add('theme-active', 'active');
+                    
+                    // Show repository details
+                    showRepositoryDetails(repo);
+                    
+                    // On mobile, close the sidebar after selection
+                    if (window.innerWidth < 768) {
+                        sidebar.classList.remove('translate-x-0');
+                        sidebar.classList.add('-translate-x-full');
+                    }
+                });
+                
+                reposList.appendChild(repoItem);
+            });
+        }
+        
+        // Show repository details
+        function showRepositoryDetails(repo) {
+            content.innerHTML = `
+                <div class="max-w-4xl mx-auto animate-fade-in opacity-0" style="animation-duration: 0.5s">
+                    <div class="mb-6">
+                        <div class="flex items-center gap-4 mb-4">
+                            <a href="https://github.com/${repo.owner}/${repo.name}" target="_blank" class="flex items-center gap-1 theme-primary hover:underline">
+                                <svg class="w-4 h-4" viewBox="0 0 16 16" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M10.604 1h4.146a.25.25 0 01.25.25v4.146a.25.25 0 01-.427.177L13.03 4.03 9.28 7.78a.75.75 0 01-1.06-1.06l3.75-3.75-1.543-1.543A.25.25 0 0110.604 1zM3.75 2A1.75 1.75 0 002 3.75v8.5c0 .966.784 1.75 1.75 1.75h8.5A1.75 1.75 0 0014 12.25v-3.5a.75.75 0 00-1.5 0v3.5a.25.25 0 01-.25.25h-8.5a.25.25 0 01-.25-.25v-8.5a.25.25 0 01.25-.25h3.5a.75.75 0 000-1.5h-3.5z"></path>
+                                </svg>
+                                View on GitHub
+                            </a>
+                        </div>
+                    </div>
+                    <div class="p-6 theme-bg-secondary border theme-border rounded-md leading-relaxed markdown-body">
+                        <h1>${repo.name}</h1>
+                        <p>${repo.description}</p>
+                        
+                        <div class="px-4 py-3 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-700 rounded-md text-amber-800 dark:text-amber-300 mb-4">
+                            <p>Note: This is a fallback README content. The actual README couldn't be fetched from GitHub's API in this demo.</p>
+                        </div>
+                        
+                        <h2>About ${repo.name}</h2>
+                        <p>This is a preview of the ${repo.name} repository maintained by ${repo.owner}. For complete and up-to-date information, please visit the <a href="https://github.com/${repo.owner}/${repo.name}" target="_blank">GitHub repository</a>.</p>
+                        
+                        <h2>Features</h2>
+                        <ul>
+                            <li>Feature details would be available in the actual README</li>
+                            <li>Visit the repository on GitHub for complete documentation</li>
+                        </ul>
+                        
+                        <h2>Getting Started</h2>
+                        <p>To get started with ${repo.name}, visit the <a href="https://github.com/${repo.owner}/${repo.name}" target="_blank">GitHub repository</a> for installation instructions and documentation.</p>
+                    </div>
+                </div>
+            `;
+        }
+        
+        // Initialize repository list
+        setTimeout(() => {
+            renderRepositories(repositories);
+        }, 800);
+        
+        // Handle search functionality
+        searchRepos.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            const filteredRepos = repositories.filter(repo => {
+                return repo.name.toLowerCase().includes(searchTerm) || 
+                       repo.owner.toLowerCase().includes(searchTerm) || 
+                       (repo.description && repo.description.toLowerCase().includes(searchTerm));
+            });
+            renderRepositories(filteredRepos);
+        });
+        
+        // Mobile sidebar toggle
+        mobileToggle.addEventListener('click', function() {
+            sidebar.classList.toggle('-translate-x-full');
+            sidebar.classList.toggle('translate-x-0');
+        });
+        
+        toggleSidebar.addEventListener('click', function() {
+            sidebar.classList.add('-translate-x-full');
+            sidebar.classList.remove('translate-x-0');
+        });
+        
+        // Add animation keyframes
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fade-in {
+                from { opacity: 0; }
+                to { opacity: 1; }
+            }
+            .animate-fade-in {
+                animation: fade-in 0.5s ease-out forwards;
+            }
+        `;
+        document.head.appendChild(style);
     </script>
 </body>
 </html>
