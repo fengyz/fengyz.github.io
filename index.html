@@ -5,6 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GitHub Repos Viewer</title>
     <style>
+        :root {
+            --primary-color: #0366d6;
+            --text-color: #24292e;
+            --text-secondary: #586069;
+            --bg-color: #ffffff;
+            --bg-secondary: #f6f8fa;
+            --border-color: #e1e4e8;
+            --hover-color: #f1f2f4;
+            --active-color: #e2e8f0;
+            --header-height: 60px;
+        }
+        
         * {
             margin: 0;
             padding: 0;
@@ -12,20 +24,22 @@
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
             display: flex;
             height: 100vh;
             overflow: hidden;
-            color: #333;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            font-size: 14px;
+            line-height: 1.5;
         }
         
         #sidebar {
             width: 280px;
-            background-color: #f5f5f5;
+            background-color: var(--bg-secondary);
             height: 100%;
             overflow-y: auto;
-            border-right: 1px solid #e1e4e8;
-            padding: 20px 0;
+            border-right: 1px solid var(--border-color);
             transition: width 0.3s ease;
         }
         
@@ -36,17 +50,17 @@
         #toggle-sidebar {
             background: none;
             border: none;
-            color: #586069;
+            color: var(--text-secondary);
             cursor: pointer;
-            padding: 8px 15px;
+            padding: 8px;
             font-size: 16px;
-            width: 100%;
-            text-align: right;
-            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
-        #sidebar.collapsed #toggle-sidebar {
-            text-align: center;
+        #toggle-sidebar:hover {
+            color: var(--text-color);
         }
         
         #sidebar.collapsed .sidebar-title,
@@ -55,18 +69,22 @@
         }
         
         .sidebar-header {
-            padding: 0 20px 10px;
+            height: var(--header-height);
+            padding: 0 16px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            border-bottom: 1px solid #e1e4e8;
-            margin-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+            background-color: var(--bg-color);
         }
         
         .sidebar-title {
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 600;
-            color: #24292e;
+            color: var(--text-color);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         
         .repo-list {
@@ -74,34 +92,58 @@
         }
         
         .repo-item {
-            padding: 10px 20px;
+            padding: 12px 16px;
             cursor: pointer;
             transition: background-color 0.2s ease;
             display: flex;
             align-items: center;
+            border-bottom: 1px solid var(--border-color);
         }
         
         .repo-item:hover {
-            background-color: #e6e8eb;
+            background-color: var(--hover-color);
         }
         
         .repo-item.active {
-            background-color: #0366d6;
-            color: white;
+            background-color: var(--active-color);
+            font-weight: 600;
         }
         
         .repo-icon {
             margin-right: 10px;
-            font-size: 18px;
+            font-size: 16px;
+            color: var(--text-secondary);
+        }
+        
+        .repo-title {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         
         #content {
             flex: 1;
-            padding: 20px;
             overflow-y: auto;
-            background-color: #fff;
+            background-color: var(--bg-color);
             display: flex;
             flex-direction: column;
+        }
+        
+        .content-header {
+            height: var(--header-height);
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            background-color: var(--bg-color);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        
+        .content-body {
+            padding: 24px;
+            flex: 1;
         }
         
         .welcome-container {
@@ -109,10 +151,11 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100%;
+            height: calc(100vh - var(--header-height));
             text-align: center;
             opacity: 0;
             animation: fadeIn 1s ease forwards;
+            padding: 0 24px;
         }
         
         @keyframes fadeIn {
@@ -121,10 +164,16 @@
         }
         
         .welcome-text {
-            font-size: 36px;
+            font-size: 32px;
             font-weight: 300;
-            color: #586069;
-            margin-bottom: 20px;
+            color: var(--text-color);
+            margin-bottom: 16px;
+        }
+        
+        .welcome-description {
+            color: var(--text-secondary);
+            max-width: 500px;
+            margin-bottom: 24px;
         }
         
         .repo-details {
@@ -133,50 +182,188 @@
         }
         
         .repo-header {
-            border-bottom: 1px solid #e1e4e8;
-            padding-bottom: 20px;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
         }
         
         .repo-name {
-            font-size: 28px;
+            font-size: 24px;
             font-weight: 600;
-            color: #24292e;
-            margin-bottom: 10px;
+            color: var(--text-color);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
         }
         
-        .repo-description {
-            color: #586069;
-            font-size: 16px;
-            margin-bottom: 15px;
+        .repo-name a {
+            color: var(--primary-color);
+            text-decoration: none;
         }
         
-        .repo-content {
+        .repo-name a:hover {
+            text-decoration: underline;
+        }
+        
+        .repo-meta {
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        
+        .repo-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .repo-readme {
+            padding: 24px;
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
             line-height: 1.6;
         }
         
+        /* Markdown styling */
+        .markdown-body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.6;
+            word-wrap: break-word;
+        }
+        
+        .markdown-body h1 {
+            font-size: 28px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
+            margin-bottom: 16px;
+        }
+        
+        .markdown-body h2 {
+            font-size: 24px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 6px;
+            margin: 24px 0 16px;
+        }
+        
+        .markdown-body h3 {
+            font-size: 20px;
+            margin: 24px 0 16px;
+        }
+        
+        .markdown-body h4 {
+            font-size: 16px;
+            margin: 24px 0 16px;
+        }
+        
+        .markdown-body p {
+            margin-bottom: 16px;
+        }
+        
+        .markdown-body ul, 
+        .markdown-body ol {
+            padding-left: 24px;
+            margin-bottom: 16px;
+        }
+        
+        .markdown-body li {
+            margin-bottom: 4px;
+        }
+        
+        .markdown-body code {
+            font-family: SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace;
+            padding: 0.2em 0.4em;
+            margin: 0;
+            font-size: 85%;
+            background-color: rgba(27, 31, 35, 0.05);
+            border-radius: 3px;
+        }
+        
+        .markdown-body pre {
+            font-family: SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace;
+            padding: 16px;
+            overflow: auto;
+            font-size: 85%;
+            line-height: 1.45;
+            background-color: var(--bg-secondary);
+            border-radius: 3px;
+            margin-bottom: 16px;
+        }
+        
+        .markdown-body pre code {
+            padding: 0;
+            background-color: transparent;
+        }
+        
+        .markdown-body blockquote {
+            margin: 0 0 16px 0;
+            padding: 0 16px;
+            color: var(--text-secondary);
+            border-left: 4px solid var(--border-color);
+        }
+        
+        .markdown-body table {
+            display: block;
+            width: 100%;
+            overflow: auto;
+            border-spacing: 0;
+            border-collapse: collapse;
+            margin-bottom: 16px;
+        }
+        
+        .markdown-body table tr {
+            background-color: var(--bg-color);
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .markdown-body table tr:nth-child(2n) {
+            background-color: var(--bg-secondary);
+        }
+        
+        .markdown-body table th,
+        .markdown-body table td {
+            padding: 8px 13px;
+            border: 1px solid var(--border-color);
+        }
+        
+        .markdown-body table th {
+            font-weight: 600;
+        }
+        
+        .markdown-body img {
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+        
         .error-message {
-            padding: 20px;
+            padding: 16px;
             background-color: #ffebe9;
             border: 1px solid #f0a8a8;
-            border-radius: 5px;
+            border-radius: 6px;
             color: #cf222e;
-            margin: 20px 0;
+            margin: 24px 0;
         }
         
         .loading {
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100%;
+            height: calc(100vh - var(--header-height));
+            gap: 16px;
+        }
+        
+        .loading-text {
+            color: var(--text-secondary);
         }
         
         .loading-spinner {
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #0366d6;
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-top: 4px solid var(--primary-color);
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
+            width: 32px;
+            height: 32px;
             animation: spin 1s linear infinite;
         }
         
@@ -185,43 +372,43 @@
             100% { transform: rotate(360deg); }
         }
         
-        .github-icon {
-            margin-right: 10px;
-            vertical-align: middle;
+        .icon {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            vertical-align: text-bottom;
+            fill: currentColor;
         }
         
         @media (max-width: 768px) {
             #sidebar {
-                width: 240px;
+                position: fixed;
+                z-index: 100;
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
             }
             
             body.sidebar-open #sidebar {
-                position: absolute;
-                z-index: 100;
-                height: 100%;
+                transform: translateX(0);
                 box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            }
-            
-            body:not(.sidebar-open) #sidebar {
-                width: 0;
-                padding: 0;
             }
             
             #mobile-toggle {
                 display: block;
                 position: fixed;
-                top: 10px;
-                left: 10px;
+                top: 12px;
+                left: 12px;
                 z-index: 101;
-                background: #f5f5f5;
-                border: 1px solid #e1e4e8;
+                background: var(--bg-color);
+                border: 1px solid var(--border-color);
                 border-radius: 4px;
-                padding: 5px 10px;
+                padding: 8px;
                 cursor: pointer;
+                color: var(--text-color);
             }
             
-            #content {
-                padding-top: 50px;
+            .content-header {
+                padding-left: 48px;
             }
         }
         
@@ -230,15 +417,39 @@
                 display: none;
             }
         }
+
+        /* Dark mode support */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --primary-color: #58a6ff;
+                --text-color: #c9d1d9;
+                --text-secondary: #8b949e;
+                --bg-color: #0d1117;
+                --bg-secondary: #161b22;
+                --border-color: #30363d;
+                --hover-color: #1f2428;
+                --active-color: #2a3036;
+            }
+        }
     </style>
+    <!-- Add marked.js for Markdown parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked@4.0.0/marked.min.js"></script>
 </head>
 <body>
-    <button id="mobile-toggle">&#9776;</button>
+    <button id="mobile-toggle" aria-label="Toggle navigation">
+        <svg class="icon" viewBox="0 0 16 16" width="16" height="16" fill="currentColor">
+            <path fill-rule="evenodd" d="M1 2.75A.75.75 0 011.75 2h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 2.75zm0 5A.75.75 0 011.75 7h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 7.75zM1.75 12a.75.75 0 100 1.5h12.5a.75.75 0 100-1.5H1.75z"></path>
+        </svg>
+    </button>
     
     <aside id="sidebar">
         <div class="sidebar-header">
             <span class="sidebar-title">GitHub Repositories</span>
-            <button id="toggle-sidebar">&#9776;</button>
+            <button id="toggle-sidebar" aria-label="Toggle sidebar width">
+                <svg class="icon" viewBox="0 0 16 16" width="16" height="16" fill="currentColor">
+                    <path fill-rule="evenodd" d="M6.22 3.22a.75.75 0 011.06 0l4.25 4.25a.75.75 0 010 1.06l-4.25 4.25a.75.75 0 01-1.06-1.06L9.94 8 6.22 4.28a.75.75 0 010-1.06z"></path>
+                </svg>
+            </button>
         </div>
         <ul class="repo-list" id="repo-list">
             <!-- Repository items will be dynamically added here -->
@@ -246,9 +457,14 @@
     </aside>
     
     <main id="content">
-        <div class="welcome-container">
-            <h1 class="welcome-text">Welcome!</h1>
-            <p>Select a repository from the left menu to view details.</p>
+        <div class="content-header" id="content-header">
+            <!-- Dynamic header content -->
+        </div>
+        <div class="content-body" id="content-body">
+            <div class="welcome-container">
+                <h1 class="welcome-text">Welcome!</h1>
+                <p class="welcome-description">Select a repository from the left menu to view its README content and details.</p>
+            </div>
         </div>
     </main>
 
@@ -299,17 +515,29 @@
         
         document.addEventListener('DOMContentLoaded', function() {
             const repoList = document.getElementById('repo-list');
-            const content = document.getElementById('content');
+            const contentHeader = document.getElementById('content-header');
+            const contentBody = document.getElementById('content-body');
             const toggleSidebarBtn = document.getElementById('toggle-sidebar');
             const mobileToggleBtn = document.getElementById('mobile-toggle');
             let activeRepo = null;
+            
+            // Set up marked.js options
+            marked.setOptions({
+                breaks: true,
+                gfm: true,
+                headerIds: true,
+                headerPrefix: 'github-readme-',
+                sanitize: false
+            });
             
             // Generate repository list
             repositories.forEach(repo => {
                 const li = document.createElement('li');
                 li.className = 'repo-item';
                 li.innerHTML = `
-                    <span class="repo-icon">📁</span>
+                    <svg class="repo-icon icon" viewBox="0 0 16 16" width="16" height="16" fill="currentColor">
+                        <path fill-rule="evenodd" d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z"></path>
+                    </svg>
                     <span class="repo-title">${repo.owner}/${repo.name}</span>
                 `;
                 li.addEventListener('click', () => loadRepository(repo));
@@ -344,72 +572,144 @@
                     }
                 });
                 
+                // Update header
+                contentHeader.innerHTML = `
+                    <h1 class="repo-name">
+                        <svg class="icon" style="margin-right: 8px;" viewBox="0 0 16 16" width="16" height="16" fill="currentColor">
+                            <path fill-rule="evenodd" d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z"></path>
+                        </svg>
+                        ${repo.owner}/<strong>${repo.name}</strong>
+                    </h1>
+                `;
+                
                 // Show loading
-                content.innerHTML = `
+                contentBody.innerHTML = `
                     <div class="loading">
                         <div class="loading-spinner"></div>
+                        <p class="loading-text">Loading README from GitHub...</p>
                     </div>
                 `;
                 
                 // Close mobile sidebar
                 document.body.classList.remove('sidebar-open');
                 
-                // Fetch repository data
-                fetchRepositoryContent(repo);
+                // Fetch repository README
+                fetchRepositoryReadme(repo);
             }
             
-            function fetchRepositoryContent(repo) {
-                // Simulate loading time
-                setTimeout(() => {
-                    try {
-                        const repoUrl = `https://github.com/${repo.owner}/${repo.name}`;
-                        
-                        // Display repository content
-                        content.innerHTML = `
-                            <div class="repo-details">
-                                <div class="repo-header">
-                                    <h1 class="repo-name">
-                                        <svg class="github-icon" height="20" width="20" viewBox="0 0 16 16" fill="currentColor">
-                                            <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+            function fetchRepositoryReadme(repo) {
+                const readmeUrl = `https://api.github.com/repos/${repo.owner}/${repo.name}/readme`;
+                
+                fetch(readmeUrl)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('README not found or inaccessible');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        // The content is Base64 encoded
+                        const readmeContent = atob(data.content);
+                        displayReadme(repo, readmeContent);
+                    })
+                    .catch(error => {
+                        // If we can't fetch the real README, show a fallback
+                        console.error('Error fetching README:', error);
+                        displayFallbackReadme(repo);
+                    });
+            }
+            
+            function displayReadme(repo, content) {
+                // Convert Markdown to HTML
+                try {
+                    const htmlContent = marked.parse(content);
+                    
+                    contentBody.innerHTML = `
+                        <div class="repo-details">
+                            <div class="repo-header">
+                                <div class="repo-meta">
+                                    <span class="repo-meta-item">
+                                        <svg class="icon" viewBox="0 0 16 16" width="16" height="16" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25zm0 2.445L6.615 5.5a.75.75 0 01-.564.41l-3.097.45 2.24 2.184a.75.75 0 01.216.664l-.528 3.084 2.769-1.456a.75.75 0 01.698 0l2.77 1.456-.53-3.084a.75.75 0 01.216-.664l2.24-2.183-3.096-.45a.75.75 0 01-.564-.41L8 2.694v.001z"></path>
                                         </svg>
-                                        <a href="${repoUrl}" target="_blank">${repo.owner}/${repo.name}</a>
-                                    </h1>
-                                    <p class="repo-description">${repo.description}</p>
-                                </div>
-                                <div class="repo-content">
-                                    <h2>About this repository</h2>
-                                    <p>This is a preview of the ${repo.name} repository. In a real implementation, this content would be fetched from the GitHub API or embedded from the repository's README.</p>
-                                    
-                                    <h3>Key Features</h3>
-                                    <ul>
-                                        <li>Feature 1 of ${repo.name}</li>
-                                        <li>Feature 2 of ${repo.name}</li>
-                                        <li>Feature 3 of ${repo.name}</li>
-                                    </ul>
-                                    
-                                    <h3>Getting Started</h3>
-                                    <p>To get started with ${repo.name}, visit the <a href="${repoUrl}" target="_blank">GitHub repository</a> for complete documentation.</p>
+                                        Star
+                                    </span>
+                                    <span class="repo-meta-item">
+                                        <svg class="icon" viewBox="0 0 16 16" width="16" height="16" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M5 3.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm0 2.122a2.25 2.25 0 10-1.5 0v.878A2.25 2.25 0 005.75 8.5h1.5v2.128a2.251 2.251 0 101.5 0V8.5h1.5a2.25 2.25 0 002.25-2.25v-.878a2.25 2.25 0 10-1.5 0v.878a.75.75 0 01-.75.75h-4.5A.75.75 0 015 6.25v-.878zm3.75 7.378a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm3-8.75a.75.75 0 100-1.5.75.75 0 000 1.5z"></path>
+                                        </svg>
+                                        Fork
+                                    </span>
+                                    <span class="repo-meta-item">
+                                        <svg class="icon" viewBox="0 0 16 16" width="16" height="16" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M1.643 3.143L.427 1.927A.25.25 0 000 2.104V5.75c0 .138.112.25.25.25h3.646a.25.25 0 00.177-.427L2.715 4.215a6.5 6.5 0 11-1.18 4.458.75.75 0 10-1.493.154 8.001 8.001 0 101.6-5.684zM7.75 4a.75.75 0 01.75.75v2.992l2.028.812a.75.75 0 01-.557 1.392l-2.5-1A.75.75 0 017 8.25v-3.5A.75.75 0 017.75 4z"></path>
+                                        </svg>
+                                        Watch
+                                    </span>
+                                    <a href="https://github.com/${repo.owner}/${repo.name}" target="_blank" class="repo-meta-item" style="color: var(--primary-color); text-decoration: none;">
+                                        <svg class="icon" viewBox="0 0 16 16" width="16" height="16" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M10.604 1h4.146a.25.25 0 01.25.25v4.146a.25.25 0 01-.427.177L13.03 4.03 9.28 7.78a.75.75 0 01-1.06-1.06l3.75-3.75-1.543-1.543A.25.25 0 0110.604 1zM3.75 2A1.75 1.75 0 002 3.75v8.5c0 .966.784 1.75 1.75 1.75h8.5A1.75 1.75 0 0014 12.25v-3.5a.75.75 0 00-1.5 0v3.5a.25.25 0 01-.25.25h-8.5a.25.25 0 01-.25-.25v-8.5a.25.25 0 01.25-.25h3.5a.75.75 0 000-1.5h-3.5z"></path>
+                                        </svg>
+                                        View on GitHub
+                                    </a>
                                 </div>
                             </div>
-                        `;
-                    } catch (error) {
-                        content.innerHTML = `
-                            <div class="error-message">
-                                Error loading repository content: ${error.message}
+                            <div class="repo-readme markdown-body">
+                                ${htmlContent}
                             </div>
-                        `;
-                    }
-                }, 1000);
+                        </div>
+                    `;
+                } catch (error) {
+                    console.error('Error parsing markdown:', error);
+                    displayFallbackReadme(repo);
+                }
             }
-        });
-        
-        // Handle external links in Safari
-        document.addEventListener('click', function(event) {
-            const target = event.target.closest('a');
-            if (target && target.getAttribute('target') === '_blank') {
-                event.preventDefault();
-                window.open(target.href, '_blank');
+            
+            function displayFallbackReadme(repo) {
+                contentBody.innerHTML = `
+                    <div class="repo-details">
+                        <div class="repo-header">
+                            <div class="repo-meta">
+                                <a href="https://github.com/${repo.owner}/${repo.name}" target="_blank" class="repo-meta-item" style="color: var(--primary-color); text-decoration: none;">
+                                    <svg class="icon" viewBox="0 0 16 16" width="16" height="16" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M10.604 1h4.146a.25.25 0 01.25.25v4.146a.25.25 0 01-.427.177L13.03 4.03 9.28 7.78a.75.75 0 01-1.06-1.06l3.75-3.75-1.543-1.543A.25.25 0 0110.604 1zM3.75 2A1.75 1.75 0 002 3.75v8.5c0 .966.784 1.75 1.75 1.75h8.5A1.75 1.75 0 0014 12.25v-3.5a.75.75 0 00-1.5 0v3.5a.25.25 0 01-.25.25h-8.5a.25.25 0 01-.25-.25v-8.5a.25.25 0 01.25-.25h3.5a.75.75 0 000-1.5h-3.5z"></path>
+                                    </svg>
+                                    View on GitHub
+                                </a>
+                            </div>
+                        </div>
+                        <div class="repo-readme markdown-body">
+                            <h1>${repo.name}</h1>
+                            <p>${repo.description}</p>
+                            
+                            <blockquote>
+                                <p>Note: This is a fallback README content. The actual README couldn't be fetched from GitHub's API.</p>
+                            </blockquote>
+                            
+                            <h2>About ${repo.name}</h2>
+                            <p>This is a preview of the ${repo.name} repository maintained by ${repo.owner}. For complete and up-to-date information, please visit the <a href="https://github.com/${repo.owner}/${repo.name}" target="_blank">GitHub repository</a>.</p>
+                            
+                            <h2>Features</h2>
+                            <ul>
+                                <li>Feature details would be available in the actual README</li>
+                                <li>Visit the repository on GitHub for complete documentation</li>
+                            </ul>
+                            
+                            <h2>Getting Started</h2>
+                            <p>To get started with ${repo.name}, visit the <a href="https://github.com/${repo.owner}/${repo.name}" target="_blank">GitHub repository</a> for installation instructions and documentation.</p>
+                        </div>
+                    </div>
+                `;
             }
+            
+            // Allow escaping the sidebar on mobile when clicking outside of it
+            document.addEventListener('click', function(event) {
+                if (document.body.classList.contains('sidebar-open') && 
+                    !event.target.closest('#sidebar') && 
+                    !event.target.closest('#mobile-toggle')) {
+                    document.body.classList.remove('sidebar-open');
+                }
+            });
         });
     </script>
 </body>
