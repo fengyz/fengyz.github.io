@@ -1,6 +1,15 @@
 {
   "repositories": [
     {
+        "name": "awesome-mcp-servers",
+        "owner": "punkpeye",
+        "description": "A collection of MCP servers.",
+        "stars": 30261,
+        "forks": 2031,
+        "language": null,
+        "updated": "2025-04-04T04:01:29Z"
+    },
+    {
       "name": "tensorflow",
       "owner": "tensorflow",
       "description": "An Open Source Machine Learning Framework for Everyone",
