@@ -90,6 +90,46 @@
             font-size: 16px;
         }
 
+        /* Accordion Styles */
+        .accordion {
+            margin-bottom: 16px;
+        }
+
+        .accordion-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 16px;
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.2s ease;
+        }
+
+        .accordion-header:hover {
+            background-color: var(--highlight-bg);
+        }
+
+        .accordion-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-content {
+            height: 0;
+            overflow: hidden;
+            transition: height 0.3s ease;
+        }
+
+        .accordion.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        .accordion.active .accordion-content {
+            height: auto; /* Auto height instead of fixed max-height */
+        }
+
         .repo-list {
             padding: 8px;
         }
@@ -267,31 +307,43 @@
             background-color: var(--bg-secondary);
         }
 
+        .markdown-body img {
+            max-width: 100%;
+            border-style: none;
+            box-sizing: initial;
+            background-color: var(--bg-primary);
+        }
+
+        .mobile-toggle {
+            display: none;
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            z-index: 20;
+            background-color: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 8px;
+            cursor: pointer;
+        }
+
         .loading {
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            padding: 40px;
+            justify-content: center;
+            padding: 24px;
             color: var(--text-secondary);
         }
 
-        .spinner {
-            border: 4px solid var(--border-color);
-            border-radius: 50%;
+        .loading-spinner {
+            border: 4px solid var(--bg-secondary);
             border-top: 4px solid var(--highlight-color);
-            width: 24px;
-            height: 24px;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
             animation: spin 1s linear infinite;
-            margin-right: 12px;
-        }
-
-        .error-message {
-            color: #f85149;
-            padding: 20px;
-            border: 1px solid #f85149;
-            border-radius: 6px;
-            background-color: rgba(248, 81, 73, 0.1);
-            margin-top: 16px;
+            margin-bottom: 16px;
         }
 
         @keyframes spin {
@@ -299,11 +351,19 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* Mobile responsive styles */
+        .error-message {
+            color: #cb2431;
+            padding: 16px;
+            text-align: center;
+            background-color: rgba(203, 36, 49, 0.1);
+            border-radius: 6px;
+            margin: 16px;
+        }
+
         @media (max-width: 768px) {
             .sidebar {
                 transform: translateX(-100%);
-                width: 85%;
+                width: 250px;
             }
             
             .sidebar.open {
@@ -314,264 +374,338 @@
                 margin-left: 0;
             }
             
-            .backdrop {
-                display: none;
-                position: fixed;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background-color: rgba(0, 0, 0, 0.5);
-                z-index: 5;
-            }
-            
-            .backdrop.open {
+            .mobile-toggle {
                 display: block;
-            }
-            
-            .menu-toggle {
-                display: block;
-                position: fixed;
-                top: 10px;
-                left: 10px;
-                z-index: 20;
-                background-color: var(--bg-primary);
-                color: var(--text-primary);
-                border: 1px solid var(--border-color);
-                border-radius: 4px;
-                padding: 8px;
-                cursor: pointer;
-            }
-        }
-
-        @media (min-width: 769px) {
-            .menu-toggle {
-                display: none;
             }
         }
     </style>
 </head>
 <body>
-    <button class="menu-toggle" id="menuToggle">☰</button>
-    <div class="backdrop" id="backdrop"></div>
-    
     <div class="container">
-        <div class="sidebar" id="sidebar">
+        <button class="mobile-toggle">
+            <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor">
+                <path fill-rule="evenodd" d="M1 2.75A.75.75 0 011.75 2h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 2.75zm0 5A.75.75 0 011.75 7h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 7.75zM1.75 12a.75.75 0 100 1.5h12.5a.75.75 0 100-1.5H1.75z"></path>
+            </svg>
+        </button>
+        
+        <aside class="sidebar">
             <div class="header">
-                <div class="header-title">GitHub Repositories</div>
-                <button class="theme-toggle" id="themeToggle">🌓</button>
+                <div class="header-title">GitHub Repos</div>
+                <button class="theme-toggle" id="themeToggle">
+                    <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" id="themeIcon">
+                        <path fill-rule="evenodd" d="M8 1.5c-2.363 0-4.279 1.98-4.279 4.42 0 .858.266 1.65.72 2.303A3.53 3.53 0 0 1 4.68a3.97 3.97 0 0 0 3.32 6.23 3.97 3.97 0 0 0 3.356-6.43A3.53 3.53 0 0 1 8 7.75c-1.544 0-2.8-1.254-2.8-2.797 0-1.544 1.256-2.799 2.8-2.799.565 0 1.089.16 1.534.438.645-1.086 1.83-1.812 3.186-1.812a3.65 3.65 0 0 1 3.64 3.64c0 1.498-.904 2.783-2.194 3.342.05.242.094.487.094.738a3.97 3.97 0 0 1-3.356 6.43 3.97 3.97 0 0 1-3.32-6.23 4.29 4.29 0 0 0 .717-2.391 4.278 4.278 0 0 0-4.28-4.279z"></path>
+                    </svg>
+                </button>
             </div>
-            <div class="repo-list" id="repoList">
-                <div class="loading">
-                    <div class="spinner"></div>
-                    Loading repositories...
+            
+            <!-- My Tools Accordion (Placed first) -->
+            <div class="accordion active" id="toolsAccordion">
+                <div class="accordion-header">
+                    <span>My Tools</span>
+                    <span class="accordion-icon">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                            <path fill-rule="evenodd" d="M12.78 6.22a.75.75 0 010 1.06l-4.25 4.25a.75.75 0 01-1.06 0L3.22 7.28a.75.75 0 011.06-1.06L8 9.94l3.72-3.72a.75.75 0 011.06 0z"></path>
+                        </svg>
+                    </span>
+                </div>
+                <div class="accordion-content" id="toolsContent">
+                    <div id="toolsLoading" class="loading">
+                        <div class="loading-spinner"></div>
+                        <span>Loading tools...</span>
+                    </div>
+                    <div id="toolsError" class="error-message" style="display: none;"></div>
+                    <div class="repo-list" id="toolsList"></div>
                 </div>
             </div>
-        </div>
-        
-        <div class="content" id="content">
-            <div id="welcomeMessage">
-                <h1>Select a repository</h1>
-                <p>Choose a repository from the sidebar to view its README content.</p>
+            
+            <!-- My Favorite Repos Accordion -->
+            <div class="accordion" id="reposAccordion">
+                <div class="accordion-header">
+                    <span>My Favorite Repos</span>
+                    <span class="accordion-icon">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                            <path fill-rule="evenodd" d="M12.78 6.22a.75.75 0 010 1.06l-4.25 4.25a.75.75 0 01-1.06 0L3.22 7.28a.75.75 0 011.06-1.06L8 9.94l3.72-3.72a.75.75 0 011.06 0z"></path>
+                        </svg>
+                    </span>
+                </div>
+                <div class="accordion-content" id="reposContent">
+                    <div id="reposLoading" class="loading">
+                        <div class="loading-spinner"></div>
+                        <span>Loading repositories...</span>
+                    </div>
+                    <div id="reposError" class="error-message" style="display: none;"></div>
+                    <div class="repo-list" id="reposList"></div>
+                </div>
             </div>
-        </div>
+        </aside>
+        
+        <main class="content">
+            <div id="readmeLoading" class="loading" style="display: none;">
+                <div class="loading-spinner"></div>
+                <span>Loading README...</span>
+            </div>
+            <div id="readmeError" class="error-message" style="display: none;"></div>
+            <div id="readmeContainer" class="readme-container" style="display: none;">
+                <div class="repo-header">
+                    <h2 id="repoTitle"></h2>
+                    <a id="repoLink" href="#" target="_blank">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10.604 1h4.146a.25.25 0 01.25.25v4.146a.25.25 0 01-.427.177L13.03 4.03 9.28 7.78a.75.75 0 01-1.06-1.06l3.75-3.75-1.543-1.543A.25.25 0 0110.604 1zM3.75 2A1.75 1.75 0 002 3.75v8.5c0 .966.784 1.75 1.75 1.75h8.5A1.75 1.75 0 0014 12.25v-3.5a.75.75 0 00-1.5 0v3.5a.25.25 0 01-.25.25h-8.5a.25.25 0 01-.25-.25v-8.5a.25.25 0 01.25-.25h3.5a.75.75 0 000-1.5h-3.5z"></path>
+                        </svg>
+                    </a>
+                </div>
+                <div id="readmeContent" class="markdown-body"></div>
+            </div>
+        </main>
     </div>
 
     <script>
-        // DOM Elements
-        const body = document.body;
-        const sidebar = document.getElementById('sidebar');
-        const content = document.getElementById('content');
-        const repoList = document.getElementById('repoList');
-        const themeToggle = document.getElementById('themeToggle');
-        const menuToggle = document.getElementById('menuToggle');
-        const backdrop = document.getElementById('backdrop');
-
-        // Theme toggle functionality
-        themeToggle.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
-            const isDarkMode = body.classList.contains('dark-mode');
-            localStorage.setItem('darkMode', isDarkMode);
+        document.addEventListener('DOMContentLoaded', function() {
+            // Theme toggle functionality
+            const themeToggle = document.getElementById('themeToggle');
+            const themeIcon = document.getElementById('themeIcon');
+            
+            themeToggle.addEventListener('click', function() {
+                document.body.classList.toggle('dark-mode');
+                
+                if (document.body.classList.contains('dark-mode')) {
+                    themeIcon.innerHTML = `
+                        <path fill-rule="evenodd" d="M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.06-1.06a.75.75 0 010-1.06zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.06 0z"></path>
+                    `;
+                } else {
+                    themeIcon.innerHTML = `
+                        <path fill-rule="evenodd" d="M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z"></path>
+                    `;
+                }
+            });
+            
+            // Mobile menu toggle
+            const mobileToggle = document.querySelector('.mobile-toggle');
+            const sidebar = document.querySelector('.sidebar');
+            
+            mobileToggle.addEventListener('click', function() {
+                sidebar.classList.toggle('open');
+            });
+            
+            // Accordion functionality
+            const accordions = document.querySelectorAll('.accordion');
+            
+            accordions.forEach(accordion => {
+                const header = accordion.querySelector('.accordion-header');
+                const content = accordion.querySelector('.accordion-content');
+                
+                header.addEventListener('click', () => {
+                    accordion.classList.toggle('active');
+                    
+                    if (accordion.classList.contains('active')) {
+                        // Make the content visible for animation
+                        content.style.height = content.scrollHeight + 'px';
+                    } else {
+                        content.style.height = '0';
+                    }
+                });
+            });
+            
+            // Click handler for repository items
+            document.addEventListener('click', function(e) {
+                const repoItem = e.target.closest('.repo-item');
+                
+                if (repoItem) {
+                    const repoItems = document.querySelectorAll('.repo-item');
+                    repoItems.forEach(item => item.classList.remove('active'));
+                    
+                    repoItem.classList.add('active');
+                    
+                    const owner = repoItem.dataset.owner;
+                    const repo = repoItem.dataset.repo;
+                    
+                    loadReadme(owner, repo);
+                    
+                    // Close mobile menu if open
+                    if (window.innerWidth <= 768) {
+                        sidebar.classList.remove('open');
+                    }
+                }
+            });
         });
-
-        // Check for saved theme preference
-        if (localStorage.getItem('darkMode') === 'true') {
-            body.classList.add('dark-mode');
-        }
-
-        // Mobile menu toggle
-        menuToggle.addEventListener('click', toggleMobileMenu);
-        backdrop.addEventListener('click', toggleMobileMenu);
-
-        function toggleMobileMenu() {
-            sidebar.classList.toggle('open');
-            backdrop.classList.toggle('open');
-        }
-
-        // Format numbers for better readability (e.g. 1.2k instead of 1200)
-        function formatNumber(num) {
-            if (num >= 1000000) {
-                return (num / 1000000).toFixed(1) + 'M';
-            }
-            if (num >= 1000) {
-                return (num / 1000).toFixed(1) + 'k';
-            }
-            return num;
-        }
-
-        // Load repositories from local JSON file
+        
+        // Initialize repositories
         async function loadRepositories() {
+            // First load tools.json
+            await loadTools();
+            
+            // Then load repos.json
+            await loadFavoriteRepos();
+        }
+        
+        // Load tools from tools.json
+        async function loadTools() {
+            const toolsLoading = document.getElementById('toolsLoading');
+            const toolsError = document.getElementById('toolsError');
+            const toolsList = document.getElementById('toolsList');
+            const toolsContent = document.getElementById('toolsContent');
+            
+            try {
+                const response = await fetch('tools.json');
+                
+                if (!response.ok) {
+                    throw new Error(`Failed to load tools: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                
+                // Calculate the height
+                const toolsAccordion = document.getElementById('toolsAccordion');
+                
+                // Clear loading state and populate repos
+                toolsLoading.style.display = 'none';
+                toolsList.innerHTML = '';
+                
+                if (data.repositories && data.repositories.length > 0) {
+                    data.repositories.forEach(repo => {
+                        const repoItem = createRepoItem(repo);
+                        toolsList.appendChild(repoItem);
+                    });
+                    
+                    // Show the first repo by default
+                    const firstRepo = data.repositories[0];
+                    if (firstRepo) {
+                        loadReadme(firstRepo.owner, firstRepo.name);
+                        
+                        // Mark the first repo as active
+                        const firstRepoItem = toolsList.querySelector('.repo-item');
+                        if (firstRepoItem) {
+                            firstRepoItem.classList.add('active');
+                        }
+                    }
+                    
+                    // Set proper height for the tools accordion content
+                    if (toolsAccordion.classList.contains('active')) {
+                        toolsContent.style.height = toolsContent.scrollHeight + 'px';
+                    }
+                } else {
+                    toolsList.innerHTML = '<div class="error-message">No tools found</div>';
+                }
+            } catch (error) {
+                console.error('Error loading tools:', error);
+                toolsLoading.style.display = 'none';
+                toolsError.style.display = 'block';
+                toolsError.textContent = `Error loading tools: ${error.message}`;
+            }
+        }
+        
+        // Load favorite repos from repos.json
+        async function loadFavoriteRepos() {
+            const reposLoading = document.getElementById('reposLoading');
+            const reposError = document.getElementById('reposError');
+            const reposList = document.getElementById('reposList');
+            const reposContent = document.getElementById('reposContent');
+            
             try {
                 const response = await fetch('repos.json');
                 
                 if (!response.ok) {
-                    throw new Error(`Failed to load repos.json: ${response.status}`);
+                    throw new Error(`Failed to load repositories: ${response.status}`);
                 }
                 
                 const data = await response.json();
                 
-                if (Array.isArray(data.repositories) && data.repositories.length > 0) {
-                    renderRepositories(data.repositories);
+                // Clear loading state and populate repos
+                reposLoading.style.display = 'none';
+                reposList.innerHTML = '';
+                
+                if (data.repositories && data.repositories.length > 0) {
+                    data.repositories.forEach(repo => {
+                        const repoItem = createRepoItem(repo);
+                        reposList.appendChild(repoItem);
+                    });
+                    
+                    // Calculate proper height (but don't set it because this accordion is collapsed by default)
+                    const reposAccordion = document.getElementById('reposAccordion');
+                    if (reposAccordion.classList.contains('active')) {
+                        reposContent.style.height = reposContent.scrollHeight + 'px';
+                    }
                 } else {
-                    throw new Error('Invalid JSON format or empty repository list');
+                    reposList.innerHTML = '<div class="error-message">No repositories found</div>';
                 }
             } catch (error) {
                 console.error('Error loading repositories:', error);
-                repoList.innerHTML = `
-                    <div class="error-message">
-                        <h3>Error loading repositories</h3>
-                        <p>${error.message || 'Could not load repositories from repos.json'}</p>
-                        <p>Make sure the repos.json file exists in the same directory as this HTML file.</p>
-                    </div>
-                `;
+                reposLoading.style.display = 'none';
+                reposError.style.display = 'block';
+                reposError.textContent = `Error loading repositories: ${error.message}`;
             }
         }
-
-        // Render the repositories in the sidebar
-        function renderRepositories(repositories) {
-            // Clear the loading message
-            repoList.innerHTML = '';
+        
+        // Create a repository item element
+        function createRepoItem(repo) {
+            const repoItem = document.createElement('div');
+            repoItem.className = 'repo-item';
+            repoItem.dataset.owner = repo.owner;
+            repoItem.dataset.repo = repo.name;
             
-            repositories.forEach(repo => {
-                const repoItem = document.createElement('div');
-                repoItem.className = 'repo-item';
-                repoItem.innerHTML = `
-                    <div class="repo-name">${repo.owner}/${repo.name}</div>
-                    <div class="repo-description">${repo.description || 'No description available.'}</div>
-                    <div class="repo-stats">
-                        <span>
-                            <svg height="16" width="16" viewBox="0 0 16 16" version="1.1" role="img">
-                                <path fill-rule="evenodd" d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25zm0 2.445L6.615 5.5a.75.75 0 01-.564.41l-3.097.45 2.24 2.184a.75.75 0 01.216.664l-.528 3.084 2.769-1.456a.75.75 0 01.698 0l2.77 1.456-.53-3.084a.75.75 0 01.216-.664l2.24-2.183-3.096-.45a.75.75 0 01-.564-.41L8 2.694v.001z"></path>
-                            </svg>
-                            ${formatNumber(repo.stars)}
-                        </span>
-                        <span>
-                            <svg height="16" width="16" viewBox="0 0 16 16" version="1.1" role="img">
-                                <path fill-rule="evenodd" d="M5 3.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm0 2.122a2.25 2.25 0 10-1.5 0v.878A2.25 2.25 0 005.75 8.5h1.5v2.128a2.251 2.251 0 101.5 0V8.5h1.5a2.25 2.25 0 002.25-2.25v-.878a2.25 2.25 0 10-1.5 0v.878a.75.75 0 01-.75.75h-4.5A.75.75 0 015 6.25v-.878zm3.75 7.378a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm3-8.75a.75.75 0 100-1.5.75.75 0 000 1.5z"></path>
-                            </svg>
-                            ${formatNumber(repo.forks)}
-                        </span>
-                        <span>${repo.language || 'Unknown'}</span>
-                    </div>
-                `;
-                
-                repoItem.addEventListener('click', () => {
-                    // Remove active class from any previously selected repo
-                    document.querySelectorAll('.repo-item.active').forEach(item => {
-                        item.classList.remove('active');
-                    });
-                    
-                    // Add active class to the clicked repo
-                    repoItem.classList.add('active');
-                    
-                    // Load repo README
-                    loadRepoReadme(repo);
-                    
-                    // Close mobile menu if open
-                    if (sidebar.classList.contains('open')) {
-                        toggleMobileMenu();
-                    }
-                });
-                
-                repoList.appendChild(repoItem);
-            });
-        }
-
-        // Load repository README
-        function loadRepoReadme(repo) {
-            content.innerHTML = `
-                <div class="loading">
-                    <div class="spinner"></div>
-                    Loading README for ${repo.name}...
+            repoItem.innerHTML = `
+                <div class="repo-name">${repo.name}</div>
+                <div class="repo-description">${repo.description || 'No description'}</div>
+                <div class="repo-stats">
+                    <span>
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                            <path fill-rule="evenodd" d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25zm0 2.445L6.615 5.5a.75.75 0 01-.564.41l-3.097.45 2.24 2.184a.75.75 0 01.216.664l-.528 3.084 2.769-1.456a.75.75 0 01.698 0l2.77 1.456-.53-3.084a.75.75 0 01.216-.664l2.24-2.183-3.096-.45a.75.75 0 01-.564-.41L8 2.694v.001z"></path>
+                        </svg>
+                        ${repo.stars || 0}
+                    </span>
+                    <span>
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                            <path fill-rule="evenodd" d="M5 3.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm0 2.122a2.25 2.25 0 10-1.5 0v.878A2.25 2.25 0 005.75 8.5h1.5v2.128a2.251 2.251 0 101.5 0V8.5h1.5a2.25 2.25 0 002.25-2.25v-.878a2.25 2.25 0 10-1.5 0v.878a.75.75 0 01-.75.75h-4.5A.75.75 0 015 6.25v-.878zm3.75 7.378a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm3-8.75a.75.75 0 100-1.5.75.75 0 000 1.5z"></path>
+                        </svg>
+                        ${repo.forks || 0}
+                    </span>
+                    <span>${repo.language || 'Unknown'}</span>
                 </div>
             `;
             
-            // Fetch README from GitHub API
-            fetchReadme(repo.owner, repo.name)
-                .then(readmeContent => {
-                    if (!readmeContent) {
-                        throw new Error('README not found');
-                    }
-                    
-                    content.innerHTML = `
-                        <div class="repo-header">
-                            <h2>${repo.owner}/${repo.name}</h2>
-                            <a href="https://github.com/${repo.owner}/${repo.name}" target="_blank">
-                                <svg height="16" viewBox="0 0 16 16" version="1.1" width="16" role="img">
-                                    <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
-                                </svg>
-                            </a>
-                        </div>
-                        <div class="readme-container">
-                            <div class="markdown-body">${marked.parse(readmeContent)}</div>
-                        </div>
-                    `;
-                })
-                .catch(error => {
-                    console.error('Error loading README:', error);
-                    content.innerHTML = `
-                        <div class="repo-header">
-                            <h2>${repo.owner}/${repo.name}</h2>
-                            <a href="https://github.com/${repo.owner}/${repo.name}" target="_blank">
-                                <svg height="16" viewBox="0 0 16 16" version="1.1" width="16" role="img">
-                                    <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
-                                </svg>
-                            </a>
-                        </div>
-                        <div class="error-message">
-                            <h3>Error loading README</h3>
-                            <p>Could not load the README for this repository. The README might not exist or there might be an issue with the connection.</p>
-                        </div>
-                    `;
-                });
+            return repoItem;
         }
-
-        // Fetch README from GitHub API
-        async function fetchReadme(owner, repo) {
+        
+        // Load README for a selected repository
+        async function loadReadme(owner, repo) {
+            const readmeLoading = document.getElementById('readmeLoading');
+            const readmeError = document.getElementById('readmeError');
+            const readmeContainer = document.getElementById('readmeContainer');
+            const readmeContent = document.getElementById('readmeContent');
+            const repoTitle = document.getElementById('repoTitle');
+            const repoLink = document.getElementById('repoLink');
+            
+            readmeLoading.style.display = 'flex';
+            readmeError.style.display = 'none';
+            readmeContainer.style.display = 'none';
+            
             try {
-                // GitHub API URL for README
-                const url = `https://api.github.com/repos/${owner}/${repo}/readme`;
+                // Set repo title and link
+                repoTitle.textContent = `${owner} / ${repo}`;
+                repoLink.href = `https://github.com/${owner}/${repo}`;
                 
-                const response = await fetch(url);
+                // Try to fetch README from GitHub API (simulated for demo)
+                let readmeText = await fetchReadmeFallback(owner, repo);
                 
-                if (!response.ok) {
-                    throw new Error(`GitHub API error: ${response.status}`);
+                if (!readmeText) {
+                    // If README fetch failed, display error message
+                    throw new Error('README not found for this repository');
                 }
                 
-                const data = await response.json();
+                // Render the README content
+                readmeContent.innerHTML = marked.parse(readmeText);
                 
-                // GitHub returns README content as base64 encoded
-                // We need to decode it to get the actual content
-                const content = atob(data.content);
-                
-                return content;
+                // Show README container
+                readmeContainer.style.display = 'block';
             } catch (error) {
-                // For demo purposes, if API call fails, use the fallback function
-                console.warn('Error fetching from GitHub API, using fallback:', error);
-                return fetchReadmeFallback(owner, repo);
+                console.error('Error loading README:', error);
+                readmeError.style.display = 'block';
+                readmeError.textContent = `Error loading README: ${error.message}`;
+            } finally {
+                readmeLoading.style.display = 'none';
             }
         }
-
+                
         // Fallback function if GitHub API request fails
         // This fetches README directly from specific repositories we know exist
         async function fetchReadmeFallback(owner, repo) {
@@ -584,20 +718,31 @@
                 'microsoft/vscode': 'https://raw.githubusercontent.com/microsoft/vscode/main/README.md',
                 'pytorch/pytorch': 'https://raw.githubusercontent.com/pytorch/pytorch/master/README.md',
                 'sveltejs/svelte': 'https://raw.githubusercontent.com/sveltejs/svelte/master/README.md',
-                'kubernetes/kubernetes': 'https://raw.githubusercontent.com/kubernetes/kubernetes/master/README.md'
+                'kubernetes/kubernetes': 'https://raw.githubusercontent.com/kubernetes/kubernetes/master/README.md',
+                'myusername/code-translator': '# Code Translator\n\n将不同编程语言之间的代码相互转换的工具。\n\n## 功能特点\n\n- 支持Python、JavaScript、Java等多种语言之间的转换\n- 智能识别语言特性和语法差异\n- 提供API和命令行接口\n- 支持批量转换功能\n\n## 安装\n\n```bash\nnpm install code-translator\n```\n\n## 使用方法\n\n```javascript\nconst translator = require("code-translator");\n\nconst pythonCode = "def hello(name):\\n    return f\\"Hello, {name}!\\"";\nconst jsCode = translator.translate(pythonCode, "python", "javascript");\n\nconsole.log(jsCode);\n// 输出: function hello(name) { return `Hello, ${name}!`; }\n```\n\n## 许可证\n\nMIT',
+                'myusername/data-visualizer': '# Data Visualizer\n\n一个功能强大的数据可视化工具，支持多种图表类型和交互式仪表板。\n\n## 特点\n\n- 支持线图、柱状图、饼图、散点图等多种图表类型\n- 交互式仪表板，支持拖拽排列\n- 实时数据更新和动画效果\n- 支持数据导入/导出(CSV, JSON, Excel)\n- 自定义主题和样式\n\n## 安装\n\n```bash\nnpm install data-visualizer\n```\n\n## 快速开始\n\n```javascript\nimport { Chart } from "data-visualizer";\n\nconst data = [\n  { month: "Jan", sales: 35 },\n  { month: "Feb", sales: 28 },\n  { month: "Mar", sales: 42 },\n  { month: "Apr", sales: 56 }\n];\n\nconst chart = new Chart({\n  container: "#chart",\n  type: "bar",\n  data: data,\n  xAxis: "month",\n  yAxis: "sales"\n});\n\nchart.render();\n```\n\n## 许可证\n\nMIT',
+                'myusername/ai-assistant': '# AI Assistant\n\n基于机器学习的智能助手，帮助开发者提高工作效率。\n\n## 主要功能\n\n- 代码补全和建议\n- 自动化测试生成\n- 文档和注释生成\n- Bug检测和修复建议\n- 性能优化提示\n\n## 安装\n\n```bash\npip install ai-assistant\n```\n\n## 使用示例\n\n```python\nfrom ai_assistant import CodeAssistant\n\nassistant = CodeAssistant()\n\n# 获取代码补全建议\nsuggestions = assistant.complete_code(\n    "def calculate_average(numbers):\\n    total = sum(numbers)\\n    "\n)\n\n# 自动生成单元测试\ntests = assistant.generate_tests(\n    "def add(a, b):\\n    return a + b"\n)\n\n# 代码优化建议\noptimizations = assistant.optimize(\n    "for i in range(len(array)):\\n    print(array[i])"\n)\n```\n\n## 许可证\n\nMIT',
+                'myusername/cloud-deploy': '# Cloud Deploy\n\n简化云服务部署流程的命令行工具。\n\n## 特点\n\n- 支持AWS, Google Cloud, Azure等主流云平台\n- 一键部署和更新\n- 自动化配置和环境设置\n- 内置安全检查和最佳实践\n- 多环境管理(开发、测试、生产)\n\n## 安装\n\n```bash\ngo get github.com/myusername/cloud-deploy\n```\n\n## 基本使用\n\n```bash\n# 初始化项目\ncloud-deploy init --platform aws\n\n# 配置环境变量\ncloud-deploy config set --env production --region us-west-2\n\n# 部署应用\ncloud-deploy up --env production\n\n# 查看部署状态\ncloud-deploy status\n\n# 回滚到之前版本\ncloud-deploy rollback\n```\n\n## 配置文件示例\n\n```yaml\napp: myapp\nplatform: aws\n\nenvironments:\n  production:\n    region: us-west-2\n    instance: t2.medium\n    autoscaling:\n      min: 2\n      max: 5\n  staging:\n    region: us-east-1\n    instance: t2.small\n    autoscaling:\n      min: 1\n      max: 2\n```\n\n## 许可证\n\nMIT',
+                'myusername/markdown-editor': '# Markdown Editor\n\n功能丰富的Markdown编辑器，支持实时预览和自定义主题。\n\n## 功能特点\n\n- 实时预览和编辑\n- 语法高亮\n- 多种主题选择\n- 支持表格、代码块等扩展语法\n- 图片上传和管理\n- 导出为HTML、PDF等格式\n\n## 安装与使用\n\n```bash\nnpm install @myusername/markdown-editor\n```\n\n```javascript\nimport MarkdownEditor from "@myusername/markdown-editor";\n\nconst editor = new MarkdownEditor({\n  element: "#editor",\n  theme: "dark",\n  initialValue: "# Hello World",\n  autosave: true\n});\n\neditor.onChange((content) => {\n  console.log("Content changed:", content);\n});\n\n// 获取编辑器内容\nconst content = editor.getValue();\n\n// 设置编辑器内容\neditor.setValue("# New content");\n```\n\n## 快捷键\n\n| 快捷键 | 功能 |\n|-------|------|\n| Ctrl+B | 加粗 |\n| Ctrl+I | 斜体 |\n| Ctrl+K | 插入链接 |\n| Ctrl+Shift+I | 插入图片 |\n| Ctrl+L | 插入列表 |\n| Ctrl+Alt+P | 预览模式切换 |\n\n## 许可证\n\nMIT'
             };
             
             const repoPath = `${owner}/${repo}`;
             
             if (knownRepos[repoPath]) {
                 try {
-                    const response = await fetch(knownRepos[repoPath]);
-                    
-                    if (!response.ok) {
-                        throw new Error(`Could not fetch from raw URL: ${response.status}`);
+                    // If it's a URL, fetch it
+                    if (knownRepos[repoPath].startsWith('http')) {
+                        const response = await fetch(knownRepos[repoPath]);
+                        
+                        if (!response.ok) {
+                            throw new Error(`Could not fetch from raw URL: ${response.status}`);
+                        }
+                        
+                        return await response.text();
+                    } else {
+                        // If it's a hardcoded README content
+                        return knownRepos[repoPath];
                     }
-                    
-                    return await response.text();
                 } catch (error) {
                     console.error('Error fetching from raw URL:', error);
                     return null;
@@ -608,7 +753,7 @@
             }
         }
 
-        // Initialize the app by loading repositories from the JSON file
+        // Initialize the app by loading repositories from the JSON files
         loadRepositories();
     </script>
 </body>
