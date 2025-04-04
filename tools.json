@@ -1,49 +1,13 @@
 {
-  "repositories": [
-    {
-      "name": "code-translator",
-      "owner": "myusername",
-      "description": "转换不同编程语言之间的代码，支持Python、JavaScript、Java等",
-      "stars": 542,
-      "forks": 87,
-      "language": "TypeScript",
-      "updated": "2023-01-10T09:23:45Z"
-    },
-    {
-      "name": "data-visualizer",
-      "owner": "myusername",
-      "description": "数据可视化工具，支持各种图表类型和交互式仪表板",
-      "stars": 328,
-      "forks": 53,
-      "language": "JavaScript",
-      "updated": "2023-01-12T14:36:22Z"
-    },
-    {
-      "name": "ai-assistant",
-      "owner": "myusername",
-      "description": "基于机器学习的智能助手，帮助开发者提高工作效率",
-      "stars": 712,
-      "forks": 124,
-      "language": "Python",
-      "updated": "2023-01-15T16:42:18Z"
-    },
-    {
-      "name": "cloud-deploy",
-      "owner": "myusername",
-      "description": "简化云服务部署流程的命令行工具",
-      "stars": 256,
-      "forks": 48,
-      "language": "Go",
-      "updated": "2023-01-08T11:15:33Z"
-    },
-    {
-      "name": "markdown-editor",
-      "owner": "myusername",
-      "description": "功能丰富的Markdown编辑器，支持实时预览和自定义主题",
-      "stars": 189,
-      "forks": 37,
-      "language": "JavaScript",
-      "updated": "2023-01-05T10:28:54Z"
-    }
-  ]
+    "repositories": [
+        {
+            "name": "get-repo-info",
+            "owner": "fengyz",
+            "description": "Get Repo's info from GitHub and put them in JSON format.",
+            "stars": 0,
+            "forks": 0,
+            "language": "HTML",
+            "updated": "2025-04-04T03:21:45Z"
+        }
+    ]
 }
