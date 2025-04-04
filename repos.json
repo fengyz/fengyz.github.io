@@ -1,24 +1,6 @@
 {
   "repositories": [
     {
-      "name": "react",
-      "owner": "facebook",
-      "description": "A declarative, efficient, and flexible JavaScript library for building user interfaces.",
-      "stars": 181000,
-      "forks": 37200,
-      "language": "JavaScript",
-      "updated": "2023-01-15T12:34:56Z"
-    },
-    {
-      "name": "vue",
-      "owner": "vuejs",
-      "description": "Vue.js is a progressive, incrementally-adoptable JavaScript framework for building UI on the web.",
-      "stars": 202000,
-      "forks": 33400,
-      "language": "JavaScript",
-      "updated": "2023-01-20T08:12:34Z"
-    },
-    {
       "name": "tensorflow",
       "owner": "tensorflow",
       "description": "An Open Source Machine Learning Framework for Everyone",
