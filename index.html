@@ -516,10 +516,15 @@
                     
                     repoItem.classList.add('active');
                     
-                    const owner = repoItem.dataset.owner;
-                    const repo = repoItem.dataset.repo;
+                    const link = repoItem.dataset.link;
+                    if (link) {
+                        loadToolPage(repoItem.dataset.name, link);
+                    } else {
+                        const owner = repoItem.dataset.owner;
+                        const repo = repoItem.dataset.repo;
                     
-                    loadReadme(owner, repo);
+                        loadReadme(owner, repo);
+                    }
                     
                     // Close mobile menu if open
                     if (window.innerWidth <= 768) {
@@ -561,23 +566,11 @@
                 toolsLoading.style.display = 'none';
                 toolsList.innerHTML = '';
                 
-                if (data.repositories && data.repositories.length > 0) {
-                    data.repositories.forEach(repo => {
-                        const repoItem = createRepoItem(repo);
-                        toolsList.appendChild(repoItem);
+                if (data.tools && data.tools.length > 0) {
+                    data.tools.forEach(tool => {
+                        const toolItem = createToolItem(tool);
+                        toolsList.appendChild(toolItem);
                     });
-                    
-                    // Show the first repo by default
-                    const firstRepo = data.repositories[0];
-                    if (firstRepo) {
-                        loadReadme(firstRepo.owner, firstRepo.name);
-                        
-                        // Mark the first repo as active
-                        const firstRepoItem = toolsList.querySelector('.repo-item');
-                        if (firstRepoItem) {
-                            firstRepoItem.classList.add('active');
-                        }
-                    }
                     
                     // Set proper height for the tools accordion content
                     if (toolsAccordion.classList.contains('active')) {
@@ -593,6 +586,22 @@
                 toolsError.textContent = `Error loading tools: ${error.message}`;
             }
         }
+
+        // Create a tool item element
+        function createToolItem(repo) {
+            const repoItem = document.createElement('div');
+            repoItem.className = 'repo-item';
+            repoItem.dataset.name = repo.name;
+            repoItem.dataset.link = repo.link;
+            
+            repoItem.innerHTML = `
+                <div class="repo-name">${repo.name}</div>
+                <div class="repo-description">${repo.description || 'No description'}</div>
+            `;
+            
+            return repoItem;
+        }
+        
         
         // Load favorite repos from repos.json
         async function loadFavoriteRepos() {
@@ -666,6 +675,57 @@
             return repoItem;
         }
         
+        // Load README for a selected tool
+        async function loadToolPage(name, link) {
+            const readmeLoading = document.getElementById('readmeLoading');
+            const readmeError = document.getElementById('readmeError');
+            const readmeContainer = document.getElementById('readmeContainer');
+            const readmeContent = document.getElementById('readmeContent');
+            const repoTitle = document.getElementById('repoTitle');
+            const repoLink = document.getElementById('repoLink');
+            
+            readmeLoading.style.display = 'flex';
+            readmeError.style.display = 'none';
+            readmeContainer.style.display = 'none';
+            
+            try {
+                // Set repo title and link
+                repoTitle.textContent = `${name}`;
+                repoLink.href = link;
+                
+                // Try to fetch README from GitHub API (simulated for demo)
+                let readmeText = await fetch(link);
+                
+                if (!readmeText) {
+                    // If README fetch failed, display error message
+                    throw new Error('README not found for this repository');
+                }
+                
+                const htmlContent = await readmeText.text();
+
+                // Render the README content
+                readmeContent.innerHTML = '';
+                // load it in an iframe 
+                const iframe = document.createElement('iframe');
+                iframe.style.width = '100%';
+                iframe.style.height = '1080px';
+                iframe.style.border = 'none';
+                readmeContent.appendChild(iframe);
+                iframe.contentDocument.open();
+                iframe.contentDocument.write(htmlContent);
+                iframe.contentDocument.close();
+                
+                // Show README container
+                readmeContainer.style.display = 'block';
+            } catch (error) {
+                console.error('Error loading tool page:', error);
+                readmeError.style.display = 'block';
+                readmeError.textContent = `Error loading tool page: ${error.message}`;
+            } finally {
+                readmeLoading.style.display = 'none';
+            }
+        }
+
         // Load README for a selected repository
         async function loadReadme(owner, repo) {
             const readmeLoading = document.getElementById('readmeLoading');
@@ -711,15 +771,15 @@
             const repoInfoResponse = await fetch(`https://api.github.com/repos/${owner}/${repo}`);
             const repoInfo = await repoInfoResponse.json();
             const defaultBranch = repoInfo.default_branch;
-            
+
             // 2. 尝试按优先顺序获取README文件
             const possibleNames = ['README.md', 'README.markdown', 'README.rst', 'README.txt', 'README'];
-            
+
             for (const name of possibleNames) {
                 try {
                     const readmeUrl = `https://raw.githubusercontent.com/${owner}/${repo}/${defaultBranch}/${name}`;
                     const response = await fetch(readmeUrl);
-                    
+
                     if (response.ok) {
                         return await response.text();
                     }
@@ -727,7 +787,7 @@
                     console.log(`Failed to fetch ${name}`);
                 }
             }
-            
+
             throw new Error('README not found');
         }
 
