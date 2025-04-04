@@ -685,7 +685,7 @@
                 repoLink.href = `https://github.com/${owner}/${repo}`;
                 
                 // Try to fetch README from GitHub API (simulated for demo)
-                let readmeText = await fetchReadmeFallback(owner, repo);
+                let readmeText = await fetchReadme(owner, repo);
                 
                 if (!readmeText) {
                     // If README fetch failed, display error message
@@ -705,6 +705,32 @@
                 readmeLoading.style.display = 'none';
             }
         }
+
+        async function fetchReadme(owner, repo) {
+            // 1. 获取仓库信息以确定默认分支
+            const repoInfoResponse = await fetch(`https://api.github.com/repos/${owner}/${repo}`);
+            const repoInfo = await repoInfoResponse.json();
+            const defaultBranch = repoInfo.default_branch;
+            
+            // 2. 尝试按优先顺序获取README文件
+            const possibleNames = ['README.md', 'README.markdown', 'README.rst', 'README.txt', 'README'];
+            
+            for (const name of possibleNames) {
+                try {
+                    const readmeUrl = `https://raw.githubusercontent.com/${owner}/${repo}/${defaultBranch}/${name}`;
+                    const response = await fetch(readmeUrl);
+                    
+                    if (response.ok) {
+                        return await response.text();
+                    }
+                } catch (error) {
+                    console.log(`Failed to fetch ${name}`);
+                }
+            }
+            
+            throw new Error('README not found');
+        }
+
                 
         // Fallback function if GitHub API request fails
         // This fetches README directly from specific repositories we know exist
