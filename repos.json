@@ -10,6 +10,15 @@
         "updated": "2025-04-04T04:01:29Z"
     },
     {
+      "name": "awesome",
+      "owner": "sindresorhus",
+      "description": "😎 Awesome lists about all kinds of interesting topics",
+      "stars": 355527,
+      "forks": 28892,
+      "language": null,
+      "updated": "2025-04-11T02:05:09Z"
+    },
+    {
       "name": "tensorflow",
       "owner": "tensorflow",
       "description": "An Open Source Machine Learning Framework for Everyone",
