@@ -773,7 +773,7 @@
             const defaultBranch = repoInfo.default_branch;
 
             // 2. 尝试按优先顺序获取README文件
-            const possibleNames = ['README.md', 'README.markdown', 'README.rst', 'README.txt', 'README'];
+            const possibleNames = ['README.md', 'readme.md', 'README.markdown', 'README.rst', 'README.txt', 'README'];
 
             for (const name of possibleNames) {
                 try {
